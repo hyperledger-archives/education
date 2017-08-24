@@ -1,2 +1,2 @@
-# training
-Hyperledger training material
+# Education
+Hyperledger education and training material
