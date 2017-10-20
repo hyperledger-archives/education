@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sawtooth Tuna Chain</title>
+
+  <!-- require jquery and bootstrap scripts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <!-- adding style here -->
+  <style type="text/css">
+    header{
+      background-color: lightgray;
+      font-size:20px;
+      padding:15px;
+    }
+    header, .form-group{
+      margin-bottom: 3%;
+    }
+    #body{
+      margin-left:3%;
+    }
+    .form-control{
+      margin: 8px;
+    }
+    #right_header{
+      width:20%;
+      font-size:15px;
+      margin-right:0px;
+    }
+    #left_header{
+      margin-left:0;
+      width:45%;
+      display:inline-block;
+    }
+    #left-column{
+      display:inline-block;
+    }
+    #data{
+      display: inline-block;
+      width: 45%;
+      vertical-align: top;
+      margin-left: 2%;
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div id="left_header">Sawtooth Tuna Chain</div>
+    <i id="right_header">Example Blockchain Application for Introduction to Hyperledger Sawtooth LFS171x</i>
+  </header>
+
+  <div id="body">
+    <div id="left-column">
+      <div class="form-group">
+        <label>Select Holder</label>
+        <select class="form-control" name="keySelect">
+          <option value="none" selected>Select public key...</option>
+          <option value="new">Create new key pair</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Create Tuna Record</label>
+        <input id="createName" class="form-control" type="text" placeholder="Enter asset name...">
+        <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
+      </div>
+
+      <div class="form-group">
+        <label>Transfer Tuna</label>
+        <select class="form-control" name="assetSelect">
+          <option value="none" selected>Select Tuna...</option>
+        </select>
+        <select class="form-control" name="transferSelect">
+          <option value="none" selected>Select recipient...</option>
+        </select>
+        <input id="transferSubmit" type="button" value="Transfer" class="btn btn-primary">
+      </div>
+
+      <div class="form-group">
+        <label>Accept Tuna</label>
+        <div id="transferList"></div>
+      </div>
+    </div>
+
+    <div id="data">
+      <label>Tuna List</label>
+      <table class="table table-hover">
+        <tr>
+          <th>Tuna</th>
+          <th>Holder</th>
+        </tr>
+        <tbody id="assetList"></tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="dist/bundle.js"></script>
+</body>
+</html>
