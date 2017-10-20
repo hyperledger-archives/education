@@ -1,6 +1,6 @@
 {
   "name": "Sawtooth-tuna-chain-processor",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple browser based blockchain processor",
   "main": "index.js",
   "scripts": {

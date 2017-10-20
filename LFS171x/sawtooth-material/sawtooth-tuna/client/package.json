@@ -1,6 +1,6 @@
 {
   "name": "Sawtooth-tuna-chain-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple browser based blockchain client",
   "main": "",
   "scripts": {
