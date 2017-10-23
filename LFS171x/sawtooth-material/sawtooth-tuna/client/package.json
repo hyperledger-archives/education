@@ -1,0 +1,21 @@
+{
+  "name": "Sawtooth-tuna-chain-client",
+  "version": "0.0.0",
+  "description": "A simple browser based blockchain client",
+  "main": "",
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyperledger/education.git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "sawtooth-sdk": "^0.8.1"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.4"
+  }
+}
