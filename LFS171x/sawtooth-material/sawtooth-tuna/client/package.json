@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hyperledger/LFS171x/sawtooth-material/sawtooth-tuna.git"
+    "url": "git+https://github.com/hyperledger/education.git"
   },
   "license": "Apache-2.0",
   "dependencies": {
