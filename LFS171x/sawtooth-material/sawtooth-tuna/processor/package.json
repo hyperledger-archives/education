@@ -1,0 +1,21 @@
+{
+  "name": "Sawtooth-tuna-chain-processor",
+  "version": "0.0.0",
+  "description": "A simple browser based blockchain processor",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyperledger/education.git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "sawtooth-sdk": "^0.8.1"
+  },
+  "devDependencies": {
+    "request": "^2.81.0"
+  }
+}
