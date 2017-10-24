@@ -70,7 +70,11 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 	return shim.Error("Invalid Smart Contract function name.")
 }
 
-
+/*
+ * The queryTuna method *
+Used to view the records of one particular tuna
+It takes one argument -- the key for the tuna in question
+ */
 func (s *SmartContract) queryTuna(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -78,12 +82,15 @@ func (s *SmartContract) queryTuna(APIstub shim.ChaincodeStubInterface, args []st
 	}
 
 	tunaAsBytes, _ := APIstub.GetState(args[0])
+	if tunaAsBytes == nil {
+		return shim.Error("Could not locate tuna")
+	}
 	return shim.Success(tunaAsBytes)
 }
 
 /*
  * The initLedger method *
-will add test data (10 tuna catches)to our network
+Will add test data (10 tuna catches)to our network
  */
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Response {
 	tuna := []Tuna{
@@ -113,7 +120,7 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 
 /*
  * The recordTuna method *
-fisherman like Sarah would use to record each of her tuna catches. 
+Fisherman like Sarah would use to record each of her tuna catches. 
 This method takes in five arguments (attributes to be saved in the ledger). 
  */
 func (s *SmartContract) recordTuna(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
@@ -125,7 +132,10 @@ func (s *SmartContract) recordTuna(APIstub shim.ChaincodeStubInterface, args []s
 	var tuna = Tuna{ Vessel: args[1], Location: args[2], Timestamp: args[3], Holder: args[4] }
 
 	tunaAsBytes, _ := json.Marshal(tuna)
-	APIstub.PutState(args[0], tunaAsBytes)
+	err := APIstub.PutState(args[0], tunaAsBytes)
+	if err != nil {
+		return shim.Error(fmt.Sprintf("Failed to record tuna catch: %s", args[0]))
+	}
 
 	return shim.Success(nil)
 }
@@ -180,7 +190,7 @@ func (s *SmartContract) queryAllTuna(APIstub shim.ChaincodeStubInterface) sc.Res
 
 /*
  * The changeTunaHolder method *
-the data in the world state can be updated with who has possession. 
+The data in the world state can be updated with who has possession. 
 This function takes in 2 arguments, tuna id and new holder name. 
  */
 func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
@@ -199,10 +209,9 @@ func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, ar
 
 	tunaAsBytes, _ = json.Marshal(tuna)
 	err := APIstub.PutState(args[0], tunaAsBytes)
-
-    if err != nil {
-        return shim.Error(fmt.Sprintf("Failed to change tuna holder: %s", args[0]))
-    }
+	if err != nil {
+		return shim.Error(fmt.Sprintf("Failed to change tuna holder: %s", args[0]))
+	}
 
 	return shim.Success(nil)
 }

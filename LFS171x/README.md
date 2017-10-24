@@ -4,6 +4,4 @@ The source code and documentation in this directory is for the Introduction to H
 
 The course is free and open to the public and you can find it and sign up here: 
 
-```
-https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x
-```
+(https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x)
