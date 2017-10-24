@@ -1,0 +1,13 @@
+# Emacs backup files
+*~
+*#
+.#*
+# Vim file artifacts
+.*.sw*
+# installed platform-specific binaries
+/bin
+.DS_Store
+.project
+
+# fabric sdk node modules
+tuna-app/node_modules/

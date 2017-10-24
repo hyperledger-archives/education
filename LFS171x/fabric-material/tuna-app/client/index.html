@@ -1,0 +1,146 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hyperledger Fabric Tuna Application</title>
+    <link rel="icon" href="favicon.png" type="image/gif">
+
+    <!-- require jquery and bootstrap scripts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    
+    <!-- adding style here -->
+    <style type="text/css">
+      header{
+        background-color: lightgray;
+        font-size:20px;
+        padding:15px;
+      }
+      header, .form-group{
+        margin-bottom: 3%;
+      }
+      .form-group{
+        width:50%;
+      }
+      #body{
+        margin-left:3%;
+        margin-right:3%;
+      }
+      .form-control{
+        margin: 8px;
+      }
+      #right_header{
+        width:20%;
+        font-size:15px;
+        margin-right:0px;
+      }
+      #left_header{
+        margin-left:0;
+        width:40%;
+        display:inline-block;
+      } 
+      #id {
+        width:49%;
+        display: inline-block;
+      }
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body ng-app="application" ng-controller="appController">
+    <header>
+      <div id="left_header">Hyperledger Fabric Tuna Application</div>
+      <i id="right_header">Example Blockchain Application for Introduction to Hyperledger Fabric LFS171x</i>
+    </header>
+
+    <div id="body">
+      <div class="form-group">
+        <label>Query All Tuna Catches</label>
+        <p><input id="queryAllTuna" type="submit" value="Query" class="btn btn-primary" ng-click="queryAllTuna()"></p>
+      </div>
+ 
+      <table id="all_tuna" class="table" align="center">
+
+        <tr>
+          <th>ID</th>
+          <th>Timestamp</th>
+          <th>Holder</th>
+          <th>Catch Location <br>(Longitude, Latitude)</th>
+          <th>Vessel</th>
+        </tr>
+
+        <tr ng-repeat="tuna in all_tuna">
+          <td>{{tuna.Key}}</td>
+          <td>{{tuna.timestamp}}</td>
+          <td>{{tuna.holder}}</td>
+          <td>{{tuna.location}}</td>
+          <td>{{tuna.vessel}}</td>
+        </tr>
+      </table>
+
+      <div class="form-group">
+        <label>Query a Specific Tuna Catch</label><br>
+        <h5 style="color:red;margin-bottom:2%" id="error_query">Error: Please enter a valid Tuna Id</h5>
+        
+        Enter a catch number: <input id="createName" class="form-control" type="text" placeholder="Ex: 3" ng-model="tuna_id">
+        <input id="querySubmit" type="submit" value="Query" class="btn btn-primary" ng-click="queryTuna()">
+      </div>
+
+      <table id="query_tuna" class="table" align="center">
+
+        <tr>
+          <th>Timestamp</th>
+          <th>Holder</th>
+          <th>Catch Location <br>(Longitude, Latitude)</th>
+          <th>Vessel</th>
+        </tr>
+
+        <tr>
+          <td>{{query_tuna.timestamp}}</td>
+          <td>{{query_tuna.holder}}</td>
+          <td>{{query_tuna.location}}</td>
+          <td>{{query_tuna.vessel}}</td>
+        </tr>
+      </table>
+
+      <div class="form-group">
+        <label>Create Tuna Record</label>
+        <h5 style="color:green;margin-bottom:2%" id="success_create">Success! Tx ID: {{create_tuna}}</h5>
+        <br>
+        Enter catch id: <input class="form-control" type="text" placeholder="Ex: 11" ng-model="tuna.id">
+        Enter name of vessel: <input class="form-control" type="text" placeholder="Ex: 0239L" ng-model="tuna.vessel">
+        Enter longitude: <input id="createName" class="form-control" type="text" placeholder="Ex: 28.012" ng-model="tuna.longitude"> 
+        Enter latitude: <input id="createName" class="form-control" type="text" placeholder="Ex: 150.405" ng-model="tuna.latitude">
+        Enter timestamp: <input class="form-control" type="text" placeholder="Ex: 4982342301" ng-model="tuna.timestamp">
+        Enter name of holder: <input class="form-control" type="text" placeholder="Ex: Hansel" ng-model="tuna.holder">
+        <input id="createSubmit" type="submit" value="Create" class="btn btn-primary" ng-click="recordTuna()"> 
+      </div>
+
+      <div class="form-group">
+        <label>Change Tuna Holder</label><br>
+        <h5 style="color:green;margin-bottom:2%" id="success_holder">Success! Tx ID: {{change_holder}}</h5>
+        <h5 style="color:red;margin-bottom:2%" id="error_holder">Error: Please enter a valid Tuna Id</h5>
+        Enter a catch id between 1 and 10: <input class="form-control" name="assetSelect" placeholder="Ex: 1" ng-model="holder.id">
+        Enter name of new holder: <input class="form-control" name="assetSelect" placeholder="Ex: Barry" ng-model="holder.name">
+        <input id="transferSubmit" type="submit" value="Change" class="btn btn-primary" ng-click="changeHolder()">
+      </div>
+
+    </div>
+  </body>
+    <!-- requiring the angular page -->
+    <script type="text/javascript" src="app.js"> </script>
+</html>
