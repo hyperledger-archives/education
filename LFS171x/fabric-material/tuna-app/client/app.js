@@ -9,11 +9,12 @@ app.controller('appController', function($scope, appFactory){
 
 	$("#success_holder").hide();
 	$("#success_create").hide();
+	$("#error_holder").hide();
+	$("#error_query").hide();
 	
 	$scope.queryAllTuna = function(){
 
 		appFactory.queryAllTuna(function(data){
-			console.log(data)
 			var array = [];
 			for (var i = 0; i < data.length; i++){
 				parseInt(data[i].Key);
@@ -33,6 +34,13 @@ app.controller('appController', function($scope, appFactory){
 
 		appFactory.queryTuna(id, function(data){
 			$scope.query_tuna = data;
+
+			if ($scope.query_tuna == "Could not locate tuna"){
+				console.log()
+				$("#error_query").show();
+			} else{
+				$("#error_query").hide();
+			}
 		});
 	}
 
@@ -48,7 +56,13 @@ app.controller('appController', function($scope, appFactory){
 
 		appFactory.changeHolder($scope.holder, function(data){
 			$scope.change_holder = data;
-			$("#success_holder").show();
+			if ($scope.change_holder == "Error: no tuna catch found"){
+				$("#error_holder").show();
+				$("#success_holder").hide();
+			} else{
+				$("#success_holder").show();
+				$("#error_holder").hide();
+			}
 		});
 	}
 

@@ -200,6 +200,9 @@ func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, ar
 	}
 
 	tunaAsBytes, _ := APIstub.GetState(args[0])
+	if tunaAsBytes == nil {
+		return shim.Error("Could not locate tuna")
+	}
 	tuna := Tuna{}
 
 	json.Unmarshal(tunaAsBytes, &tuna)

@@ -291,15 +291,19 @@ return{
 		    if (query_responses && query_responses.length == 1) {
 		        if (query_responses[0] instanceof Error) {
 		            console.error("error from query = ", query_responses[0]);
+		            res.send("Could not locate tuna")
+		            
 		        } else {
 		            console.log("Response is ", query_responses[0].toString());
 		            res.send(query_responses[0].toString())
 		        }
 		    } else {
 		        console.log("No payloads were returned from query");
+		        res.send("Could not locate tuna")
 		    }
 		}).catch((err) => {
 		    console.error('Failed to query successfully :: ' + err);
+		    res.send("Could not locate tuna")
 		});
 	},
 	change_holder: function(req, res){
@@ -433,7 +437,8 @@ return{
 		        return Promise.all(promises);
 		    } else {
 		        console.error('Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
-		        throw new Error('Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
+		        res.send("Error: no tuna catch found");
+		        // throw new Error('Failed to send Proposal or receive valid response. Response null or status is not 200. exiting...');
 		    }
 		}).then((results) => {
 		    console.log('Send transaction promise and event listener promise have completed');
@@ -443,6 +448,7 @@ return{
 		        res.json(tx_id.getTransactionID())
 		    } else {
 		        console.error('Failed to order the transaction. Error code: ' + response.status);
+		        res.send("Error: no tuna catch found");
 		    }
 
 		    if(results && results[1] && results[1].event_status === 'VALID') {
@@ -453,6 +459,7 @@ return{
 		    }
 		}).catch((err) => {
 		    console.error('Failed to invoke successfully :: ' + err);
+		    res.send("Error: no tuna catch found");
 		});
 
 	}
