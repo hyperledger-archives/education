@@ -1,7 +1,7 @@
 {
     "name": "Fabric-tuna-app",
     "version": "1.0.0",
-    "description": "Hyperledger Fabric Mooc Sample Application",
+    "description": "Hyperledger Fabric MOOC Sample Application",
     "main": "server.js",
     "dependencies": {
         "fabric-ca-client": "^1.0.2",

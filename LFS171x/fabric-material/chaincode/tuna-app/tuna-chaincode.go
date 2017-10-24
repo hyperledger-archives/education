@@ -6,10 +6,11 @@
 
 package main
 
-/* Imports
- * 4 utility libraries for formatting, handling bytes, reading and writing JSON, and string manipulation
- * 2 specific Hyperledger Fabric specific libraries for Smart Contracts
- */
+/* Imports  
+* 4 utility libraries for handling bytes, reading and writing JSON, 
+formatting, and string manipulation  
+* 2 specific Hyperledger Fabric specific libraries for Smart Contracts  
+*/ 
 import (
 	"bytes"
 	"encoding/json"
@@ -24,7 +25,9 @@ import (
 type SmartContract struct {
 }
 
-// Define Tuna structure, with 4 properties.  Structure tags are used by encoding/json library
+/* Define Tuna structure, with 4 properties.  
+Structure tags are used by encoding/json library
+*/
 type Tuna struct {
 	Vessel string `json:"vessel"`
 	Timestamp string `json:"timestamp"`
@@ -33,22 +36,25 @@ type Tuna struct {
 }
 
 /*
- * The Init method is called when the Smart Contract "tuna-chaincode" is instantiated by the blockchain network
- * Best practice is to have any Ledger initialization in separate function -- see initLedger()
+ * The Init method *
+ called when the Smart Contract "tuna-chaincode" is instantiated by the network
+ * Best practice is to have any Ledger initialization in separate function 
+ -- see initLedger()
  */
 func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
 	return shim.Success(nil)
 }
 
 /*
- * The Invoke method is called when an application requests to run the Smart Contract "tuna-chaincode"
- * The application also specifies the particular smart contract function to call with arguments
+ * The Invoke method *
+ called when an application requests to run the Smart Contract "tuna-chaincode"
+ The app also specifies the specific smart contract function to call with args
  */
 func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response {
 
 	// Retrieve the requested Smart Contract function and arguments
 	function, args := APIstub.GetFunctionAndParameters()
-	// Route to the appropriate handler function to interact with the ledger appropriately
+	// Route to the appropriate handler function to interact with the ledger
 	if function == "queryTuna" {
 		return s.queryTuna(APIstub, args)
 	} else if function == "initLedger" {
@@ -64,6 +70,7 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 	return shim.Error("Invalid Smart Contract function name.")
 }
 
+
 func (s *SmartContract) queryTuna(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -75,8 +82,8 @@ func (s *SmartContract) queryTuna(APIstub shim.ChaincodeStubInterface, args []st
 }
 
 /*
- * The Init method is called when the Smart Contract "tuna-chaincode" is instantiated by the Fabric network
- * Best practice is to have any Ledger initialization in separate function -- see initLedger()
+ * The initLedger method *
+will add test data (10 tuna catches)to our network
  */
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Response {
 	tuna := []Tuna{
@@ -104,6 +111,11 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 	return shim.Success(nil)
 }
 
+/*
+ * The recordTuna method *
+fisherman like Sarah would use to record each of her tuna catches. 
+This method takes in five arguments (attributes to be saved in the ledger). 
+ */
 func (s *SmartContract) recordTuna(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 5 {
@@ -118,6 +130,11 @@ func (s *SmartContract) recordTuna(APIstub shim.ChaincodeStubInterface, args []s
 	return shim.Success(nil)
 }
 
+/*
+ * The queryAllTuna method *
+allows for assessing all the records added to the ledger(all tuna catches)
+This method does not take any arguments. Returns JSON string containing results. 
+ */
 func (s *SmartContract) queryAllTuna(APIstub shim.ChaincodeStubInterface) sc.Response {
 
 	startKey := "0"
@@ -139,7 +156,7 @@ func (s *SmartContract) queryAllTuna(APIstub shim.ChaincodeStubInterface) sc.Res
 		if err != nil {
 			return shim.Error(err.Error())
 		}
-		// Add a comma before array members, suppress it for the first array member
+		// Add comma before array members,suppress it for the first array member
 		if bArrayMemberAlreadyWritten == true {
 			buffer.WriteString(",")
 		}
@@ -161,6 +178,11 @@ func (s *SmartContract) queryAllTuna(APIstub shim.ChaincodeStubInterface) sc.Res
 	return shim.Success(buffer.Bytes())
 }
 
+/*
+ * The changeTunaHolder method *
+the data in the world state can be updated with who has possession. 
+This function takes in 2 arguments, tuna id and new holder name. 
+ */
 func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 2 {
@@ -171,15 +193,25 @@ func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, ar
 	tuna := Tuna{}
 
 	json.Unmarshal(tunaAsBytes, &tuna)
+	// Normally check that the specified argument is a valid holder of tuna
+	// we are skipping this check for this example
 	tuna.Holder = args[1]
 
 	tunaAsBytes, _ = json.Marshal(tuna)
-	APIstub.PutState(args[0], tunaAsBytes)
+	err := APIstub.PutState(args[0], tunaAsBytes)
+
+    if err != nil {
+            return "", fmt.Errorf("Failed to change tuna holder: %s", args[0])
+    }
 
 	return shim.Success(nil)
 }
 
-// The main function is only relevant in unit test mode. Only included here for completeness.
+/*
+ * main function *
+calls the Start function 
+The main function starts the chaincode in the container during instantiation.
+ */
 func main() {
 
 	// Create a new Smart Contract
