@@ -4,6 +4,9 @@
 */
 /*
  * Chaincode Invoke
+
+This code is based on code written by the Hyperledger Fabric community.
+  Original code can be found here: https://gerrit.hyperledger.org/r/#/c/14395/4/fabcar/enrollAdmin.js
  */
 
 var Fabric_Client = require('fabric-client');
