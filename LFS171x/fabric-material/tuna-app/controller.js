@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: Apache-2.0
 
 /*
-  Parts of this code was contributed by the Hyperledger Team 
+  This code is based on code written by the Hyperledger Fabric community.
   Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/query.js
   and https://github.com/hyperledger/fabric-samples/blob/release/fabcar/invoke.js
  */

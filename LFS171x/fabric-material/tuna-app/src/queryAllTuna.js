@@ -5,7 +5,7 @@
 /*
  * Hyperledger Fabric Sample Query Program for tuna-app: Chaincode Invoke 
  
-  Parts of this code was contributed by the Hyperledger Team 
+  This code is based on code written by the Hyperledger Fabric community.
   Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/query.js
  */
 

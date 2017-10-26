@@ -11,7 +11,7 @@ To stop it, run ``stop.sh``
 To completely remove all incriminating evidence of the network
 on your system, run ``teardown.sh``.
 
-This source code is based on (https://github.com/hyperledger/fabric-samples). Big thanks to the Hyperledger Team and their [Maintainers](http://hyperledger-fabric.readthedocs.io/en/latest/MAINTAINERS.html).
+This code is written by the Hyperledger Fabric community. Original source code can be found here: (https://github.com/hyperledger/fabric-samples).
 
 ## Licenses 
 

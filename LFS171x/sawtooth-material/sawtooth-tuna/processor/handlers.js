@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
-/* Contributed by Zac Delventhal @delventhalz 
-  Original code can be found here: https://github.com/delventhalz/transfer-chain-js/blob/master/processor/handlers.js
+/* 
+This code was written by Zac Delventhal @delventhalz.
+Original source code can be found here: https://github.com/delventhalz/transfer-chain-js/blob/master/processor/handlers.js
  */
 
 'use strict'

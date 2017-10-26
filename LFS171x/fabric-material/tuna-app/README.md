@@ -6,4 +6,4 @@ if getting error about running ./startFabric.sh permission
 
 chmod a+x startFabric.sh
 
-This application is based on (https://github.com/hyperledger/fabric-samples). Big thanks to the Hyperledger Team and their [Maintainers](http://hyperledger-fabric.readthedocs.io/en/latest/MAINTAINERS.html).
+This code is based on code written by the Hyperledger Fabric community. Source code can be found here: (https://github.com/hyperledger/fabric-samples). 
