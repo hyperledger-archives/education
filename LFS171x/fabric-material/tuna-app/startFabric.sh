@@ -1,11 +1,10 @@
 #!/bin/bash
 #
 # SPDX-License-Identifier: Apache-2.0
-#
-# Exit on first error
-
 # Parts of this code was contributed by the Hyperledger Team 
 # Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/startFabric.sh
+#
+# Exit on first error
 
 set -e
 

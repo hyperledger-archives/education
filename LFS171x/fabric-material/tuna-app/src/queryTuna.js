@@ -1,14 +1,12 @@
 'use strict';
 /*
 * SPDX-License-Identifier: Apache-2.0
-*/
-/*
- * Hyperledger Fabric Sample Query Program for tuna-app: Chaincode Invoke 
 
-   Parts of this code was contributed by the Hyperledger Team 
-  Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/query.js
+Hyperledger Fabric Sample Query Program for tuna-app: Chaincode Invoke 
+
+Parts of this code was contributed by the Hyperledger Team 
+Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/query.js
  */
-
 
 var Fabric_Client = require('fabric-client');
 var path = require('path');
