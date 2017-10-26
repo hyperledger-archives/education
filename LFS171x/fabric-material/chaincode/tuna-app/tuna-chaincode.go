@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /*
- * Sample Chaincode based on Demonstrated Scenario
+  Sample Chaincode based on Demonstrated Scenario
+
+ Parts of this code was contributed by the Hyperledger Team 
+  Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/chaincode/fabcar/fabcar.go
  */
 
 package main

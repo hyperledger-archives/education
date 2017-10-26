@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
+/* Contributed by Zac Delventhal @delventhalz 
+  Original code can be found here: https://github.com/delventhalz/transfer-chain-js/blob/master/client/src/app.js
+ */
+
 'use strict'
 
 const $ = require('jquery')
