@@ -3,6 +3,10 @@
 // Import dependencies
 // Import the chaincode shim package and the peer protobuf package
 
+/*  This code is based on code written by the Hyperledger Fabric community.
+  Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/chaincode/chaincode_example02/chaincode_example02.go
+ */
+
 package main
 
 import (

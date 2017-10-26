@@ -4,6 +4,10 @@
 */
 /*
  * Chaincode Invoke
+ 
+This code is based on code written by the Hyperledger Fabric community.
+  Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/invoke.js
+
  */
 
 var Fabric_Client = require('fabric-client');

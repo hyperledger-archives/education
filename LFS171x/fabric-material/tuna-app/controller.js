@@ -1,5 +1,11 @@
 //SPDX-License-Identifier: Apache-2.0
 
+/*
+  This code is based on code written by the Hyperledger Fabric community.
+  Original code can be found here: https://github.com/hyperledger/fabric-samples/blob/release/fabcar/query.js
+  and https://github.com/hyperledger/fabric-samples/blob/release/fabcar/invoke.js
+ */
+
 // call the packages we need
 var express       = require('express');        // call express
 var app           = express();                 // define our app using express
