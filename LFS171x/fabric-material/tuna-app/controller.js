@@ -87,14 +87,14 @@ return{
 	add_tuna: function(req, res){
 		console.log("submit recording of a tuna catch: ");
 
-		var array = req.params.tuna.split("-");
-		console.log(array);
+		var tunaReq = req.body;
+		console.log(tunaReq);
 
-		var key = array[0]
-		var timestamp = array[2]
-		var location = array[1]
-		var vessel = array[4]
-		var holder = array[3]
+		var key = tunaReq.id
+		var timestamp = tunaReq.timestamp
+		var location = tunaReq.location
+		var vessel = tunaReq.vessel
+		var holder = tunaReq.holder
 
 
 		var fabric_client = new Fabric_Client();
@@ -137,7 +137,7 @@ return{
 		    tx_id = fabric_client.newTransactionID();
 		    console.log("Assigning transaction_id: ", tx_id._transaction_id);
 
-		    // recordTuna - requires 5 args, ID, vessel, location, timestamp,holder - ex: args: ['10', 'Hound', '-12.021, 28.012', '1504054225', 'Hansel'], 
+		    // recordTuna - requires 5 args, ID, vessel, location, timestamp,holder - ex: args: ['10', 'Hound', '-12.021, 28.012', '1504054225', 'Hansel'],
 		    // send proposal to endorser
 		    const request = {
 		        //targets : --- letting this default to the peers assigned to the channel
@@ -298,7 +298,7 @@ return{
 		        if (query_responses[0] instanceof Error) {
 		            console.error("error from query = ", query_responses[0]);
 		            res.send("Could not locate tuna")
-		            
+
 		        } else {
 		            console.log("Response is ", query_responses[0].toString());
 		            res.send(query_responses[0].toString())
@@ -315,9 +315,9 @@ return{
 	change_holder: function(req, res){
 		console.log("changing holder of tuna catch: ");
 
-		var array = req.params.holder.split("-");
-		var key = array[0]
-		var holder = array[1];
+		var holderReq = req.body;
+		var key = holderReq.id;
+		var holder = holderReq.name;
 
 		var fabric_client = new Fabric_Client();
 
