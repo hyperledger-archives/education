@@ -20,8 +20,6 @@ var os            = require('os');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// instantiate the app
-var app = express();
 
 // this line requires and runs the code from our routes.js file and passes it app
 require('./routes.js')(app);
