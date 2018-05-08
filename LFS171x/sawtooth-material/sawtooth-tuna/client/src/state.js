@@ -119,12 +119,14 @@ const submitUpdate = (payload, privateKeyHex, cb) => {
 
   // Submit BatchList to Validator
   $.post({
-    url: `${API_URL}/batches?wait`,
+    url: `${API_URL}/batches`,
     data: batchListBytes,
     headers: {'Content-Type': 'application/octet-stream'},
     processData: false,
-    // Any data object indicates the Batch was not committed
-    success: ({ data }) => cb(!data),
+    success: function( resp ) {
+      var id = resp.link.split('?')[1]
+      $.get(`${API_URL}/batch_statuses?${id}&wait`, ({ data }) => cb(true))
+    },
     error: () => cb(false)
   })
 }
