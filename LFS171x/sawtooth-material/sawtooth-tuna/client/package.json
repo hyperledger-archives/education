@@ -13,7 +13,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "jquery": "^3.2.1",
-    "sawtooth-sdk": "^0.8.1"
+    "sawtooth-sdk": "^1.0.2"
   },
   "devDependencies": {
     "webpack": "^3.5.4"
