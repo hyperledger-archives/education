@@ -1,0 +1,115 @@
+# Copyright 2018 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ------------------------------------------------------------------------------
+
+version: '2.1'
+
+services:
+
+  tunachain-shell:
+    build:
+      context: .
+      dockerfile: ./shell/Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: sawtooth-tunachain-shell
+    container_name: tunachain-shell
+    volumes:
+      - .:/project/sawtooth-tuna
+      - /project/sawtooth-tuna/client/node_modules
+    command: |
+      bash -c "
+        if [ ! -f /root/.sawtooth/keys/root.priv ]; then
+          sawtooth keygen
+        fi;
+        cd client
+        npm run-script build
+        cd ../
+        tail -f /dev/null
+      "
+
+  tunachain-client:
+    build: ./client/
+    image: sawtooth-tunachain-client
+    container_name: tunachain-client
+    volumes:
+      - ./client/:/usr/local/apache2/htdocs/
+    expose:
+      - 80
+    ports:
+      - '8000:80'
+    depends_on:
+    - rest-api
+    - tunachain-shell
+
+  tunachain-tp:
+    build:
+      context: .
+      dockerfile: ./processor/Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: sawtooth-tunachain-tp
+    container_name: tunachain-tp
+    volumes:
+      - '.:/project/sawtooth-tuna'
+    depends_on:
+      - tunachain-shell
+    command: |
+      bash -c "
+        sleep 1
+        tunachain-tp -vv -C tcp://validator:4004
+      "
+
+  settings-tp:
+    image: hyperledger/sawtooth-settings-tp:1.0
+    container_name: sawtooth-settings-tp
+    depends_on:
+      - validator
+    entrypoint: settings-tp -vv -C tcp://validator:4004
+
+  rest-api:
+    image: hyperledger/sawtooth-rest-api:1.0
+    container_name: sawtooth-rest-api
+    expose:
+      - 8008
+    ports:
+      - '8008:8008'
+    depends_on:
+      - validator
+    entrypoint: sawtooth-rest-api -vv -C tcp://validator:4004 --bind rest-api:8008
+
+  validator:
+    image: hyperledger/sawtooth-validator:1.0
+    container_name: sawtooth-validator
+    expose:
+      - 4004
+    ports:
+      - '4004:4004'
+    command: |
+      bash -c "
+        if [ ! -f /etc/sawtooth/keys/validator.priv ]; then
+          sawadm keygen
+          sawtooth keygen my_key
+          sawset genesis -k /root/.sawtooth/keys/my_key.priv
+          sawadm genesis config-genesis.batch
+        fi;
+        sawtooth-validator -vv \
+          --endpoint tcp://validator:8800 \
+          --bind component:tcp://eth0:4004 \
+          --bind network:tcp://eth0:8800
+      "
