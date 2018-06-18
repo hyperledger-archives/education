@@ -497,6 +497,7 @@ The lack of know-how (and know-whom and know-where) around distributed ledger te
 # Knowledge Check
 
 ## Knowledge Check 1.1
+<!-- D -->
 What is a blockchain?
 
 <ol type="A">
@@ -507,6 +508,7 @@ What is a blockchain?
 </ol>
 
 ## Knowledge Check 1.2
+<!-- False -->
 Hyperledger is a blockchain. True or False?
 
 <ol type="A">
@@ -515,7 +517,7 @@ Hyperledger is a blockchain. True or False?
 </ol>
 
 ## Knowledge Check 1.3
-
+<!-- D -->
 What is a key characteristic of blockchain technology?
 
 <ol type="A">
@@ -526,7 +528,7 @@ What is a key characteristic of blockchain technology?
 </ol>
 
 ## Knowledge Check 1.4
-
+<!-- C -->
 What is a smart contract?
 
 <ol type="A">
@@ -537,7 +539,7 @@ What is a smart contract?
 </ol>
 
 ## Knowledge Check 1.5
-
+<!-- A -->
 What are consensus algorithms?
 
 <ol type="A">
