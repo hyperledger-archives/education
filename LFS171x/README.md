@@ -34,4 +34,4 @@ Industries today are using blockchain technologies to increase efficiency and so
 * [Introduction to Hyperledger Sawtooth](docs/introduction-to-hyperledger-sawtooth.md)
 * [Introduction to Hyperledger Fabric](docs/introduction-to-hyperledger-fabric.md)
 * [What's Next?](docs/whats-next.md)
-* Final Exam
+* [Final Exam](docs/final-exam.md)
