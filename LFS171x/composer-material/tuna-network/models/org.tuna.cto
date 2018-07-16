@@ -16,4 +16,41 @@
  * Write your model definitions here
  */
 
-namespace org.tuna
+ namespace org.tuna
+
+ concept Address {
+   o String addressLine
+   o String locality
+   o String postCode regex=/\d{4}[ ]?[A-Z]{2}/
+ }
+
+ abstract participant Individual identified by id {
+  o String id
+  o String name
+  o Address address
+}
+
+participant Fisher extends Individual {}
+participant RestaurantOwner extends Individual {}
+participant Regulator identified by id {
+  o String id
+  o String name
+}
+
+enum FishStatus {
+  o CAUGHT
+  o PURCHASED
+}
+
+asset Tuna identified by tunaId {
+  o String tunaId
+  o Integer weight range=[500, 1000000]
+  o FishStatus status default="CAUGHT"
+  o DateTime catchTime
+  --> Individual owner
+}
+
+transaction SellTuna {
+  --> Tuna tuna
+  --> RestaurantOwner newOwner
+}
