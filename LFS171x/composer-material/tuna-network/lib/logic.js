@@ -35,7 +35,7 @@ async function sellTuna(tx) {
 
     // Update tuna with new owner
     tx.tuna.owner = tx.newOwner;
-    tx.tuna.status = "PURCHASED";
+    tx.tuna.status = 'PURCHASED';
 
     // Update the asset in the asset registry.
     await tunaRegistry.update(tx.tuna);
