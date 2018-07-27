@@ -4,7 +4,7 @@ On this page, we will have a list of the key concepts that are used in this cour
 
 **Block** - A set of transactions that are bundled together and added to the chain at the same time.
 
-**Byzantine Fault Tolerance Algorithm** - A consensus algorithm designed to defend against failures in the system caused by forged or malicious messages. In order to be fault tolerant of a Byzantine fault, the number of nodes that must reach consensus is ***2f+1*** in a system containing ***3f+1***, where f is the number of faults in the system. 
+**Byzantine Fault Tolerance Algorithm** - A consensus algorithm designed to defend against failures in the system caused by forged or malicious messages. In order to be fault tolerant of a Byzantine fault, the number of nodes that must reach consensus is ***2f+1*** in a system containing ***3f+1***, where ***f*** is the number of faults in the system. 
 
 **Chaincode** - Smart contracts in Hyperledger Fabric. They encapsulate both the asset definitions and the business logic (or transactions) for modifying those assets.
 
