@@ -4,16 +4,17 @@ This application demonstrates the creation and transfer of tuna fish shipments b
 
 ## Installation
 
-Start the Fabric network ``./startFabric.sh``
+1. Start the Fabric network ``./startFabric.sh``
 
-Install the npm packages ``npm install``
+2. Install the npm packages ``npm install``
 
-Register the Admin ``node registerAdmin.js``
+3. Register the Admin ``node registerAdmin.js``
 
-Register the User ``node registerUser.js``
+4. Register the User ``node registerUser.js``
 
-Run the server ``node server.js``
+5. Run the server ``node server.js``
 
+6. View at browser ``localhost:8000``
 
 if getting error about running ./startFabric.sh permission 
 
