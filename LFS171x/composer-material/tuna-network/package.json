@@ -9,7 +9,7 @@
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/tuna.bna",
     "pretest": "npm run lint",
     "lint": "eslint .",
-    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+    "test": "nyc mocha -t 0 test/*.js"
   },
   "keywords": [
     "composer",
