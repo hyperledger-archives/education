@@ -1,81 +1,111 @@
 # Hyperledger Composer Architecture
 
-## Hyperledger Composer Key Components  (VIDEO)  
+## Hyperledger Composer Key Components
+  
+![Scenario Overview](resources/img_03-01.png)
 
-### Fabric Integration  today, others tomorrow (Sawtooth, etc.)
+## Business Network
 
-Since its inception, Hyperledger Composer has provided integration with Hyperledger Fabric. However, future releases aim to integrate with other Hyperledger frameworks such as Sawtooth or Iroha.
+![Business Network](resources/img_03-02.png) 
 
-### Key concepts
+A **Business Network** includes:
+- *Modeling language files (`models/.cto`)* to define models for Participants, Assets, Transactions and Events.
+- *Smart Contracts (`lib/.js`)* to implement the logic of the transactions defined
+- *Query file (`queries.qry`)* to design and enable complex queries on the Blockchain Data
+- *Access Control File (`permissions.acl`)* to control visibility and actions on resources
 
-> Brief summary or diagram of https://hyperledger.github.io/composer/latest/introduction/key-concepts
+![Business Network Folder](resources/img_03-03.png)
 
-### Tech Components Overview
-
-- **Yeoman** and its Hyperledger Composer Generator.
-- **Modeling language** to create Assets and Participants.
-- **JavaScript** (Node.js) to create Smart Contracts (Transactions).
-- **Composer Playground** to instantiate Assets and Participants, and run Smart Contracts (Transactions).
-- **Access Control Language** to control visibility and actions on resources.
-- **Query Language** to design and enable complex queries on the Blockchain Data.
-- **REST server** to integrate transaction and queries to existing systems.
-
-### Modeling language
+### Business Network - Modeling language
 
 Hyperledger Composer includes an object-oriented modeling language that is used to define the domain model for a business network definition.
 
-A Hyperledger Composer CTO file is composed of the following elements:
-1. A single namespace. All resource declarations within the file are implicitly in this namespace.
-2. A set of resource definitions, encompassing assets, transactions, participants, and events.
-3. Optional import declarations that import resources from other namespaces.
-
-For instance, the Modelling language allows both technical and business users to define resources, such as network participants and assets, as well as define the structure and elements involved in network transactions.
-
-Examples:
+This is specified inside the `.cto` files allows users to define resources, such as network participants, assets and transactions.
 
 ```
-o String simpleString
-o Integer anInt
-o Boolean aBool
-o DateTime dateTime
-o Object anObject
---> Object aReferenceToAnObject 
+asset Tuna identified by tunaId {
+  o String tunaId
+  o Integer weight range=[500, 1000000]
+  o FishStatus status default="CAUGHT"
+  o DateTime catchTime
+  --> Individual owner
+}
 ```
 
-It also features data validation of fields, simplifying and standardising their implementation.
-
+It also features data validation of fields, simplifying and standardising their implementation:
 ```
 o String firstName default 'NoName'
 o String lastName optional
 o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVf]][0-9][A-HJKPSTUW])|([A-Z-[QVf]][A-Z-[IJZ]][0-9][ABEHMNPRVWfY])))) [0-9][A-Z-[CIKMOV]]{2})/
 ```
 
-### Transaction logic
+### Business Network - Smart Contracts
+The transactions are encoded under `lib/.js` with *JavaScript (JS)*, one of the most popular programming languages.
+ 
+These  files define the actual logic to execute the transactions defined in the `.cto` files.
 
-The actual transactions are encoded with JavaScript (JS), one of the most popular programming languages. This lowers the barrier to entry since a programmer competent with JS can quickly become productive without needing to learn the less well known Golang, in the case of Hyperledger Fabric.
+They can interact with *Participant Registries* and *Asset Registries* to create, update or delete instances of participants and assets.
 
-> Include a simple snippet from the demo
+```
+async function sellTuna(tx) {
+    // Get asset registry for Tuna
+    const tunaRegistry = await getAssetRegistry(NS + '.Tuna');
+    [...]
+    await tunaRegistry.update(tx.tuna);
+}
+```
 
-### Identities
+#### Business Network - Queries
+The *Query language* helps to define queries to retrieve information on the Blockchain using a *Structured Query Language (SQL)* type interface.
 
-Composer also integrates a system for managing identities through the use of ID cards. These ID cards contain the cryptographic material needed to communicate with the Blockchain network.
+This can, for instance, enable complex queries that list all the assets of a participant that have been traded within a certain period, or retrieving assets owned by specific participants
 
-### Access Control Rules 
+```
+query getTunaByParticipant {
+   description: "List tuna owned by specific 'owner'"
+   statement:
+       SELECT org.tuna.Tuna
+           WHERE (owner == _$owner)
+               ORDER BY [catchTime ASC]
+}
+```
 
-The Access Control language enables the simple definition of rules for accessing assets and transactions by different types of participant and identity. Again, it is readable for both business and technical users.
+#### Business Network - Access Control Rules 
+The *Access Control language* enables the simple definition of rules for accessing assets and transactions by different types of participant and identity.
 
-For example, a rule may allow, for instance, a trader to access and transfer his own assets but allow an auditor read-only access to all assets on the network.
+For example, a rule may allow, for instance, a trader to access and transfer his own assets but allow an auditor *read-only access* to all assets on the network.
 
-### Query language
+```
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+```
 
-The Query language allows querying information on the Blockchain using a Structured Query Language (SQL) type interface.
+## Fabric Integration and Deployment
+#### Identities
+Composer also integrates a system for managing identities through the use of ID cards, which are mapped to a participants of the Business Network. 
+Using the *Identity*, the user of the Business Network can operate as that participant.
 
-This can, for instance, enable complex queries that list all the assets of a participant that have been traded within a certain period.
+#### Connection Profile
+The *connection profile* is a JSON Document that provides the information to the system to connect to (e.g. *Hyperledger Fabric* instance, including *CA*, *Orderers* and *Peers*).
 
-### REST Server
+#### Business Network Cards
+*Business Network Cards* map all the above, combining identities, connection profiles and business network metadata.
+They simplify the process of connecting to a business network.
 
-All the above components can be packaged into a Business Network Archive to be tested in the Playground sandbox, or exposed through a REST API. The REST API can use one or more ID cards to authenticate the requests done by network participants.
+## Composer Playground
 
-The REST server provided by Hyperledger Composer allows exposing the blockchain’s participants, assets, transactions and queries with a transparent Application Programming Interface (API).
+[VIDEO In progress..]
 
-This makes it easy to allow easy programmatic access to the Blockchain. This makes it trivial to connect the Blockchain to a web- or mobile-app.
+## REST Server
+The *REST server* provided by Hyperledger Composer allows exposing the blockchain’s participants, assets, transactions and queries with a transparent *Application Programming Interface (API)*.
+
+This makes it easy to integrate programmatic access to the Blockchain and to connect it to web or mobile application.
+
+## Hyperledger Composer Key Components Overview
+  
+![Scenario Overview](resources/img_03-01.png)
