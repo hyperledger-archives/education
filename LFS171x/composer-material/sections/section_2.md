@@ -30,13 +30,13 @@ When Alice catches a fish, she will create a record of the fish on the Hyperledg
 
 When Alice sells the fish to Bob, the transaction will be recorded on the Hyperledger Fabric.
 
-![Participants](resources/img_02-04.png) 
+![The Sale](resources/img_02-04.png) 
 
 ## Monitoring and queries
 
 Alice, Bob or other participants like Carla can query the blockchain to retrieve specific information, such as the list transactions or the Tuna owned by specific Participants.
 
-![Scenario Overview](resources/img_02-01.png)
+![Monitoring and queries](resources/img_02-01.png)
 
 ## Key benefits of using Hyperledger Composer
 

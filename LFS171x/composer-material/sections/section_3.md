@@ -2,7 +2,7 @@
 
 ## Hyperledger Composer Key Components
   
-![Scenario Overview](resources/img_03-01.png)
+![Hyperledger Composer Key components overview](resources/img_03-01.png)
 
 ## Business Network
 
@@ -108,4 +108,4 @@ This makes it easy to integrate programmatic access to the Blockchain and to con
 
 ## Hyperledger Composer Key Components Overview
   
-![Scenario Overview](resources/img_03-01.png)
+![Hyperledger Composer Key components overview](resources/img_03-01.png)
