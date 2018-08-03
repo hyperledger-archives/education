@@ -1,110 +1,109 @@
 # Knowledge Check
-
-## 1) Hyperledger Composer can be best described as:
 
-Select all that apply
+## Knowledge Check X.1
+<!-- A + C -->
+Hyperledger Composer can be best described as:
 
-1. A full-stack blockchain solution that can be deployed alone.
-2. A domain specific language for writing Blockchain logic.
-3. A toolset that simplifies the creation of solutions running on a Blockchain framework.
-4. A system that simplifies deploying Blockchain networks on cloud providers.
-
-## 2) A backend, such as Hyperledger Fabric network is necessary to:
+<ol type="A">
+  <li>A collaboration tool for business owners and developers to create smart contracts</li>
+  <li>A high level solution to build distributed applications on public blockchain networks</li>
+  <li>A toolset that simplifies the creation of solutions running on a Blockchain framework</li>
+  <li>All of the above</li>
+</ol>
 
-Select all that apply
+## Knowledge Check X.2
+<!-- B -->
+What can be included in a Business Network?
 
-1. Persist data
-2. Enable the transaction logic to work
-3. Enable launching the Composer Playground
-4. Deploy the Composer REST server.
+<ol type="A">
+  <li>Identities Card, Connection Profiles, Blockchain Ledger, World State Database</li>
+  <li>Participant, Assets, Transaction Logic, Events</li>
+  <li>All of the above</li>
+  <li>None of the above</li>
+</ol>
 
-
-## 3) Hyperledger Composer has a set of domain specific languages for:
+## Knowledge Check X.3
+<!-- D -->
+Which are the benefits of using Hyperledger Ccomposer?
 
-Select all that apply
+<ol type="A">
+  <li>Facilitate revisions and rearrangements when prototyping PoCs or MVPs</li>
+  <li>Set up privacy settings and confidentiality for the business operations</li>
+  <li>Integrate the blockchain network to existing systems</li>
+  <li>All of the above</li>
+</ol>
 
-1. Query Language
-2. Modeling Language
-3. Transaction Language
-4. Access Control Language
+## Knowledge Check X.4
+<!-- B -->
+When running Hyperledger Composer, a backend such as Hyperledger Fabric network is necessary to:
 
-
+<ol type="A">
+  <li>Test the business network online using Composer Playground</li>
+  <li>Persist data and provide the world state database</li>
+  <li>Define the models of Participants, Assets and Transactions</li>
+  <li>Restrict the permissions of Participants to access specific resources</li>
+</ol>
 
+## Knowledge Check X.5
+<!-- A -->
+Hyperledger Composer has been designed with a view to support other frameworks such as Sawtooth and Iroha in the future.
 
-## 4) The Modeling language is necessary to define:
+<ol type="A">
+  <li>True</li>
+  <li>False</li>
+</ol>
 
-Select all that apply
+## Knowledge Check X.6
+<!-- D -->
+Hyperledger Composer can retrieve data stored on blockchain using:
 
-1. Assets
-2. Queries
-3. Participants
-4. Transactions
-
-## 5) The Modeling language enables:
+<ol type="A">
+  <li>Access Control Language</li>
+  <li>Modeling Language</li>
+  <li>Business Network Archive (.bna file)</li>
+  <li>Rich Queries</li>
+</ol>
 
-Select all that apply
+## Knowledge Check X.7
+<!-- B -->
+The Modeling language is necessary to:
 
-1. Defining how a transaction works.
-2. Validating data fields using regular expressions.
-3. Setting default values for fields.
-4. Creating abstract types that can be extended.
-
-## 6) The transaction logic makes use of:
+<ol type="A">
+  <li>Define the Transaction Logic</li>
+  <li>Validate fields using regular expressions</li>
+  <li>Perform rich queries into the network</li>
+  <li>Specify the consensus algorithm in Hyperledger Composer</li>
+</ol>
 
-Select all that apply
+## Knowledge Check X.8
+<!-- C -->
+The transaction logic files:
 
-1. Registries to access assets and participants in the world state.
-2. Access Control objects to define the permissions of different participants.
-3. Error objects to return information to the client on why a transaction failed.
-4. Transaction objects to define what the transaction function will perform
-
-## 7) Queries allow users to retrieve data that is:
+<ol type="A">
+  <li>Define the models for Participants, Assets, Transactions, Concepts and Events</li>
+  <li>Contain access control rules to restrict the permissions of different participants</li>
+  <li>Implement what the transaction function will perform when executed</li>
+  <li>None of the above</li>
+</ol>
 
-Select all that apply
+## Knowledge Check X.9
+<!-- A + C -->
+The Composer Playground can be used to:
 
-1. Ordered
-2. Compressed
-3. Joined
-4. Filtered 
-
-## 8) The ACL language
+<ol type="A">
+  <li>Define the models for Participants, Assets, Transactions, Concepts and Events</li>
+  <li>Perform queries to retrieve data stored in the world state</li>
+  <li>Write the transaction logic for the transactions specified in the .cto file</li>
+  <li>All of the above</li>
+</ol>
 
-Select all that apply
+## Knowledge Check X.10
+<!-- B -->
+The Composer REST server can be used to:
 
-1. Is only readable by technical users.
-2. Defines which identities can access the blockchain servers.
-3. Defines which identities can access the network’s assets, participants and transactions.
-4. Is defined in the YAML format.
-
-## 9) The Composer Playground can be used to:
-
-Select all that apply
-
-1. Write a Blockchain Business network.
-2. Deploy a network to a web-browser. 
-3. Deploy a network to Hyperledger Fabric.
-4. Perform queries.
-
-## 10) The Composer REST server can be used to:
-
-Select all that apply
-
-1. Create assets and participants.
-2. Run transactions.
-3. Edit Access Control Language (ACL) rules.
-4. Perform queries.
-
-## Answers:
-
-> Should we add answers here?
-
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
+<ol type="A">
+  <li>Define the models for Participants, Assets, Transactions, Concepts and Events</li>
+  <li>Perform queries to retrieve data stored in the world state</li>
+  <li>Write the transaction logic for the transactions specified in the .cto file</li>
+  <li>All of the above</li>
+</ol>
