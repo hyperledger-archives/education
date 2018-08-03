@@ -17,7 +17,7 @@
 > 
 > And use most of the functionality available to frameworks like Hyperledger Fabric.
 > 
-> Hyperledger Composer provides domain-specific languages for Modelling, Query and Access Control that simplify the development.
+> Hyperledger Composer provides domain-specific languages for Modeling, Query and Access Control that simplify the development.
 > 
 > Also, visual components like Playground are helpful to communicate and visualise the structure and to test the interactions over the network.
 > 
@@ -40,6 +40,6 @@ By the end of the chapter you should be able to:
 
 - Understand the basics of Hyperledger Composer and how it interacts with Blockchain frameworks like Hyperledger Fabric.
 - Walk through a demo scenario highlighting aspects of Hyperledger Composer.
-- Discuss crucial components of Hyperledger Composer including Modelling language, Transaction Logic, Query language and Access Control.
+- Discuss crucial components of Hyperledger Composer including Modeling language, Transaction Logic, Query language and Access Control.
 - Install the developer environment, set up a running Business Network in Hyperledger Composer and deploy it locally on Hyperledger Fabric.
 - Get involved in the community through Rocket Chat and GitHub.

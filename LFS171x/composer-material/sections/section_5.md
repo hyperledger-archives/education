@@ -126,7 +126,7 @@ transaction SellTuna {
 ## 4) Developing Transaction (Smart Contract) Logic
 The transaction logic is specified in the file `lib/logic.js`.
 
-We start by defining the same namespace specified in the modelling language file.
+We start by defining the same namespace specified in the modeling language file.
 
 ```
 'use strict';
