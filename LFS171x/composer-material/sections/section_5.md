@@ -1,22 +1,44 @@
-# Writing a Business Network
+# Writing and Deploying a Business Network
 
-## Overview of network Requirements (from Tuna Scenario)
+## Overview of the Tuna Business Network
+As shown previously, we will implement a simple network to track the movement of Tuna fish.
 
-As we discussed in the Hyperledger Fabric and Sawtooth chapters, we can implement a simple network to track the movement of Tuna fish.
+The network we will build maintains a single system where fishers, restaurant owners and regulators interact. 
 
-The network we will build maintains a single system where fishers, restaurant owners and regulators interact. Each participant is able to access and work upon in a permissioned manner differential information about Tuna fish. Importantly, the blockchain enables this to happen in a way that is immutable and distributed, while enabling a degree of transparency and oversight not easily implementable in a centralised database.
+![Participants](resources/img_02-01.png)
 
-## Creating an empty network
+Each participant is able to access and work upon information about Tuna fish.
 
-We can use Yeoman to create an empty network, by running:
+Importantly, the blockchain enables this to happen in a way that is immutable and distributed, while enabling a degree of transparency and oversight not easily implementable in a centralised database.
 
-```bash
+### Steps
+
+In order to create and use the `tuna-network` business network, we will cover the following steps:
+
+1) Creating an empty network
+2) Defining Participants
+3) Defining Assets and Transactions
+4) Developing Transaction (Smart Contract) Logic
+5) Developing Queries
+6) Building and starting the Business Network
+7) Deploying onto Hyperledger Fabric
+8) Testing on the Composer Playground
+9) Running the Composer REST Server
+
+> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education
+
+
+## 1) Creating an empty network
+
+We can use [Yeoman](http://yeoman.io/) to create an empty network, by running:
+
+```
 yo hyperledger-composer:businessnetwork
 ```
 
 And then answering the questions that are posed.
 
-```bash
+```
 ? Business network name: tuna-network
 ? Description: Hyperledger Composer network for Tuna tracking
 ? Author name:  Alejandro (Sasha) Vicente Grabovetsky & Nicola Paoli
@@ -26,26 +48,17 @@ And then answering the questions that are posed.
 ? Do you want to generate an empty template network? Yes: generate an empty template network
 ```
 
-## Developing Participants
+## 2) Defining  Participants
 
-We start by defining a namespace and a concept we can reuse.
+Participants are be defined under the `models/org.tuna.cto` file.
 
-These can be defined under the `models/org.tuna.cto` file.
-
-For the address, we demonstrate how the input of a field (in this case the postal code) can be validated through a regular expression:
-
+We start by defining a `namespace`.
 ```
 namespace org.tuna
-
-concept Address {
-  o String addressLine
-  o String locality
-  o String postCode regex=/\d{4}[ ]?[A-Z]{2}/
-}
 ```
 
-Then we create an abstract concept for an Individual, which we cannot instantiate, but which will avoid code duplication, as we derive other concrete participants from it.
-
+Then we create an abstract `Participant` for an `Individual`. 
+All participants will inherit the properties from it.
 ```
 abstract participant Individual identified by id {
   o String id
@@ -54,7 +67,17 @@ abstract participant Individual identified by id {
 }
 ```
 
-Finally, we define the Fisher, RestaurantOwner, Regulator:
+To fill the property `Address` of the individual, we can create a `Concept`.<br>
+Note that `postCode` should have a specific format that can be validated using a regular expression.
+```
+concept Address {
+  o String addressLine
+  o String locality
+  o String postCode regex=/\d{4}[ ]?[A-Z]{2}/
+}
+```
+
+Finally, we define the `Fisher`, `RestaurantOwner` and `Regulator`, which extend the Individual:
 
 ```
 participant Fisher extends Individual {}
@@ -65,18 +88,9 @@ participant Regulator identified by id {
 }
 ```
 
-## Developing Assets
-
-We can define an enumerated type (enum), which specifies a type that can assume a limited number of values.
-
-```
-enum FishStatus {
-  o CAUGHT
-  o PURCHASED
-}
-```
-
-The Tuna asset is also uniquely identified by an id. It also has a weight, which is limited between 500 grams and 1 million grams (a tonne). The largest tuna rarely exceed 800 kg.
+## 3) Defining Assets and Transactions
+Assets and Transactions are also defined under the `models/org.tuna.cto` file.
+In `tuna-network` the asset is represented by the `Tuna`, which is defined as follow:
 
 ```
 asset Tuna identified by tunaId {
@@ -88,8 +102,20 @@ asset Tuna identified by tunaId {
 }
 ```
 
-Finally, we specify a transaction (smart contract) definition, specifying that a Tuna can change ownership.
+The `Tuna` asset is uniquely identified by an id. 
+It also has a weight, which is limited between 500 grams and 1 million grams (a tonne). 
+The largest tuna rarely exceed 800 kg.
 
+To specify the `Status` of the Tuna, that can be either `CAUGHT` or `PURCHASED`, we can define an enumerated type`Enum`, which specifies a type that can assume a limited number of values.
+
+```
+enum FishStatus {
+  o CAUGHT
+  o PURCHASED
+}
+```
+
+Finally, we define the `Transaction`, to change the ownership of the Tuna from a `Fisher` to a `RestaurantOwner`.
 ```
 transaction SellTuna {
   --> Tuna tuna
@@ -97,58 +123,98 @@ transaction SellTuna {
 }
 ```
 
-Developing Transaction (Smart Contract) Logic
-The transaction logic is specified in the `lib/logic.js`:
+## 4) Developing Transaction (Smart Contract) Logic
+The transaction logic is specified in the file `lib/logic.js`.
 
-```ecmascript 6
+We start by defining the same namespace specified in the modelling language file.
+
+```
 'use strict';
 /**
  * Defining the namespace for the business network
  */
 const NS = 'org.tuna';
+```
 
+The transaction logic is defined in a function that accepts the Transaction `SellTuna` as input parameter.
+```
 /**
- * Transfer tuna from one owner to another
- * @param {org.tuna.SellTuna} tx - The transferTuna transaction
- * @transaction
- */
+* Transfer tuna from one owner to another
+* @param {org.tuna.SellTuna} tx - The transferTuna transaction
+* @transaction
+*/
 async function sellTuna(tx) {
+```
+
+Next, the registries related to the Asset `Tuna` and the Participant `Restaurant Owner` are instantiated:
+```
     // Get asset registry for Tuna
     const tunaRegistry = await getAssetRegistry(NS + '.Tuna');
 
-    // Make sure the tuna status is CAUGHT and not PURCHASED
-    if (tx.tuna.status !== 'CAUGHT') {
-        throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
-    }
-
     // Get participant registry for Individuals
     const restaurantOwnerRegistry = await getParticipantRegistry(NS + '.RestaurantOwner');
+```
 
+Next, we have to veryfy that the `status` of the Tuna is `CAUGHT`.
+This is to make sure that a `Tuna` already sold cannot be sold again.
+```
+    // Make sure the tuna status is CAUGHT and not PURCHASED
+    if (tx.tuna.status !== 'CAUGHT') {
+       throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
+    }
+```
+
+Retrieve the id of the `RestaurantOwner` from the Transaction.
+```
     // Get newOwner
     const newOwnerID = tx.newOwner.getIdentifier();
+```
+
+Retrieve the id of the current Owner of the tuna from the Tuna Object.
+```
+    // Get current Owner
     const oldOwnerID = tx.tuna.owner.getIdentifier();
+```
 
-    // Make sure that new owner exists
-    const newOwner = await restaurantOwnerRegistry.get(newOwnerID);
-
+Next, we have to verify that old and new owners are actually two different participants:
+``` 
     // Check that newOwner is not same as current owner
     if (newOwnerID === oldOwnerID) {
         throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is already owned by ${oldOwnerID}`);
     }
+```
 
+Next, we verify that the `RestaurantOwner` exists
+```
+    // Make sure that new owner exists
+    const newOwner = await restaurantOwnerRegistry.get(newOwnerID);
+    if (!newOwner) {
+        throw new Error(`RestaurantOwner with id ${newOwnerID} does not exist`);
+    }
+```
+
+Now we can update the `owner` of the Tuna:
+```
     // Update tuna with new owner
     tx.tuna.owner = tx.newOwner;
-    tx.tuna.status = "PURCHASED";
+```
 
-    // Update the asset in the asset registry.
-    await tunaRegistry.update(tx.tuna);
+Update the `status` of the Tuna:
+```
+    tx.tuna.status = 'PURCHASED';
+```
+
+Finally, update the record of the Tuna in the asset registry
+```
+   // Update the asset in the asset registry.
+   await tunaRegistry.update(tx.tuna);
 }
 ```
 
-## Developing Queries
-
+## 5) Developing Queries
 The queries can be specified under the `queries.qry` file.
 
+The query `getTunaByParticipant` will return all the fishes owned by a specific participant in the format of an array of Assets of type `Tuna`.
 ```
 query getTunaByParticipant {
     description: "List tuna owned by specific 'owner'"
@@ -158,76 +224,56 @@ query getTunaByParticipant {
                 ORDER BY [catchTime ASC]
 }
 ```
+ 
+## 6) Building and starting the Business Network
+Once we have created the network, we create a `Business Network Archive (BNA)` running:
 
-## Building and starting the Business Network Archive
-
-Once we have created the network, we can run:
-
-```bash
+```
 composer archive create -t dir -n .
 ```
 
-To create a Business Network Archive (BNA) called `tuna@0.0.1.bna`
+This creates the file `tuna-network@0.0.1.bna`.
 
-## Playing on the Composer Playground
-
-Once we have the BNA, we access the composer playground we started in the previous section by accessing port 8080 of the VM through a web browser.
-
-We can import our business network into the web browser, or we can install it onto an underlying Hyperledger Fabric blockchain network.
-
-## Deploying onto Hyperledger Fabric
-
+## 7) Deploying onto Hyperledger Fabric
 We start by installing the network onto the Hyperledger Fabric peers:
-
-```bash
+```
 composer network install --card PeerAdmin@hlfv1 --archiveFile tuna-network@0.0.1.bna
 ```
 
 Then we initialise the chaincode on the Hyperledger Fabric peers:
-
-```bash
+```
 composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --networkName tuna-network --networkVersion 0.0.1
 ```
 
 This creates a card that we can import:
-
-```bash
+```
 composer card import --file admin@tuna-network.card
 ```
 
 And use to access the business network:
-
-```bash
+```
 composer network ping --card admin@tuna-network
 ```
 
 This should show that we can connect to the network.
 
-## Running REST Server
+## 8) Playing on the Composer Playground
+Once we have the network deployed, we can access the `Composer Playground` started in the previous section by accessing `http://localhost:8080` (or the port `:8080` of the Ubuntu Virtual Machine) in a web browser.
 
-We can also run the REST server to connect to our business network and expose its functionality and smart contracts.
+We can also import the `.bna` files directly in Composer Playground to test the business network.
 
+[Video Composer Playground to create participants, create tuna and to sell tuna]
+
+## 9) Running REST Server
+We can also run the REST server to connect to the deployed business network and expose its functionalities and smart contracts.
+
+```
 composer-rest-server -c admin@tuna-network -n never -w true
+```
 
-We can now access our VM’s port 3000 to access the REST server.
+We can now access http://localhost:3000/ to explore the Composer REST API.
 
-> Screenshot to show how to use queries on the REST Server
+[VIDEO to show how to use queries on the REST Server]
 
-## Summary of Business Network (VIDEO)  
+Summary of Business Network (VIDEO)  
 
-### Brief overview of the steps in this Demonstration
-
-1. Generating an empty network using Yeoman and the Hyperledger Composer Generator
-2. Create resources and actors in the network, namely:
-  - Participants: Fisher, Restaurant Owner, Regulator
-  - Assets: Tuna fish
-3. Create smart contracts where:
-  - `/transferTuna` A tuna is transferred to a Restaurant Owner 
-4. Demonstrate how participants, assets and transactions can be instantiated.
-5. Limit the visibility for the different participants in the network of:
-  - Transaction /transferTuna can be used only by the Fisher
-  - Query /getTunahByParticipant:  (participants except regulator can only see their own fishes)
-  - Query /monitorTunaTransactions can be used only by the regulator 
-Query  the blockchain to:
-  - /getTunaByParticipant List tuna fishes that belong to a particular participant.
-  - /monitorTunaTransactions 
