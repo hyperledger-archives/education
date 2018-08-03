@@ -92,7 +92,7 @@ The Composer Playground can be used to:
 
 <ol type="A">
   <li>Define the models for Participants, Assets, Transactions, Concepts and Events</li>
-  <li>Perform queries to retrieve data stored in the world state</li>
+  <li>Perform queries to retrieve data stored in the blockchain</li>
   <li>Write the transaction logic for the transactions specified in the .cto file</li>
   <li>All of the above</li>
 </ol>
@@ -103,7 +103,7 @@ The Composer REST server can be used to:
 
 <ol type="A">
   <li>Define the models for Participants, Assets, Transactions, Concepts and Events</li>
-  <li>Perform queries to retrieve data stored in the world state</li>
+  <li>Perform queries to retrieve data stored in the blockchain</li>
   <li>Write the transaction logic for the transactions specified in the .cto file</li>
   <li>All of the above</li>
 </ol>
