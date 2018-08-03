@@ -86,6 +86,8 @@ rule NetworkAdminSystem {
 ```
 
 ## Fabric Integration and Deployment
+
+![Business Network Folder](resources/img_03-04.png)
 #### Identities
 Composer also integrates a system for managing identities through the use of ID cards, which are mapped to a participants of the Business Network. 
 Using the *Identity*, the user of the Business Network can operate as that participant.
@@ -97,15 +99,23 @@ The *connection profile* is a JSON Document that provides the information to the
 *Business Network Cards* map all the above, combining identities, connection profiles and business network metadata.
 They simplify the process of connecting to a business network.
 
-## Composer Playground
+## Deployment and test
+
+There are two ways to access to the Business Network on Hyperledger Composer.
+
+- **Composer Playground** provides a web-based test environment.
+- **Composer REST Server** provides programmatic access to the Blockchain.
+
+![Business Network Folder](resources/img_03-05.png)
+### Composer Playground
 
 [VIDEO In progress..]
 
-## REST Server
+### REST Server
 The *REST server* provided by Hyperledger Composer allows exposing the blockchain’s participants, assets, transactions and queries with a transparent *Application Programming Interface (API)*.
 
 This makes it easy to integrate programmatic access to the Blockchain and to connect it to web or mobile application.
 
-## Hyperledger Composer Key Components Overview
+## Summary of Hyperledger Composer Key Components
   
 ![Hyperledger Composer Key components overview](resources/img_03-01.png)
