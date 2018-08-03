@@ -16,7 +16,7 @@ A **Business Network** includes:
 
 ![Business Network Folder](resources/img_03-03.png)
 
-### Business Network - Modeling language
+## Business Network - Modeling language
 
 Hyperledger Composer includes an object-oriented modeling language that is used to define the domain model for a business network definition.
 
@@ -39,7 +39,7 @@ o String lastName optional
 o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVf]][0-9][A-HJKPSTUW])|([A-Z-[QVf]][A-Z-[IJZ]][0-9][ABEHMNPRVWfY])))) [0-9][A-Z-[CIKMOV]]{2})/
 ```
 
-### Business Network - Smart Contracts
+## Business Network - Smart Contracts
 The transactions are encoded under `lib/.js` with *JavaScript (JS)*, one of the most popular programming languages.
  
 These  files define the actual logic to execute the transactions defined in the `.cto` files.
@@ -55,7 +55,7 @@ async function sellTuna(tx) {
 }
 ```
 
-#### Business Network - Queries
+## Business Network - Queries
 The *Query language* helps to define queries to retrieve information on the Blockchain using a *Structured Query Language (SQL)* type interface.
 
 This can, for instance, enable complex queries that list all the assets of a participant that have been traded within a certain period, or retrieving assets owned by specific participants
@@ -70,7 +70,7 @@ query getTunaByParticipant {
 }
 ```
 
-#### Business Network - Access Control Rules 
+## Business Network - Access Control Rules 
 The *Access Control language* enables the simple definition of rules for accessing assets and transactions by different types of participant and identity.
 
 For example, a rule may allow, for instance, a trader to access and transfer his own assets but allow an auditor *read-only access* to all assets on the network.
