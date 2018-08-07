@@ -1,10 +1,10 @@
 # Scenario
 
-## Introduction to the Tuna fish example using Hyperledger Composer 
+## Introduction to the Tuna fish example using Hyperledger Composer
 
 Hyperledger Composer provides a level of abstraction to build technical blockchain solutions over real use cases.
 
-To best show what we can do with Hyperledger Composer, we will guide through the steps to build a real case scenario. 
+To best show what we can do with Hyperledger Composer, we will guide you through the steps to build a real case scenario. 
 
 It will be based on the Tuna-fish tracking system.
 
@@ -30,7 +30,7 @@ When Alice catches a fish, she will create a record of the fish on the Hyperledg
 
 When Alice sells the fish to Bob, the transaction will be recorded on the Hyperledger Fabric.
 
-![The Sale](resources/img_02-04.png) 
+![The Sale](resources/img_02-04.png)
 
 ## Monitoring and queries
 
@@ -49,7 +49,7 @@ Hyperledger Composer provides a smart tool  to revise and rearrange model and lo
 **Analytics and Privacy**<br>
 Rich queries on the data can be easily set up and performed. Access Control Rules help to preserve a layer of confidentiality for the business operations.
 
-**Integration to existing systems**<br> 
+**Integration to existing systems**<br>
 A REST server exposes your Blockchain to a Web or Mobile Application to be integrated in existing systems.
 
 **Communication**<br>

@@ -24,7 +24,7 @@ What can be included in a Business Network?
 
 ## Knowledge Check X.3
 <!-- D -->
-Which are the benefits of using Hyperledger Ccomposer?
+Which are the benefits of using Hyperledger Composer?
 
 <ol type="A">
   <li>Facilitate revisions and rearrangements when prototyping PoCs or MVPs</li>

@@ -6,7 +6,7 @@
 
 ## Business Network
 
-![Business Network](resources/img_03-02.png) 
+![Business Network](resources/img_03-02.png)
 
 A **Business Network** includes:
 - *Modeling language files (`models/.cto`)* to define models for Participants, Assets, Transactions and Events.
@@ -20,7 +20,7 @@ A **Business Network** includes:
 
 Hyperledger Composer includes an object-oriented modeling language that is used to define the domain model for a business network definition.
 
-This is specified inside the `.cto` files allows users to define resources, such as network participants, assets and transactions.
+This is used inside the `.cto` files and allows users to define resources, such as network participants, assets and transactions.
 
 ```
 asset Tuna identified by tunaId {
@@ -89,11 +89,11 @@ rule NetworkAdminSystem {
 
 ![Business Network Folder](resources/img_03-04.png)
 #### Identities
-Composer also integrates a system for managing identities through the use of ID cards, which are mapped to a participants of the Business Network. 
+Composer also integrates a system for managing identities through the use of ID cards, which are mapped to a participants of the Business Network.
 Using the *Identity*, the user of the Business Network can operate as that participant.
 
 #### Connection Profile
-The *connection profile* is a JSON Document that provides the information to the system to connect to (e.g. *Hyperledger Fabric* instance, including *CA*, *Orderers* and *Peers*).
+The *connection profile* is a JSON Document that provides the information necessary to connect to a system (e.g. *Hyperledger Fabric* instance, including *CA*, *Orderers* and *Peers*).
 
 #### Business Network Cards
 *Business Network Cards* map all the above, combining identities, connection profiles and business network metadata.
@@ -117,5 +117,5 @@ The *REST server* provided by Hyperledger Composer allows exposing the blockchai
 This makes it easy to integrate programmatic access to the Blockchain and to connect it to web or mobile application.
 
 ## Summary of Hyperledger Composer Key Components
-  
+
 ![Hyperledger Composer Key components overview](resources/img_03-01.png)

@@ -3,7 +3,7 @@
 ## Overview of the Tuna Business Network
 As shown previously, we will implement a simple network to track the movement of Tuna fish.
 
-The network we will build maintains a single system where fishers, restaurant owners and regulators interact. 
+The network we will build maintains a single system where fishers, restaurant owners and regulators interact.
 
 ![Participants](resources/img_02-01.png)
 
@@ -20,12 +20,13 @@ In order to create and use the `tuna-network` business network, we will cover th
 3) Defining Assets and Transactions
 4) Developing Transaction (Smart Contract) Logic
 5) Developing Queries
-6) Building and starting the Business Network
-7) Deploying onto Hyperledger Fabric
-8) Testing on the Composer Playground
-9) Running the Composer REST Server
+6) Defining Access Control Rules
+7) Building and starting the Business Network
+8) Deploying onto Hyperledger Fabric
+9) Testing on the Composer Playground
+10) Running the Composer REST Server
 
-> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education
+> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education/composer-material
 
 
 ## 1) Creating an empty network
@@ -50,14 +51,14 @@ And then answering the questions that are posed.
 
 ## 2) Defining  Participants
 
-Participants are be defined under the `models/org.tuna.cto` file.
+Participants are defined under the `models/org.tuna.cto` file.
 
 We start by defining a `namespace`.
 ```
 namespace org.tuna
 ```
 
-Then we create an abstract `Participant` for an `Individual`. 
+Then we create an abstract `Participant` for an `Individual`.
 All participants will inherit the properties from it.
 ```
 abstract participant Individual identified by id {
@@ -102,11 +103,11 @@ asset Tuna identified by tunaId {
 }
 ```
 
-The `Tuna` asset is uniquely identified by an id. 
-It also has a weight, which is limited between 500 grams and 1 million grams (a tonne). 
+The `Tuna` asset is uniquely identified by an id.
+It also has a weight, which is limited between 500 grams and 1 million grams (a tonne).
 The largest tuna rarely exceed 800 kg.
 
-To specify the `Status` of the Tuna, that can be either `CAUGHT` or `PURCHASED`, we can define an enumerated type`Enum`, which specifies a type that can assume a limited number of values.
+To specify the `Status` of the Tuna, that can be either `CAUGHT` or `PURCHASED`, we can define an enumerated type `Enum`, which specifies a type that can assume a limited number of values.
 
 ```
 enum FishStatus {
@@ -155,7 +156,7 @@ Next, the registries related to the Asset `Tuna` and the Participant `Restaurant
     const restaurantOwnerRegistry = await getParticipantRegistry(NS + '.RestaurantOwner');
 ```
 
-Next, we have to veryfy that the `status` of the Tuna is `CAUGHT`.
+Next, we have to verify that the `status` of the Tuna is `CAUGHT`.
 This is to make sure that a `Tuna` already sold cannot be sold again.
 ```
     // Make sure the tuna status is CAUGHT and not PURCHASED
@@ -224,9 +225,11 @@ query getTunaByParticipant {
                 ORDER BY [catchTime ASC]
 }
 ```
+
+## 6) Defining Access Control Rules
  
-## 6) Building and starting the Business Network
-Once we have created the network, we create a `Business Network Archive (BNA)` running:
+## 7) Building and starting the Business Network
+Once we have created the network, we create a `Business Network Archive (BNA)` running the following command from the directory that you ran the Yeoman generator:
 
 ```
 composer archive create -t dir -n .
@@ -234,7 +237,7 @@ composer archive create -t dir -n .
 
 This creates the file `tuna-network@0.0.1.bna`.
 
-## 7) Deploying onto Hyperledger Fabric
+## 8) Deploying onto Hyperledger Fabric
 We start by installing the network onto the Hyperledger Fabric peers:
 ```
 composer network install --card PeerAdmin@hlfv1 --archiveFile tuna-network@0.0.1.bna
@@ -257,14 +260,14 @@ composer network ping --card admin@tuna-network
 
 This should show that we can connect to the network.
 
-## 8) Playing on the Composer Playground
+## 9) Playing on the Composer Playground
 Once we have the network deployed, we can access the `Composer Playground` started in the previous section by accessing `http://localhost:8080` (or the port `:8080` of the Ubuntu Virtual Machine) in a web browser.
 
 We can also import the `.bna` files directly in Composer Playground to test the business network.
 
 [Video Composer Playground to create participants, create tuna and to sell tuna]
 
-## 9) Running REST Server
+## 10) Running REST Server
 We can also run the REST server to connect to the deployed business network and expose its functionalities and smart contracts.
 
 ```

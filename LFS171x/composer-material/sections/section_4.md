@@ -12,10 +12,8 @@ the cloud (e.g. through providers such as AWS, Azure, GCP, Digital Ocean or Blue
 
 Cloud providers often provide free credits or have plans enabling free usage of small VMs
 
-Henceforth we will assume you are using an Ubuntu Linux VM.
-
 ### Text editor
-On your local machine, we recommend you have an editor featuring a plugin for Hyperledger Composer. 
+On your local machine, we recommend you have an editor featuring a plugin for Hyperledger Composer.
 
 Two such editors exist today:
 
@@ -32,7 +30,7 @@ Connect to the command line of your virtual machine (e.g. by using SSH).
 Download and install the prerequisites:
 
 ```bash
-curl -O https://hyperledger.github.io/composer/prereqs-ubuntu.sh
+curl -O https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
 chmod u+x prereqs-ubuntu.sh
 ./prereqs-ubuntu.sh
 ```
@@ -40,7 +38,7 @@ chmod u+x prereqs-ubuntu.sh
 ## Technical Prerequisites - Mac OS
 
 ### Text editor
-On your local machine, we recommend you have an editor featuring a plugin for Hyperledger Composer. 
+On your local machine, we recommend you have an editor featuring a plugin for Hyperledger Composer.
 
 Two such editors exist today:
 
@@ -54,7 +52,7 @@ These will enable you to more easily work using the Hyperledger Composer Extensi
 
 To install Hyperledger Composer in your Mac you can either follow this video or the guided the procedure in the official [Hyperledger Composer Documentation](https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html#macos).
 
-[VIDEO Install Hyperledger Composer in MacOS - in progress] 
+[VIDEO Install Hyperledger Composer in MacOS - in progress]
 
 ## Installing Hyperledger Composer components
 
@@ -63,7 +61,7 @@ You will now need to install the Hyperledger Composer components:
 This installs the Composer Command Line Interface (CLI)
 
 ```
-npm install -g composer-cli 
+npm install -g composer-cli
 ```
 
 Then install the Composer REST Server
@@ -77,14 +75,14 @@ Install Composer Playground
 npm install -g  composer-playground
 ```
 
-Install Yeoman, enabling us to create empty or populated sample blockchain networks and web applications. 
+Install Yeoman, enabling us to create empty or populated sample blockchain networks and web applications.
 ```
 npm install -g yo
 ```
 
 Install the Hyperledger Composer generator for Yeoman
 ```
-npm install -g generator-hyperledger-composer 
+npm install -g generator-hyperledger-composer
 ```
 
 ### Install Hyperledger Fabric development server
