@@ -10,7 +10,7 @@
 
 A **Business Network** includes:
 - *Modeling language files (`models/.cto`)* to define models for Participants, Assets, Transactions and Events.
-- *Smart Contracts (`lib/.js`)* to implement the logic of the transactions defined
+- *Transaction Logic (`lib/.js`)* to implement the logic of the transactions defined
 - *Query file (`queries.qry`)* to design and enable complex queries on the Blockchain Data
 - *Access Control File (`permissions.acl`)* to control visibility and actions on resources
 
@@ -39,7 +39,7 @@ o String lastName optional
 o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVf]][0-9][A-HJKPSTUW])|([A-Z-[QVf]][A-Z-[IJZ]][0-9][ABEHMNPRVWfY])))) [0-9][A-Z-[CIKMOV]]{2})/
 ```
 
-## Business Network - Smart Contracts
+## Business Network - Transaction Logic
 The transactions are encoded under `lib/.js` with *JavaScript (JS)*, one of the most popular programming languages.
  
 These  files define the actual logic to execute the transactions defined in the `.cto` files.

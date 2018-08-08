@@ -5,7 +5,7 @@
 Hyperledger Composer can be best described as:
 
 <ol type="A">
-  <li>A collaboration tool for business owners and developers to create smart contracts</li>
+  <li>A collaboration tool for business owners and developers to create blockchain applications</li>
   <li>A high level solution to build distributed applications on public blockchain networks</li>
   <li>A toolset that simplifies the creation of solutions running on a Blockchain framework</li>
   <li>All of the above</li>

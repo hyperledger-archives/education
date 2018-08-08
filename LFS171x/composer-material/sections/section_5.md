@@ -296,7 +296,7 @@ We can also import the `.bna` files directly in Composer Playground to test the 
 [Video Composer Playground to create participants, create tuna and to sell tuna]
 
 ## 10) Running the Composer REST Server
-We can also run the REST server to connect to the deployed business network and expose its functionalities and smart contracts.
+We can also run the REST server to connect to the deployed business network and expose resources and transactions.
 
 ```
 composer-rest-server -c admin@tuna-network -n never -w true
