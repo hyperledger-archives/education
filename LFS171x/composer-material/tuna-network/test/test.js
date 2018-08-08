@@ -92,6 +92,7 @@ describe('Sell Tuna', () => {
             // create the fisher
             const fisher = factory.newResource(namespace, 'Fisher', 'fisher01');
             fisher.name = 'Fisher 01';
+            fisher.licenseNumber = '0000001';
             fisher.address = factory.newConcept(namespace, 'Address');
             fisher.address.addressLine = 'Amsterdam Port';
             fisher.address.locality = 'Amsterdam';
@@ -100,6 +101,7 @@ describe('Sell Tuna', () => {
             // create the restaurant owner
             const restaurantOwner = factory.newResource(namespace, 'RestaurantOwner', 'restaurantOwner01');
             restaurantOwner.name = 'Restaurant Owner 01';
+            restaurantOwner.restaurantName = 'The Fresh Tuna';
             restaurantOwner.address = factory.newConcept(namespace, 'Address');
             restaurantOwner.address.addressLine = 'Amsterdam City Centre';
             restaurantOwner.address.locality = 'Amsterdam';

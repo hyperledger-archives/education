@@ -78,11 +78,17 @@ concept Address {
 }
 ```
 
-Finally, we define the `Fisher`, `RestaurantOwner` and `Regulator`, which extend the Individual:
+Finally, we define the `Fisher` and `RestaurantOwner`, which extend the Individual, and the `Regulator`:
 
 ```
-participant Fisher extends Individual {}
-participant RestaurantOwner extends Individual {}
+participant Fisher extends Individual {
+    o String licenseNumber
+}
+
+participant RestaurantOwner extends Individual {
+    o String restaurantName
+}
+
 participant Regulator identified by id {
   o String id
   o String name
