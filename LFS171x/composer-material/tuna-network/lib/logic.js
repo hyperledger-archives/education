@@ -22,27 +22,27 @@ async function sellTuna(tx) {
         throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
     }
 
-    // Get newOwner ID
-    const newOwnerID = tx.newOwner.getIdentifier();
-
-    // Get current Owner ID
-    const oldOwnerID = tx.tuna.owner.getIdentifier();
-
-    // Check that newOwner is not same as current owner
-    if (newOwnerID === oldOwnerID) {
-        throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is already owned by ${oldOwnerID}`);
-    }
+    // Get restaurantOwner ID
+    const restaurantOwnerId = tx.restaurantOwner.getIdentifier();
 
     // Make sure that new owner exists
-    const newOwner = await restaurantOwnerRegistry.get(newOwnerID);
-    if (!newOwner) {
-        throw new Error(`RestaurantOwner with id ${newOwnerID} does not exist`);
+    const restaurantOwner = await restaurantOwnerRegistry.get(restaurantOwnerId);
+    if (!restaurantOwner) {
+        throw new Error(`RestaurantOwner with id ${restaurantOwnerId} does not exist`);
     }
 
     // Update tuna with new owner
-    tx.tuna.owner = tx.newOwner;
+    tx.tuna.owner = tx.restaurantOwner;
     tx.tuna.status = 'PURCHASED';
 
     // Update the asset in the asset registry.
     await tunaRegistry.update(tx.tuna);
+
+    // Create a Tuna Sale Event
+    let tunaSaleEvent = getFactory().newEvent(NS, 'TunaSale');
+    tunaSaleEvent.tunaId = tx.tuna.tunaId;
+    tunaSaleEvent.restaurantName = tx.restaurantOwner.restaurantName;
+
+    // Emit the Event
+    emit(tunaSaleEvent);
 }

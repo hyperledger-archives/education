@@ -117,7 +117,7 @@ describe('Sell Tuna', () => {
             // sell tuna
             const sellTuna = factory.newTransaction(namespace, 'SellTuna');
             sellTuna.tuna = factory.newRelationship(namespace, 'Tuna', tuna.getIdentifier());
-            sellTuna.newOwner = factory.newRelationship(namespace, 'RestaurantOwner', restaurantOwner.getIdentifier());
+            sellTuna.restaurantOwner = factory.newRelationship(namespace, 'RestaurantOwner', restaurantOwner.getIdentifier());
 
 
 

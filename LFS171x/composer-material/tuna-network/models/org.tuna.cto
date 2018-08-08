@@ -54,5 +54,10 @@ asset Tuna identified by tunaId {
 
 transaction SellTuna {
     --> Tuna tuna
-    --> RestaurantOwner newOwner
+    --> RestaurantOwner restaurantOwner
+}
+
+event TunaSale {
+    o String tunaId
+    o String restaurantName
 }
