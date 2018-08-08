@@ -12,6 +12,31 @@
  * limitations under the License.
  */
 
+rule OnlyOwnerCanTransferTuna {
+    description: "Allow only Tuna owners to transfer the fish"
+    participant(p): "org.tuna.*"
+    operation: CREATE
+    resource(r): "org.tuna.SellTuna"
+    condition: (r.tuna.owner.getIdentifier() != p.getIdentifier())
+    action: DENY
+}
+
+rule GrantReadOnlyAccessRegulator {
+    description: "Grant Read permissions to Regulator"
+    participant: "org.tuna.Regulator"
+    operation: CREATE, UPDATE, DELETE
+    resource: "**"
+    action: DENY
+}
+
+rule Default {
+  description:  "Grant all access by default"
+  participant: "org.hyperledger.composer.system.Participant"
+  operation: ALL
+  resource: "**"
+  action: ALLOW
+}
+
 rule NetworkAdminUser {
     description: "Grant business network administrators full access to user resources"
     participant: "org.hyperledger.composer.system.NetworkAdmin"
