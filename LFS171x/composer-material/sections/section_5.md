@@ -18,7 +18,7 @@ In order to create and use the `tuna-network` business network, we will cover th
 1) Creating an empty network
 2) Defining Participants
 3) Defining Assets and Transactions
-4) Developing Transaction (Smart Contract) Logic
+4) Developing Transaction Logic
 5) Developing Queries
 6) Defining Access Control Rules
 7) Building and starting the Business Network
@@ -49,7 +49,7 @@ And then answering the questions that are posed.
 ? Do you want to generate an empty template network? Yes: generate an empty template network
 ```
 
-## 2) Defining  Participants
+2) Defining Participants
 
 Participants are defined under the `models/org.tuna.cto` file.
 
@@ -62,9 +62,9 @@ Then we create an abstract `Participant` for an `Individual`.
 All participants will inherit the properties from it.
 ```
 abstract participant Individual identified by id {
-  o String id
-  o String name
-  o Address address
+    o String id
+    o String name
+    o Address address
 }
 ```
 
@@ -72,9 +72,9 @@ To fill the property `Address` of the individual, we can create a `Concept`.<br>
 Note that `postCode` should have a specific format that can be validated using a regular expression.
 ```
 concept Address {
-  o String addressLine
-  o String locality
-  o String postCode regex=/\d{4}[ ]?[A-Z]{2}/
+    o String addressLine
+    o String locality
+    o String postCode regex=/\d{4}[ ]?[A-Z]{2}/
 }
 ```
 
@@ -90,8 +90,8 @@ participant RestaurantOwner extends Individual {
 }
 
 participant Regulator identified by id {
-  o String id
-  o String name
+    o String id
+    o String name
 }
 ```
 
@@ -101,11 +101,11 @@ In `tuna-network` the asset is represented by the `Tuna`, which is defined as fo
 
 ```
 asset Tuna identified by tunaId {
-  o String tunaId
-  o Integer weight range=[500, 1000000]
-  o FishStatus status default=CAUGHT
-  o DateTime catchTime
-  --> Individual owner
+    o String tunaId
+    o Integer weight range=[500, 1000000]
+    o FishStatus status default="CAUGHT"
+    o DateTime catchTime
+    --> Individual owner
 }
 ```
 
@@ -117,20 +117,28 @@ To specify the `Status` of the Tuna, that can be either `CAUGHT` or `PURCHASED`,
 
 ```
 enum FishStatus {
-  o CAUGHT
-  o PURCHASED
+    o CAUGHT
+    o PURCHASED
 }
 ```
 
-Finally, we define the `Transaction`, to change the ownership of the Tuna from a `Fisher` to a `RestaurantOwner`.
+Then, we define the `Transaction`, to change the ownership of the Tuna from a `Fisher` to a `RestaurantOwner`.
 ```
 transaction SellTuna {
-  --> Tuna tuna
-  --> RestaurantOwner newOwner
+    --> Tuna tuna
+    --> RestaurantOwner restaurantOwner
 }
 ```
 
-## 4) Developing Transaction (Smart Contract) Logic
+Finally, we define the `Event` to generate after the SellTuna transaction is executed:
+```
+event TunaSale {
+    o String tunaId
+    o String restaurantName
+}
+```
+
+4) Developing Transaction Logic
 The transaction logic is specified in the file `lib/logic.js`.
 
 We start by defining the same namespace specified in the modeling language file.
@@ -167,43 +175,29 @@ This is to make sure that a `Tuna` already sold cannot be sold again.
 ```
     // Make sure the tuna status is CAUGHT and not PURCHASED
     if (tx.tuna.status !== 'CAUGHT') {
-       throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
+        throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
     }
 ```
 
 Retrieve the id of the `RestaurantOwner` from the Transaction.
 ```
-    // Get newOwner
-    const newOwnerID = tx.newOwner.getIdentifier();
-```
-
-Retrieve the id of the current Owner of the tuna from the Tuna Object.
-```
-    // Get current Owner
-    const oldOwnerID = tx.tuna.owner.getIdentifier();
-```
-
-Next, we have to verify that old and new owners are actually two different participants:
-``` 
-    // Check that newOwner is not same as current owner
-    if (newOwnerID === oldOwnerID) {
-        throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is already owned by ${oldOwnerID}`);
-    }
+    // Get restaurantOwner ID
+    const restaurantOwnerId = tx.restaurantOwner.getIdentifier();
 ```
 
 Next, we verify that the `RestaurantOwner` exists
 ```
-    // Make sure that new owner exists
-    const newOwner = await restaurantOwnerRegistry.get(newOwnerID);
-    if (!newOwner) {
-        throw new Error(`RestaurantOwner with id ${newOwnerID} does not exist`);
+    // Make sure that restaurantOwner exists
+    const restaurantOwner = await restaurantOwnerRegistry.get(restaurantOwnerId);
+    if (!restaurantOwner) {
+        throw new Error(`RestaurantOwner with id ${restaurantOwnerId} does not exist`);
     }
 ```
 
 Now we can update the `owner` of the Tuna:
 ```
     // Update tuna with new owner
-    tx.tuna.owner = tx.newOwner;
+    tx.tuna.owner = tx.restaurantOwner;
 ```
 
 Update the `status` of the Tuna:
@@ -211,11 +205,25 @@ Update the `status` of the Tuna:
     tx.tuna.status = 'PURCHASED';
 ```
 
-Finally, update the record of the Tuna in the asset registry
+Update the record of the Tuna in the asset registry:
 ```
-   // Update the asset in the asset registry.
-   await tunaRegistry.update(tx.tuna);
+    // Update the asset in the asset registry.
+    await tunaRegistry.update(tx.tuna);
 }
+```
+
+Create the Event `TunaSale`:
+```
+    // Create a Tuna Sale Event
+    let tunaSaleEvent = getFactory().newEvent(NS, 'TunaSale');
+    tunaSaleEvent.tunaId = tx.tuna.tunaId;
+    tunaSaleEvent.restaurantName = tx.restaurantOwner.restaurantName;
+```
+
+Finally, emit the event created.
+```
+    // Emit the Event
+    emit(tunaSaleEvent);
 ```
 
 ## 5) Developing Queries
@@ -233,7 +241,21 @@ query getTunaByParticipant {
 ```
 
 ## 6) Defining Access Control Rules
- 
+
+The Access Control Rules are defined in the file `permissions.acl`.
+
+The following rule allows only the owner of the tuna to execute the transaction `SellTuna`:
+```
+rule OnlyOwnerCanTransferTuna {
+    description: "Allow only Tuna owners to transfer the fish"
+    participant(p): "org.tuna.*"
+    operation: CREATE
+    resource(r): "org.tuna.SellTuna"
+    condition: (r.tuna.owner.getIdentifier() != p.getIdentifier())
+    action: DENY
+}
+```
+
 ## 7) Building and starting the Business Network
 Once we have created the network, we create a `Business Network Archive (BNA)` running the following command from the directory that you ran the Yeoman generator:
 
@@ -266,14 +288,14 @@ composer network ping --card admin@tuna-network
 
 This should show that we can connect to the network.
 
-## 9) Playing on the Composer Playground
+## 9) Testing on the Composer Playground
 Once we have the network deployed, we can access the `Composer Playground` started in the previous section by accessing `http://localhost:8080` (or the port `:8080` of the Ubuntu Virtual Machine) in a web browser.
 
 We can also import the `.bna` files directly in Composer Playground to test the business network.
 
 [Video Composer Playground to create participants, create tuna and to sell tuna]
 
-## 10) Running REST Server
+## 10) Running the Composer REST Server
 We can also run the REST server to connect to the deployed business network and expose its functionalities and smart contracts.
 
 ```

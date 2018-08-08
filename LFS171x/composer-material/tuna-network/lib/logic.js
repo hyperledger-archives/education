@@ -25,7 +25,7 @@ async function sellTuna(tx) {
     // Get restaurantOwner ID
     const restaurantOwnerId = tx.restaurantOwner.getIdentifier();
 
-    // Make sure that new owner exists
+    // Make sure that restaurantOwner exists
     const restaurantOwner = await restaurantOwnerRegistry.get(restaurantOwnerId);
     if (!restaurantOwner) {
         throw new Error(`RestaurantOwner with id ${restaurantOwnerId} does not exist`);
