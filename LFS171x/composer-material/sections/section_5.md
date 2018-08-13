@@ -288,12 +288,42 @@ composer network ping --card admin@tuna-network
 
 This should show that we can connect to the network.
 
+> VIDEO Transcript:
+>
+> In this video we will set up a basic Hyperledger Composer business network running on Hyperledger Fabric.
+>
+> We start by creating a business network with Yeoman, and the Hyperledger Composer generator. We fill in the required details, paying special attention to the network Name and Namespace. We also ask to generate an empty network.
+>
+> You can now create your own network, or fill in the relevant files as shown in the course slides. For simplicity, we will simply download the network from the official Hyperledger education repository.
+>
+> Let’s look at the files we have there: For instance, the package.json file defines the network name and version. It also specifies the Node.js packages used. The org.tuna.cto file contains the Modeling Language definitions for Assets, Participants and Transactions. And the logic file contains the Transaction logic using Node.js. We also have a test script, where we hold the unit tests we defined for our network.
+>
+> We can use the composer CLI to create a business network archive, or BNA file. We can then install the Chaincode of the BNA onto the peers. To enable the Chaincode, we use the Start command in the Composer CLI. Then we import the network card, which will enable us to connect to our Business Network. The simplest operation we can do is to ping the network to ensure it is operational.
+
+
 ## 9) Testing on the Composer Playground
 Once we have the network deployed, we can access the `Composer Playground` started in the previous section by accessing `http://localhost:8080` (or the port `:8080` of the Ubuntu Virtual Machine) in a web browser.
 
 We can also import the `.bna` files directly in Composer Playground to test the business network.
 
-[Video Composer Playground to create participants, create tuna and to sell tuna]
+> VIDEO Transcript:
+>
+> In this video we will learn about the Hyperledger Composer Playground.
+>
+> Let’s check out the Playground we started in the pre-requisites video by navigating to localhost:8080 in a web browser. You can connect to the business network we created. Here you can browse the README.md file, model file, logic file, query file and permissions file.
+>
+> Let’s switch to the test tab to run some transactions.
+>
+> We start by creating a new Fisher participant, Alice. Notice the field validation working for the postal code.
+>
+> Now we can create Bob, our Restaurant owner. And Carla, our regulator.
+>
+> We can also create a Tuna fish asset. Notice the range validator for the tuna weight. Also note that we specify its owner to be Alice, the Fisher.
+>
+> Having our Participants and Assets, we can run a SellTuna transaction to transfer it to Bob. As you can see, the Tuna now has a new owner.
+>
+> Finally, we can browse all the transactions we have performed.
+
 
 ## 10) Running the Composer REST Server
 We can also run the REST server to connect to the deployed business network and expose resources and transactions.
@@ -304,7 +334,19 @@ composer-rest-server -c admin@tuna-network -n never -w true
 
 We can now access http://localhost:3000/ to explore the Composer REST API.
 
-[VIDEO to show how to use queries on the REST Server]
-
-Summary of Business Network (VIDEO)  
+> VIDEO Transcript:
+>
+> In this video we will learn about the Hyperledger Composer REST server.
+>
+> Let’s start the composer-rest-server. We specify our Tuna business network card and press enter to select the default options for the remaining arguments.
+>
+> We navigate to localhost:3000 in a web browser to access the REST server explorer. Here we can view the actions for a Participant, such as a Fisher. These include typical HTTP verbs such as GET, POST, PUT and DELETE.
+>
+> Let’s retrieve a list of Fisher objects. Naturally, we see Alice, who we created when using the Playground.
+>
+> We can do the very same thing with our Regulators. And with our Restaurant Owners. And with assets like Tuna.
+>
+> Importantly, we can also run Queries on the data. For instance, let’s find all the Tuna that is owned by Bob, our RestaurantOwner.
+>
+> Finally, the System tab contains API paths related to identity, the historian and allows us to ping the network. Let’s try it out.
 

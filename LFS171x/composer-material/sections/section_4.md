@@ -52,7 +52,26 @@ These will enable you to more easily work using the Hyperledger Composer Extensi
 
 To install Hyperledger Composer in your Mac you can either follow this video or the guided the procedure in the official [Hyperledger Composer Documentation](https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html#macos).
 
-[VIDEO Install Hyperledger Composer in MacOS - in progress]
+> VIDEO Transcript:
+>
+> In this video we will install the pre-requisites on a Mac.
+>
+> Let us open up a Terminal window. We first check if XCode is installed, which in our case it is. If it is not installed on your computer, you will be prompted to install it in the next step.
+>
+> Now we install the Node Version Manager or nvm. You may need to reload your bash shell configuration file. Now we can install the LTS version of node.js and activate it.
+>
+> We now download and install the Docker Community Edition. You may need to make an account. We drag Docker into our Applications folder. Now open it and login with your account. Check that it works by running the hello-world image.
+>
+> We now download the VSCode editor. We drag it to our Applications Folder and open it. We go to the Extension section, and search for Hyperledger. We then install the Hyperledger Composer extension.
+>
+> Let us switch back to the terminal. In our bash configuration file we tell NVM to use the LTS version of Node. And we can now use the Node Package Manager to install the Hyperledger Composer tools.
+>
+> After this we download the Hyperledger Fabric development server scripts. We extract the files and we run downloadFabric.sh to fetch the Docker images.
+>
+> We can then start the Hyperledger Fabric development server and create a peerAdmin identity card.
+>
+> Finally, we start the Hyperledger Composer playground, which we will use in a subsequent video.
+
 
 ## Installing Hyperledger Composer components
 
