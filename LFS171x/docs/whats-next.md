@@ -10,15 +10,19 @@ You too can join the Hyperledger Community:
 
 * **For developers**
 
-Read the Hyperledger code on GitHub. Join the Hyperledger discussion at Rocket.Chat. Search for open bugs, or report a new one in the Hyperledger’s bug database.
+Read the Hyperledger code on [GitHub](https://github.com/hyperledger/hyperledger). Join the Hyperledger discussion at [Rocket.Chat](https://chat.hyperledger.org/home). Search for open bugs, or report a new one in the [Hyperledger’s bug database](https://jira.hyperledger.org/secure/Dashboard.jspa).
 
 * **For business leaders**
 
-For key updates from Hyperledger, join the mailing list. Explore all Hyperledger business solutions.
+For key updates from Hyperledger, join the [mailing list](https://lists.hyperledger.org/mailman/listinfo). Explore all Hyperledger [business solutions](https://www.hyperledger.org/projects).
 
 * **For educators and community leaders**
 
-You can start or join a Hyperledger meetup. Development updates from Wiki can be found here.
+You can start or join a [Hyperledger meetup](https://www.meetup.com/pro/hyperledger/). Development updates from Wiki can be found [here](https://wiki.hyperledger.org/).
+
+TODO - need to push image
+
+![Hyperledger Global Meetup][../images/whats-next/Hyperledger_Global_Meetup.png]
 
 ## Hyperledger Working Groups
 
@@ -26,21 +30,31 @@ The Hyperledger Community’s working groups are open to the public. Developers 
 
 Below, you can see an overview of Hyperledger’s working groups.
 
+TODO - need to push image
+
+![Hyperledger Working Groups][../images/whats-next/Hyperledger_Working_Groups.png]
+
+https://prod-edxapp.edx-cdn.org/assets/courseware/v1/cca8220e1d574e52f989fd518d54d5fb/asset-v1:LinuxFoundationX+LFS171x+3T2017+type@asset+block/Hyperledger_Working_Groups.png
+
 ## Hyperledger Community (Tracy Kuhrt)
 
 [![Hyperledger Community (Tracy Kuhrt)](../images/video-image.png)](https://youtu.be/kW94LHpi_7E)
+
 
 ## Hackfests (Brian Behlendorf)
 
 [![Hackfests (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/p5GEF1uxOSM)
 
+
 ## Rewards and Challenges (Brian Behlendorf)
 
 [![Rewards and Challenges (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/xtCdbgZ1YGg)
 
+
 ## Jonathan Levi Talks about His Hyperledger Journey
 
 [![Jonathan Levi Talks about His Hyperledger Journey](../images/video-image.png)](https://youtu.be/UOkv_ZxCQnE)
+
 
 ## Conclusions
 
