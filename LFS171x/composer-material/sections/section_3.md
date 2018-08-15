@@ -18,6 +18,11 @@ A **Business Network** includes:
 
 ## Business Network - Modeling language
 
+![Icon Participants](resources/icon_participants.png)
+![Icon Assets](resources/icon_assets.png)
+![Icon Transactions](resources/icon_transactions.png)
+![Icon Events](resources/icon_events.png)
+
 Hyperledger Composer includes an object-oriented modeling language that is used to define the domain model for a business network definition.
 
 This is used inside the `.cto` files and allows users to define resources, such as network participants, assets and transactions.
@@ -40,6 +45,8 @@ o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-
 ```
 
 ## Business Network - Transaction Logic
+![Icon Transactions](resources/icon_transactions.png)
+
 The transactions are encoded under `lib/.js` with *JavaScript (JS)*, one of the most popular programming languages.
  
 These  files define the actual logic to execute the transactions defined in the `.cto` files.
@@ -56,6 +63,8 @@ async function sellTuna(tx) {
 ```
 
 ## Business Network - Queries
+![Icon Queries](resources/icon_queries.png)
+
 The *Query language* helps to define queries to retrieve information on the Blockchain using a *Structured Query Language (SQL)* type interface.
 
 This can, for instance, enable complex queries that list all the assets of a participant that have been traded within a certain period, or retrieving assets owned by specific participants
@@ -70,7 +79,9 @@ query getTunaByParticipant {
 }
 ```
 
-## Business Network - Access Control Rules 
+## Business Network - Access Control Rules
+![Icon Access Control Rules](resources/icon_acl.png)
+
 The *Access Control language* enables the simple definition of rules for accessing assets and transactions by different types of participant and identity.
 
 For example, a rule may allow, for instance, a trader to access and transfer his own assets but allow an auditor *read-only access* to all assets on the network.
@@ -87,15 +98,16 @@ rule NetworkAdminSystem {
 
 ## Fabric Integration and Deployment
 
-![Business Network Folder](resources/img_03-04.png)
-#### Identities
+![Fabric Integration and Deployment](resources/img_03-04.png)
+
+#### ![Icon Identities](resources/icon_identities.png) Identities
 Composer also integrates a system for managing identities through the use of ID cards, which are mapped to a participants of the Business Network.
 Using the *Identity*, the user of the Business Network can operate as that participant.
 
-#### Connection Profile
+#### ![Icon Connection Profile](resources/icon_connection-profile.png) Connection Profile
 The *connection profile* is a JSON Document that provides the information necessary to connect to a system (e.g. *Hyperledger Fabric* instance, including *CA*, *Orderers* and *Peers*).
 
-#### Business Network Cards
+#### ![Icon Business Network Card](resources/icon_business-network-card.png) Business Network Cards
 *Business Network Cards* map all the above, combining identities, connection profiles and business network metadata.
 They simplify the process of connecting to a business network.
 
@@ -106,12 +118,12 @@ There are two ways to access to the Business Network on Hyperledger Composer.
 - **Composer Playground** provides a web-based test environment.
 - **Composer REST Server** provides programmatic access to the Blockchain.
 
-![Business Network Folder](resources/img_03-05.png)
-### Composer Playground
+![Deployment and Test](resources/img_03-05.png)
+### ![Icon Playground](resources/icon_playground.png) Composer Playground
 
 [VIDEO In progress..]
 
-### REST Server
+### ![Icon REST Server](resources/icon_rest-server.png) REST Server
 The *REST server* provided by Hyperledger Composer allows exposing the blockchain’s participants, assets, transactions and queries with a transparent *Application Programming Interface (API)*.
 
 This makes it easy to integrate programmatic access to the Blockchain and to connect it to web or mobile application.
