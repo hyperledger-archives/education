@@ -36,7 +36,7 @@ When Alice sells the fish to Bob, the transaction will be recorded on the Hyperl
 
 Alice, Bob or other participants like Carla can query the blockchain to retrieve specific information, such as the list transactions or the Tuna owned by specific Participants.
 
-![Monitoring and queries](resources/img_02-01.png)
+![Monitoring and queries](resources/img_02-05.png)
 
 ## Key benefits of using Hyperledger Composer
 
