@@ -2,7 +2,15 @@
 
 ## Introduction (Nathalie Salami)
 
+[![Introduction (Nathalie Salami](../images/video-image.png)](https://youtu.be/hLSiWBcNpYk)
+
 ## Learning Objectives
+
+By the end of this chapter you should be able to:
+
+* Examine several use cases where blockchain technology is actively used to solve real world business problems.
+* Discover the factors to look at when evaluating if blockchain technology is right for a particular project.
+* Decide when to use and when not to use blockchain technology.
 
 # Existing Blockchain Use Cases
 
