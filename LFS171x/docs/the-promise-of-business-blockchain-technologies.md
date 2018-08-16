@@ -90,7 +90,8 @@ Blockchains are currently being used to solve problems in supply chain managemen
 
 The trade finance industry can also leverage information visible in a supply chain blockchain. In its broadest sense, trade finance manages capital required for international trade. Trade financing has become the norm for cross border transactions, with the [World Trade Organization](https://www.wto.org/english/res_e/booksp_e/tradefinsme_e.pdf) estimating that "up to 80 percent of global trade is supported by some sort of financing or credit insurance" (2016). An exporter needs to to mitigate the risk of non-payment, while an importer wants to mitigate the supply risk. The function of trade finance is to act as a third party to remove the payment risk and the supply risk, whilst providing the exporter with accelerated receivables, and the importer with extended credit. Institutions that provide capital during these trades can leverage the information visible in a supply chain blockchain to better evaluate companies for lending.
 
-#### _*Need the "Supply Chain of Tuna" image here!*_ :camera:
+|![Supply Chain of Tuna](../images/the-promise-of-business-blockchain-technologies/Supply_Chain_of_Tuna.png)|
+|:--:|
 
 <p align="center">
 Source: Nishan Degnarain (used with permission)
@@ -102,7 +103,8 @@ As the previous section on blockchains for supply chain management illustrated, 
 
 Provenance is a record of ownership used as a guide to authenticity or quality. Because of the overhead involved in traditional provenance records, they were only available for very large ticket items, such as works of art. With the efficiencies gained from blockchain technology, provenance records can be available for a wider range of goods. This improved information can aid consumers as they make purchasing decisions.
 
-#### _*Need the "How Provenance Works" image here!*_ :camera:
+|![Provenance Use Case](../images/the-promise-of-business-blockchain-technologies/Provenance_Use_Case.jpg)|
+|:--:|
 
 <p align="center">
 How Provenance Works (by [Project Provenance Ltd](https://www.provenance.org/), used with permission)
@@ -128,7 +130,9 @@ Ownership for a particular asset may be transferred in whole, or in part. As a r
 
 Companies may use blockchain technologies to record ownership rights and responsibilities. Specifically, governments have put land registry records on blockchain (Laura Shin, [forbes.com](https://www.forbes.com/sites/laurashin/2016/04/21/republic-of-georgia-to-pilot-land-titling-on-blockchain-with-economist-hernando-de-soto-bitfury/#1c7a07944da3), 2016). Companies have also put intellectual property registration and ownership on blockchain (poex.io). Intellectual property includes copyright, trademark, and patents. To legally protect ownership rights in these, one registers their production, or invention, or otherwise proves when the work was established, and that they are the origin of the work.
 
-#### _*Need the "Registering Property Titles on a Blockchain via a Smart Contract" image here!*_ :camera:
+|![Property Rights](../images/the-promise-of-business-blockchain-technologies/PROPERTY_RIGHTS.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 Companies with strong brand value in particular, such as the fashion industry and luxury good providers, are interested in more efficient ways to protect their intellectual property. When data is added to a blockchain, it can provide an immutable, secure, timestamped record for the creation of intellectual property, and any changes to the data can be easily detected. Blockchains establish this in a variety of ways.
 
@@ -177,7 +181,9 @@ Although every trade has its own lifecycle, generally, the following steps will 
 
 Smart contracts may greatly improve the process of post-trade settlement, by reducing disputes and errors. Smart contracts will ensure that final settlement will happen when the execution of a trade occurs. With smart contract technology, a legal agreement can automatically execute clauses within it.
 
-#### _*Need the "Financial Services" image here!*_ :camera:
+|![Finance](../images/the-promise-of-business-blockchain-technologies/Finance.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 The image above shows the automation of back-office processes involved in trade confirmation and post-trade settlement via DLT. An asset ledger stores ownership and transactions. Smart contracts allow the asset ledger to handle collateral management and initiate payments per contract terms. Venues (e.g. exchanges, MTFs, bilateral voice conversations) still match trade requests with a counterparty, and provide price discovery. Querying information on the asset ledger may assist with price discovery. The asset ledger verifies the parties and asset ownership. It will then either accept, or reject the trade. If, for example, the seller does not own the asset in question, or the new trade would result in an illegal overexposure on the buyer side, the trade would be rejected. When a trade is valid and accepted onto the blockchain, the blockchain automates an immediate change in ownership, or a delayed, or contingent asset transfer. The changes in asset ownership or contract terms are securely recorded onto the asset ledger. The contract is programmed to execute automatically, exchanging payments and other assets per the terms agreed to by the parties.
 
@@ -201,7 +207,8 @@ The healthcare industry has already placed medical insurance enrollment informat
 
 The healthcare industry has examined placing prescription drug fulfillment processes on blockchain since they involve gathering and checking information from many sources. Insurance benefits investigation eligibility checks are performed to see if insurance will pay. Prior authorization and step therapy requirements are checked to see if a patient is able to receive a particular drug, or if other drugs are preferred. Formulary checks, patients’ assistance checks, and pharmacy stock checks must all be performed. The healthcare industry has also used DLT to handle online identity management, by uploading verified pieces of a healthcare professional’s credentials for license verification.
 
-#### _*Need the "The BlockRx Pharma Ecosystem" image here!*_ :camera:
+|![The_BlockRx_Pharma_Ecosystem](../images/the-promise-of-business-blockchain-technologies/The_BlockRx_Pharma_Ecosystem.png)|
+|:--:|
 
 <p align="center">
   By <a href="https://www.blockrx.com/">The BlockRx Project</a>, retrieved from the <a href="https://wiki.hyperledger.org/groups/healthcare/healthcare-wg">Hyperledger Healthcare Working Group, August 22nd, 2017 Meeting</a>
@@ -243,19 +250,25 @@ Next, we will discuss in more detail the conditions that are not well suited to 
 
 The biggest advantage and challenge in deploying blockchains is the radical transparency which they provide. Methods are being developed to hide confidential data on the blockchain, while sharing it only to relevant parties. Regulations for data privacy often do not allow for blockchain solutions. A thorough review of the relevant privacy rules governing your business case should be examined to see whether blockchain is appropriate. For example, is leaking data in encrypted form allowed? What level of encryption is required when transmitting data?
 
-#### _*Need the random image here*_ :camera:
+|![Security](../images/the-promise-of-business-blockchain-technologies/security-2688911_1280.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ### II. The Process Stores a Lot of Static Data/Data Is Quite Large
 
 With blockchain technology, the entire database is stored across many nodes in a blockchain system. Because the replication factor of these systems is so high, they are best suited to databases that have many state changes, or store only the minimum necessary amount of information. If the data is relatively static, or if the files to be stored are quite large, a different technical solution may be more appropriate.
 
-#### _*Need the random image here*_ :camera:
+|![Monitor](../images/the-promise-of-business-blockchain-technologies/monitor-1307227_1280.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ### III. Rules of Transactions Change Frequently
 
 If the rules around how your business processes are conducted change frequently, or change in unexpected ways, then blockchain may not be well suited for your use case. The rules of transactions in blockchain are often pre-set, and smart contracts do not change execution paths once they have been initiated. Everything that takes place on a blockchain must be completely deterministic. Additionally, blockchains are append-only databases. A relational database may be more suitable if you need to make many changes to your data as the rules of your transactions change.
 
-#### _*Need the random image here*_ :camera:
+|![Rule](../images/the-promise-of-business-blockchain-technologies/rule-1752625_1280.png)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ### IV. The Use of External Services to Gather/Store Data
 
@@ -263,19 +276,25 @@ A blockchain smart contract does not currently initiate the retrieval of externa
 
 In other words, an oracle pushes data onto the blockchain, rather than a smart contract pulling it in. Once the oracle pushes the data, every node will have an identical copy of this data. This allows for the data to be safely used in a smart contract computation. While oracles allow for blockchain interface with external data, they undermine the goal of a decentralized system. Examine when such a trusted authority should be retained. When the trusted authority would or should be retained, efficiencies in the blockchain are not as high as in other applications.
 
-#### _*Need the random image here*_ :camera:
+|![Database](../images/the-promise-of-business-blockchain-technologies/database-1954920_640.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ### V. Simpler Alternatives
 
 For some applications, other options are simply more efficient. When evaluating blockchain technology, consider whether regular file storage, a centralized database, or database replication with master/slave relationship between the original and copies is suitable. If those structures are suitable, then you can deploy your application with reduced complexity. Do you need a smart contract or are stored procedures written in an extension of SQL sufficient? Similarly, some applications can simply utilize cryptographic methods common in blockchains, without the database replication mechanisms of a blockchain.
 
-#### _*Need the "Options" image here*_ :camera:
+|![Options](../images/the-promise-of-business-blockchain-technologies/Options.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ### Blockchain Decision Path
 
 The following diagram provides generalized, high-level decision points about when to use or not to use blockchain technology for your business.
 
-#### _*Need the "Blockchain Decision Path" image here*_ :camera:
+|![Blockchain Decision Flowchart](../images/the-promise-of-business-blockchain-technologies/Blockchain_Decision_Flowchart.png)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ## Knowledge Check
 
