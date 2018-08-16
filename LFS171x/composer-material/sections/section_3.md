@@ -119,14 +119,19 @@ There are two ways to access to the Business Network on Hyperledger Composer.
 - **Composer REST Server** provides programmatic access to the Blockchain.
 
 ![Deployment and Test](resources/img_03-05.png)
+
 ### ![Icon Playground](resources/icon_playground.png) Composer Playground
 
-[VIDEO In progress..]
+Composer Playground is a web application that provides a simple development and test environment for the Business Network.
+
+![Deployment and Test](resources/img_03-06.png)
 
 ### ![Icon REST Server](resources/icon_rest-server.png) REST Server
 The *REST server* provided by Hyperledger Composer allows exposing the blockchain’s participants, assets, transactions and queries with a transparent *Application Programming Interface (API)*.
 
 This makes it easy to integrate programmatic access to the Blockchain and to connect it to web or mobile application.
+
+![Deployment and Test](resources/img_03-07.png)
 
 ## Summary of Hyperledger Composer Key Components
 
