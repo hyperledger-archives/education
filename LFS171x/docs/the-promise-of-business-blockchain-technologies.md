@@ -1,4 +1,46 @@
 # The Promise of Business Blockchain Technologies
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Introduction and Learning Objectives](#introduction-and-learning-objectives)
+	- [Introduction (Nathalie Salami)](#introduction-nathalie-salami)
+	- [Learning Objectives](#learning-objectives)
+- [Existing Blockchain Use Cases](#existing-blockchain-use-cases)
+  - [Business Blockchain Technologies Overview](#business-blockchain-technologies-overview)
+  - [Hyperledger Advantages for Businesses (Brian Behlendorf)](#hyperledger-advantages-for-businesses-brian-behlendorf)
+  - [Blockchain Use Case (Brian Behlendorf)](#blockchain-use-case-brian-behlendorf)
+  - [Supply Chain Management (Part I)](#supply-chain-management-part-i)
+  - [Supply Chain Management (Part II)](*supply-chain-management-part-ii)
+  - [Provenance (Part I)](#provenance-part-i)
+  - [Provenance (Part II)](#provenance-part-ii)
+  - [Property Rights (Part I)](#property-rights-part-i)
+  - [Property Rights (Part II)](#property-rights-part-ii)
+  - [Business Interest in Hyperledger (Brian Behlendorf)](#business-interest-in-hyperledger-brian-behlendorf)
+  - [Finance (Part I)](#finance-part-i)
+  - [Finance (Part II)](#finance-part-ii)
+  - [Finance (Part III)](#finance-part-iii)
+  - [Finance (Part IV)](#finance-part-iv)
+  - [Finance (Part V)](#finance-part-v)
+  - [Healthcare (Part I)](#healthcare-part-i)
+  - [Healthcare (Part II)](#healthcare-part-ii)
+- [When to Use or Not to Use Blockchain Technologies](#when-to-use-or-not-to-use-blockchain-technologies)
+  - [What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)](#what-enterprises-look-for-when-evaluating-whether-or-not-to-use-hyperledger-brian-behlendorf)
+  - [When to Use Blockchain](#when-to-use-blockchain)
+  - [When Not to Use Blockchain](#when-not-to-use-blockchain)
+  - [I. The Process Involves Confidential Data](#i-the-process-involves-confidential-data)
+  - [II. The Process Stores a Lot of Static Data/Data Is Quite Large](#ii-the-process-stores-a-lot-of-static-datadata-is-quite-large)
+  - [III. Rules of Transactions Change Frequently](#iii-rules-of-transactions-change-frequently)
+  - [IV. The Use of External Services to Gather/Store Data](#iv-the-use-of-external-services-to-gatherstore-data)
+  - [V. Simpler Alternatives](#v-simpler-alternatives)
+  - [Blockchain Decision Path](#blockchain-decision-path)
+- [Knowledge Check](#knowledge-check)
+  - [Knowledge Check 3.1](#knowledge-check-31)
+  - [Knowledge Check 3.2](#knowledge-check-32)
+  - [Knowledge Check 3.3](#knowledge-check-33)
+- [Conclusions and Learning Objectives (Review)](#conclusions-and-learning-objectives-review)
+  - [Learning Objectives (Review)](#learning-objectives-review)
+  - [Conclusions](#conclusions)
+
+<!-- /TOC -->
 
 ## Introduction and Learning Objectives
 
@@ -270,7 +312,7 @@ What do ERP systems for supply chain management refer to?
 <li>Enterprise Resource Planning</li>
 </ol>
 
-## Conclusions & Learning Objectives (Review)
+## Conclusions and Learning Objectives (Review)
 
 ### Learning Objectives (Review)
 
