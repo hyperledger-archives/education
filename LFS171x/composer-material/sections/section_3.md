@@ -1,9 +1,11 @@
 # Hyperledger Composer Architecture
 
+<!-- TAB 1 -->
 ## Hyperledger Composer Key Components
   
 ![Hyperledger Composer Key components overview](resources/img_03-01.png)
 
+<!-- TAB 2 -->
 ## Business Network
 
 ![Business Network](resources/img_03-02.png)
@@ -16,6 +18,7 @@ A **Business Network** includes:
 
 ![Business Network Folder](resources/img_03-03.png)
 
+<!-- TAB 3 -->
 ## Business Network - Modeling language
 
 ![Icon Participants](resources/icon_participants.png)
@@ -44,6 +47,7 @@ o String lastName optional
 o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVf]][0-9][A-HJKPSTUW])|([A-Z-[QVf]][A-Z-[IJZ]][0-9][ABEHMNPRVWfY])))) [0-9][A-Z-[CIKMOV]]{2})/
 ```
 
+<!-- TAB 4 -->
 ## Business Network - Transaction Logic
 ![Icon Transactions](resources/icon_transactions.png)
 
@@ -62,6 +66,7 @@ async function sellTuna(tx) {
 }
 ```
 
+<!-- TAB 5 -->
 ## Business Network - Queries
 ![Icon Queries](resources/icon_queries.png)
 
@@ -79,6 +84,7 @@ query getTunaByParticipant {
 }
 ```
 
+<!-- TAB 6 -->
 ## Business Network - Access Control Rules
 ![Icon Access Control Rules](resources/icon_acl.png)
 
@@ -96,6 +102,7 @@ rule NetworkAdminSystem {
 }
 ```
 
+<!-- TAB 7 -->
 ## Fabric Integration and Deployment
 
 ![Fabric Integration and Deployment](resources/img_03-04.png)
@@ -111,6 +118,7 @@ The *connection profile* is a JSON Document that provides the information necess
 *Business Network Cards* map all the above, combining identities, connection profiles and business network metadata.
 They simplify the process of connecting to a business network.
 
+<!-- TAB 8 -->
 ## Deployment and test
 
 There are two ways to access to the Business Network on Hyperledger Composer.
@@ -133,6 +141,7 @@ This makes it easy to integrate programmatic access to the Blockchain and to con
 
 ![Deployment and Test](resources/img_03-07.png)
 
+<!-- TAB 9 -->
 ## Summary of Hyperledger Composer Key Components
 
 ![Hyperledger Composer Key components overview](resources/img_03-01.png)

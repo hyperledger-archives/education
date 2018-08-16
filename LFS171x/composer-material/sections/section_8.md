@@ -1,5 +1,6 @@
 # Conclusions and Learning Objectives
 
+<!-- TAB 1 -->
 ## Learning Objectives
 You should now be able to:
 
@@ -9,9 +10,12 @@ You should now be able to:
 - Install the developer environment, set up a running Business Network in Hyperledger Composer and deploy it locally on Hyperledger Fabric.
 - Get involved in the community through Rocket Chat and GitHub.
 
-
-
+<!-- TAB 2 -->
 ## Conclusions
+
+> **VIDEO [EdX_5_Conclusion.mp4]**
+> Transcript:
+
 > Congratulations!
 >
 > You've reached the end of the Hyperledger Composer chapter.

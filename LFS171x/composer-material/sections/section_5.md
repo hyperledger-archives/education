@@ -1,5 +1,6 @@
 # Writing and Deploying a Business Network
 
+<!-- TAB 1 -->
 ## Overview of the Tuna Business Network
 As shown previously, we will implement a simple network to track the movement of Tuna fish.
 
@@ -11,6 +12,7 @@ Each participant is able to access and work upon information about Tuna fish.
 
 Importantly, the blockchain enables this to happen in a way that is immutable and distributed, while enabling a degree of transparency and oversight not easily implementable in a centralised database.
 
+<!-- TAB 2 -->
 ### Steps
 
 In order to create and use the `tuna-network` business network, we will cover the following steps:
@@ -28,7 +30,7 @@ In order to create and use the `tuna-network` business network, we will cover th
 
 > The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education/composer-material
 
-
+<!-- TAB 3 -->
 ## 1) Creating an empty network
 
 We can use [Yeoman](http://yeoman.io/) to create an empty network, by running:
@@ -49,7 +51,8 @@ And then answering the questions that are posed.
 ? Do you want to generate an empty template network? Yes: generate an empty template network
 ```
 
-2) Defining Participants
+<!-- TAB 4 -->
+## 2) Defining Participants
 
 Participants are defined under the `models/org.tuna.cto` file.
 
@@ -95,6 +98,7 @@ participant Regulator identified by id {
 }
 ```
 
+<!-- TAB 5 -->
 ## 3) Defining Assets and Transactions
 Assets and Transactions are also defined under the `models/org.tuna.cto` file.
 In `tuna-network` the asset is represented by the `Tuna`, which is defined as follow:
@@ -138,7 +142,8 @@ event TunaSale {
 }
 ```
 
-4) Developing Transaction Logic
+<!-- TAB 6 -->
+## 4) Developing Transaction Logic
 The transaction logic is specified in the file `lib/logic.js`.
 
 We start by defining the same namespace specified in the modeling language file.
@@ -226,6 +231,7 @@ Finally, emit the event created.
     emit(tunaSaleEvent);
 ```
 
+<!-- TAB 7 -->
 ## 5) Developing Queries
 The queries can be specified under the `queries.qry` file.
 
@@ -240,6 +246,7 @@ query getTunaByParticipant {
 }
 ```
 
+<!-- TAB 8 -->
 ## 6) Defining Access Control Rules
 
 The Access Control Rules are defined in the file `permissions.acl`.
@@ -256,6 +263,7 @@ rule OnlyOwnerCanTransferTuna {
 }
 ```
 
+<!-- TAB 9 -->
 ## 7) Building and starting the Business Network
 Once we have created the network, we create a `Business Network Archive (BNA)` running the following command from the directory that you ran the Yeoman generator:
 
@@ -265,6 +273,7 @@ composer archive create -t dir -n .
 
 This creates the file `tuna-network@0.0.1.bna`.
 
+<!-- TAB 10 -->
 ## 8) Deploying onto Hyperledger Fabric
 We start by installing the network onto the Hyperledger Fabric peers:
 ```
@@ -288,8 +297,9 @@ composer network ping --card admin@tuna-network
 
 This should show that we can connect to the network.
 
-> VIDEO Transcript:
->
+> **VIDEO [EdX_2_network.mp4]**
+> Transcript:
+
 > In this video we will set up a basic Hyperledger Composer business network running on Hyperledger Fabric.
 >
 > We start by creating a business network with Yeoman, and the Hyperledger Composer generator. We fill in the required details, paying special attention to the network Name and Namespace. We also ask to generate an empty network.
@@ -300,14 +310,15 @@ This should show that we can connect to the network.
 >
 > We can use the composer CLI to create a business network archive, or BNA file. We can then install the Chaincode of the BNA onto the peers. To enable the Chaincode, we use the Start command in the Composer CLI. Then we import the network card, which will enable us to connect to our Business Network. The simplest operation we can do is to ping the network to ensure it is operational.
 
-
+<!-- TAB 11 -->
 ## 9) Testing on the Composer Playground
 Once we have the network deployed, we can access the `Composer Playground` started in the previous section by accessing `http://localhost:8080` (or the port `:8080` of the Ubuntu Virtual Machine) in a web browser.
 
 We can also import the `.bna` files directly in Composer Playground to test the business network.
 
-> VIDEO Transcript:
->
+> **VIDEO [EdX_3_Playground.mp4]**
+> Transcript:
+
 > In this video we will learn about the Hyperledger Composer Playground.
 >
 > Let’s check out the Playground we started in the pre-requisites video by navigating to localhost:8080 in a web browser. You can connect to the business network we created. Here you can browse the README.md file, model file, logic file, query file and permissions file.
@@ -324,7 +335,7 @@ We can also import the `.bna` files directly in Composer Playground to test the 
 >
 > Finally, we can browse all the transactions we have performed.
 
-
+<!-- TAB 12 -->
 ## 10) Running the Composer REST Server
 We can also run the REST server to connect to the deployed business network and expose resources and transactions.
 
@@ -334,8 +345,9 @@ composer-rest-server -c admin@tuna-network -n never -w true
 
 We can now access http://localhost:3000/ to explore the Composer REST API.
 
-> VIDEO Transcript:
->
+> **VIDEO [EdX_4_REST.mp4]**
+> Transcript:
+
 > In this video we will learn about the Hyperledger Composer REST server.
 >
 > Let’s start the composer-rest-server. We specify our Tuna business network card and press enter to select the default options for the remaining arguments.

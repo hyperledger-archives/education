@@ -1,5 +1,6 @@
 # Scenario
 
+<!-- TAB 1 -->
 ## Introduction to the Tuna fish example using Hyperledger Composer
 
 Hyperledger Composer provides a level of abstraction to build technical blockchain solutions over real use cases.
@@ -10,6 +11,7 @@ It will be based on the Tuna-fish tracking system.
 
 ![Scenario Overview](resources/img_02-01.png)
 
+<!-- TAB 2 -->
 ## Participants
 
 There are three main participants:
@@ -20,24 +22,28 @@ There are three main participants:
 
 ![Participants](resources/img_02-02.png)
 
+<!-- TAB 3 -->
 ## The Catch
 
 When Alice catches a fish, she will create a record of the fish on the Hyperledger Fabric blockchain.
 
 ![Participants](resources/img_02-03.png)
 
+<!-- TAB 4 -->
 ## The sale
 
 When Alice sells the fish to Bob, the transaction will be recorded on the Hyperledger Fabric.
 
 ![The Sale](resources/img_02-04.png)
 
+<!-- TAB 5 -->
 ## Monitoring and queries
 
 Alice, Bob or other participants like Carla can query the blockchain to retrieve specific information, such as the list transactions or the Tuna owned by specific Participants.
 
 ![Monitoring and queries](resources/img_02-05.png)
 
+<!-- TAB 6 -->
 ## Key benefits of using Hyperledger Composer
 
 **Focusing on the problem**<br>

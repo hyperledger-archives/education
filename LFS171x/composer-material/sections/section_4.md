@@ -1,5 +1,6 @@
 # Installing Hyperledger Composer
 
+<!-- TAB 1 -->
 ## Technical Prerequisites - Ubuntu (Linux Virtual Machine)
 
 To install Hyperledger Composer, you will need a UNIX based operating system, for instance, Linux or Mac OS X.
@@ -35,25 +36,14 @@ chmod u+x prereqs-ubuntu.sh
 ./prereqs-ubuntu.sh
 ```
 
+<!-- TAB 2 -->
 ## Technical Prerequisites - Mac OS
-
-### Text editor
-On your local machine, we recommend you have an editor featuring a plugin for Hyperledger Composer.
-
-Two such editors exist today:
-
-- [Atom](https://atom.io/)
-- [VS Code](https://code.visualstudio.com)
-
-These will enable you to more easily work using the Hyperledger Composer Extension.
-
-
-### Installing prerequisites
 
 To install Hyperledger Composer in your Mac you can either follow this video or the guided the procedure in the official [Hyperledger Composer Documentation](https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html#macos).
 
-> VIDEO Transcript:
->
+> **VIDEO [EdX_1_prerequisites.mp4]**
+> Transcript:
+
 > In this video we will install the pre-requisites on a Mac.
 >
 > Let us open up a Terminal window. We first check if XCode is installed, which in our case it is. If it is not installed on your computer, you will be prompted to install it in the next step.
@@ -72,7 +62,20 @@ To install Hyperledger Composer in your Mac you can either follow this video or 
 >
 > Finally, we start the Hyperledger Composer playground, which we will use in a subsequent video.
 
+<!-- TAB 3 -->
+## Text editor
+On your local machine, we recommend you have an editor featuring a plugin for Hyperledger Composer.
 
+Two such editors exist today:
+
+- [Atom](https://atom.io/)
+- [VS Code](https://code.visualstudio.com)
+
+These will enable you to more easily work using the Hyperledger Composer Extension.
+
+
+
+<!-- TAB 4 -->
 ## Installing Hyperledger Composer components
 
 You will now need to install the Hyperledger Composer components:
@@ -104,7 +107,8 @@ Install the Hyperledger Composer generator for Yeoman
 npm install -g generator-hyperledger-composer
 ```
 
-### Install Hyperledger Fabric development server
+<!-- TAB 5 -->
+## Install Hyperledger Fabric development server
 We can now install the Hyperledger Fabric development server, which will act as the backend for our Hyperledger Composer work.
 
 ```
@@ -120,6 +124,7 @@ We can now download the Docker images for the Hyperledger Fabric components:
 ./downloadFabric.sh
 ```
 
+<!-- TAB 6 -->
 ### Starting Hyperledger Fabric and Composer Playground
 Inside the `fabric-tools` folder, we can now start the Docker images that comprise the Hyperledger Fabric network
 

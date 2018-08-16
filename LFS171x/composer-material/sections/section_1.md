@@ -3,7 +3,8 @@
 <!-- TAB 1 -->
 ## Introduction to Hyperledger Composer
 
-[#VIDEO]
+> **VIDEO [EdX_0_Introduction.mp4]**
+> Transcript:
 
 > Hello everyone, I am Nicola and I am Sasha,
 > 
