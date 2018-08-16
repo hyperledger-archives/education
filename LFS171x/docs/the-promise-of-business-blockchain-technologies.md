@@ -169,28 +169,117 @@ The healthcare industry has examined placing prescription drug fulfillment proce
 
 ### What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)
 
+[![What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/xzFz88bHOLs)
+
 ### When to Use Blockchain
+
+There are certain factors to consider when evaluating blockchain distributed ledger technology for your business. How many participants are in your system? What is the geographical distribution of the participants? What sort of performance requirements do you have? Defining the rules, risks, and responsibilities of each party in your blockchain system is useful as you consider transferring a database to a decentralized environment such as one of the Hyperledger frameworks. Blockchain is best suited for business applications where one or more of the following conditions apply:
+
+* There is a need for a shared common database
+* The parties involved with the process have conflicting incentives, or do not have trust among participants
+* There are multiple parties involved or writers to a database
+* There are currently trusted third parties involved in the process that facilitate interactions between multiple parties who must trust the third party. This could include escrow services, data feed providers, licensing authorities, or a notary public
+* Cryptography is currently being used or should be used. Cryptography facilitates data confidentiality, data integrity, authentication, and non-repudiation
+* Data for a business process is being entered into many different databases along the lifecycle of the process. It is important that this data is consistent across all entities, and/or digitization of such a process is desired
+* There are uniform rules governing participants in the system
+* Decision making of the parties is transparent, rather than confidential
+* There is a need for an objective, immutable history or log of facts for parties’ reference
+* Transaction frequency does not exceed 10,000 transactions per second.
 
 ### When Not to Use Blockchain
 
+Blockchain technology is a powerful tool, but it is not always the right tool for the job at hand. If you are contemplating using blockchain technology, be sure to evaluate the problem fully. The following conditions are not currently well suited to blockchain-based solutions:
+
+* The process involves confidential data
+* The process stores a lot of static data, or the data is quite large
+* Rules of transactions change frequently
+* The use of external services to gather/store data
+
+Next, we will discuss in more detail the conditions that are not well suited to blockchain-based solutions. 
+
 ### I. The Process Involves Confidential Data
+
+The biggest advantage and challenge in deploying blockchains is the radical transparency which they provide. Methods are being developed to hide confidential data on the blockchain, while sharing it only to relevant parties. Regulations for data privacy often do not allow for blockchain solutions. A thorough review of the relevant privacy rules governing your business case should be examined to see whether blockchain is appropriate. For example, is leaking data in encrypted form allowed? What level of encryption is required when transmitting data?
+
+#### _*Need the random image here*_ :camera:
 
 ### II. The Process Stores a Lot of Static Data/Data Is Quite Large
 
+With blockchain technology, the entire database is stored across many nodes in a blockchain system. Because the replication factor of these systems is so high, they are best suited to databases that have many state changes, or store only the minimum necessary amount of information. If the data is relatively static, or if the files to be stored are quite large, a different technical solution may be more appropriate.
+
+#### _*Need the random image here*_ :camera:
+
 ### III. Rules of Transactions Change Frequently
+
+If the rules around how your business processes are conducted change frequently, or change in unexpected ways, then blockchain may not be well suited for your use case. The rules of transactions in blockchain are often pre-set, and smart contracts do not change execution paths once they have been initiated. Everything that takes place on a blockchain must be completely deterministic. Additionally, blockchains are append-only databases. A relational database may be more suitable if you need to make many changes to your data as the rules of your transactions change.
+
+#### _*Need the random image here*_ :camera:
 
 ### IV. The Use of External Services to Gather/Store Data
 
+A blockchain smart contract does not currently initiate the retrieval of external data. Instead, one or more trusted parties ('oracles') must create a transaction which embeds that data in the chain. This data is often gathered and stored in a traditional database by the oracle. Any interaction between a blockchain and the outside world is restricted to regular database operations.
+
+In other words, an oracle pushes data onto the blockchain, rather than a smart contract pulling it in. Once the oracle pushes the data, every node will have an identical copy of this data. This allows for the data to be safely used in a smart contract computation. While oracles allow for blockchain interface with external data, they undermine the goal of a decentralized system. Examine when such a trusted authority should be retained. When the trusted authority would or should be retained, efficiencies in the blockchain are not as high as in other applications.
+
+#### _*Need the random image here*_ :camera:
+
 ### V. Simpler Alternatives
+
+For some applications, other options are simply more efficient. When evaluating blockchain technology, consider whether regular file storage, a centralized database, or database replication with master/slave relationship between the original and copies is suitable. If those structures are suitable, then you can deploy your application with reduced complexity. Do you need a smart contract or are stored procedures written in an extension of SQL sufficient? Similarly, some applications can simply utilize cryptographic methods common in blockchains, without the database replication mechanisms of a blockchain.
+
+#### _*Need the "Options" image here*_ :camera:
 
 ### Blockchain Decision Path
 
+The following diagram provides generalized, high-level decision points about when to use or not to use blockchain technology for your business.
+
+#### _*Need the "Blockchain Decision Path" image here*_ :camera:
+
 ## Knowledge Check
 
-### Knowledge Check
+### Knowledge Check 3.1
+<!-- B -->
+Which of the following pushes external data onto the blockchain?
+
+<ol type="A">
+<li>Orderer</li>
+<li>Oracles</li>
+<li>Smart Contracts</li>
+<li>ISDA Master Agreements</li>
+</ol>
+
+### Knowledge Check 3.2
+<!-- C -->
+Which one of the following characteristics is NOT well suited for using blockchain?
+
+<ol type="A">
+<li>There are multiple parties involved</li>
+<li>There are escrow services involved</li>
+<li>Large files must be stored correct</li>
+<li>There is a need for a shared common database</li>
+</ol>
+
+### Knowledge Check 3.3
+<!-- D -->
+What do ERP systems for supply chain management refer to?
+
+<ol type="A">
+<li>Execute Raw Production</li>
+<li>Essential Resource Procurement</li>
+<li>Enterprise Reputation Program</li>
+<li>Enterprise Resource Planning</li>
+</ol>
 
 ## Conclusions & Learning Objectives (Review)
 
 ### Learning Objectives (Review)
 
+You should now be able to:
+
+* Examine several use cases where blockchain technology is actively used to solve real world business problems.
+* Discover the factors to look at when evaluating if blockchain technology is right for a particular project.
+* Decide when to use and when not to use blockchain technology.
+
 ### Conclusions
+
+A number of business problems are being tackled with blockchain technology. It will be interesting to see what emerges as Hyperledger continues to develop DLT and the tooling around it. By examining the factors outlined in this chapter, you can evaluate the use of blockchain technology for your particular project.
