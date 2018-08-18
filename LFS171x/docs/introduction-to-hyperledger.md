@@ -114,7 +114,6 @@ Hyperledger has taken a leadership role to develop cross-industry standards and 
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-
 ## Open Standards
 >"Only an Open Source, collaborative software development approach can ensure the transparency, longevity, interoperability and support required to bring blockchain technologies forward to mainstream commercial adoption. That is what Hyperledger is about - communities of software developers building blockchain frameworks and platforms."
 
