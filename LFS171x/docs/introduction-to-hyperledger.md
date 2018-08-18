@@ -76,7 +76,9 @@ Hyperledger is a group of open source projects focused around cross-industry dis
 
 As of October 2017, Hyperledger consists of eight projects, five of which are distributed ledger frameworks. The other three projects are modules that support these frameworks.
 
-![Hyperledger Modular Umbrella Approach](../images/introduction-to-hyperledger/modular_umbrella.jpg)
+|![Hyperledger Modular Umbrella Approach](../images/introduction-to-hyperledger/modular_umbrella.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 As [Arnaud Le Hors](https://www.hyperledger.org/blog/2017/09/12/3431), member of the Hyperledger Technical Steering Committee, emphasized,
 
@@ -86,7 +88,6 @@ As [Arnaud Le Hors](https://www.hyperledger.org/blog/2017/09/12/3431), member of
 
 ## The Birth of Hyperledger (Brian Behlendorf)
 [![The Birth of Hyperledger (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/iNVT2Pdy--k)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Comparing Hyperledger with Bitcoin and Ethereum
 The following table explores the differences between Hyperledger's permissioned distributed ledgers and the Bitcoin and Ethereum permissionless blockchains. If you are considering blockchain solutions for your business requirements, it is important to pay attention to all these elements and weigh in on those that are most important for your use case.
@@ -109,7 +110,9 @@ The following table explores the differences between Hyperledger's permissioned 
 ## Hyperledger Goals
 Hyperledger has taken a leadership role to develop cross-industry standards and provide a neutral space for software collaboration. The financial services industry, in particular, is witnessing an unprecedented level of collaboration between institutions that have traditionally been competitors. The advent of a new foundational or infrastructural technology like the blockchain - much like the Internet - requires collaboration of various actors in order to realize the full benefits of the technology. Unless all actors use a certain standard, the pace of technological dissemination will continue to be slow. Technological adoption is characterized by network effects, where the costs decrease with the increase in use of a certain technology. Since shifting to distributed ledger technology involves significant costs, open source software, communities and ecosystems that develop around these have a significant part to play.
 
-![Hyperledger Goals](../images/introduction-to-hyperledger/Hyperledger_Goals.jpg)
+|![Hyperledger Goals](../images/introduction-to-hyperledger/Hyperledger_Goals.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ## Open Standards
@@ -156,7 +159,6 @@ The enterprise continues to be at the heart of this course.
 
 ## Why Businesses Choose to Use Hyperledger? (Brian Behlendorf)
 [![Why Businesses Choose to Use Hyperledger? (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/KX54mejdaOo)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 # Hyperledger Frameworks
 
@@ -164,7 +166,6 @@ The enterprise continues to be at the heart of this course.
 In the following video, Brian Behlendorf covers the projects that are part of Hyperledger (as of October 2017). These include the Hyperledger frameworks, which are detailed in this section, as well as the Hyperledger modules, which are covered in the next section.
 
 [![Incubated Hyperledger Projects (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/eeZzxcdYNh8)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Components of Hyperledger Frameworks
 Hyperledger business blockchain frameworks are used to build enterprise blockchains for a consortium of organizations. They are different than public ledgers like the Bitcoin blockchain and Ethereum. The Hyperledger frameworks include:
@@ -174,7 +175,9 @@ Hyperledger business blockchain frameworks are used to build enterprise blockcha
 * **Privacy** of transactions through permissioned access
 * **Smart contracts** to process transaction requests.
 
-![Components of Blockchain for Business](../images/introduction-to-hyperledger/Components_of_blockchain.jpg)
+|![Components of Blockchain for Business](../images/introduction-to-hyperledger/Components_of_blockchain.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 Now, let's explore the five Hyperledger frameworks (as of October 2017)!
 
@@ -185,18 +188,15 @@ In conclusion, Hyperledger Iroha features a simple construction, modern, domain-
 
 ## Introduction to Hyperledger Sawtooth (Courtesy of Sawtooth)
 [![Introduction to Hyperledger Sawtooth (Courtesy of Sawtooth)](../images/video-image.png)](https://youtu.be/Buw3g8oNG74)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger Sawtooth v1.0
 [Hyperledger Sawtooth](https://www.hyperledger.org/projects/sawtooth), contributed by Intel, is a blockchain framework that utilizes a modular platform for building, deploying, and running distributed ledgers. Distributed ledger solutions built with Hyperledger Sawtooth can utilize various consensus algorithms based on the size of the network. It includes the Proof of Elapsed Time (PoET) consensus algorithm, which provides the scalability of the Bitcoin blockchain without the high energy consumption. PoET allows for a highly scalable network of validator nodes. Hyperledger Sawtooth is designed for versatility, with support for both permissioned and permissionless deployments.
 
 ## Unique Characteristics of Hyperledger Sawtooth (Dan Middleton)
 [![Unique Characteristics of Hyperledger Sawtooth (Dan Middleton)](../images/video-image.png)](https://youtu.be/v4iotcvhdc8)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger Sawtooth Characteristics Relative to Use Cases (Dan Middleton)
 [![Hyperledger Sawtooth Characteristics Relative to Use Cases (Dan Middleton)](../images/video-image.png)](https://youtu.be/fFFjAt3Ct3c)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger Fabric v1.0
 [Hyperledger Fabric](https://www.hyperledger.org/projects/fabric) was the first proposal for a codebase, combining previous work done by Digital Asset Holdings, Blockstream's libconsensus, and IBM's OpenBlockchain. Hyperledger Fabric provides a modular architecture, which allows components such as consensus and membership services to be plug-and-play. Hyperledger Fabric is revolutionary in allowing entities to conduct confidential transactions without passing information through a central authority. This is accomplished through different channels that run within the network, as well as the division of labor that characterizes the different nodes within the network. Lastly, it is important to remember that, unlike Bitcoin, which is a public chain, Hyperledger Fabric supports permissioned deployments.
@@ -207,11 +207,9 @@ In conclusion, Hyperledger Iroha features a simple construction, modern, domain-
 
 ## What Is Unique about Hyperledger Fabric? (Chris Ferris)
 [![What Is Unique about Hyperledger Fabric? (Chris Ferris)](../images/video-image.png)](https://youtu.be/WqwrrE0_JXo)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger Indy (Nathan George)
 [![Hyperledger Indy (Nathan George)](../images/video-image.png)](https://youtu.be/nNo5MzgkWxE)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger Indy
 [Hyperledger Indy](https://www.hyperledger.org/projects) is a distributed ledger purpose-built for decentralized identity. Hyperledger Indy's goal is to achieve this by developing a set of
@@ -242,11 +240,11 @@ Following are the major components of Burrow:
 * The **Gateway** provides interfaces for systems integration and user interfaces
 * The **Smart contract application engine** facilitates integration of complex business logic
 * The **Consensus Engine** serves the dual purpose of:
-        a. Maintaining the networking stack between the nodes, and,
-        b. Ordering transactions
+  1. Maintaining the networking stack between the nodes, and,
+  2. Ordering transactions
 * The **Application Blockchain Interface** (ABCI) provides interface specification for the consensus engine and smart contract application engine to connect.
 
-You can learn more about Hyperledger Burrow at https://monax.io/platform/db/.
+You can go online to learn more about [Hyperledger Burrow](https://www.hyperledger.org/projects/hyperledger-burrow).
 
 # Hyperledger Modules
 
@@ -260,9 +258,9 @@ As a Hyperledger module, *"Cello aims to bring the on-demand 'as-a-service' depl
 
 Application developers and system administrators using Cello can provision and maintain Hyperledger networks. For instance, you can create a group of distributed ledger networks in virtual clouds known as 'container clusters', and then, manage and monitor those networks with a configurable dashboard. Additionally, you can build a Blockchain-as-a-Service (BaaS) platform.
 
-![Hyperledger Cello](../images/introduction-to-hyperledger/cello.jpg)
-
-Hyperledger Cello (Source: https://www.hyperledger.org/blog/2017/01/17/hyperledger-says-hello-to-cello)
+|![Hyperledger Cello](../images/introduction-to-hyperledger/cello.jpg)|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 ## Hyperledger Explorer
 [Hyperledger Explorer](https://www.hyperledger.org/projects/explorer) is a tool for visualizing blockchain operations. It is the first ever blockchain explorer for permissioned ledgers, allowing anyone to explore the distributed ledger projects being created by Hyperledger's members from the inside, without compromising their privacy. The project was contributed by DTCC, Intel, and IBM.
@@ -288,7 +286,6 @@ Built in Javascript, Hyperledger Composer provides an easy-to-use set of compone
 
 ## Hyperledger Composer (Simon Stone & Kathryn Harrison)
 [![Hyperledger Composer (Simon Stone & Kathryn Harrison)](../images/video-image.png)](https://youtu.be/91qtaojB9oI)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger Composer (Continued)
 Hyperledger Composer has created a modelling language that allows you to define the assets, participants, and transactions that make up your business network using business vocabulary. In addition, the transaction logic is then written by developers using Javascript. This simple interface allows business people and technologists to work together on defining their business network.
@@ -308,19 +305,15 @@ Before diving into Hyperledger Iroha, Hyperledger Sawtooth, and Hyperledger Fabr
 
 ## Reasons Why Developers Would Become Interested in Open Source Software
 [![Reasons Why Developers Would Become Interested in Open Source Software](../images/video-image.png)](https://youtu.be/oDsXhqqsYZM)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Hyperledger vs. Apache
 [![Hyperledger vs. Apache](../images/video-image.png)](https://youtu.be/LNfHx3DP1eE)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## A Key Feature of Hyperledger Fabric, Hyperledger Sawtooth, and Hyperledger Iroha
 [![A Key Feature of Hyperledger Fabric, Hyperledger Sawtooth, and Hyperledger Iroha](../images/video-image.png)](https://youtu.be/hbIl1UQNws8)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Interoperability between Hyperledger Frameworks
 [![Interoperability between Hyperledger Frameworks](../images/video-image.png)](https://youtu.be/psGcqCfplMI)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 # Knowledge Check
 
@@ -379,8 +372,6 @@ You should now be able to:
 
 ## Blockchain Security at Hyperledger (David Huseby)
 [![Blockchain Security at Hyperledger (David Huseby)](../images/video-image.png)](https://youtu.be/BOLNop07nTU)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## How Will Hyperledger Change the Blockchain Ecosystem? (Brian Behlendorf)
 [![How Will Hyperledger Change the Blockchain Ecosystem? (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/_pxGcCnYVlk)
-[Some rights reserved](https://creativecommons.org/licenses/by-nc-nd/4.0/)
