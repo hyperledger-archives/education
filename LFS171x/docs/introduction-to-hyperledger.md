@@ -259,7 +259,7 @@ Application developers and system administrators using Cello can provision and m
 
 |![Hyperledger Cello](../images/introduction-to-hyperledger/cello.jpg)|
 |:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+|*Hyperledger Cello (Source: https://www.hyperledger.org/blog/2017/01/17/hyperledger-says-hello-to-cello)*|
 
 ## Hyperledger Explorer
 [Hyperledger Explorer](https://www.hyperledger.org/projects/explorer) is a tool for visualizing blockchain operations. It is the first ever blockchain explorer for permissioned ledgers, allowing anyone to explore the distributed ledger projects being created by Hyperledger's members from the inside, without compromising their privacy. The project was contributed by DTCC, Intel, and IBM.
