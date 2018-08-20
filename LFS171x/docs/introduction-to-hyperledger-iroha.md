@@ -211,7 +211,7 @@ You can get involved with the Hyperledger Iroha community on GitHub. All code av
 * https://github.com/hyperledger/iroha-dotnet
 * https://github.com/hyperledger/iroha-api.
 
-![GitHub Logo](../images/introduction-to-hyperledger-iroha/GitHub.png)
+![GitHub Logo](../images/GitHub.png)
 
 ## Joining the Hyperledger Iroha Community via Rocket.Chat and Mailing Lists
 
@@ -222,7 +222,7 @@ You can join the live conversations on Rocket.Chat (which is an alternative to S
 
 Another option is to join the mailing list(s) for technical discussions and announcements: https://lists.hyperledger.org/mailman/listinfo/hyperledger-iroha.
 
-<img src="../images/introduction-to-hyperledger-iroha/RocketChat_Logo.png" alt="RocketChat Logo" width=300>
+<img src="../images/RocketChat_Logo.png" alt="RocketChat Logo" width=300>
 
 # Knowledge Check
 
