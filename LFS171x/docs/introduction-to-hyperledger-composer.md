@@ -42,7 +42,7 @@
 - [Joining Hyperledger Composer Community](#joining-hyperledger-composer-community)
 	- [Learning more about Hyperledger Composer](#learning-more-about-hyperledger-composer)
 	- [Community Meetings and Mailing List](#community-meetings-and-mailing-list)
-	- [RocketChat and GitHub](#rocketchat-and-gitbub)
+	- [Rocket.Chat and GitHub](#rocketchat-and-github)
 - [Knowledge Check](#knowledge-check)
 	- [Knowledge Check X.1](#knowledge-check-x1)
 	- [Knowledge Check X.2](#knowledge-check-x2)
@@ -822,7 +822,7 @@ And the full list of meetings of Hyperledger projects is provided on this calend
 
 https://calendar.google.com/calendar/embed?src=linuxfoundation.org_nf9u64g9k9rvd9f8vp4vur23b0%40group.calendar.google.com&ctz=UTC
 
-## RocketChat and GitHub
+## Rocket.Chat and GitHub
 Technical questions are often discussed on the RocketChat (similar to Slack), on the #composer channel:
 
 https://chat.hyperledger.org/channel/composer
