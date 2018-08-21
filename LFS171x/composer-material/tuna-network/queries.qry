@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 query getTunaByParticipant {
     description: "List tuna owned by specific 'owner'"
     statement:

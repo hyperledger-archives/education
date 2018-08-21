@@ -11,8 +11,8 @@
 ![Business Network](resources/img_03-02.png)
 
 A **Business Network** includes:
-- *Modeling language files (`models/.cto`)* to define models for Participants, Assets, Transactions and Events.
-- *Transaction Logic (`lib/.js`)* to implement the logic of the transactions defined
+- *Modeling language files (`models/*.cto`)* to define models for Participants, Assets, Transactions and Events.
+- *Transaction Logic (`lib/*.js`)* to implement the logic of the transactions defined
 - *Query file (`queries.qry`)* to design and enable complex queries on the Blockchain Data
 - *Access Control File (`permissions.acl`)* to control visibility and actions on resources
 
@@ -28,7 +28,7 @@ A **Business Network** includes:
 
 Hyperledger Composer includes an object-oriented modeling language that is used to define the domain model for a business network definition.
 
-This is used inside the `.cto` files and allows users to define resources, such as network participants, assets and transactions.
+This is used inside the `*.cto` files and allows users to define resources, such as network participants, assets and transactions.
 
 ```
 asset Tuna identified by tunaId {
@@ -47,13 +47,14 @@ o String lastName optional
 o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVf]][0-9][A-HJKPSTUW])|([A-Z-[QVf]][A-Z-[IJZ]][0-9][ABEHMNPRVWfY])))) [0-9][A-Z-[CIKMOV]]{2})/
 ```
 
+> You can find a complete guide of the Modeling Language on the [documentation](https://hyperledger.github.io/composer/latest/reference/cto_language).
 <!-- TAB 4 -->
 ## Business Network - Transaction Logic
 ![Icon Transactions](resources/icon_transactions.png)
 
-The transactions are encoded under `lib/.js` with *JavaScript (JS)*, one of the most popular programming languages.
+The transactions are encoded under `lib/*.js` with *JavaScript (JS)*, one of the most popular programming languages.
  
-These  files define the actual logic to execute the transactions defined in the `.cto` files.
+These  files define the actual logic to execute the transactions defined in the `*.cto` files.
 
 They can interact with *Participant Registries* and *Asset Registries* to create, update or delete instances of participants and assets.
 
@@ -72,7 +73,7 @@ async function sellTuna(tx) {
 
 The *Query language* helps to define queries to retrieve information on the Blockchain using a *Structured Query Language (SQL)* type interface.
 
-This can, for instance, enable complex queries that list all the assets of a participant that have been traded within a certain period, or retrieving assets owned by specific participants
+For instance, the snippet below can retrieve tuna owned by a specific participant:
 
 ```
 query getTunaByParticipant {
@@ -88,17 +89,18 @@ query getTunaByParticipant {
 ## Business Network - Access Control Rules
 ![Icon Access Control Rules](resources/icon_acl.png)
 
-The *Access Control language* enables the simple definition of rules for accessing assets and transactions by different types of participant and identity.
+The *Access Control language* enables rule definition for accessing assets and transactions by different types of participants and identities.
 
-For example, a rule may allow, for instance, a trader to access and transfer his own assets but allow an auditor *read-only access* to all assets on the network.
+For example, a rule may allow the owner only to transfer his own assets.
 
 ```
-rule NetworkAdminSystem {
-    description: "Grant business network administrators full access to system resources"
-    participant: "org.hyperledger.composer.system.NetworkAdmin"
-    operation: ALL
-    resource: "org.hyperledger.composer.system.**"
-    action: ALLOW
+rule OnlyOwnerCanTransferTuna {
+    description: "Allow only Tuna owners to transfer the fish"
+    participant(p): "org.tuna.*"
+    operation: CREATE
+    resource(r): "org.tuna.SellTuna"
+    condition: (r.tuna.owner.getIdentifier() != p.getIdentifier())
+    action: DENY
 }
 ```
 
