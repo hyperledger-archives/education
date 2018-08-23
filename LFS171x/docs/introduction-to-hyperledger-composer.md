@@ -818,7 +818,7 @@ To find the next Hyperledger Composer meeting you can navigate to the Wiki page:
 
 https://github.com/hyperledger/composer/wiki/NextCommunityCall
 
-And the full list of meetings of Hyperledger projects is provided on this calendar:
+And the full list of meetings within the Hyperledger community is provided on this calendar:
 
 https://calendar.google.com/calendar/embed?src=linuxfoundation.org_nf9u64g9k9rvd9f8vp4vur23b0%40group.calendar.google.com&ctz=UTC
 
