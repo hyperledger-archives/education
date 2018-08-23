@@ -688,7 +688,8 @@ query getTunaByParticipant {
 
 The Access Control Rules are defined in the file `permissions.acl`.
 
-The following rule allows only the owner of the tuna to execute the transaction `SellTuna`:
+Adding the following rule, to the top of the file, allows only the owner of the tuna to execute the transaction `SellTuna`:
+
 ```
 rule OnlyOwnerCanTransferTuna {
     description: "Allow only Tuna owners to transfer the fish"
