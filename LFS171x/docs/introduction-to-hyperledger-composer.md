@@ -68,31 +68,31 @@
 > Transcript:
 
 > Hello everyone, I am Nicola and I am Sasha,
-> 
+>
 > we are the content creators for the Hyperledger Composer chapter.
-> 
+>
 > In this chapter we will guide you through a demo scenario to highlight the key components of Hyperledger Composer.
-> 
+>
 > Hyperledger Composer is a toolset and framework that has been designed to make it easier to prototype and integrate blockchain applications with existing business systems.
-> 
+>
 > In Hyperledger Composer you can develop and deploy a full-fledged Blockchain network.
-> 
+>
 > And use most of the functionality available to frameworks like Hyperledger Fabric.
-> 
+>
 > Hyperledger Composer provides domain-specific languages for Modeling, Query and Access Control that simplify the development.
-> 
+>
 > Also, visual components like Playground are helpful to communicate and visualise the structure and to test the interactions over the network.
-> 
+>
 > Then starting from the actual business requirements, technical and business individuals can work together to build blockchain applications using Hyperledger Composer.
-> 
+>
 > Today it works with the Hyperledger Fabric blockchain framework. However it has been designed with a view to supporting other frameworks down the road, such as Sawtooth, Iroha, etc.
-> 
+>
 > As you work through this section, you may want to find out more about Hyperledger Composer.
-> 
+>
 > There are resources you can check out, like GitHub, RocketChat and others.
-> 
+>
 > You will find the links at the end of this chapter.
-> 
+>
 > Let’s get into it!
 
 ## Learning Objectives
@@ -111,7 +111,7 @@ By the end of the chapter you should be able to:
 
 Hyperledger Composer provides a level of abstraction to build technical blockchain solutions over real use cases.
 
-To best show what we can do with Hyperledger Composer, we will guide you through the steps to build a real case scenario. 
+To best show what we can do with Hyperledger Composer, we will guide you through the steps to build a real case scenario.
 
 It will be based on the Tuna-fish tracking system.
 
@@ -165,7 +165,7 @@ Finally, Hyperledger Composer can be used to enhance the communication between b
 # Hyperledger Composer Architecture
 
 ## Hyperledger Composer Key Components
-  
+
 ![Hyperledger Composer Key components overview](../images/introduction-to-hyperledger-composer/img_03-01.png)
 
 ## Business Network
@@ -214,7 +214,7 @@ o String postcode regex=/(GIR 0AA)|((([A-Z-[QVf]][0-9][0-9]?)|(([A-Z-[QVf]][A-Z-
 ![Icon Transactions](../images/introduction-to-hyperledger-composer/icon_transactions.png)
 
 The transactions are encoded under `lib/*.js` with *JavaScript (JS)*, one of the most popular programming languages.
- 
+
 These  files define the actual logic to execute the transactions defined in the `*.cto` files.
 
 They can interact with *Participant Registries* and *Asset Registries* to create, update or delete instances of participants and assets.
@@ -309,7 +309,7 @@ This makes it easy to integrate programmatic access to the Blockchain and to con
 ## Technical Prerequisites - Ubuntu (Linux Virtual Machine)
 
 To install Hyperledger Composer, you will need a UNIX based operating system, for instance, Linux or Mac OS X.
-    
+
 > We recommend using Ubuntu Linux 16.04 on a Virtual Machine (VM), even if you have a UNIX OS locally, as this gives you a clean environment that avoids errors and where you can experiment.
 
 Ubuntu can be easily installed on either:
@@ -513,7 +513,7 @@ abstract participant Individual identified by id {
 ```
 
 To fill the property `Address` of the individual, we can create a `Concept`.<br>
-Note that `postCode` should have a specific format that can be validated using a regular expression.
+Note that `postCode` should have a specific format that can be validated using a regular expression (here we specify a Dutch post code, which is comprised by 4 numbers followed by an optional space and two capital letters).
 ```
 concept Address {
     o String addressLine
