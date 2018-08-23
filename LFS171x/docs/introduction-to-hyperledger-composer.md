@@ -653,7 +653,6 @@ Update the record of the Tuna in the asset registry:
 ```
     // Update the asset in the asset registry.
     await tunaRegistry.update(tx.tuna);
-}
 ```
 
 Create the Event `TunaSale`:
@@ -668,6 +667,7 @@ Finally, emit the event created.
 ```
     // Emit the Event
     emit(tunaSaleEvent);
+}
 ```
 
 ## 5) Developing Queries
