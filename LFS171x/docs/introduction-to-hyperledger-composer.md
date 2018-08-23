@@ -616,13 +616,22 @@ Next, the registries related to the Asset `Tuna` and the Participant `Restaurant
     const restaurantOwnerRegistry = await getParticipantRegistry(NS + '.RestaurantOwner');
 ```
 
-Next, we have to verify that the `status` of the Tuna is `CAUGHT`.
-This is to make sure that a `Tuna` already sold cannot be sold again.
+Next, we have to verify that tuna actually exists.
+```  
+    const tuna = await tunaRegistry.get(tx.tuna.getIdentifier());
+		// Make sure that Tuna exists
+    if (!tuna) {
+    		throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} does not exist`);
+		}
 ```
-    // Make sure the tuna status is CAUGHT and not PURCHASED
-    if (tx.tuna.status !== 'CAUGHT') {
-        throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
-    }
+
+And that the `status` of the Tuna is `CAUGHT`.
+This is to make sure that a `Tuna` already sold cannot be sold again.
+
+		// Make sure the tuna status is CAUGHT and not PURCHASED
+		if (tuna.status !== 'CAUGHT') {
+				throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
+		}
 ```
 
 Retrieve the id of the `RestaurantOwner` from the Transaction.

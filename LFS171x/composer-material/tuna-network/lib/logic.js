@@ -19,8 +19,14 @@ async function sellTuna(tx) {
     // Get participant registry for Individuals
     const restaurantOwnerRegistry = await getParticipantRegistry(NS + '.RestaurantOwner');
 
+    const tuna = await tunaRegistry.get(tx.tuna.getIdentifier());
+    // Make sure that Tuna exists
+    if (!tuna) {
+        throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} does not exist`);
+    }
+
     // Make sure the tuna status is CAUGHT and not PURCHASED
-    if (tx.tuna.status !== 'CAUGHT') {
+    if (tuna.status !== 'CAUGHT') {
         throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
     }
 
