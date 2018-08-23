@@ -341,6 +341,8 @@ chmod u+x prereqs-ubuntu.sh
 ./prereqs-ubuntu.sh
 ```
 
+> You should be able to now call the `npm` and `docker` commands. If you have issues running either of these on Ubuntu, attempt logging out of the VM and logging back in.
+
 ## Technical Prerequisites - Mac OS
 
 To install Hyperledger Composer in your Mac you can either follow this video or the guided the procedure in the official [Hyperledger Composer Documentation](https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html#macos).
