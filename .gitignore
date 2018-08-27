@@ -1,0 +1,4 @@
+# Ignore JetBrains configuration files
+
+.idea
+
