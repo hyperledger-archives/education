@@ -627,7 +627,7 @@ Next, we have to verify that tuna actually exists.
 
 And that the `status` of the Tuna is `CAUGHT`.
 This is to make sure that a `Tuna` already sold cannot be sold again.
-
+```
 		// Make sure the tuna status is CAUGHT and not PURCHASED
 		if (tuna.status !== 'CAUGHT') {
 				throw new Error(`Tuna with id ${tx.tuna.getIdentifier()} is not in CAUGHT status`);
