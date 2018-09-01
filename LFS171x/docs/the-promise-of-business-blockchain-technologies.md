@@ -3,19 +3,19 @@
 
 - [The Promise of Business Blockchain Technologies](#the-promise-of-business-blockchain-technologies)
   - [Introduction and Learning Objectives](#introduction-and-learning-objectives)
-    - [Introduction (Nathalie Salami)](#introduction-nathalie-salami)
+    - [Video: Introduction (Nathalie Salami)](#video-introduction-nathalie-salami)
     - [Learning Objectives](#learning-objectives)
   - [Existing Blockchain Use Cases](#existing-blockchain-use-cases)
     - [Business Blockchain Technologies Overview](#business-blockchain-technologies-overview)
-    - [Hyperledger Advantages for Businesses (Brian Behlendorf)](#hyperledger-advantages-for-businesses-brian-behlendorf)
-    - [Blockchain Use Case (Brian Behlendorf)](#blockchain-use-case-brian-behlendorf)
+    - [Video: Hyperledger Advantages for Businesses (Brian Behlendorf)](#video-hyperledger-advantages-for-businesses-brian-behlendorf)
+    - [Video: Blockchain Use Case (Brian Behlendorf)](#video-blockchain-use-case-brian-behlendorf)
     - [Supply Chain Management (Part I)](#supply-chain-management-part-i)
     - [Supply Chain Management (Part II)](#supply-chain-management-part-ii)
     - [Provenance (Part I)](#provenance-part-i)
     - [Provenance (Part II)](#provenance-part-ii)
     - [Property Rights (Part I)](#property-rights-part-i)
     - [Property Rights (Part II)](#property-rights-part-ii)
-    - [Business Interest in Hyperledger (Brian Behlendorf)](#business-interest-in-hyperledger-brian-behlendorf)
+    - [Video: Business Interest in Hyperledger (Brian Behlendorf)](#video-business-interest-in-hyperledger-brian-behlendorf)
     - [Finance (Part I)](#finance-part-i)
     - [Finance (Part II)](#finance-part-ii)
     - [Finance (Part III)](#finance-part-iii)
@@ -24,7 +24,7 @@
     - [Healthcare (Part I)](#healthcare-part-i)
     - [Healthcare (Part II)](#healthcare-part-ii)
   - [When to Use or Not to Use Blockchain Technologies](#when-to-use-or-not-to-use-blockchain-technologies)
-    - [What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)](#what-enterprises-look-for-when-evaluating-whether-or-not-to-use-hyperledger-brian-behlendorf)
+    - [Video: What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)](#video-what-enterprises-look-for-when-evaluating-whether-or-not-to-use-hyperledger-brian-behlendorf)
     - [When to Use Blockchain](#when-to-use-blockchain)
     - [When Not to Use Blockchain](#when-not-to-use-blockchain)
     - [I. The Process Involves Confidential Data](#i-the-process-involves-confidential-data)
@@ -45,7 +45,7 @@
 
 ## Introduction and Learning Objectives
 
-### Introduction (Nathalie Salami)
+### Video: Introduction (Nathalie Salami)
 
 [![Introduction (Nathalie Salami)](../images/video-image.png)](https://youtu.be/hLSiWBcNpYk)
 
@@ -69,11 +69,11 @@ The promise of distributed ledger technologies (DLT) to simplify and automate ke
 
 How exactly are businesses using these emerging technologies today? Next, we will explore the state of distributed ledger technologies in actual corporate settings, and how they compare against traditional tools. 
 
-### Hyperledger Advantages for Businesses (Brian Behlendorf)
+### Video: Hyperledger Advantages for Businesses (Brian Behlendorf)
 
 [![Hyperledger Advantages for Businesses (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/V65RHZ-vtD8)
 
-### Blockchain Use Case (Brian Behlendorf)
+### Video: Blockchain Use Case (Brian Behlendorf)
 
 [![Blockchain Use Case (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/BT6YGZCeOH0)
 
@@ -93,10 +93,7 @@ The trade finance industry can also leverage information visible in a supply cha
 
 |![Supply Chain of Tuna](../images/the-promise-of-business-blockchain-technologies/Supply_Chain_of_Tuna.png)|
 |:--:|
-
-<p align="center">
-Source: Nishan Degnarain (used with permission)
-</p>
+| *Source: Nishan Degnarain (used with permission)* |
 
 ### Provenance (Part I)
 
@@ -106,10 +103,7 @@ Provenance is a record of ownership used as a guide to authenticity or quality. 
 
 |![Provenance Use Case](../images/the-promise-of-business-blockchain-technologies/Provenance_Use_Case.jpg)|
 |:--:|
-
-<p align="center">
-How Provenance Works (by [Project Provenance Ltd](https://www.provenance.org/), used with permission)
-</p>
+| *How Provenance Works (by [Project Provenance Ltd](https://www.provenance.org/), used with permission)* |
 
 How do you, as a consumer, really know that you purchased an authentic item? Why is authenticity important? Some consumers want to make sure that fair trade and fair labor standards are upheld in the products they purchase. Others want to make sure that none of their products have been tested on animals. Still, others are concerned with the use of harmful chemicals during product manufacturing. Those consumers are willing to pay a premium to make sure that they are not funding operations that are not in line with their values. Counterfeit products, however, take advantage of the higher price point a brand that upholds strict standards can command. Their margins are increased over the authentic brand because they cut corners during production.
 
@@ -129,8 +123,9 @@ Ownership for a particular asset may be transferred in whole, or in part. As a r
 
 ### Property Rights (Part II)
 
-Companies may use blockchain technologies to record ownership rights and responsibilities. Specifically, governments have put land registry records on blockchain (Laura Shin, [forbes.com](https://www.forbes.com/sites/laurashin/2016/04/21/republic-of-georgia-to-pilot-land-titling-on-blockchain-with-economist-hernando-de-soto-bitfury/#1c7a07944da3), 2016). Companies have also put intellectual property registration and ownership on blockchain (poex.io). Intellectual property includes copyright, trademark, and patents. To legally protect ownership rights in these, one registers their production, or invention, or otherwise proves when the work was established, and that they are the origin of the work.
+Companies may use blockchain technologies to record ownership rights and responsibilities. Specifically, governments have put land registry records on blockchain (Laura Shin, [forbes.com](https://www.forbes.com/sites/laurashin/2016/04/21/republic-of-georgia-to-pilot-land-titling-on-blockchain-with-economist-hernando-de-soto-bitfury/#1c7a07944da3), 2016). Companies have also put intellectual property registration and ownership on blockchain ([poex.io](https://poex.io/about)). Intellectual property includes copyright, trademark, and patents. To legally protect ownership rights in these, one registers their production, or invention, or otherwise proves when the work was established, and that they are the origin of the work.
 
+|REGISTERING PROPERTY TITLES ON A BLOCKCHAIN VIA A SMART CONTRACT|
 |![Property Rights](../images/the-promise-of-business-blockchain-technologies/PROPERTY_RIGHTS.jpg)|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
@@ -139,21 +134,17 @@ Companies with strong brand value in particular, such as the fashion industry an
 
 A blockchain may record a hash of a document. As an example, photographers could place a hash of their unique digital photographs on the blockchain. The hash of a digital photograph will be constant so long as the photograph file has not been altered. Therefore, the blockchain can control and track the distribution of the photograph, detect the introduction of counterfeit images, and be used to resolve disputes as to who first introduced the image. By placing a hash of intellectual property documents on the blockchain, a party can publicly demonstrate data ownership, and prove the existence of certain documents at a given moment in time, without revealing the actual data. In addition to the hash, you may also choose to store the location of the file in the blockchain, which could be used for retrieval.
 
-### Business Interest in Hyperledger (Brian Behlendorf)
+### Video: Business Interest in Hyperledger (Brian Behlendorf)
 
 [![Business Interest in Hyperledger (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/cDZg8R5z1oQ)
 
 ### Finance (Part I)
 
-<p align="center">
-  <i>"Blockchain has huge potential to move the financial services industry away from messaged based models, slow reconciliation processes and inefficiency of fragmented data stores. With blockchain, financial services can move to a shared data construct, driving down costs, increasing efficiency and opening up entirely new business models."</i>
-</p>
+> "Blockchain has huge potential to move the financial services industry away from messaged based models, slow reconciliation processes and inefficiency of fragmented data stores. With blockchain, financial services can move to a shared data construct, driving down costs, increasing efficiency and opening up entirely new business models."
 
-<p align="center">
-  <i>- David Treat, Accenture</i>
-</p>
+-David Treat, Accenture
 
-The Bitcoin blockchain was created as a "peer-to-peer electronic cash system" ([Satoshi Nakamoto, Bitcoin](https://bitcoin.org/bitcoin.pdf)). Therefore, the first blockchain use case in existence was payments. However, Bitcoin proved to be quite slow to process payments, "somewhere in the region of 7 transactions per second" ([Guy Brandon, due.com](https://due.com/blog/can-the-blockchain-scale/), February 2017), when compared to Visa, which "averages around 2,000 transactions per second, with peak capacity of perhaps 50,000 transactions per second" ([Guy Brandon, due.com](https://due.com/blog/can-the-blockchain-scale/), February 2017). Developers are actively working to increase the throughput capacity of Bitcoin and other blockchain payment systems ([lightning.network](https://lightning.network/)). Payments, especially international payments, can be quite costly. Blockchain technologies plan to decrease the costs associated with payments, by allowing parties to interact directly, instead of transferring through an intermediary, such as a bank. In addition, having a record of all past payments is useful to auditors and regulators. Financial institutions have heavily researched blockchain payment systems because a universally recorded world state of payment information can decrease the number of payment disputes among institutions. 
+The Bitcoin blockchain was created as a "_peer-to-peer electronic cash system_" ([Satoshi Nakamoto, Bitcoin](https://bitcoin.org/bitcoin.pdf)). Therefore, the first blockchain use case in existence was payments. However, Bitcoin proved to be quite slow to process payments, "_somewhere in the region of 7 transactions per second_" ([Guy Brandon, due.com](https://due.com/blog/can-the-blockchain-scale/), February 2017), when compared to Visa, which "_averages around 2,000 transactions per second, with peak capacity of perhaps 50,000 transactions per second_" ([Guy Brandon, due.com](https://due.com/blog/can-the-blockchain-scale/), February 2017). Developers are actively working to increase the throughput capacity of Bitcoin and other blockchain payment systems ([lightning.network](https://lightning.network/)). Payments, especially international payments, can be quite costly. Blockchain technologies plan to decrease the costs associated with payments, by allowing parties to interact directly, instead of transferring through an intermediary, such as a bank. In addition, having a record of all past payments is useful to auditors and regulators. Financial institutions have heavily researched blockchain payment systems because a universally recorded world state of payment information can decrease the number of payment disputes among institutions. 
 
 ### Finance (Part II)
 
@@ -200,7 +191,7 @@ Conducting post-trade settlement in an automated way through smart contracts pro
 
 A number of multi-party processes in the healthcare industry can leverage distributed ledger technology. By streamlining these multi-party processes, the healthcare industry can reduce the time and expense of collecting and verifying multiple pieces of information in order to deliver quality care to patients. Healthcare providers and insurance companies have begun to explore how blockchain can improve the delivery of patient care.
 
-In 2015, the US spent 27.42% of the federal budget, or $1.05 trillion, on healthcare ([National Priorities Project](https://www.nationalpriorities.org/budget-basics/federal-budget-101/spending/)). Because these costs are so high, the US government, in particular, has invested resources into healthcare blockchain technology. The Office of [National Coordinator for Health Information Technology (ONC)](https://www.healthit.gov/) is responsible for health information technology. It has recognized a need for nationwide interoperability and standards for electronic health records, claims processing, and verification of provider credentials. To that end, it has sponsored many government blockchain initiatives in healthcare.
+In 2015, the US spent 27.42% of the federal budget, or $1.05 trillion, on healthcare ([National Priorities Project](https://www.nationalpriorities.org/budget-basics/federal-budget-101/spending/)). Because these costs are so high, the US government, in particular, has [has invested resources](https://search.usa.gov/search?utf8=%E2%9C%93&affiliate=usagov&query=healthhit+blockchain) into healthcare blockchain technology. The Office of [National Coordinator for Health Information Technology (ONC)](https://www.healthit.gov/) is responsible for health information technology. It has recognized a need for nationwide interoperability and standards for electronic health records, claims processing, and verification of provider credentials. To that end, it has sponsored many government blockchain initiatives in healthcare.
 
 The healthcare industry has already placed medical insurance enrollment information on blockchain for verification, and plans to incorporate many other aspects of medical insurance claims processing on blockchain. One cost borne by health insurance providers is auditing care providers. Health insurance providers must verify whether a practitioner actually delivered the care that he or she was obliged to deliver to the patient. Health insurance providers must also audit the financial aspects incurred as part of this care, to ensure that care was paid, and the charges were accurate. Tying the care auditability with the payment auditability provides a key advantage to reducing the potential for fraud.
 
@@ -210,14 +201,11 @@ The healthcare industry has examined placing prescription drug fulfillment proce
 
 |![The_BlockRx_Pharma_Ecosystem](../images/the-promise-of-business-blockchain-technologies/The_BlockRx_Pharma_Ecosystem.png)|
 |:--:|
-
-<p align="center">
-  By <a href="https://www.blockrx.com/">The BlockRx Project</a>, retrieved from the <a href="https://wiki.hyperledger.org/groups/healthcare/healthcare-wg">Hyperledger Healthcare Working Group, August 22nd, 2017 Meeting</a>
-</p>
+| *By <a href="https://www.blockrx.com/">The BlockRx Project</a>, retrieved from the <a href="https://wiki.hyperledger.org/groups/healthcare/healthcare-wg">Hyperledger Healthcare Working Group, August 22nd, 2017 Meeting</a>* |
 
 ## When to Use or Not to Use Blockchain Technologies
 
-### What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)
+### Video: What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)
 
 [![What Enterprises Look for When Evaluating Whether or Not to Use Hyperledger (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/xzFz88bHOLs)
 
