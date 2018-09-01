@@ -15,6 +15,7 @@
     - [Provenance (Part II)](#provenance-part-ii)
     - [Property Rights (Part I)](#property-rights-part-i)
     - [Property Rights (Part II)](#property-rights-part-ii)
+      - [REGISTERING PROPERTY TITLES ON A BLOCKCHAIN VIA A SMART CONTRACT](#registering-property-titles-on-a-blockchain-via-a-smart-contract)
     - [Video: Business Interest in Hyperledger (Brian Behlendorf)](#video-business-interest-in-hyperledger-brian-behlendorf)
     - [Finance (Part I)](#finance-part-i)
     - [Finance (Part II)](#finance-part-ii)
@@ -125,10 +126,10 @@ Ownership for a particular asset may be transferred in whole, or in part. As a r
 
 Companies may use blockchain technologies to record ownership rights and responsibilities. Specifically, governments have put land registry records on blockchain (Laura Shin, [forbes.com](https://www.forbes.com/sites/laurashin/2016/04/21/republic-of-georgia-to-pilot-land-titling-on-blockchain-with-economist-hernando-de-soto-bitfury/#1c7a07944da3), 2016). Companies have also put intellectual property registration and ownership on blockchain ([poex.io](https://poex.io/about)). Intellectual property includes copyright, trademark, and patents. To legally protect ownership rights in these, one registers their production, or invention, or otherwise proves when the work was established, and that they are the origin of the work.
 
-|REGISTERING PROPERTY TITLES ON A BLOCKCHAIN VIA A SMART CONTRACT|
+#### REGISTERING PROPERTY TITLES ON A BLOCKCHAIN VIA A SMART CONTRACT
 |![Property Rights](../images/the-promise-of-business-blockchain-technologies/PROPERTY_RIGHTS.jpg)|
 |:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 Companies with strong brand value in particular, such as the fashion industry and luxury good providers, are interested in more efficient ways to protect their intellectual property. When data is added to a blockchain, it can provide an immutable, secure, timestamped record for the creation of intellectual property, and any changes to the data can be easily detected. Blockchains establish this in a variety of ways.
 
