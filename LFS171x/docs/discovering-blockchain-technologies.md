@@ -6,33 +6,33 @@
 - [Distributed Ledger Technology (DLT)](#distributed-ledger-technology-dlt)
 	- [Background - The Rising Interest in Distributed Ledger Technologies](#background-the-rising-interest-in-distributed-ledger-technologies)
 	- [Distributed Ledger Technology (DLT)](#distributed-ledger-technology-dlt)
-	- [Blockchain Technology (Robert Schwentker)](#blockchain-technology-robert-schwentker)
+	- [Video: Blockchain Technology (Robert Schwentker)](#video-blockchain-technology-robert-schwentker)
 	- [Blockchains](#blockchains)
-	- [The Difference between DLT and Blockchains (Brian Behlendorf)](#the-difference-between-dlt-and-blockchains-brian-behlendorf)
+	- [Video: The Difference between DLT and Blockchains (Brian Behlendorf)](#video-the-difference-between-dlt-and-blockchains-brian-behlendorf)
 	- [Blockchains (Continued)](#blockchains-continued)
 	- [Merkle Tree](#merkle-tree)
-	- [What Is a Blockchain? (Dave Huseby)](#what-is-a-blockchain-dave-huseby)
+	- [Video: What Is a Blockchain? (Dave Huseby)](#video-what-is-a-blockchain-dave-huseby)
 	- [Transactions](#transactions)
 	- [Differences between Blockchains and Databases](#differences-between-blockchains-and-databases)
 	- [Types of Blockchains](#types-of-blockchains)
 	- [Peer-to-Peer Network Architecture](#peer-to-peer-network-architecture)
-	- [Peer-to-Peer Networks (Robert Schwentker)](#peer-to-peer-networks-robert-schwentker)
+	- [Video: Peer-to-Peer Networks (Robert Schwentker)](#video-peer-to-peer-networks-robert-schwentker)
 	- [Immutability of Data](#immutability-of-data)
 	- [Blockchain Applications](#blockchain-applications)
 	- [Smart Contracts](#smart-contracts)
-	- [Smart Contracts (Robert Schwentker)](#smart-contracts-robert-schwentker)
+	- [Video: Smart Contracts (Robert Schwentker)](#video-smart-contracts-robert-schwentker)
 - [Bitcoin and Ethereum Blockchains](#bitcoin-and-ethereum-blockchains)
 	- [Bitcoin - A Popular Blockchain Deployment](#bitcoin-a-popular-blockchain-deployment)
-	- [Bitcoin and Ethereum (Robert Schwentker)](#bitcoin-and-ethereum-robert-schwentker)
+	- [Video: Bitcoin and Ethereum (Robert Schwentker)](#video-bitcoin-and-ethereum-robert-schwentker)
 	- [Bitcoin and Cryptoeconomics](#bitcoin-and-cryptoeconomics)
 	- [Ethereum - An Alternative to Bitcoin](#ethereum-an-alternative-to-bitcoin)
-	- [Ethereum (Robert Schwentker)](#ethereum-robert-schwentker)
+	- [Video: Ethereum (Robert Schwentker)](#video-ethereum-robert-schwentker)
 	- [Dapps](#dapps)
 	- [Ethereum Smart Contracts](#ethereum-smart-contracts)
 - [Exploring Permissionless Blockchains](#exploring-permissionless-blockchains)
-	- [Exploring Bitcoin and Ethereum Blockchains](#exploring-bitcoin-and-ethereum-blockchains)
+	- [Video: Exploring Bitcoin and Ethereum Blockchains](#video-exploring-bitcoin-and-ethereum-blockchains)
 	- ['Certifying' a Document](#certifying-a-document)
-	- ['Certifying' a Document onto Blockchains Using stamp.io](#certifying-a-document-onto-blockchains-using-stampio)
+	- [Video: 'Certifying' a Document onto Blockchains Using stamp.io](#video-certifying-a-document-onto-blockchains-using-stampio)
 - [Consensus Algorithms](#consensus-algorithms)
 	- [Proof of Work (PoW)](#proof-of-work-pow)
 	- [Proof of Stake (PoS)](#proof-of-stake-pos)
@@ -41,12 +41,12 @@
 	- [Proof of Authority (PoA)](#proof-of-authority-poa)
 	- [Comparing Permissioned Consensus Approaches and Standard PoW](#comparing-permissioned-consensus-approaches-and-standard-pow)
 - [Hyperledger](#hyperledger)
-	- [Hyperledger (Robert Schwentker)](#hyperledger-robert-schwentker)
+	- [Video: Hyperledger (Robert Schwentker)](#video-hyperledger-robert-schwentker)
 	- [Hyperledger Blockchains: Permissioned or Permissionless?](#hyperledger-blockchains-permissioned-or-permissionless)
 	- [Advantages of Using a Permissioned Blockchain over a Permissionless Blockchain](#advantages-of-using-a-permissioned-blockchain-over-a-permissionless-blockchain)
-	- [Hyperledger vs. Other Permissioned Ledgers (Brian Behlendorf)](#hyperledger-vs-other-permissioned-ledgers-brian-behlendorf)
+	- [Video: Hyperledger vs. Other Permissioned Ledgers (Brian Behlendorf)](#video-hyperledger-vs-other-permissioned-ledgers-brian-behlendorf)
 - [Other Open Source Permissioned Distributed Ledgers](#other-open-source-permissioned-distributed-ledgers)
-	- [Other Distributed Ledger Technologies (Robert Schwentker)](#other-distributed-ledger-technologies-robert-schwentker)
+	- [Video: Other Distributed Ledger Technologies (Robert Schwentker)](#video-other-distributed-ledger-technologies-robert-schwentker)
 	- [Chain Core](#chain-core)
 	- [Corda](#corda)
 	- [Quorum](#quorum)
@@ -110,7 +110,7 @@ In summary, distributed ledger technology generally consists of [three basic com
 * A **language of transactions** that changes the ledger state
 * A **protocol** used to build consensus among participants around which transactions will be accepted, and in what order, by the ledger.
 
-## Blockchain Technology (Robert Schwentker)
+## Video: Blockchain Technology (Robert Schwentker)
 
 [![Blockchain Technology (Robert Schwentker)](../images/video-image.png)](https://youtu.be/wphKFa62pho)
 
@@ -123,7 +123,7 @@ According to [hyperledger.org](https://www.hyperledger.org),
 
 **Consensus** refers to a system of ensuring that parties agree to a certain state of the system as the true state.
 
-## The Difference between DLT and Blockchains (Brian Behlendorf)
+## Video: The Difference between DLT and Blockchains (Brian Behlendorf)
 
 [![The Difference between DLT and Blockchains (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/02IAHzvCh34)
 
@@ -152,7 +152,7 @@ The Merkle tree, also known as a binary hash tree, is a data structure that is u
 
 For an in-depth discussion on Merkle trees, see: http://chimera.labs.oreilly.com/books/1234000001802/ch07.html#_structure_of_a_block.
 
-## What Is a Blockchain? (Dave Huseby)
+## Video: What Is a Blockchain? (Dave Huseby)
 
 [![What Is a Blockchain? (Dave Huseby)](../images/video-image.png)](https://youtu.be/31Uyf0uKFK8)
 
@@ -201,7 +201,7 @@ Permissionless P2P systems do not require a set amount of peers to be online and
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-## Peer-to-Peer Networks (Robert Schwentker)
+## Video: Peer-to-Peer Networks (Robert Schwentker)
 
 [![Peer-to-Peer Networks (Robert Schwentker)](../images/video-image.png)](https://youtu.be/Yv8YWmKEBlk)
 
@@ -238,7 +238,7 @@ For more details about blockchain applications, you can refer to Daniel Palmer's
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-## Smart Contracts (Robert Schwentker)
+## Video: Smart Contracts (Robert Schwentker)
 
 [![Smart Contracts (Robert Schwentker)](../images/video-image.png)](https://youtu.be/hz_yy9N3Eh0)
 
@@ -256,7 +256,7 @@ According to the [Coin Market Capitalizations website](https://coinmarketcap.com
 
 According to [AngelList](https://angel.co/blockchains), more than one thousand startups have been created to leverage Bitcoin and blockchain-related technologies since the inception of the Bitcoin payment system. Hundreds of large companies, and dozens of governments and universities have become actively involved in researching, testing, and prototyping blockchain protocols, platforms, and applications. In particular, the financial services sector has been actively investing in exploring wider applications of distributed ledger technologies (of which, blockchain is a subset) since late 2015.
 
-## Bitcoin and Ethereum (Robert Schwentker)
+## Video: Bitcoin and Ethereum (Robert Schwentker)
 
 [![Bitcoin and Ethereum (Robert Schwentker)](../images/video-image.png)](https://youtu.be/6AulVTv2hlo)
 
@@ -293,7 +293,7 @@ As of October 2017, Ethereum had a [market cap](https://coinmarketcap.com/curren
 
 As the second best known public blockchain after the Bitcoin blockchain, Ethereum has ushered in an era of unprecedented activity around blockchain and distributed ledger technology.
 
-## Ethereum (Robert Schwentker)
+## Video: Ethereum (Robert Schwentker)
 
 [![Ethereum (Robert Schwentker)](../images/video-image.png)](https://youtu.be/zuc3AIcDEok)
 
@@ -324,7 +324,7 @@ The illustration below describes this process. The smart contract encodes the ag
 
 Let's start by examining the Bitcoin and Ethereum blockchains, both of which are permissionless, public blockchains. We will examine several large transactions, and the genesis block for each blockchain. We will look at block heights, transaction times, mining pools, timestamps, and block rewards.
 
-## Exploring Bitcoin and Ethereum Blockchains
+## Video: Exploring Bitcoin and Ethereum Blockchains
 
 [![Exploring Bitcoin and Ethereum Blockchains](../images/video-image.png)](https://youtu.be/v6FY9jqj3XE)
 
@@ -332,7 +332,7 @@ Let's start by examining the Bitcoin and Ethereum blockchains, both of which are
 
 We have just examined the Bitcoin and Ethereum blockchains, and the key variables to pay attention to. Next, let's examine how we can 'certify' a document on both the Bitcoin and Ethereum blockchains simultaneously, using Stamp.io, which is a certification tool. We will show you how to easily certify various types of files on Stamp.io, obtaining a 'Stampery Certificate'. We will also show you how to cross-check the hash of the transactions on the Bitcoin and the Ethereum blockchains.
 
-## 'Certifying' a Document onto Blockchains Using stamp.io
+## Video: 'Certifying' a Document onto Blockchains Using stamp.io
 
 [!['Certifying' a Document onto Blockchains Using stamp.io](../images/video-image.png)](https://youtu.be/GkmHnc-5OyY)
 
@@ -400,7 +400,7 @@ The following table offers an at-a-glance view of the main considerations and pr
 
 Hyperledger is an open source effort created to advance cross-industry blockchain technologies. Hosted by The Linux Foundation, it is a global collaboration of members from various industries and organizations. Hyperledger boasts a host of enterprise-ready solutions. Hyperledger is about communities of software developers building blockchain frameworks and platforms. We will take a closer look at some of the current Hyperledger projects in the coming chapters.
 
-## Hyperledger (Robert Schwentker)
+## Video: Hyperledger (Robert Schwentker)
 
 [![Hyperledger (Robert Schwentker)](../images/video-image.png)](https://youtu.be/EW272QItIE8)
 
@@ -414,13 +414,13 @@ If you look at permissionless blockchains, like the Bitcoin blockchain or the Et
 
 Hyperledger reduces these security risks and ensures that only the parties that want to transact are the ones that are part of the transaction and, rather than displaying the record of the transactions to the whole network, they remain visible only to the parties involved. So, Hyperledger provides all the capabilities of the blockchain architecture - data privacy, information sharing, immutability, with a full stack of security protocols - all for the enterprise.
 
-## Hyperledger vs. Other Permissioned Ledgers (Brian Behlendorf)
+## Video: Hyperledger vs. Other Permissioned Ledgers (Brian Behlendorf)
 
 [![Hyperledger vs. Other Permissioned Ledgers (Brian Behlendorf)](../images/video-image.png)](https://youtu.be/GQJDsEd8DcU)
 
 # Other Open Source Permissioned Distributed Ledgers
 
-## Other Distributed Ledger Technologies (Robert Schwentker)
+## Video: Other Distributed Ledger Technologies (Robert Schwentker)
 
 [![Other Distributed Ledger Technologies (Robert Schwentker)
 ](../images/video-image.png)](https://youtu.be/cCow5ljs-f8)
