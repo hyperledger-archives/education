@@ -93,7 +93,9 @@ One great way to interact with peers taking this course is via the Discussion bo
 * To ask questions about course content.
 * To share resources and ideas related to blockchain and Hyperledger technologies.
 
-We strongly encourage you not only to ask questions, but to share with your peers opinions about the course content, as well as valuable related resources. The Discussion boards will be reviewed periodically by The Linux Foundation staff, but it is primarily a community resource, not an 'ask the instructor' service. To learn more tips about using the Discussion boards, click [here](http://blog.edx.org/getting-most-out-edx-discussion-forums).
+We strongly encourage you not only to ask questions, but to share with your peers opinions about the course content, as well as valuable related resources. The Discussion boards will be reviewed periodically by The Linux Foundation staff, but it is primarily a community resource, not an 'ask the instructor' service.
+
+If you get stuck, increase your chances of timely help from the community by following [this guide](http://blog.edx.org/getting-most-out-edx-discussion-forums) on getting the most out of the Discussion forums.  For technical issues, including details like your computer's operating system, what commands you typed, error messages, and screenshots help the community help you.
 
 ## Learning Aids
 Besides simple exposition through text and figures, this course uses several types of learning aids to enhance your learning experience.
