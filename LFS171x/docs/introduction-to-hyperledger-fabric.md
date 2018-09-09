@@ -95,7 +95,7 @@ Our scenario has two separate chaincodes, which are run on three separate channe
 
 In Hyperledger Fabric, MSPs also allow for dynamic membership to add or remove members to maintain integrity and operation of the supply chain. For example, if Sarah was found to be catching her fish illegally, she can have her membership revoked, without compromising the rest of the network. This feature is critical, especially for enterprise applications, where business relationships change over time.
 
-## Gaining Network Membership
+## Summary of Demonstrated Scenario
 
 Below is a summary of the tuna catch scenario presented in this section:
 
@@ -108,3 +108,30 @@ Below is a summary of the tuna catch scenario presented in this section:
 4. In a separate business agreement, Sarah and Miriam agree on a special price of $50 per pound. They use the red channel's chaincode contract stipulating $50/lb. The red channel's ledger is updated with a block containing this transaction.
 
 [Demonstrated scenario](..images/Demonstrated_Tuna_Fishing_Scenario.png)
+
+## Video: Introduction to Hyperledger Fabric Architecture (Arianna Groetsema)
+
+[![Introduction to Hyperledger Fabric Architecture (Arianna Groetsema)](../images/video-image.png)](https://youtu.be/nyNUvtsmZNE)
+
+## Roles within a Hyperledger Fabric Network
+
+There are three different types of roles within a Hyperledger Fabric network:
+
+**Clients** are data partitioning mechanisms that allow transaction visibility for stakeholders only. Each channel is an independent chain of transaction blocks containing only transactions for that particular channel.
+
+**Peers** (Smart Contracts) encapsulates both the asset definitions and the business logic (or transactions) for modifying those assets. Transaction invocations result in changes to the ledger.
+
+**Ordering Service** contains the current world state of the network and a chain of transaction invocations. A shared, permissioned ledger is an append-only system of records and serves as a single source of truth.
+
+## How to Reach Consensus
+
+In a distributed ledger system, **consensus** is the process of reaching agreement on the next set of transactions to be added to the ledger. In Hyperledger Fabric, consensus is made up of three distinct steps:
+
+- Transaction endorsement
+- Ordering
+- Validation and commitment.
+
+These three steps ensure the policies of a network are upheld. We will explore how these steps are implemented by exploring the transaction flow.
+
+
+
