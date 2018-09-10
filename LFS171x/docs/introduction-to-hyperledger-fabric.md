@@ -33,7 +33,7 @@ According to the [World Economic Forum,](https://www.weforum.org/agenda/2017/05/
 
 **Carl** is another restaurant owner fisherman Sarah can sell tuna to.
 
-[Hyperledger Global Meetups](..images/Fabric_demonstrated_scenario_actors.png)
+[Fabric demonstrated scenario actors: Sarah, regulator, Carl, Miriam](..images/Fabric_demonstrated_scenario_actors.png)
 
 Using Hyperledger Fabric, we will be demonstrating how tuna fishing can be improved starting from the source, fisherman Sarah, and the process by which she sells her tuna to Miriam's restaurant.
 
@@ -133,5 +133,45 @@ In a distributed ledger system, **consensus** is the process of reaching agreeme
 
 These three steps ensure the policies of a network are upheld. We will explore how these steps are implemented by exploring the transaction flow.
 
+## Transaction Flow (Step 1)
 
+Within a Hyperledger Fabric network, transactions start out with client applications sending transaction proposals, or, in other words, proposing a transaction to endorsing peers.
+
+[This is the first step of the transaction flow, the transaction proposal](..images/Key_Components_-_Transaction_Proposal.png)
+
+**Client applications** are commonly referred to as **applications** or **clients**, and allow people to communicate with the blockchain network. Application developers can leverage the Hyperledger Fabric network through the application SDK.
+
+## Transaction Flow (Step 2)
+
+Each endorsing peer simulates the proposed transaction, without updating the ledger. The endorsing peers will capture the set of **R**ead and **W**ritten data, called **RW Sets**. These RW sets capture what was read from the current world state while simulating the transaction, as well as what would have been written to the world state had the transaction been executed. These RW sets are then signed by the endorsing peer, and returned to the client application to be used in future steps of the transaction flow.
+
+[This is the second step of the transaction flow, when endorsers simulate transactions, generate RW sets, and return the signed RW sets back to the client application](..images/Transaction_flow_step_2.png)
+
+Endorsing peers must hold smart contracts in order to simulate the transaction proposals.
+
+## Transaction Endorsement
+
+A transaction endorsement is a signed response to the results of the simulated transaction. The method of transaction endorsements depends on the endorsement policy which is specified when the chaincode is deployed. An example of an endorsement policy would be "the majority of the endorsing peers must endorse the transaction". Since an endorsement policy is specified for a specific chaincode, different channels can have different endorsement policies.
+
+## Transaction Flow (Step 3)
+
+The application then submits the endorsed transaction and the RW sets to the ordering service. Ordering happens across the network, in parallel with endorsed transactions and RW sets submitted by other applications.
+
+[This is the third step in the transaction flow, the the client application submits to the ordering service](..images/Transaction_flow_step_3.png)
+
+## Transaction Flow (Step 4)
+
+The **ordering service** takes the endorsed transactions and RW sets, orders this information into a block, and delivers the block to all committing peers.
+
+[This is step 4 of the transaction flow, where the orderer sends ordered transactions in a block to all committing peers](..images/Transaction_Flow_Step_4.png)
+
+## Video: Ordering Service (Chris Ferris)
+
+[![Ordering Service (Chris Ferris)](../images/video-image.png)](https://youtu.be/mwIMxMRZFL4)
+
+## Ordering (Part I)
+
+*Transactions within a timeframe are sorted into a block and are committed in sequential order.*
+
+In a blockchain network, transactions have to be written to the shared ledger in a consistent order. The order of transactions has to be established to ensure that the updates to the world state are valid when they are committed to the network. Unlike the Bitcoin blockchain, where ordering occurs through the solving of a cryptographic puzzle, or *mining*, Hyperledger Fabric allows the organizations running the network to choose the ordering mechanism that best suits that network. This modularity and flexibility makes Hyperledger Fabric incredibly advantageous for enterprise applications.
 
