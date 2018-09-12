@@ -573,7 +573,7 @@ transaction SellTuna {
 }
 ```
 
-Finally, we define the `Event` to generate after the SellTuna transaction is executed:
+Finally, we define the `Event` to generate after the `SellTuna` transaction is executed:
 ```
 event TunaSale {
     o String tunaId
