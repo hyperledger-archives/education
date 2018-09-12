@@ -436,11 +436,8 @@ Then we can create an Hyperledger Fabric peer administrator identity for our net
 ```
 ./createPeerAdminCard.sh
 ```
+
 You can then start the Composer Playground, which will run on port 8080 of the VM:
-
-
-Finally, start Composer Playground
-
 ```
 composer-playground
 ```
