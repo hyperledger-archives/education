@@ -436,11 +436,8 @@ Then we can create an Hyperledger Fabric peer administrator identity for our net
 ```
 ./createPeerAdminCard.sh
 ```
+
 You can then start the Composer Playground, which will run on port 8080 of the VM:
-
-
-Finally, start Composer Playground
-
 ```
 composer-playground
 ```
@@ -452,7 +449,7 @@ As shown previously, we will implement a simple network to track the movement of
 
 The network we will build maintains a single system where fishers, restaurant owners and regulators interact.
 
-![Participants](resources/img_02-01.png)
+![Participants](../images/introduction-to-hyperledger-composer/img_02-01.png)
 
 Each participant is able to access and work upon information about Tuna fish.
 
@@ -473,7 +470,7 @@ In order to create and use the `tuna-network` business network, we will cover th
 9) Testing on the Composer Playground
 10) Running the Composer REST Server
 
-> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education/composer-material
+> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education/tree/master/LFS171x/composer-material
 
 ## 1) Creating an Empty Network
 
@@ -524,7 +521,7 @@ concept Address {
 }
 ```
 
-Finally, we define the `Fisher` and `RestaurantOwner`, which extend the Individual, and the `Regulator`:
+Finally, we define the `Fisher` and `RestaurantOwner`, which extend the `Individual`, and the `Regulator`:
 
 ```
 participant Fisher extends Individual {
@@ -576,7 +573,7 @@ transaction SellTuna {
 }
 ```
 
-Finally, we define the `Event` to generate after the SellTuna transaction is executed:
+Finally, we define the `Event` to generate after the `SellTuna` transaction is executed:
 ```
 event TunaSale {
     o String tunaId
