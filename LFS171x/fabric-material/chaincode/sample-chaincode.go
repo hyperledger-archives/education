@@ -1,5 +1,4 @@
 //SPDX-License-Identifier: Apache-2.0
-
 // Import dependencies
 // Import the chaincode shim package and the peer protobuf package
 
