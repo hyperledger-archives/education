@@ -452,7 +452,7 @@ As shown previously, we will implement a simple network to track the movement of
 
 The network we will build maintains a single system where fishers, restaurant owners and regulators interact.
 
-![Participants](resources/img_02-01.png)
+![Participants](../images/introduction-to-hyperledger-composer/img_02-01.png)
 
 Each participant is able to access and work upon information about Tuna fish.
 
