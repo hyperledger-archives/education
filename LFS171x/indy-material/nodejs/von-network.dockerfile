@@ -3,6 +3,7 @@ FROM bcgovimages/von-image:py35-1.6-1
 ADD --chown=indy:indy indy_config.py /etc/indy/
 
 ADD --chown=indy:indy . $HOME
+RUN chmod uga+x scripts/* bin/*
 
 USER root
 

@@ -25,6 +25,7 @@ RUN npm install
 
 # Copy rest of the app
 COPY --chown=indy:indy . .
+RUN chmod uga+x scripts/* bin/*
 
 CMD [ "npm", "start" ]
 
