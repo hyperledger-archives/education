@@ -470,7 +470,7 @@ In order to create and use the `tuna-network` business network, we will cover th
 9) Testing on the Composer Playground
 10) Running the Composer REST Server
 
-> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education/composer-material
+> The `tuna-network` Business Network can be downloaded at this repository: https://github.com/hyperledger/education/tree/master/LFS171x/composer-material
 
 ## 1) Creating an Empty Network
 
