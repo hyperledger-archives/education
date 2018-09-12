@@ -521,7 +521,7 @@ concept Address {
 }
 ```
 
-Finally, we define the `Fisher` and `RestaurantOwner`, which extend the Individual, and the `Regulator`:
+Finally, we define the `Fisher` and `RestaurantOwner`, which extend the `Individual`, and the `Regulator`:
 
 ```
 participant Fisher extends Individual {
