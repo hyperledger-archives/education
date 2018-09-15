@@ -141,7 +141,7 @@ async function issueGovernmentIdCredential() {
     let govIdValues = {
         name: {"raw": config.userInformation.name, "encoded": indy.credentials.encode(config.userInformation.name)},
         email: {"raw": config.userInformation.email, "encoded": indy.credentials.encode(config.userInformation.email)},
-        tax_id: {"raw": config.userInformation.tax_id, "encoded": indy.credentials.encode(config.userInformation.tax_id)},
+        tax_id: {"raw": config.userInformation.tax_id, "encoded": indy.credentials.encode(config.userInformation.tax_id)}
     };
 
     let [govIdCredential] = await sdk.issuerCreateCredential(stewardWallet, govIdCredOffer, govIdCredRequest, govIdValues);

@@ -13,6 +13,8 @@ const messageTypes = {
     proofs: indy.proofs.MESSAGE_TYPES
 };
 
+const THEME = process.env["THEME"] || "black"
+
 /* GET home page. */
 router.get('/', auth.isLoggedIn, async function (req, res) {
     // res.sendFile(path.join(__dirname + '/../views/index.html'));
@@ -43,7 +45,9 @@ router.get('/', auth.isLoggedIn, async function (req, res) {
         credentialDefinitions: await indy.did.getEndpointDidAttribute('credential_definitions'),
         endpointDid: await indy.did.getEndpointDid(),
         proofRequests: proofRequests,
-        name: config.userInformation.name
+        name: config.userInformation.name,
+        srcId: config.userInformation.icon_src,
+        theme: THEME
     });
 
     for(let prKey of Object.keys(proofRequests)) {

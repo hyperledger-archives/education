@@ -22,6 +22,7 @@ const config = {
         name: process.env.NAME || 'Alice Garcia',
         email: process.env.EMAIL || 'alice@faber.edu',
         tax_id: process.env.TAX_ID || '123-45-6789',
+        icon_src: process.env.ICON_SRC || 'https://cdn3.iconfinder.com/data/icons/black-easy/512/538738-school_512x512.png',
         username: process.env.USERNAME || 'alice',
         password: process.env.PASSWORD || '123'
     },

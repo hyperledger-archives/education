@@ -119,6 +119,7 @@ services:
       context: .
     command: "bash -c 'npm start'"
     environment:
+      - ICON_SRC=https://maxcdn.icons8.com/Share/icon/Users/person_female1600.png
       - PORT=3000
       - NAME=Alice
       - EMAIL=alice@faber.edu
@@ -146,6 +147,8 @@ services:
     image: indy-agentjs
     command: "bash -c 'npm start'"
     environment:
+      - ICON_SRC=http://www.clker.com/cliparts/g/l/R/7/h/u/teamstijl-person-icon-blue-hi.png
+      - THEME=red
       - PORT=3001
       - NAME=Bob
       - EMAIL=bob@byu.edu
@@ -172,6 +175,8 @@ services:
     image: indy-agentjs
     command: "bash -c 'npm start'"
     environment:
+      - ICON_SRC=https://cdn2.iconfinder.com/data/icons/bubble-education-icons-1/360/School-512.png
+      - THEME=green
       - PORT=3002
       - NAME=Faber University
       - EMAIL=admin@faber.edu
@@ -198,6 +203,8 @@ services:
     image: indy-agentjs
     command: "bash -c 'npm start'"
     environment:
+      - ICON_SRC=https://i.ytimg.com/vi/JUMufld7UcY/maxresdefault.jpg
+      - THEME=blue
       - PORT=3003
       - NAME=Acme Corporation
       - EMAIL=boss@acme.com
@@ -224,6 +231,8 @@ services:
     image: indy-agentjs
     command: "bash -c 'npm start'"
     environment:
+      - ICON_SRC=http://www.psdgraphics.com/file/bank-building-icon.jpg
+      - THEME=black
       - PORT=3004
       - NAME=Thrift Bank
       - EMAIL=owner@thrift.com
