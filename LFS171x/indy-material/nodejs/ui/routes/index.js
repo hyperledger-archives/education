@@ -51,11 +51,11 @@ router.get('/', auth.isLoggedIn, async function (req, res) {
     }
 });
 
-router.get('/login', function(req, res) {
-   res.render('login', {
-       name: config.userInformation.name
-   });
-});
+// router.get('/login', function(req, res) {
+//    res.render('login', {
+//        name: config.userInformation.name
+//    });
+// });
 
 router.post('/login', async function(req, res) {
     if(req.body.username === config.userInformation.username &&
