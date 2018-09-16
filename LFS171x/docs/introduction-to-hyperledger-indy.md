@@ -86,7 +86,7 @@ Conversion notes:
 
 Welcome to the Hyperledger Indy section of Blockchain for Business!  In this chapter, you will learn about Hyperledger Indy - a blockchain-based system that is quite different from the other Hyperledger projects we've looked at so far. Where the other projects are general purpose blockchain systems (they can be used in many situations), Hyperledger Indy is used for just one purpose - and it's a big one! Indy is all about Identity on the Internet. It's about being able to prove to others who you are and you being certain who they are.
 
-|![HyperledgerIndyLogo](../images/introduction-to-hyperledger-indy/HLindy.png "Hyperledger Indy Logo")|
+|![HyperledgerIndyLogo](../images/introduction-to-hyperledger-indy/HL-Indy.png "Hyperledger Indy Logo")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
