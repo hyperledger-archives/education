@@ -15,7 +15,7 @@
   - [Summary](#summary)
 - [Internet Identity with Hyperledger Indy](#internet-identity-with-hyperledger-indy)
   - [Decentralized Identifiers - DIDs](#decentralized-identifiers---dids)
-    - [Creating and using DIDs](#creating-and-using-dids)
+    - [Creating and Using DIDs](#creating-and-using-dids)
     - [Agents and Wallets](#agents-and-wallets)
     - [Indy Public Ledger](#indy-public-ledger)
     - [How DIDs Help](#how-dids-help)
@@ -27,7 +27,7 @@
   - [Trying it Out](#trying-it-out)
   - [Privacy](#privacy)
   - [Self-Sovereign Identity](#self-sovereign-identity)
-  - [Hyperledger Indy in Context](#hyperledger-indy-in-context)
+- [Hyperledger Indy in Context](#hyperledger-indy-in-context)
   - [Using Indy for Identity with other Blockchains](#using-indy-for-identity-with-other-blockchains)
   - [Indy's Blockchain Algorithms](#indys-blockchain-algorithms)
     - [Type of Blockchain](#type-of-blockchain)
@@ -35,9 +35,9 @@
   - [Hyperledger Indy and Sovrin](#hyperledger-indy-and-sovrin)
     - [Elements of the Sovrin Foundation](#elements-of-the-sovrin-foundation)
 - [Running Hyperledger Indy](#running-hyperledger-indy)
-  - [Technical Prerequisites](#technical-prerequisites)
   - [Demonstration Overview](#demonstration-overview)
   - [Running the Demonstration](#running-the-demonstration)
+  - [What goes on the Blockchain](#what-goes-on-the-blockchain)
   - [The Indy Code Base](#the-indy-code-base)
     - [The Hyperledger Indy GitHub Repos](#the-hyperledger-indy-github-repos)
       - [indy-node](#indy-node)
@@ -55,10 +55,12 @@
     - [Mailing List](#mailing-list)
     - [GitHub Repos](#github-repos)
     - [Indy Meetups](#indy-meetups)
+- [Knowledge Check](#knowledge-check)
+- [Hyperledger Indy - References](#hyperledger-indy---references)
 
 <!-- /TOC -->
 
-<!----- Conversion time: 1.113 seconds.
+<!----- Conversion time: 0.612 seconds.
 
 
 Using this Markdown file:
@@ -71,7 +73,7 @@ Using this Markdown file:
 Conversion notes:
 
 * GD2md-html version 1.0β11
-* Mon Sep 10 2018 16:05:19 GMT-0700 (PDT)
+* Sun Sep 16 2018 11:35:09 GMT-0700 (PDT)
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1nn7T2j24-3QsCVW4cAhUMWcHDXu1VEfn0T5cm_hauBw
 ----->
 
@@ -84,7 +86,9 @@ Conversion notes:
 
 Welcome to the Hyperledger Indy section of Blockchain for Business!  In this chapter, you will learn about Hyperledger Indy - a blockchain-based system that is quite different from the other Hyperledger projects we've looked at so far. Where the other projects are general purpose blockchain systems (they can be used in many situations), Hyperledger Indy is used for just one purpose - and it's a big one! Indy is all about Identity on the Internet. It's about being able to prove to others who you are and you being certain who they are.
 
-![HyperledgerIndyLogo](../images/introduction-to-hyperledger-indy/HLindy.png "Hyperledger Indy Logo")
+|![HyperledgerIndyLogo](../images/introduction-to-hyperledger-indy/HLindy.png "Hyperledger Indy Logo")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 What's the big deal about Identity?  Well, when the Internet was first created, all of the computers that were connecting to one another were "trusted." The number of systems was small and the people running those systems knew each other so they didn't need mechanisms to know who was sending what data between the systems. As the number of systems on the Internet grew (and grew and grew…), that trust quickly diminished and the first of many mechanisms were added to systems to identify who is contacting whom. Unfortunately, the problem has never really been solved. The most common (and universally hated) system, that of userIDs and passwords, is fraught with problems. The resulting lack of certainty of who is on the other keyboard has led to the loss of billions from hacks, data breaches, identity theft, scams and more. Further, that same lack of certainty has made many types of business transactions on the Internet impossible - the risk is just too high.
 
@@ -113,7 +117,8 @@ By the end of this chapter you should:
 
 <!-- GD2md-html version 1.0β11 -->
 
-<!----- Conversion time: 0.935 seconds.
+
+<!----- Conversion time: 0.938 seconds.
 
 
 Using this Markdown file:
@@ -126,7 +131,7 @@ Using this Markdown file:
 Conversion notes:
 
 * GD2md-html version 1.0β11
-* Mon Sep 10 2018 16:07:39 GMT-0700 (PDT)
+* Sun Sep 16 2018 11:37:37 GMT-0700 (PDT)
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=11EcEfgxwsymHugQ9cN3kTPua3pSdkXYcU1VeptjhLeA
 ----->
 
@@ -143,8 +148,8 @@ The problems with Identity on the Internet today come down to a single word - **
 
 
 
-*   The person you are online with is who they say they are?
-*   What they say is true?
+*   Is the person you are connecting with online who they say they are?
+*   Are the claims they are making true?
 
 As the famous New Yorker cartoon goes - "[No one knows you are on a dog on the Internet](https://en.wikipedia.org/wiki/On_the_Internet,_nobody_knows_you%27re_a_dog)". How do we handle these challenges today?
 
@@ -155,7 +160,7 @@ When we interact in the real world and we often need to "prove" who we are. To d
 
 In turn, those with whom we interact create an identifier for us and check that identifier when we connect again. A person remembers our name and face, and "verifies" them on our subsequent meetings ("Hi Stephen! Good to see you again!"). Our bank creates a card with an ID on it for us to use each time we return to access the bank's services.
 
-The same pattern is used online, but there are a variety of problems that occur, some obvious, some a little more subtle.  Let's go through them.
+The same pattern is used online, but there are a variety of problems that occur, some obvious, some a little more subtle. Let's go through them.
 
 
 ### Identifiers: User IDs and Passwords
@@ -172,9 +177,11 @@ The basic mechanism for knowing who you are on the Internet is the UserID/Passwo
 
 A common approach to solving the "too many passwords" problem is the use of Identity Providers (IdPs) like Facebook and Google. Smaller sites can use an IdP for Authentication (user ID and password verification) and to get basic identity attributes like name and email address.
 
-![Logins](../images/introduction-to-hyperledger-indy/Logins-1.svg "Login Screens")
+|![Logins](../images/introduction-to-hyperledger-indy/Logins-1.png "Login Screens")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-We also need to note that while users of websites have IDs for the site, the reverse is not the case - we don't get an "id and password" for the site that we can verify each time we connect. This has enabled the "phishing" techniques to become common in recent years, where users is tricked to click a link that takes them to a website that appears to be real, has a similar name - e.g. goog1e.com - but is actually fake, fooling us into reveal our user ID and password - and sometimes even our two-factor authentication code.
+We also need to note that while users of websites have IDs for the site, the reverse is not the case - we don't get an "id and password" for the site that we can verify each time we connect. This has enabled the "phishing" techniques to become common in recent years, where users are tricked to click a link that takes them to a website that appears to be real, has a similar name - e.g. goog1e.com - but is actually fake, fooling us into reveal our user ID and password - and sometimes even our two-factor authentication code.
 
 
 ### Identity Attributes
@@ -185,7 +192,9 @@ Conducting higher trust online transactions - such as opening a bank account - i
 
 An alternative is to do an online version of the in person verification - scan and send the source documents. However, scans are very easy to forge and as such are not trusted. We should also add that paper documents used in person are increasingly easy to forge as well. That issue is actually putting at risk the "real world" identity-proofing that we mentioned earlier. Verifiers, such as bank employees, have to become experts at detecting the authenticity of documents used for identity proofing.
 
-![CredentialDocuments](../images/introduction-to-hyperledger-indy/Licenses-1.svg "Credential Documents")
+|![CredentialDocuments](../images/introduction-to-hyperledger-indy/Licenses-1.png "Credential Documents")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ## Additional Problems
@@ -206,7 +215,7 @@ The Identity Providers model is also a correlation point - although in this case
 
 The vast majority of identifiers we use today are centralized - the identifiers are provided to us and maintained by a centralized entity. That might be the government in the case of our Tax ID and Driver's Licence, or a company for an ID we use to log into a website. A major problem with this approach is that the central authority can choose to take away that identifier at any time. This is of particular concern for those in a minority situation - a critic of a central entity, be it a government suppressing their people or a private company.
 
-A second concern of with central authorities controlling identifiers is that if they are compromised in some way, those identifiers can be used in malicious ways. For example, a [hack of a Dutch Certificate Authority](https://en.wikipedia.org/wiki/DigiNotar) (manager of SSL Encryption Certificates), allowed supposedly secure encrypted data going across the Internet to be intercepted and accessed by the hackers.
+A second concern of with central authorities controlling identifiers is that if they are compromised in some way, those identifiers can be used in malicious ways. For example, a [hack of a Dutch Certificate Authority](https://en.wikipedia.org/wiki/DigiNotar) (manager of SSL Encryption Certificates) allowed supposedly secure encrypted data going across the Internet to be intercepted and accessed by the hackers. Further, since the identifiers are centralized (held in a central place), if that repository is compromised, it impacts many people.
 
 
 ### Data Breaches
@@ -232,7 +241,8 @@ In the next section, we'll look at the capabilities of Hyperledger Indy to reduc
 
 <!-- GD2md-html version 1.0β11 -->
 
-<!----- Conversion time: 1.195 seconds.
+
+<!----- Conversion time: 1.307 seconds.
 
 
 Using this Markdown file:
@@ -245,7 +255,7 @@ Using this Markdown file:
 Conversion notes:
 
 * GD2md-html version 1.0β11
-* Mon Sep 10 2018 16:11:37 GMT-0700 (PDT)
+* Sun Sep 16 2018 13:43:36 GMT-0700 (PDT)
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=11KkKfOv47rb98HGKD-lNV7sSr4U8L8rWjIrhl2lXcV8
 ----->
 
@@ -260,29 +270,35 @@ The last section introduced a number of challenges with Internet Identity as is 
 
 A foundational feature of Indy is support for the emerging [W3C standard for Decentralized Identifiers](https://w3c-ccg.github.io/did-spec/) - DIDs. DIDs are globally unique identifiers that are created by their owner, independent of any central authority. Each DID has associated with it one or more public keys created by the DID owner (and they hold the corresponding private keys), and one or more endpoints - addresses where messages can be delivered for that identity. A DID can be uniquely resolved (like a URL) to return the the data (keys and endpoints) associated with the DID. An example of a DID is displayed below.
 
-![DIDFormat](../images/introduction-to-hyperledger-indy/didformat.png "DID Format")
+|![DIDFormat](../images/introduction-to-hyperledger-indy/didformat.png "DID Format")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 Indy uses DIDs to establish connections between two identities, such as a user and a service's website, so that they can securely communicate. Further, the expectation is that an entity - e.g. you - will have many, many DIDs - one for each relationship you have with another entity. Think of each DID like a userID/password pair, but one that is backed with strong cryptography in the form of public/private keypairs. As well, note that both sides of a relationship provide a DID for the other to use to communicate with them.
 
 The image below show three entities, Alice, Bob and a Bank that both Alice and Bob use. For each entity, we see the various DIDs they have created for their relationships. We've also highlighted the DIDs that they have exchanged with each other - Alice's for Bob, Alice's for the Bank and so on.
 
-![PairwiseDIDs](../images/introduction-to-hyperledger-indy/PairwiseDIDs.svg "Pairwise DIDs Example")
+|![RelationshipDIDs](../images/introduction-to-hyperledger-indy/PairwiseDIDs2.png "Relationship DIDs Example")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
-### Creating and using DIDs
+### Creating and Using DIDs
 
-An example of how DIDs can be used is as follows. A user registers for a service's website by creating and giving the service a new, never used before DID, and receives back from the service the same thing - a new, never used before DID created by the service. Each records the "pairwise" DIDs so that when one wants to communicate with the other, they have an endpoint to send the message, and a public key to end-to-end encrypt the message. Later, when the user returns to the website to login, the user and the service exchange encrypted messages to confirm the each holds the private key to decrypt the messages. On completion, the service knows it's the user because the user used their DID, and the user knows it's the service because the service used its DID. Neat - we've already addressed one of the challenges raised with today's Internet Identity - two-way verification!
+Here's an example of how DIDs are used: A user registers for a service's website by creating and giving the service a new, never-used-before DID, and receives back from the service the same thing - a new, never-used-before DID created by the service. Each records the "relationship" DIDs so that when one wants to communicate with the other, they have an endpoint to send the message, and a public key to end-to-end encrypt the message. Later, when the user returns to the website to login, the user and the service exchange encrypted messages to confirm that each holds the private key to decrypt the messages. On completion, the service knows it's the user because the user used their DID, and the user knows it's the service because the service used its DID. Neat - we've already addressed one of the challenges raised with today's Internet Identity - two-way verification!
 
 
 ### Agents and Wallets
 
-With so many DIDs floating around, it's clear that memory and bits of paper are not enough to manage all the DIDs a person creates or receives. Indy uses the term "Agent" to mean the software that interacts with other entities (via DIDs and more, as we'll find out), and the term "Wallet" as a data store for the DIDs and related information (including private keys and more). For example, a person might have a mobile Agent apps on their smart devices, while an Organization might have an enterprise Agent running on a Cloud Server. All Agents have a secure Wallet for storing identity data.
+With so many DIDs floating around, it's clear that memory and bits of paper are not enough to manage all the DIDs a person creates or receives. Indy uses the term "Agent" to mean the software that interacts with other entities (via DIDs and more, as we'll find out), and the term "Wallet" as a data store for the DIDs and related information (including private keys and more). For example, a person might have a mobile Agent app on their smart devices, while an Organization might have an enterprise Agent running on a Cloud Server. All Agents have a secure Wallet for storing identity data.
 
-For those familiar with a [Password Manager](https://en.wikipedia.org/wiki/Password_manager) like 1Password or LastPass, a personal Agent wallet is similar - there is a name for each relationship and associated data. However, unlike Password Managers which use things like your copy/paste clipboard for User IDs and Passwords and "screen-scrape" applications and websites, Agents communicate directly with Agents to accomplish Identity-related tasks.
+For those familiar with a [Password Manager](https://en.wikipedia.org/wiki/Password_manager) like 1Password or LastPass, a personal Agent wallet is similar - there is a name for each relationship and associated data. However, unlike Password Managers that use things like your copy/paste clipboard for User IDs and Passwords and "screen-scrape" applications and websites, Agents communicate directly with Agents to accomplish Identity-related tasks.
 
 The picture below is an example of some communicating Indy Agents. The Edge Agents are handled by the Identity owners themselves - in this case a Consumer and an Enterprise. The Cloud Agents facilitate the messaging by, for example, providing a permanent endpoint for a device that may or may not be online at the time messages are being received.
 
-![AgentWallet](../images/introduction-to-hyperledger-indy/EdgeCloudAgents.png "Indy Edge and Cloud Agents")
+|![AgentWallet](../images/introduction-to-hyperledger-indy/EdgeCloudAgents.png "Indy Edge and Cloud Agents")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ### Indy Public Ledger
@@ -321,11 +337,13 @@ Credentials are things like driver's licenses, passports, or university degrees 
 *   That the claims have not been tampered with (forged), and
 *   That the claims' Credential has not been revoked by the Issuer.
 
-As the image below shows, the data flow for Verifiable Credentials is the same as with paper documents - Issuers give Verifiable Credentials to the Holder, and the Holder can proof them to Verifiers at an time.
+As the image below shows, the data flow for Verifiable Credentials is the same as with paper documents - Issuers give Verifiable Credentials to the Holder, and the Holder can proof them to Verifiers at any time.
 
-![IssuerHoldVerifier](../images/introduction-to-hyperledger-indy/BigPicture-1.svg "Verifiable Credentials Model - Issuer, Prover, Verifier")
+|![IssuerHoldVerifier](../images/introduction-to-hyperledger-indy/BigPicture-1.png "Verifiable Credentials Model - Issuer, Prover, Verifier")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-The proof requests and proofs in Indy are transactions that occur between the Holder of the VC and the Verifier. The Issuer of the VC is **_not_** involved in the proof process - a very important attribute of the VC model. We don't want (for example) the government to know each time we use our Drivers Licence to proof our age!
+The proof requests and proofs in Indy are transactions that occur between the Holder of the VC and the Verifier. The Issuer of the VC is **_not_** involved in the proof process - a very important attribute of the VC model. We don't want (for example) the government to know each time we use our Drivers Licence to prove our age!
 
 Verifiable Credentials and their use closely mimics that of the real world. VCs take that model and put it online, in a trusted manner.
 
@@ -340,7 +358,9 @@ Hyperledger Indy provides advanced features in the proving of claims. Specifical
 *   The picture shows the same person presenting the Verifiable Credential
 *   The person is old enough to drink in the pub (the check mark)
 
-![DLSelectiveDisclosure](../images/introduction-to-hyperledger-indy/BCSelectiveDisclosureDL.png "Indy Selective Disclosure and Zero Knowledge Proof")
+|![DLSelectiveDisclosure](../images/introduction-to-hyperledger-indy/BCSelectiveDisclosureDL.png "Indy Selective Disclosure and Zero Knowledge Proof")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ### Using Verifiable Credentials
@@ -359,7 +379,9 @@ All of these transactions are done today with increasingly unreliable paper tran
 
 Blockchain plays a key role in Indy with issuing of Verified Credentials and Proofs. Since the VCs contain private information, the VCs themselves are **_NOT _**stored on the blockchain - they go in the wallet of the VC holder (see image below). However, information necessary to use the VCs - the schema, the DID of the Issuer and information for proving non-revocation are all stored on the Indy blockchain. This conveniently and securely makes the information to interpret VCs available for identities to use in exchanging credentials and claims while preserving in the private wallet of the holder the personal information.
 
-![IIndyWallet](../images/introduction-to-hyperledger-indy/Wallet.png "Indy Wallet with Credentials")
+|![IIndyWallet](../images/introduction-to-hyperledger-indy/Wallet.png "Indy Wallet with Credentials")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ### How VCs Help
@@ -414,7 +436,8 @@ The creators and maintainers of Hyperledger Indy strive to ensure that the softw
 <!-- GD2md-html version 1.0β11 -->
 
 
-<!----- Conversion time: 1.047 seconds.
+
+<!----- Conversion time: 0.751 seconds.
 
 
 Using this Markdown file:
@@ -427,36 +450,42 @@ Using this Markdown file:
 Conversion notes:
 
 * GD2md-html version 1.0β11
-* Mon Sep 10 2018 16:02:59 GMT-0700 (PDT)
+* Sun Sep 16 2018 13:59:30 GMT-0700 (PDT)
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1c73kscjJRREcaDB3PWw9ImLhuYvd8GjDGIn_jcRSzrw
 ----->
 
-## Hyperledger Indy in Context
+
+
+# Hyperledger Indy in Context
 
 As we mentioned in the Introduction to this chapter, Hyperledger Indy is a special purpose blockchain implemented specifically for Identity on the Internet — enabling certainty about who is talking to whom in a digital transaction. And, as we've found in other chapters of this course, other Hyperledger projects - Fabric, Sawtooth and Iroha - can be used for a wide variety of applications, from shared ledgers to IOT devices, to supply chains and many more. So what's the connection between the projects - other than they all share the Hyperledger name?
 
-In this section, we'll also look at two other aspects Indy and blockchain. First, since Indy is designed for a special purpose, how does that affect the underlying blockchain implementation? Does it still have the same components of other blockchains?  Second, unlike the other Hyperledger frameworks we've been studying, Indy is intended to be deployed in the public, for all to use. As such, there is a non-profit, the Sovrin Foundation, that is associated with Indy and has deployed a global instance of an Indy blockchain. At the end of this section we'll take a look at the Sovrin Foundation and the Indy-powered Sovrin network.
+In this section, we'll also look at two other aspects, Indy and blockchain. First, since Indy is designed for a special purpose, how does that affect the underlying blockchain implementation? Does it still have the same components of other blockchains?  Second, unlike the other Hyperledger frameworks we've been studying, Indy is intended to be deployed in the public, for all to use. As such, there is a non-profit, the Sovrin Foundation, that is associated with Indy and has deployed a global instance of an Indy blockchain. At the end of this section we'll take a look at the Sovrin Foundation and the Indy-powered Sovrin network.
 
 
 ## Using Indy for Identity with other Blockchains
 
 Each of the Hyperledger projects began independently and on reaching a certain level of maturity and definition, came under the Hyperledger umbrella. Once inside Hyperledger, each project has continued to grow independently, but has also looked across at the other projects to find synergies. Indy has the potential to add a really important component to the other Hyperledger frameworks - identity. Each of the other frameworks need trusted identity. The participants using each of the other Hyperledger frameworks are executing transactions with one another and to do that in a trusted way, each participant must know with whom they are dealing. The initial implementations leave identity up to the specific deployment, and most instances use "traditional" mechanisms for identity - mechanisms that have the same issues that Indy is solving. Wouldn't it be great if out-of-the-box they had Indy's identity capabilities? Hyperledger frameworks are looking to see how they might share some of the capabilities that exist with Hyperledger Indy.
 
-![HyperledgerLogo](../images/introduction-to-hyperledger-indy/logo_hl_new.png "Hyperledger Project Logo")
+|![HyperledgerLogo](../images/introduction-to-hyperledger-indy/logo_hl_new.png "Hyperledger Project Logo")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ## Indy's Blockchain Algorithms
 
-Much of this course has focused on the underlying algorithmic components of Blockchain and the specific algorithms used by the Hyperledger framework implementations. Although Indy is designed only for Identity, it is blockchain-based and so has those same algorithmic components. Let's look at Indy from the perspective of the concepts presented in Chapter 1 of this course: the type of blockchain it is and what Indy uses for a consensus algorithm. In a later section, we'll look more at the types of transactions that go on the Indy Ledger.
+Much of this course has focused on the underlying algorithmic components of Blockchain and the specific algorithms used by the Hyperledger framework implementations. Although Indy is designed only for Identity, it is blockchain-based and so has those same algorithmic components. Let's look at Indy from the perspective of the concepts presented in Chapter 1 of this course: the type of Blockchain it is and what Indy uses for a consensus algorithm. In a later section, we'll look more at the types of transactions that go on the Indy Ledger.
 
 Before diving into those details, we'll quickly cover some other Blockchain attributes covered in Chapter 1. As with all Blockchain implementation, the Indy Ledger is immutable  —  write once and never update. Since Indy is focused only on Identity, it does **not **support the concept of assets being exchanged, nor any sort of Smart Contract capability. However, a related capability that is currently being added to Indy is support for a pluggable implementation of a payment token. The token won't be used to enable a general-purpose Smart Contract capability, but rather to support payments for certain network operations - for example creating an identifier or proving information about an identity. Such payments may be used to prevent Denial of Service (DOS) attacks and might serve as a mechanism for funding an instance of the network. The term "pluggable" means that Indy itself will only implement minimum reference token functionality and invoke code created for a specific running instance of Indy. Others can add their own token implementation.
 
 
 ### Type of Blockchain
 
-As we covered earlies in this course, there are several different types of Blockchain systems characterized along two dimensions: **access** and **validation**. Recall that Bitcoin and Ethereum are Public Permissionless networks — anyone can access them (Public) and anyone can participate in the validation process (Permissionless). Similarly, the Hyperledger frameworks (Fabric, Sawtooth, Iroha and Burrow) are (primarily) used for Private/Permissioned networks, limited to who can access them (Private) and who can participate in the validation process (Permissioned).  As shown in chart below, Indy falls between these two models. Indy is designed to be operated such that everyone can see the contents of the Blockchain (Public), but only pre-approved participants, known as "Stewards," are permitted to participate in the validation process (Permissioned). Note that although Indy is designed to be run as a Public network, an instance of Indy (or any other public blockchain) could be run as a Private network accessible only to those using the network. Sawtooth can also be run as a Public network.
+As we covered earlier in this course, there are several different types of Blockchain systems characterized along two dimensions: **access** and **validation**. Recall that Bitcoin and Ethereum are Public Permissionless networks — anyone can access them (Public) and anyone can participate in the validation process (Permissionless). Similarly, the Hyperledger frameworks (Fabric, Sawtooth, Iroha and Burrow) are (primarily) used for Private/Permissioned networks, limited to who can access them (Private) and who can participate in the validation process (Permissioned).  As shown in chart below, Indy falls between these two models. Indy is designed to be operated such that everyone can see the contents of the Blockchain (Public), but only pre-approved participants, known as "Stewards," are permitted to participate in the validation process (Permissioned). Note that although Indy is designed to be run as a Public network, an instance of Indy (or any other public blockchain) could be run as a Private network accessible only to those using the network. Sawtooth can also be run as a Public network.
 
-![TypeofBlockchain](../images/introduction-to-hyperledger-indy/PublicPermissionBlockchain.png "Types of Blockchain - Access and Validation")
+|![TypeofBlockchain](../images/introduction-to-hyperledger-indy/PublicPermissionBlockchain.png "Types of Blockchain - Access and Validation")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 The ramification of Indy being designed to be Public puts a significant constraint on what data can be put on an Indy Blockchain. Specifically, only Public data can go on the Blockchain - **_no other data, even if it is encrypted_**. That last part about encrypted data might not be obvious. If the data is encrypted it can only be accessed by those with the decryption key, shouldn't we be able to put any data safely on a public Blockchain? Well, that might be true  —  today. However, Indy is being built to last from decades to generations. What happens if an encryption algorithm used today is broken sometime in the future? Since the data on the blockchain is open to everyone to see and is immutable, encrypted data that can be easily decrypted becomes public information. The Indy designers don't want that, hence the rule  —  **_no private data on the Blockchain_**.  Later in this chapter we'll cover "What Goes On The Ledger?"  — a favourite question from everyone getting up to speed on Indy.
 
@@ -465,18 +494,22 @@ Did you catch that part about **_NO PRIVATE DATA ON THE BLOCKCHAIN_**?  Good!
 
 ### Blockchain Consensus Algorithm
 
-As with all Blockchain implementations, Hyperledger Indy uses a consensus algorithm to decide the contents of the next block added to the chain. Specifically, Indy uses "Plenum", an implementation of the Redundant Byzantine Fault Tolerance (RBFT) algorithm. Plenum achieves similar performance to other BFT algorithms in ideal conditions (no faulty participants), but its performance degrades far less than other algorithms (on the order of 3% versus up to 78% for others) when faults occur in the network. As well, underlying Indy's consensus algorithm is a very secure and robust messaging system amongst the nodes of the network. This improves the overall security of Indy. The Plenum implementation has found to be useful enough to be separated out from the core Indy code base into a [separate Open Source project that is used by Hyperledger Indy](https://github.com/hyperledger/indy-plenum) - and can be used by other Blockchain implementations.
+As with all Blockchain implementations, Hyperledger Indy uses a consensus algorithm to decide the contents of the next block added to the chain. Specifically, Indy uses "Plenum", an implementation of the Redundant Byzantine Fault Tolerance (RBFT) algorithm. Plenum achieves similar performance to other BFT algorithms in ideal conditions (no faulty participants), but its performance degrades far less than other algorithms (on the order of 3% versus up to 78% for others) when faults occur in the network. As well, underlying Indy's consensus algorithm is a secure and robust messaging system amongst the nodes of the network. This improves the overall security of Indy. The Plenum implementation has found to be useful enough to be separated out from the core Indy code base into a [separate Open Source project that is used by Hyperledger Indy](https://github.com/hyperledger/indy-plenum) - and can be used by other Blockchain implementations.
 
 Indy also implements a novel deployment of "Stewards" - the nodes of the network that have permission to participate in the validation process. Since Indy is designed to be a global public network, an instance will have many available nodes located around the world - more nodes available than can be effectively used in the validation process. The validation process needs enough Stewards to be robust in the face of faults, but not too many as to degrade the performance in reaching consensus. Indy's solution is to have an optimal subset of Stewards as Validators nodes - actively participating in the Plenum consensus algorithm, and the rest as Observer nodes, tracking the growing Blockchain, serving reads (thus offloading that work from the Validators) and ready to called on to be Validators should they be required. The image below from Sovrin (covered in the next section) shows the division of Validator nodes (those currently participating in writing to the Ledger) and the Observer nodes (read-only nodes, but ready to become validators if needed).
 
-![SovrinValidatorAndObserver](../images/introduction-to-hyperledger-indy/sovrinValidatorObserverNodes.png "Sovrin Validator and Observer Nodes")
+|![SovrinValidatorAndObserver](../images/introduction-to-hyperledger-indy/sovrinValidatorObserverNodes.png "Sovrin Validator and Observer Nodes")|
+|:--:|
+||
 
 
 ## Hyperledger Indy and Sovrin
 
-A name you will hear a lot in discussing Hyperledger Indy is Sovrin and the Sovrin Foundation. Hyperledger Indy is the Open Source software project -- hosted by Hyperledger and The Linux Foundation -- that implements the decentralized identity standards. The Sovrin Foundation ([sovrin.org](https://sovrin.org/)) is a global non-profit that has deployed the Hyperledger Indy code on a (growing) number of nodes to create a running Public Permissioned Hyperledger Indy Blockchain instance. To understand the goal of the Sovrin Foundation, think of the Sovrin instance of Indy as the Identity equivalent to the Domain Name System (DNS) which has enabled the global routing of data on the Internet since 1985.
+A name you will hear a lot in discussing Hyperledger Indy is Sovrin and the Sovrin Foundation. Hyperledger Indy is the Open Source software project -- hosted by Hyperledger and The Linux Foundation -- that implements the decentralized identity standards. The Sovrin Foundation ([sovrin.org](https://sovrin.org/)) is a global non-profit that has deployed the Hyperledger Indy code on a (growing) number of nodes to create a running Public Permissioned Hyperledger Indy Blockchain instance. To understand the goal of the Sovrin Foundation, think of the Sovrin instance of Indy as the Identity equivalent to the Domain Name System (DNS), which has enabled the global routing of data on the Internet since 1985.
 
-![SovrinLogo](../images/introduction-to-hyperledger-indy/twitter-bg2-1024x341.jpg "Sovrin Identity for All Logo")
+|![SovrinLogo](../images/introduction-to-hyperledger-indy/twitter-bg2-1024x341.jpg "Sovrin Identity for All Logo")|
+|:--:|
+||
 
 The Sovrin Foundation provides the three foundational components of the Sovrin Network in the form of a BLT (not the sandwich):
 
@@ -506,7 +539,7 @@ With a global network in place, Sovrin can be used to solve the identity on the 
 
 <!-- GD2md-html version 1.0β11 -->
 
-<!----- Conversion time: 0.85 seconds.
+<!----- Conversion time: 1.172 seconds.
 
 
 Using this Markdown file:
@@ -519,57 +552,59 @@ Using this Markdown file:
 Conversion notes:
 
 * GD2md-html version 1.0β11
-* Fri Sep 07 2018 20:06:02 GMT-0700 (PDT)
+* Sun Sep 16 2018 14:02:22 GMT-0700 (PDT)
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1tfZopjUBTSuRAUnvUP8o3p-9D_s48VTKSjXOdNRXxQc
-* This is a partial selection. Check to make sure intra-doc links work.
+
 ----->
-
-
 
 # Running Hyperledger Indy
 
 In this section we'll walk through an example of running an Indy ecosystem on Docker - an instance of the Indy Public Ledger and a series of Indy Agents that can message one another and share Verifiable Credentials.  We'll also walk through the components of Indy, so that you have an idea of the components of Indy and where to look to dig deeper into Indy.
 
 
-## Technical Prerequisites
-
-In this part of the Chapter we are going to get an instance of the Hyperledger Indy network running locally using Docker, and we're going to use an Web-based Indy Agent so that you can see run some examples of Indy functionality running in a browser.
-
-To do this section, you are going to need the following:
-
-
-
-1.  Docker (including Docker Compose).
-1.  git
-
-While the installation of Docker was covered in Chapter 4, installing git was not. To install git, follow the instructions using the link below for Mac, Linux (including if you are running Linux using VirtualBox) and native Windows (without VirtualBox):
-
-[https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/)
-
-
 ## Demonstration Overview 
 
-In this demonstration, you will start a private instance of the Indy Blockchain and a number of Web-based Agents (implemented in Node.js), and then you'll use the features of the Agents to connect and exchange messages and Verifiable Credentials amongst the Agents. The Agents are built on top of the Indy-SDK, the client code part of the Hyperledger Indy Project. The picture below shows the components of the demonstration.
+In this demonstration, you will start a private instance of the Indy Blockchain and several Web-based Agents (implemented in Node.js), and then you'll use the features of the Agents to connect and exchange messages and Verifiable Credentials amongst the Agents. The Agents are built on top of the Indy-SDK, the client code part of the Hyperledger Indy Project. The picture below shows the components of the demonstration.
 
-<<TO DO: Add a picture of the components>>
+|![DemonstrationComponents](../images/introduction-to-hyperledger-indy/demonstrationComponents.png "Components in the Indy Demonstration")|
+|:--:|
+|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-This demo uses the same storyline as the official "Getting Started" guide for Indy, but uses browsers to drive the user interactions rather than the command line. If you do want to try the official Getting Started guide, you can find the link on the Hyperledger Indy Project page.
+The demo uses the same storyline as the official "Getting Started" guide for Indy, but with Agents that have a browser to drive the user interactions rather than the command line. If you do want to try the official Getting Started guide, you can find a link to the latest version on the [Hyperledger Indy Wiki](https://wiki.hyperledger.org/projects/indy) page.
 
 
 ## Running the Demonstration
 
-The instructions for building and starting demonstration can be found here in the GitHub repo for the demonstration. Included in the repo is a GitHub Issue Tracker so that if you run into problems with the running the demonstration, you can see if others have had the same problem, or you can report it as a new problem.
+The instructions for building and starting the demonstration can be found [here](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/README.md) in the GitHub repo for the demonstration code. Once you have the demonstration code downloaded to your system and running, [click here](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/AgentDemoScript.md) to see the instructions for walking through the story of Alice, an Alum of Faber College, getting her official transcripts from Faber and then using her transcripts while applying for a job at Acme. Spoiler alert - she gets the job!
 
-Also included here in the GitHub repo is an overview of the steps you can follow once you have the Indy Network and the Agents running. The steps go through the sequence of a person exchanging Verifiable Credentials with other entities.
+Use the EdX Forums for asking questions about the Demo. Want to go deeper into Hyperledger Indy? Use the resources listed in the next section - `Joining the Hyperledger Indy Community` - to dive in!
 
-Head over to GitHub, open up a terminal window and a browser and get started!
+Ready? Open up [the instructions](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/README.md), a terminal window and get started!
+
+
+## What goes on the Blockchain
+
+So, how did that go?  Did you get through all the steps?
+
+A frequent question that comes up with those new, and even those not so new, to Hyperledger Indy is what goes on the Blockchain. With the demo, the technically adventuresome can take a look at the data on your demo instance of Hyperledger Indy.
+
+While the demo is running, you can go to the URL [http://localhost:9000](http://localhost:9000), click the link for the Domain ledger in the "Ledger State" section, and see the raw data on the ledger.  If you scan that data, you will see 3 types of transactions:
+
+
+
+*   **DIDs** - those are the decentralized identifiers created by each participant in the demo (Alice, Faber, etc.). Look for entries with "role" and "verkey" in the data. You might even recognize the DIDs on the ledger with the DIDs on the demo web pages.
+*   **Schema **- entries that define the data elements - the claims - that will be part of a Verifiable Credential. Look for the name of the schema, such as "Government-ID".
+*   **Credential Definitions** - entries that are created by a Credential Issuer (like Faber) using a specific schema and (optionally, and not in this demo) a Revocation Registry. Credential Definitions have a private key for each claim (and more), so look for entries with big long strings and references to schema claim names (e.g. "tax_id").
+*   **Revocation Registries** - entries that give an Issuer a way to revoke issued credentials in a non-correlatable way. In this demo, we are not using Revocation capabilities, so you won't find any on the Ledger.
+
+That's it.
+
+Most importantly, there are NO credentials on the ledger, and no private data of any kind. In fact, the only data on the ledger is not just data that's not private, but data you expressly want others to know. All private data is exchanged between Identities directly and stored in their secure wallets. The data on the ledger is used prove things about that private data such that it can be trusted.
 
 
 ## The Indy Code Base
 
-So, how did that go? Were you able to run the whole demo?
-
-That example was built on a number of components - the Hyperledger Indy project and a some open source efforts that build upon the Indy base. This section describes those components so that you have a roadmap of the Indy code and you know where to go if you want to dive in deeper. This will help you understand the parts that make up a Hyperledger Indy implementation like the demo with which you were just playing.
+That example was built on a number of components - the Hyperledger Indy project and some open source efforts that build upon the Indy base. This section describes those components so that you have a roadmap of the Indy code and you know where to go if you want to dive in deeper. This will help you understand the parts that make up a Hyperledger Indy implementation like the demo with which you were just playing.
 
 
 ### The Hyperledger Indy GitHub Repos
@@ -579,14 +614,14 @@ As of August 2018, there were 9 official Hyperledger Indy GitHub Repos.  To chec
 
 #### indy-node
 
-indy-node is the python code that implements the Indy Public Ledger - the set of permissioned instances (nodes) that accept and process public ledger read and write requests from Indy clients (usually called "Agents"). In a test network such as we used for the demonstration, the network can be very small (a minimum of 4 nodes) and each node runs the same docker image. In the Sovrin Foundation's live, global Hyperledger Indy network, there are many more nodes, and each Steward (permissioned node operator) compiles and configures their own version of indy-node. The latter is an important element of diversity in the network - if every node was running an identical version of the software on the same platform, a bug that broke the common setup would bring down the entire network.
+indy-node is the (mostly) python code that implements the Indy Public Ledger - the set of permissioned instances (nodes) that accept and process public ledger read and write requests from Indy clients (usually called "Agents"). In a test network such as we used for the demonstration, the network can be very small (a minimum of 4 nodes) and each node runs the same docker image. In the Sovrin Foundation's live, global Hyperledger Indy network, there are many more nodes, and each Steward (permissioned node operator) compiles and configures their own version of indy-node. The latter is an important element of diversity in the network - if every node was running an identical version of the software on the same platform, a bug that broke the common setup would bring down the entire network.
 
 The acceptable number of concurrent node failures in an Indy network is an important parameter of Indy's Plenum consensus algorithm. A Plenum network that can survive F node failures must have at least 3F+1 nodes. Thus, a minimum network that can survive the loss of one node (F=1) must have the 4 nodes we used for the demonstration. A network capable of 10 failed nodes, must have at least 31 nodes - the bigger the F, the more nodes, the more reliability from faults. However, adding too many nodes to the network is also problematic - the more nodes, the longer it takes to reach consensus. As discussed earlier, Sovrin addresses that issue by having many Steward (nodes), but only have a subset of them active as validators contributing to the consensus algorithm. The rest are "observers" that support only reads of Public Ledger data, but that can be activated as validators when node failures are detected.
 
 
 #### indy-sdk
 
-The indy-sdk repo contains the code that allows a piece of software - an Agent - to interact with the Public Ledger and to keep track (in a wallet - a specialized data store) of the keys and other Identity-related data. The indy-sdk consists of one core component (written in Rust) that compiles to a "c-callable" library (called "libindy") and a number of language specific "wrappers" for the library. A "c-callable" library means that the library components can be called from the majority of languages, eliminating the need for an implementation in each language. The wrappers, currently available in Python, Java, C# (.NET) and node.js, allow the creation of a Indy agents in each of those languages.
+The indy-sdk repo contains the code that allows a piece of software - an Agent - to interact with the Public Ledger and to keep track (in a wallet - a specialized data store) of the keys and other Identity-related data. The indy-sdk consists of one core component (written mostly in Rust) that compiles to a "c-callable" library (called "libindy") and a number of language specific "wrappers" for the library. A "c-callable" library means that the library components can be called from the majority of languages, eliminating the need for an implementation in each language. The wrappers, currently available in Python, Java, C# (.NET) and node.js, allow the creation of a Indy agents in each of those languages.
 
 As mentioned, the indy-sdk implements a wallet that is used to store the Indy data collected by an Identity on an Indy network - DIDs, private keys, Verifiable Credentials and more. The indy-sdk implements a default implementation of the wallet, and is pluggable - meaning a capable developer can implement a replacement wallet. The default indy wallet is based on the open source sqllite database.
 
@@ -618,7 +653,8 @@ In our demonstration, the open source "VON-Network" was used as an easy way to s
 
 
 <!-- GD2md-html version 1.0β11 -->
-<!----- Conversion time: 0.715 seconds.
+
+<!----- Conversion time: 0.676 seconds.
 
 
 Using this Markdown file:
@@ -631,7 +667,7 @@ Using this Markdown file:
 Conversion notes:
 
 * GD2md-html version 1.0β11
-* Fri Sep 07 2018 20:10:54 GMT-0700 (PDT)
+* Sun Sep 16 2018 14:11:33 GMT-0700 (PDT)
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1u-FsGOaJJVbJIM5zBqQ3UpfdW40ENhPomwvgxwYQzRo
 ----->
 
@@ -678,12 +714,75 @@ An [Indy Mailing list](https://lists.hyperledger.org/g/indy) is used to keep the
 
 ### GitHub Repos
 
-The Hyperledger Indy codebase is on [GitHub](https://github.com/hyperledger) and is available for reviewing, forking and most importantly, contributions.
+The Hyperledger Indy codebase is on [GitHub](https://github.com/hyperledger) and is available for reviewing, forking and most importantly, contributions. A list of the current Hyperledger Indy repos (as of September, 2018) is provided in the earlier "Getting Started with Hyperledger Indy" section. See the [Hyperledger Indy Wiki](https://wiki.hyperledger.org/projects/indy) to find the latest information on the repos.
 
 
 ### Indy Meetups
 
 There are many in person events (conferences, hackathons, meetups, etc.) related to Indy that happen throughout the year. Some are specific to Indy, while others are larger Hyperledger or Internet Identity events. Hyperledger Indy maintains a calendar of all Hyperledger meetings, while other meetings can be found through discussions on Chat.
 
+
+<!-- GD2md-html version 1.0β11 -->
+
+<!----- Conversion time: 1.229 seconds.
+
+
+Using this Markdown file:
+
+1. Cut and paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
+
+Conversion notes:
+
+* GD2md-html version 1.0β11
+* Sun Sep 16 2018 14:12:48 GMT-0700 (PDT)
+* Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1h0gBwGcMtfAaq8_4jz4jcyO4DtSuQKT_-QGMzgTOoWM
+----->
+
+
+
+# Knowledge Check
+
+
+**Knowledge Check section deliberately left out of the repo.**
+
+<!-- GD2md-html version 1.0β11 -->
+
+<!----- Conversion time: 0.537 seconds.
+
+
+Using this Markdown file:
+
+1. Cut and paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
+
+Conversion notes:
+
+* GD2md-html version 1.0β11
+* Sun Sep 16 2018 14:26:54 GMT-0700 (PDT)
+* Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1pQ2v9S0-0tAMW2Lp-lydnF_yY4x6XSwHdA9jdvbHoaY
+----->
+
+
+
+# Hyperledger Indy - References
+
+The following are a series of links to additional information about the various topics discussed in this chapter.
+
+
+
+*   [Hyperledger Indy](https://www.hyperledger.org/projects/hyperledger-indy)
+*   [Hyperledger Indy - Wiki](https://wiki.hyperledger.org/projects/indy)
+*   [Self-Sovereign Identity](http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html) - Original post by Christopher Allen
+*   [Decentralized Identifiers - DIDs](https://w3c-ccg.github.io/did-spec/) - from the W3C Credentials Community Group
+*   [Verifiable Claims Working Group](https://www.w3.org/2017/vc/WG/)
+*   [Verifiable Credentials Data Model](https://w3c.github.io/vc-data-model/)
+*   [Plenum Consensus Algorithm](https://github.com/hyperledger/indy-plenum/wiki)
+*   [Zero Knowledge Proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
+*   [Sovrin Foundation](https://sovrin.org/)
 
 <!-- GD2md-html version 1.0β11 -->
