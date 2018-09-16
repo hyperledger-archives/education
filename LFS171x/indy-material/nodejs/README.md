@@ -6,6 +6,8 @@ To learn more about Hyperledger Indy, see the project wiki - https://wiki.hyperl
 
 This demo is used as an exercise for those taking the Hyperledger Project's EdX  [Blockchain for Business](https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x-0) course.
 
+Once you have the demo started, this **[Agent Demo Script](AgentDemoScript.md)** guides you through the scenario of Alice using Hyperledger Indy to get her transcripts from Faber College and then using them to apply for a job with Acme Corp.
+
 ## Credits
 
 The code for this demonstration was initially written by Spencer Holman and Matthew Hailstone of Brigham Young University. Carol Howard created the documentation for the demonstration.
@@ -41,7 +43,7 @@ To run the demonstration:
 
 It will take awhile for the demo to start - lots of things are happening. The logs for all of the containers will display in the terminal window from which you started the demo.
 
-Things to look for:
+Things to look for as the demo starts up:
 
 * You should periodically see things like "Listening on port 3001", which indicates an Agent is up and running.
 * You should **not** see a stack trace error in the code - that would indicate a problem.
@@ -58,7 +60,7 @@ To open an agent instance, in a web browser navigate to. To go through the demon
 
 The Agents start at a login screen. To login, use the name of the Agent (e.g. Alice, Faber or Acme) as the user ID and "123" as the password.
 
-The instructions for walking through the demonstration script are here: AgentDemoScript.md
+The instructions for walking through the demonstration script are here: **[Agent Demo Script](AgentDemoScript.md)**
 
 You can also open in a browser a Ledger Explorer:
 * [http://localhost:9000](http://localhost:9000)

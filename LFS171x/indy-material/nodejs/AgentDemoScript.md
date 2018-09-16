@@ -22,7 +22,15 @@ Conversion notes:
 - [Agent Demo Guide](#agent-demo-guide)
   - [INTRODUCTION](#introduction)
   - [ABOUT HYPERLEDGER INDY](#about-hyperledger-indy)
+    - [Decentralized Identifiers (DIDs)](#decentralized-identifiers-dids)
+    - [Verifiable Credentials](#verifiable-credentials)
+    - [Agents and Wallets](#agents-and-wallets)
   - [A REAL-LIFE EXAMPLE OF INDY'S IDENTITY CAPABILITIES](#a-real-life-example-of-indys-identity-capabilities)
+    - [Step 1: Looking Around](#step-1-looking-around)
+    - [Step 2: Setting up Faber](#step-2-setting-up-faber)
+    - [Step 3: Establishing Relationships](#step-3-establishing-relationships)
+    - [Step 4: It's All About Your Credentials](#step-4-its-all-about-your-credentials)
+    - [Step 3: Applying for the Job](#step-3-applying-for-the-job)
 
 <!-- /TOC -->
 
@@ -30,7 +38,7 @@ Conversion notes:
 
 The code in this folder implements some Hyperledger Indy "Getting Started" components - Agents - that users can run, use and alter to learn about the capabilities of Indy. This document provides a brief background into Hyperledger Indy and instructions on using the Agents to walk through a prototypical Indy use case.
 
-For those that are here as part of the Hyperledger Indy Chapter of the [EdX "Blockchain for Business"](https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x-0) course, feel free to skip the next section and jump straight to the section of this document on [using the demo software](#a-real-life-example-of-indys-identity-capabilities).  For others, the next section is a brief overview of Hyperledger Indy, DIDs, Verifiable Credentials, Agents and Wallets. They all are demonstrated in this example code.
+For those that are here as part of the Hyperledger Indy Chapter of the [EdX "Blockchain for Business"](https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x-0) course, feel free to skip the next section and jump straight to the section of this document on [using the demo software](#a-real-life-example-of-indys-identity-capabilities). For others, the next section is a brief overview of Hyperledger Indy, DIDs, Verifiable Credentials, Agents and Wallets. They all are demonstrated in this example code.
 
 
 ## ABOUT HYPERLEDGER INDY
@@ -41,10 +49,13 @@ Hyperledger Indy (Indy) is a blockchain-based application that you can use to pr
 ### Decentralized Identifiers (DIDs)
 
 Indy uses DIDs to establish connections between two identities, such as a user and a service's website, so that they can securely communicate. DIDs are globally unique identifiers that are created by their owner, independent of any central authority. See the image below from the demo.
+
 |![DemoDID](images/DID.png "DID from Demo")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+
 The expectation is that you will have many DIDs - one for each relationship you have on the Internet. Think of each DID as a userID/password pair, but one that is backed with strong cryptography in the form of public/private key pairs. As well, note that both sides of a relationship provide a DID for the other to use to communicate with them. See the figures below.
+
 |![DIDRelationships](images/AgentDID.png "DID Relationships")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
