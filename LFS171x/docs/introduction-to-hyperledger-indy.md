@@ -278,7 +278,7 @@ Indy uses DIDs to establish connections between two identities, such as a user a
 
 The image below show three entities, Alice, Bob and a Bank that both Alice and Bob use. For each entity, we see the various DIDs they have created for their relationships. We've also highlighted the DIDs that they have exchanged with each other - Alice's for Bob, Alice's for the Bank and so on.
 
-|![RelationshipDIDs](../images/introduction-to-hyperledger-indy/PairwiseDIDs2.png "Relationship DIDs Example")|
+|![RelationshipDIDs](../images/introduction-to-hyperledger-indy/PairwiseDIDs1.png "Relationship DIDs Example")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
