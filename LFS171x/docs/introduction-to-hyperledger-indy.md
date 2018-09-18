@@ -56,6 +56,16 @@
     - [GitHub Repos](#github-repos)
     - [Indy Meetups](#indy-meetups)
 - [Knowledge Check](#knowledge-check)
+  - [Knowledge Check 8.1](#knowledge-check-81)
+  - [Knowledge Check 8.2](#knowledge-check-82)
+  - [Knowledge Check 8.3](#knowledge-check-83)
+  - [Knowledge Check 8.4](#knowledge-check-84)
+  - [Knowledge Check 8.5](#knowledge-check-85)
+  - [Knowledge Check 8.6](#knowledge-check-86)
+  - [Knowledge Check 8.7](#knowledge-check-87)
+  - [Knowledge Check 8.8](#knowledge-check-88)
+  - [Knowledge Check 8.9](#knowledge-check-89)
+  - [Knowledge Check 8.10](#knowledge-check-810)
 - [Hyperledger Indy - References](#hyperledger-indy---references)
 
 <!-- /TOC -->
@@ -156,7 +166,7 @@ As the famous New Yorker cartoon goes - "[No one knows you are on a dog on the I
 
 ### Identity in the Real World
 
-When we interact in the real world and we often need to "prove" who we are. To do that, we present evidence that we have about ourselves. What we present varies based on the context of the relationship. When we meet someone socially, we introduce ourselves. When we want to open a bank account, we show documents (attributes) issued by others (driver's license, utility bill, government ID etc.) to proof things about ourselves, such as our name, address and ID number (e.g. SSN in the US).
+When we interact in the real world and we often need to "prove" who we are. To do that, we present evidence that we have about ourselves. What we present varies based on the context of the relationship. When we meet someone socially, we introduce ourselves. When we want to open a bank account, we show documents (attributes) issued by others (driver's license, utility bill, government ID etc.) to prove things about ourselves, such as our name, address and ID number (e.g. SSN in the US).
 
 In turn, those with whom we interact create an identifier for us and check that identifier when we connect again. A person remembers our name and face, and "verifies" them on our subsequent meetings ("Hi Stephen! Good to see you again!"). Our bank creates a card with an ID on it for us to use each time we return to access the bank's services.
 
@@ -173,7 +183,7 @@ The basic mechanism for knowing who you are on the Internet is the UserID/Passwo
 *   Because we have so many, we often use "easy to remember" passwords that are also easy for others to guess.
 *   Password recovery mechanisms (question/responses, support desks) provide avenues of attack by hackers.
 *   Data breaches occur that result in our IDs and passwords being exposed and used - either by the hackers or anyone that buys them.
-*   We often use the same password on many sites, and once a password is exposed, our account on others sites may also exposed.
+*   We often use the same password on many sites, and once a password is exposed, our account on others sites may also be exposed.
 
 A common approach to solving the "too many passwords" problem is the use of Identity Providers (IdPs) like Facebook and Google. Smaller sites can use an IdP for Authentication (user ID and password verification) and to get basic identity attributes like name and email address.
 
@@ -188,7 +198,7 @@ We also need to note that while users of websites have IDs for the site, the rev
 
 On almost every site, we also share other identifiers to use a service - our email and name at minimum, and depending on the nature of the service, additional information (address, credit card info, etc.). With that, we can do the only common business transaction on the Internet - buying things. Buying things has a low enough risk because sellers can generally trace to whom the purchased item is delivered, which deters widespread abuse.
 
-Conducting higher trust online transactions - such as opening a bank account - is much harder. We have to provide the same information about ourselves as we would in person. In theory, we should just be able to just type in it since it is private and (in theory) only we know it. However, much of the information is relatively widely known, either because it is routinely published (e.g. Name and address), or because of the many data breaches that have occurred (e.g. Government ID Number). Even non-identifiers that are used for verification - so-called "shared secrets" such as the value of "Line 150 from 2018 Tax Return" can be fraudulently acquired and used for targeting specific individuals.
+Conducting higher trust online transactions - such as opening a bank account - is much harder. We have to provide the same information about ourselves as we would in person. In theory, we should be able to just type in since it is private and (in theory) only we know it. However, much of the information is relatively widely known, either because it is routinely published (e.g. Name and address), or because of the many data breaches that have occurred (e.g. Government ID Number). Even non-identifiers that are used for verification - so-called "shared secrets" such as the value of "Line 150 from 2018 Tax Return" can be fraudulently acquired and used for targeting specific individuals.
 
 An alternative is to do an online version of the in person verification - scan and send the source documents. However, scans are very easy to forge and as such are not trusted. We should also add that paper documents used in person are increasingly easy to forge as well. That issue is actually putting at risk the "real world" identity-proofing that we mentioned earlier. Verifiers, such as bank employees, have to become experts at detecting the authenticity of documents used for identity proofing.
 
@@ -215,7 +225,7 @@ The Identity Providers model is also a correlation point - although in this case
 
 The vast majority of identifiers we use today are centralized - the identifiers are provided to us and maintained by a centralized entity. That might be the government in the case of our Tax ID and Driver's Licence, or a company for an ID we use to log into a website. A major problem with this approach is that the central authority can choose to take away that identifier at any time. This is of particular concern for those in a minority situation - a critic of a central entity, be it a government suppressing their people or a private company.
 
-A second concern of with central authorities controlling identifiers is that if they are compromised in some way, those identifiers can be used in malicious ways. For example, a [hack of a Dutch Certificate Authority](https://en.wikipedia.org/wiki/DigiNotar) (manager of SSL Encryption Certificates) allowed supposedly secure encrypted data going across the Internet to be intercepted and accessed by the hackers. Further, since the identifiers are centralized (held in a central place), if that repository is compromised, it impacts many people.
+A second concern with central authorities controlling identifiers is that if they are compromised in some way, those identifiers can be used in malicious ways. For example, a [hack of a Dutch Certificate Authority](https://en.wikipedia.org/wiki/DigiNotar) (manager of SSL Encryption Certificates) allowed supposedly secure encrypted data going across the Internet to be intercepted and accessed by the hackers. Further, since the identifiers are centralized (held in a central place), if that repository is compromised, it impacts many people.
 
 
 ### Data Breaches
@@ -232,7 +242,7 @@ So where does that leave us?
 *   User IDs/Passwords are the norm, but they are a pain to use, and as a result, are very susceptible to attack. They are the best we have right now, but not a solid basis for trust. Further, IDs are one way - users don't get an ID from a Service they use.
 *   Other personal information and identifiers we have that we could otherwise use to prove our identity is not trusted because it's impossible to tell if the data was actually issued to the person entering it. The many breaches of private identifiers make them impossible to completely trust (see below).
 *   Since the identity attributes we could use are not trusted (they are not things only we know), we often have to resort to in person delivery of paper documents to prove things about ourselves.
-*   The identifiers we use are correlated across sites, allowing inferences to made about us, and exposing information we don't intend to be shared across sites. This is annoying at the least, and can have catastrophic results in the worst case. 
+*   The identifiers we use are correlated across sites, allowing inferences to be made about us, and exposing information we don't intend to be shared across sites. This is annoying at the least, and can have catastrophic results in the worst case. 
 *   Centralized repositories of identifiers and data about the people associated with those identifiers are targeted by hackers because the data has high value. This exacerbates the problem of not being able to trust "personal" data presented online (see above).
 *   Centralized identifiers can be abused by those that control those identifiers. For example, they can be taken away from a subject without due process.
 
@@ -268,7 +278,7 @@ The last section introduced a number of challenges with Internet Identity as is 
 
 ## Decentralized Identifiers - DIDs
 
-A foundational feature of Indy is support for the emerging [W3C standard for Decentralized Identifiers](https://w3c-ccg.github.io/did-spec/) - DIDs. DIDs are globally unique identifiers that are created by their owner, independent of any central authority. Each DID has associated with it one or more public keys created by the DID owner (and they hold the corresponding private keys), and one or more endpoints - addresses where messages can be delivered for that identity. A DID can be uniquely resolved (like a URL) to return the the data (keys and endpoints) associated with the DID. An example of a DID is displayed below.
+A foundational feature of Indy is support for the emerging [W3C standard for Decentralized Identifiers](https://w3c-ccg.github.io/did-spec/) - DIDs. DIDs are globally unique identifiers that are created by their owner, independent of any central authority. Each DID has associated with it one or more public keys created by the DID owner (and the owner holds the corresponding private keys), and one or more endpoints - addresses where messages can be delivered for that identity. A DID can be uniquely resolved (like a URL) to return the the data (public keys and endpoints) associated with the DID. An example of a DID is displayed below.
 
 |![DIDFormat](../images/introduction-to-hyperledger-indy/didformat.png "DID Format")|
 |:--:|
@@ -312,7 +322,7 @@ DIDs address a whole lot of the problems we talked about in the last section wit
 
 
 
-*   Users define their own DIDs and give that DID to a service to use in identifying them. This addresses the problems centralized identifiers - DIDs are controlled by the user.
+*   Users define their own DIDs and give that DID to a service to use in identifying them. This addresses the problems created by centralized identifiers - DIDs are controlled by the user.
 *   Agents and Wallets act like Password Managers, making it easy for users to manage their access to sites and services.
 *   Since a user uses a different DID for each service, their identity cannot be correlated across services.
 *   Since the user and service can communicate using the DIDs, there is no need for a user to provide an email address - the primary mechanism used today for correlating users.
@@ -337,7 +347,7 @@ Credentials are things like driver's licenses, passports, or university degrees 
 *   That the claims have not been tampered with (forged), and
 *   That the claims' Credential has not been revoked by the Issuer.
 
-As the image below shows, the data flow for Verifiable Credentials is the same as with paper documents - Issuers give Verifiable Credentials to the Holder, and the Holder can proof them to Verifiers at any time.
+As the image below shows, the data flow for Verifiable Credentials is the same as with paper documents - Issuers give Verifiable Credentials to the Holder, and the Holder can prove them to Verifiers at any time.
 
 |![IssuerHoldVerifier](../images/introduction-to-hyperledger-indy/BigPicture-1.png "Verifiable Credentials Model - Issuer, Prover, Verifier")|
 |:--:|
@@ -377,7 +387,7 @@ The ramifications of Verifiable Credentials are dramatic, especially when combin
 
 All of these transactions are done today with increasingly unreliable paper transactions, frequently requiring face-to-face interactions. With VCs, the transactions are fast, secure and even more reliable. Further, since the Subject (you!) holds the VC, you only share them as necessary to support the interaction you are trying to accomplish. The Issuer of the credential has no knowledge of how and when you are using the credential. We don't want to notify the government every time our Driver's Licence is used to confirm information about us.
 
-Blockchain plays a key role in Indy with issuing of Verified Credentials and Proofs. Since the VCs contain private information, the VCs themselves are **_NOT _**stored on the blockchain - they go in the wallet of the VC holder (see image below). However, information necessary to use the VCs - the schema, the DID of the Issuer and information for proving non-revocation are all stored on the Indy blockchain. This conveniently and securely makes the information to interpret VCs available for identities to use in exchanging credentials and claims while preserving in the private wallet of the holder the personal information.
+Blockchain plays a key role in Indy with issuing of Verified Credentials and Proofs. Since the VCs contain private information, the VCs themselves are **_NOT _** stored on the blockchain - they go in the wallet of the VC holder (see image below). However, information necessary to use the VCs - the schema, the DID of the Issuer and information for proving non-revocation are all stored on the Indy blockchain. This conveniently and securely makes the information to interpret VCs available for identities to use in exchanging credentials and claims while preserving in the private wallet of the holder the personal information.
 
 |![IIndyWallet](../images/introduction-to-hyperledger-indy/Wallet.png "Indy Wallet with Credentials")|
 |:--:|
@@ -386,13 +396,13 @@ Blockchain plays a key role in Indy with issuing of Verified Credentials and Pro
 
 ### How VCs Help
 
-VCs extend the capabilities of DIDs, to features needed for building trust on the Internet:
+VCs extend the capabilities of DIDs to include features needed for building trust on the Internet:
 
 
 
 *   Personal information and identifiers provided to Verifiers as claims in VC-based proofs can be trusted - perhaps more so than paper documents.
 *   Proofs extend paper documents capabilities by adding real time access to revocation status (without contacting the Issuer), selective disclosure, and zero-knowledge proofs.
-*   Personal data is held by its owner (you!), not in identity repositories, reducing the number of high-value data targets. This also reduces the liability of the service currenlty holding that repository.
+*   Personal data is held by its owner (you!), not in identity repositories, reducing the number of high-value data targets. This also reduces the liability of the service currently holding that repository.
 *   Plain data - strings of characters that lack proof of being issued to you - will fall in value when they are no longer accepted online. This loss of value reduces the incentive for hackers stealing private data.
 
 
@@ -403,11 +413,11 @@ IBM extended Hyperledger Indy software elements created through a collaboration 
 
 
 *   get a transcript from her College (Faber)
-*   apply for (and get!) a job at Acme Corp using her transcripts,
+*   apply for (and get!) a job at Acme Corp using her transcripts
 *   get proof of employment from Acme and
 *   Use her proof of employment to apply for a loan at Thrift Bank
 
-For those that just want to see all of this in action, IBM (a Hyperledger member and contributor to Indy) has posted a video of the sequence on You Tube. Click [here to view the video](https://www.youtube.com/watch?v=cz-6BldajiA).
+For those that just want to see all of this in action, IBM (a Hyperledger member and contributor to Indy) has posted a video of the sequence on YouTube. Click [here to view the video](https://www.youtube.com/watch?v=cz-6BldajiA).
 
 
 ## Privacy
@@ -741,12 +751,159 @@ Conversion notes:
 * Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1h0gBwGcMtfAaq8_4jz4jcyO4DtSuQKT_-QGMzgTOoWM
 ----->
 
+<!----- Conversion time: 0.981 seconds.
+
+
+Using this Markdown file:
+
+1. Cut and paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
+
+Conversion notes:
+
+* GD2md-html version 1.0β11
+* Mon Sep 17 2018 18:40:50 GMT-0700 (PDT)
+* Source doc: https://docs.google.com/a/cloudcompass.ca/open?id=1h0gBwGcMtfAaq8_4jz4jcyO4DtSuQKT_-QGMzgTOoWM
+----->
+
 
 
 # Knowledge Check
 
 
-**Knowledge Check section deliberately left out of the repo.**
+## Knowledge Check 8.1
+
+<!-- B -->
+The major Identity problem with User IDs and Passwords is:
+
+
+
+*   There are too many of them to remember
+*   Others can acquire our UserID/Password and impersonate us
+*   People don't use complicated enough passwords
+*   Companies get hacked and lose passwords
+
+
+## Knowledge Check 8.2
+
+<!-- C -->
+A major privacy issue associated with Internet Identity is that:
+
+
+
+*   Organizations use our password to access our accounts on other sites
+*   Organizations create fake websites to learn our password
+*   Organizations use common identifiers to correlate information about us across sites
+*   Organizations use information about us for personalized marketing
+
+
+## Knowledge Check 8.3
+
+<!-- A -->
+The following is NOT true about Centralized Identifiers:
+
+
+
+*   We create and control our own centralized identifier
+*   Centralized identifier repositories have a high value and so are targets of hackers
+*   Entities that that manage centralized identifiers can take them away
+*   If a centralized repository is hacked, it may impact many people
+
+
+## Knowledge Check 8.4
+
+<!-- B  -->
+Which is true about DIDs
+
+
+
+*   Distributed identifiers are given out to all contacts
+*   Decentralized identifiers are (often) published on a blockchain
+*   DIDs are easily remembered, so are easier to use than user IDs
+*   DIDs are safe to use, even if the associated private key is lost
+
+
+## Knowledge Check 8.5
+
+<!-- E  -->
+Which do you NOT know after you have successfully verified a HyperLedger Indy Proof
+
+
+
+*   That the claims have not been tampered with
+*   That the claims were issued by the Issuer(s)
+*   That the claims were issued to the Holder/Prover
+*   That the claims have not been revoked
+*   That you can trust the Issuer of the claims
+
+
+## Knowledge Check 8.6
+
+<!-- D  -->
+What is a Zero Knowledge Proof
+
+
+
+*   A proof that a Verifiable Credential has been revoked
+*   A proof that tells you nothing
+*   A proof that tells you who issued the Verifiable Credential
+*   A proof of something about a claim without telling you the claim value
+
+
+## Knowledge Check 8.7
+
+<!-- C  -->
+Hyperledger Indy has the following blockchain attributes
+
+
+
+*   Private, Permissioned
+*   Private, Permissionless
+*   Public, Permissioned
+*   Public, Permissionless
+
+
+## Knowledge Check 8.8
+
+<!-- A  -->
+Hyperledger Indy uses the term `Steward` to mean
+
+
+
+*   The nodes that operate the Public Ledger data
+*   The software that creates the DIDs
+*   The people that created Hyperledger Indy
+*   Trusted software that issues Verifiable Credentials
+
+
+## Knowledge Check 8.9
+
+<!-- C  -->
+The Sovrin Foundation:
+
+
+
+*   Owns the Hyperledger Indy software
+*   Is concerned only with Hyperledger Indy technology
+*   Operates a global instance of Hyperledger Indy
+*   Markets Agents and Wallets to use with Hyperledger Indy
+
+
+## Knowledge Check 8.10
+
+<!-- D -->
+What should **never, ever (ever!)** go on a Public Blockchain like an instance of Hyperledger Indy:
+
+
+
+*   DIDs
+*   Public Keys
+*   Verifiable Credential Schema
+*   Private Data
+
+<!-- GD2md-html version 1.0β11 -->
 
 <!-- GD2md-html version 1.0β11 -->
 
