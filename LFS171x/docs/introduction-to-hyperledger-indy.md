@@ -587,6 +587,8 @@ The demo uses the same storyline as the official "Getting Started" guide for Ind
 
 The instructions for building and starting the demonstration can be found [here](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/README.md) in the GitHub repo for the demonstration code. Once you have the demonstration code downloaded to your system and running, [click here](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/AgentDemoScript.md) to see the instructions for walking through the story of Alice, an Alum of Faber College, getting her official transcripts from Faber and then using her transcripts while applying for a job at Acme. Spoiler alert - she gets the job!
 
+If you just want to see a screencast of the demo without running it all yourself, [click here](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/README.md) to go to Github repo instructions. You'll find a link near the top of the instructions that starts the screencast.
+
 Use the EdX Forums for asking questions about the Demo. Want to go deeper into Hyperledger Indy? Use the resources listed in the next section - `Joining the Hyperledger Indy Community` - to dive in!
 
 Ready? Open up [the instructions](https://github.com/hyperledger/education/tree/master/LFS171x/indy-material/nodejs/README.md), a terminal window and get started!
