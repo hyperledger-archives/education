@@ -124,7 +124,7 @@ According to [hyperledger.org](https://www.hyperledger.org),
 
 ## Blockchains (Continued)
 
-**Blockchain** is a specific form or subset of distributed ledger technologies (DLTs), which constructs a chronological chain of blocks, hence the name 'block-chain'.  Examples of other DLTs are tangle and hashgraph.
+**Blockchain** is a specific form or subset of distributed ledger technologies (DLTs), which constructs a chronological chain of blocks, hence the name 'block-chain'.  Examples of other DLTs are Chain Core, Corda, Quorum, and IOTA.  They will be covered later in this chapter.
 
 A **block** refers to a set of transactions that are bundled together and added to the chain at the same time.
 
