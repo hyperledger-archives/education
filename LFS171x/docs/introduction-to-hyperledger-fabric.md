@@ -440,7 +440,7 @@ The expected response is:
 $ docker tag hyperledger/fabric-tools:x86_64-1.0.2 hyperledger/fabric-tools:latest
 ```
 
-Swap out the <span style="color:blue">blue</span> portion with the tags you see in your list of repositories. Also, swap out the <span style="color:red">red</span> portion with the name of the Docker image you are switching the tag for (e.g.: **fabric-tools**, **fabric-ccenv**, **fabric-orderer**, etc.). Repeat this step for all 'fabric' Docker images you see in the list.
+Swap out the 'x86_64-1.0.2' portion in the command example above with the tags you see in your list of repositories. Also, swap out the 'fabric-tools' portion in the command example above with the name of the Docker image you are switching the tag for (e.g.: **fabric-tools**, **fabric-ccenv**, **fabric-orderer**, etc.). Repeat this step for all 'fabric' Docker images you see in the list.
 
 In the screenshot above, the Docker images are already tagged. If this is the case for you, you do not need to do this extra step.
 
