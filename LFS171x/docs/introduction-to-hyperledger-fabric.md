@@ -1174,6 +1174,18 @@ Then, run the commands above starting with:
 $ node registerAdmin.js
 ```
 
+**Troubleshooting**: If you get syntax error failures, you might need v8.9.0 of npm.  You can use different versions of npm for your work using the tool nvm.  nvm can be installed using the instructions at https://github.com/creationix/nvm.  After installing nvm, use it to install npm v8.9.0:
+
+```
+$ nvm install v8.9.0
+```
+
+Then re-run the command:
+
+```
+$ npm install
+```
+
 ### File Structure of Application
 
 Here you can see the file structure of the Fabric application:
