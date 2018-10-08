@@ -415,7 +415,7 @@ If you need further details on these prerequisites, visit Chapter 4, _Technical 
 Next, we will download the latest released Docker images for Hyperledger Fabric, and tag them with the **latest** tag. Execute the command from within the directory into which you will extract the platform-specific binaries:
 
 ```
-$ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0
+$ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.2.0
 ```
 
 __**NOTE:**__ Check [http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries](http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries) for the latest URL (the blue portion in the above curl command) to pull in binaries.
