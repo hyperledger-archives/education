@@ -39,7 +39,6 @@
     - [Installing Hyperledger Fabric](#installing-hyperledger-fabric)
         - [Technical Prerequisites](#technical-prerequisites)
         - [Installing Hyperledger Fabric Docker Images and Binaries](#installing-hyperledger-fabric-docker-images-and-binaries)
-        - [Installing Hyperledger Fabric](#installing-hyperledger-fabric)
         - [Starting a Test Hyperledger Fabric Network](#starting-a-test-hyperledger-fabric-network)
         - [Getting Started with Your First Network](#getting-started-with-your-first-network)
         - [Finishing Up and Shutting Down the Network](#finishing-up-and-shutting-down-the-network)
