@@ -420,7 +420,7 @@ $ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.2.0
 
 __**NOTE:**__ Check [http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries](http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries) for the latest URL (the 'https://goo.gl/6wtTN5' in the above curl command) to pull in binaries.
 
-This command downloads binaries for **cryptogen**, **configtxgen**, **configxlator**, **peer** AND downloads the Hyperledger Fabric Docker images. These assets are placed in a **bin** subdirectory of the current working directory.
+This command downloads binaries for **cryptogen**, **configtxgen**, **configxlator**, **peer** AND downloads the Hyperledger Fabric Docker images. These assets are placed in the **fabric-samples/bin** subdirectory of the current working directory.
 
 To confirm and see the list of Docker images you’ve just downloaded, run:
 
@@ -444,22 +444,6 @@ Swap out the 'x86_64-1.0.2' portion in the command example above with the tags y
 
 In the screenshot above, the Docker images are already tagged. If this is the case for you, you do not need to do this extra step.
 
-### Installing Hyperledger Fabric
-
-As an additional measure, you may want to add the bin subdirectory to your PATH environment variable, so these can be picked up without needing to qualify the PATH to each binary. You can do this by running the following:
-
-```
-$ export PATH=$PWD/bin:$PATH
-```
-
-To install the Hyperledger Fabric sample code which will be used in the tutorials, do:
-
-```
-$ git clone https://github.com/hyperledger/fabric-samples.git
-
-$ cd fabric-samples/first-network
-```
-
 ### Starting a Test Hyperledger Fabric Network
 
 Now that we have successfully installed Hyperledger Fabric, we can walk through setting up a simple network that has two members. To refer back to our demonstrated scenario, the network includes asset management of each tuna verified, transferred, and purchased between Sarah, the fisherman, and Miriam, the restaurateur. We’ll create a simple two member network consisting of two organizations (effectively, Sarah and Miriam), each maintaining two peers and an ordering service.
@@ -468,9 +452,10 @@ We will use Docker images to bootstrap our first Hyperledger Fabric network. It 
 
 ### Getting Started with Your First Network
 
-Are you ready to get started? Run this command ( within the **first-network** folder ):
+Are you ready to get started? Run this command (within the folder where you have the fabric-samples repository cloned):
 
 ```
+$ cd fabric-samples/first-network
 $ ./byfn.sh -m generate
 ```
 
