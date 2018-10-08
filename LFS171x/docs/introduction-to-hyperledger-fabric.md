@@ -418,7 +418,7 @@ Next, we will download the latest released Docker images for Hyperledger Fabric,
 $ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.2.0
 ```
 
-__**NOTE:**__ Check [http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries](http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries) for the latest URL (the blue portion in the above curl command) to pull in binaries.
+__**NOTE:**__ Check [http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries](http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries) for the latest URL (the 'https://goo.gl/6wtTN5' in the above curl command) to pull in binaries.
 
 This command downloads binaries for **cryptogen**, **configtxgen**, **configxlator**, **peer** AND downloads the Hyperledger Fabric Docker images. These assets are placed in a **bin** subdirectory of the current working directory.
 
