@@ -100,7 +100,7 @@
 
 ## Introduction and Learning Objectives
 
-### Video: Introduction to Hyperledger Fabric (Alexandra & Arianna Groetsema) 
+### Video: Introduction to Hyperledger Fabric (Alexandra & Arianna Groetsema)
 
 #### Introduction to Hyperledger Fabric (Alexandra & Arianna Groetsema)
 
@@ -220,7 +220,7 @@ Below is a summary of the tuna catch scenario presented in this section:
 
 |![Demonstrated_Tuna_Fishing_Scenario](../images/introduction-to-hyperledger-fabric/Demonstrated_Tuna_Fishing_Scenario.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ## Key Components and Transaction Flow
 
@@ -242,7 +242,7 @@ There are three different types of roles within a Hyperledger Fabric network:
  <br />\- _Committers_ verify endorsements and validate transaction results, prior to committing transactions to the blockchain.
  - **Ordering Service**
  <br />The ordering service accepts endorsed transactions, orders them into a block, and delivers the blocks to the committing peers.
- 
+
 ### How to Reach Consensus
 
 In a distributed ledger system, **consensus** is the process of reaching agreement on the next set of transactions to be added to the ledger. In Hyperledger Fabric, consensus is made up of three distinct steps:
@@ -250,7 +250,7 @@ In a distributed ledger system, **consensus** is the process of reaching agreeme
  - Transaction endorsement
  - Ordering
  - Validation and commitment.
- 
+
 These three steps ensure the policies of a network are upheld. We will explore how these steps are implemented by exploring the transaction flow.
 
 ### Transaction Flow (Step 1)
@@ -259,7 +259,7 @@ Within a Hyperledger Fabric network, transactions start out with client applicat
 
 |![Key_Components_-_Transaction_Proposal](../images/introduction-to-hyperledger-fabric/Key_Components_-_Transaction_Proposal.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 **Client applications** are commonly referred to as **applications** or **clients**, and allow people to communicate with the blockchain network. Application developers can leverage the Hyperledger Fabric network through the application SDK.
 
@@ -269,7 +269,7 @@ Each endorsing peer simulates the proposed transaction, without updating the led
 
 |![Transaction_flow_step_2](../images/introduction-to-hyperledger-fabric/Transaction_flow_step_2.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 Endorsing peers must hold smart contracts in order to simulate the transaction proposals.
 
@@ -283,7 +283,7 @@ The application then submits the endorsed transaction and the RW sets to the ord
 
 |![Transaction_flow_step_3](../images/introduction-to-hyperledger-fabric/Transaction_flow_step_3.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Transaction Flow (Step 4)
 
@@ -291,9 +291,9 @@ The ordering service takes the endorsed transactions and RW sets, orders this in
 
 |![Transaction_Flow_Step_4](../images/introduction-to-hyperledger-fabric/Transaction_Flow_Step_4.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
-The **ordering service**, which is made up of a cluster of orderers, does not process transactions, smart contracts, or maintains the shared ledger. The ordering service accepts the endorsed transactions and specifies the order in which those transactions will be committed to the ledger. The Fabric v1.0 architecture has been designed such that the specific implementation of 'ordering' (Solo, Kafka, BFT) becomes a pluggable component. The default ordering service for Hyperledger Fabric is Kafka. Therefore, the ordering service is a modular component of Hyperledger Fabric.
+The **ordering service**, which is made up of a cluster of orderers, does not process transactions, smart contracts, or maintain the shared ledger. The ordering service accepts the endorsed transactions and specifies the order in which those transactions will be committed to the ledger. The Fabric v1.0 architecture has been designed such that the specific implementation of 'ordering' (Solo, Kafka, BFT) becomes a pluggable component. The default ordering service for Hyperledger Fabric is Kafka. Therefore, the ordering service is a modular component of Hyperledger Fabric.
 
 ### Video: Ordering Service (Chris Ferris)
 
@@ -323,7 +323,7 @@ The committing peer validates the transaction by checking to make sure that the 
 
 |![Transaction_Flow_Step_5](../images/introduction-to-hyperledger-fabric/Transaction_Flow_Step_5.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 If the transaction fails, that is, if the committing peer finds that the RW set does not match the current world state, the transaction ordered into a block will still be included in that block, but it will be marked as invalid, and the world state will not be updated.
 
@@ -335,7 +335,7 @@ Lastly, the committing peers asynchronously notify the client application of the
 
 |![Transaction_Flow_Step_6](../images/introduction-to-hyperledger-fabric/Transaction_Flow_Step_6.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Identity Verification
 
@@ -353,7 +353,7 @@ Channels allow organizations to utilize the same network, while maintaining sepa
 
 |![Key_Components_Channels](../images/introduction-to-hyperledger-fabric/Key_Components_Channels.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 The diagram above shows three distinct channels -- blue, orange, and grey. Each channel has its own application, ledger, and peers.
 
@@ -378,7 +378,7 @@ Hyperledger Fabric’s LevelDB and CouchDB are very similar in their structure a
 
 |![State_Database](../images/introduction-to-hyperledger-fabric/State_Database.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Smart Contracts
 
@@ -396,7 +396,7 @@ Specifically, generating a signature starts with a _Signing Algorithm_, which ut
 
 |![The_role_of_membership_service_provider](../images/introduction-to-hyperledger-fabric/The_role_of_membership_service_provider.jpg)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Fabric-Certificate Authority
 
@@ -432,7 +432,7 @@ The expected response is:
 
 |![Fabric_installation_1](../images/introduction-to-hyperledger-fabric/Fabric_installation_1.jpg)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 **Note** the tags for each of the repositories above boxed in red. If the Docker images are not already tagged with the **latest** tag, perform the following command for each of the Docker images:
 
@@ -468,7 +468,7 @@ We will use Docker images to bootstrap our first Hyperledger Fabric network. It 
 
 ### Getting Started with Your First Network
 
-Are you ready to get started? Run this command ( within the **first-network** folder ): 
+Are you ready to get started? Run this command ( within the **first-network** folder ):
 
 ```
 $ ./byfn.sh -m generate
@@ -488,7 +488,7 @@ Another command line will appear, reply with **Y \<Enter>** to continue.
 
 Logs will appear in the command line, showing containers being launched, channels being created and joined, chaincode being installed, instantiated, and invoked on all the peers, as well as various transaction logs.
 
-**Troubleshooting Note:** 
+**Troubleshooting Note:**
 If you have difficulties with the two previous commands and you suspect that your Docker images may be at fault, you can start back from scratch, which will delete and untag the Docker images.
 
 ```
@@ -537,13 +537,13 @@ There are two ways to develop smart contracts with Hyperledger Fabric:
 
  - Code individual contracts into standalone instances of chaincode
  - (More efficient way) Use chaincode to create decentralized applications that manage the lifecycle of one or multiple types of business contracts, and let the end users instantiate instances of contracts within these applications.
- 
+
 ### Chaincode Key APIs
 
 An important interface that you can use when writing your chaincode is defined by Hyperledger Fabric - <span style="color:cyan">_ChaincodeStub_</span> and <span style="color:cyan">_ChaincodeStubInterface_</span>. The ChaincodeStub provides functions that allow you to interact with the underlying ledger to query, update, and delete assets. The key APIs for chaincode include:
 
  - **func (stub \*<span style="color:cyan">ChaincodeStub</span>) GetState(key <span style="color:cyan">string</span>) ([]<span style="color:cyan">byte, error</span>)**
- <br />Returns the value of the specified _key_ from the ledger. Note that **GetState** doesn't read data from the Write set, which has not been committed to the ledger. In other words, **GetState** doesn't consider data modified by **PutState** that has not been committed. If the key does not exist in the state database, 
+ <br />Returns the value of the specified _key_ from the ledger. Note that **GetState** doesn't read data from the Write set, which has not been committed to the ledger. In other words, **GetState** doesn't consider data modified by **PutState** that has not been committed. If the key does not exist in the state database,
  **\(nil, nil)** is returned.
  - **func (stub \*<span style="color:cyan">ChaincodeStub</span>) PutState(key <span style="color:cyan">string</span>, value []<span style="color:cyan">byte</span>) <span style="color:cyan">error</span>**
  <br />Puts the specified _key_ and _value_ into the transaction's Write set as a data-write proposal. **PutState** doesn't affect the ledger until the transaction is validated and successfully committed.
@@ -694,7 +694,7 @@ return "", fmt.Errorf("Failed to set asset: %s", args[0])
 return args[1], nil
 
 }
-``` 
+```
 
 The set method will create or modify an asset identified by a key with the specified value. The set method will modify the world state to include the key/value pair specified. If the key exists, it will override the value with the new one, using the **PutState** method; otherwise, a new asset will be created with the specified value.
 
@@ -793,13 +793,13 @@ As a reminder, Sarah, the fisherman, will invoke the _recordTuna_ when she catch
 
 |![Invoke_method_recordTuna](../images/introduction-to-hyperledger-fabric/Invoke_method_recordTuna.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 _changeTunaHolder_ can be invoked by Miriam, the restaurateur, when she confirms receiving and passing on a particular tuna fish as it passes through the supply chain. _queryTuna_ can be invoked by Miriam, the restaurateur, to view the state of a particular tuna.
 
 |![Invoke_method_queryTuna_and_changeTuna](../images/introduction-to-hyperledger-fabric/Invoke_method_queryTuna_and_changeTuna.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 Regulators will invoke _queryTuna_ and _queryAllTuna_ based on their need to verify and check for sustainability of the supply chain.
 
@@ -1056,7 +1056,7 @@ tuna := Tuna{}
 
 json.Unmarshal(tunaAsBytes, &tuna)
 
-// Normally check that the specified argument is a valid holder of tuna but here we are skipping this check for this example. 
+// Normally check that the specified argument is a valid holder of tuna but here we are skipping this check for this example.
 
 tuna.Holder = args[1]
 
@@ -1117,7 +1117,7 @@ $ cd education/LFS171x/fabric-material/tuna-app
 
 Make sure you have Docker running on your machine before you run the next command. If you do not have Docker installed, return to Chapter 4, _Technical Requirements_.
 
-Also, make sure that you have completed the _Installing Hyperledger Fabric_ section in this chapter before moving on to this application section, as you will likely experience errors. 
+Also, make sure that you have completed the _Installing Hyperledger Fabric_ section in this chapter before moving on to this application section, as you will likely experience errors.
 
 First, remove any pre-existing containers, as it may conflict with commands in this tutorial:
 
@@ -1218,7 +1218,7 @@ The query response you should see in the user interface is 10 pre-populated entr
 
 |![fabric-queryAll](../images/introduction-to-hyperledger-fabric/fabric-queryAll.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Query a Specific Tuna Recorded
 
@@ -1249,7 +1249,7 @@ You should see the following query response detailing the attributes recorded fo
  1. // changeTunaHolder - requires 2 argument
  2. var request = {
  3.     chaincodeId:’tuna-app’,
- 4.     fcn: 'changeTunaHolder', 
+ 4.     fcn: 'changeTunaHolder',
  5.     args: ['1', 'Alex'],
  6.     chainId: 'mychannel',
  7.     txId: tx_id
@@ -1275,13 +1275,13 @@ This indicates we have sent a proposal from our application via the SDK, and the
 
 |![fabric-changeTunaHolder](../images/introduction-to-hyperledger-fabric/fabric-changeTunaHolder.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 You should see that the holder has indeed been changed by querying for key **['1']** again. Now, the **holder** attribute has been changed from **Miriam** to **Alex**, for example.
 
 |![fabric-changedRecord](../images/introduction-to-hyperledger-fabric/fabric-changedRecord.png)|
 |:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Record a Tuna Catch
 
@@ -1289,7 +1289,7 @@ You should see that the holder has indeed been changed by querying for key **['1
  1. // recordTuna - requires 5 argument
  2. var request = {
  3.     chaincodeId:’tuna-app’,
- 4.     fcn: 'recordTuna', 
+ 4.     fcn: 'recordTuna',
  5.     args: ['11', '239482392', '28.012, 150.225', '0923T', "Hansel"],
  6.     chainId: 'mychannel',
  7.     txId: tx_id
@@ -1333,7 +1333,7 @@ $ docker rmi -f $(docker images -a -q)
  4. A **put** or **delete** command will go through the consensus process and will be added to the blockchain within the ledger.
  5. A **get** command can only read from the world state, but it is not recorded on the blockchain.
  6. The application can access blockchain information via APIs.
- 
+
 ### Application Flow Example
 
 |![fabric-application-flow](../images/introduction-to-hyperledger-fabric/fabric-application-flow.png)|
@@ -1500,14 +1500,14 @@ Using the dropdown option below, match the following types of roles in a Hyperle
 - Orders all transaction blocks into the ledger<br>
 - Approves or declines transaction proposals and must hold smart contracts<br>
 - Maintain ledger and state and commits transactions<br>
- </details> 
- 
+ </details>
+
  2. Ordering Service
  <details><summary>Select an option</summary>
 - Orders all transaction blocks into the ledger<br>
 - Approves or declines transaction proposals and must hold smart contracts<br>
 - Maintain ledger and state and commits transactions<br>
- </details> 
+ </details>
 
  3. Committing Peer
  <details><summary>Select an option</summary>
