@@ -388,15 +388,15 @@ As a reminder, smart contracts are computer programs that contain logic to execu
 
 The membership service provider, or MSP, is a component that defines the rules in which identities are validated, authenticated, and allowed access to a network. The MSP manages user IDs and authenticates clients who want to join the network. This includes providing credentials for these clients to propose transactions. The MSP makes use of a _Certificate Authority_, which is a pluggable interface that verifies and revokes user certificates upon confirmed identity. The default interface used for the MSP is the **Fabric-CA API**, however, organizations can implement an External Certificate Authority of their choice. This is another feature of Hyperledger Fabric that is modular. Hyperledger Fabric supports many credential architectures, which allows for many types of External Certificate Authority interfaces to be used. As a result, a single Hyperledger Fabric network can be controlled by multiple MSPs, where each organization brings their favorite.
 
+|![The_role_of_membership_service_provider](../images/introduction-to-hyperledger-fabric/The_role_of_membership_service_provider.jpg)|
+|:--:|
+| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
+
 ### What Does the MSP Do?
 
 To start, users are authenticated using a certificate authority. The certificate authority identifies the application, peer, endorser, and orderer identities, and verifies these credentials. A signature is generated through the use of a _Signing Algorithm_ and a _Signature Verification Algorithm_.
 
 Specifically, generating a signature starts with a _Signing Algorithm_, which utilizes the credentials of the entities associated with their respective identities, and outputs an endorsement. A signature is generated, which is a byte array that is bound to a specific identity. Next, the _Signature Verification Algorithm_ takes the identity, endorsement, and signature as inputs, and outputs 'accept' if the signature byte array corresponds with a valid signature for the inputted endorsement, or outputs 'reject' if not. If the output is 'accept', the user can see the transactions in the network and perform transactions with other actors in the network. If the output is 'reject', the user has not been properly authenticated, and is not able to submit transactions to the network, or view any previous transactions.
-
-|![The_role_of_membership_service_provider](../images/introduction-to-hyperledger-fabric/The_role_of_membership_service_provider.jpg)|
-|:--:|
-| *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* |
 
 ### Fabric-Certificate Authority
 
