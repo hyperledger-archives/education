@@ -117,6 +117,58 @@
         </tr>
       </table>
 
+    <div class="form-group">
+      <label>History of a Specific Tuna Catch</label><br>
+
+      Enter a catch number: <input id="createName" class="form-control" type="text" placeholder="Ex: 3" ng-model="tuna_id_history">
+      <input id="querySubmit" type="submit" value="Query" class="btn btn-primary" ng-click="queryTunaHistory()">
+    </div>
+
+    <table id="query_tuna_history" class="table" align="center">
+
+      <tr>
+        <th>TxID</th>
+        <th>Vessel</th>
+        <th>Location</th>
+        <th>Holder</th>
+        <th>Timestamp</th>
+      </tr>
+
+      <tr ng-repeat="tuna in query_tuna_history">
+        <td>{{tuna.TxId}}</td>
+        <td>{{tuna.Value.vessel}}</td>
+        <td>{{tuna.Value.location}}</td>
+        <td>{{tuna.Value.holder}}</td>
+        <td>{{tuna.Timestamp}}</td>
+      </tr>
+    </table>
+
+    <div class="form-group">
+      <label>History of a Specific Tuna Catch</label><br>
+
+      Enter a catch number: <input id="createName" class="form-control" type="text" placeholder="Ex: 3" ng-model="tuna_id_history">
+      <input id="querySubmit" type="submit" value="Query" class="btn btn-primary" ng-click="queryTunaHistory()">
+    </div>
+
+    <table id="query_tuna_history" class="table" align="center">
+
+      <tr>
+        <th>TxID</th>
+        <th>Vessel</th>
+        <th>Location</th>
+        <th>Holder</th>
+        <th>Timestamp</th>
+      </tr>
+
+      <tr ng-repeat="tuna in query_tuna_history">
+        <td>{{tuna.TxId}}</td>
+        <td>{{tuna.Value.vessel}}</td>
+        <td>{{tuna.Value.location}}</td>
+        <td>{{tuna.Value.holder}}</td>
+        <td>{{tuna.Timestamp}}</td>
+      </tr>
+    </table>
+
       <div class="form-group">
         <label>Create Tuna Record</label>
         <h5 style="color:green;margin-bottom:2%" id="success_create">Success! Tx ID: {{create_tuna}}</h5>
