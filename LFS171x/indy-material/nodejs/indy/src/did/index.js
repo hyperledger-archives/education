@@ -124,12 +124,8 @@ async function issueGovernmentIdCredential() {
     }
 
     let govIdCredDef;
-    try {
-        govIdCredDef = await indy.issuer.getCredDef(await indy.pool.get(), await indy.did.getEndpointDid(), `blah`);
-    } catch(e) {
-        [govIdCredDefId, govIdCredDef] = await sdk.issuerCreateAndStoreCredentialDef(stewardWallet, stewardDid, govIdSchema, 'GOVID', signatureType, '{"support_revocation": false}');
-        await indy.issuer.sendCredDef(await indy.pool.get(), stewardWallet, stewardDid, govIdCredDef);
-    }
+    [govIdCredDefId, govIdCredDef] = await sdk.issuerCreateAndStoreCredentialDef(stewardWallet, stewardDid, govIdSchema, 'GOVID', signatureType, '{"support_revocation": false}');
+    await indy.issuer.sendCredDef(await indy.pool.get(), stewardWallet, stewardDid, govIdCredDef);
 
     exports.setEndpointDidAttribute('govIdCredDefId', govIdCredDefId);
 

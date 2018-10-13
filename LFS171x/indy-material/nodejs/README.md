@@ -8,8 +8,6 @@ This demo is used as an exercise for those taking the Hyperledger Project's EdX 
 
 Once you have the demo started, this **[Agent Demo Script](AgentDemoScript.md)** guides you through the scenario of Alice using Hyperledger Indy to get her transcripts from Faber College and then using them to apply for a job with Acme Corp.
 
-Click here (**URL to be added**) if you want to see a screencast of the Alice, Faber and Acme scenario.
-
 ## Credits
 
 The code for this demonstration was initially written by Spencer Holman and Matthew Hailstone of Brigham Young University. Carol Howard created the documentation for the demonstration.
@@ -20,6 +18,7 @@ To run this Indy Agent demonstration, you must have the following installed:
 
 * Docker, including Docker Compose - Community Edition is fine.
   * If you do not already have Docker installed, open [this link](https://docs.docker.com/install/#supported-platforms) and then click the link for the installation instructions for your platform.
+  * Instructions for installing docker-compose for a variety of platforms can be found [here](https://docs.docker.com/compose/install/).
 * git
   * [This link](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/) provides installation instructions for Mac, Linux (including if you are running Linux using VirtualBox) and native Windows (without VirtualBox).
 
@@ -27,10 +26,14 @@ To run this Indy Agent demonstration, you must have the following installed:
 
 To install the demonstration, you need to clone the git repository for the EdX Blockchain for Business course. To do that:
 
-* Install the prerequisites listed above and make sure they are functioning on your system.
+* Install the prerequisites listed above and make sure they are functioning on your system. To verify, open a terminal window and:
+    * Run `git --version`, which should return something like: `git version 2.17.1`
+    * Run `docker --version`, which should return something like: `Docker version 18.06.1-ce, build e68fc7a`
+    * Run `docker-compose --version`, which should return something like: `docker-compose version 1.22.0, build f46880fe`
+    * Your version numbers should be the same or higher.
 * Open a terminal session and navigate to where you want to install the source code.
 * Run the command: `git clone https://github.com/hyperledger/education/`
-  * That should download the repository containing the source code onto your system.
+  * That will download the repository containing the source code onto your system.
 * Navigate to the location of the code by running the command:
   * `cd education/LFS171x/indy-material/nodejs`
 
@@ -39,7 +42,7 @@ To install the demonstration, you need to clone the git repository for the EdX B
 To run the demonstration:
 
 * If you just installed the demonstration software, you are where you need to be.
-  * If not, open up a terminal window and navigate to the directory you did in installing the Demonstration software.
+  * If not, open up a terminal window and navigate to the directory you did when Installing the Demonstration section (above).
 * To build the software, run the command `docker-compose build`
 * Once the build completes, start the demo by running the command `docker-compose up`
 
@@ -49,7 +52,7 @@ Things to look for as the demo starts up:
 
 * You should periodically see things like "Listening on port 3001", which indicates an Agent is up and running.
 * You should **not** see a stack trace error in the code - that would indicate a problem.
-* You should **not** see any "Container exiting" messages, indicating nodes containers not starting up properly.
+* You should **not** see any "Container exiting" messages, indicating containers not starting up properly.
 * There should be 10 docker containers running. In another terminal window, you can run "docker ps" to see if the 10 containers are running. Each will have a naming beginning with `nodejs_`.
 * Once the output slows significantly and you only see messages from the nodes (the containers running the ledger), everything should be working.
 
@@ -59,8 +62,6 @@ To open an agent instance, in a web browser navigate to. To go through the demon
 * [http://localhost:3000](http://localhost:3000) for Alice
 * [http://localhost:3002](http://localhost:3002) for Faber College
 * [http://localhost:3003](http://localhost:3003) for Acme Corporation
-
-The Agents start at a login screen. To login, use the name of the Agent (e.g. Alice, Faber or Acme) as the user ID and "123" as the password.
 
 The instructions for walking through the demonstration script are here: **[Agent Demo Script](AgentDemoScript.md)**
 
@@ -73,7 +74,7 @@ Although we don't talk about them in the demo overview, there are two additional
 
 # Stopping the Demo
 
-To stop the demo, go to the terminal window where you ran docker-compose up and hit `Ctrl-C` once.  You should see a `Done` message as each of the 10 containers stops. If you hit `Ctrl-C` twice, you will be immediately returned to the command line prompt, but the containers may still be running.  Run the command `docker ps` to see if the containers are still running.
+To stop the demo, go to the terminal window where you ran `docker-compose up` and hit `Ctrl-C` once.  You should see a `Done` message as each of the 10 containers stops. If you hit `Ctrl-C` twice, you will be immediately returned to the command line prompt, but the containers may still be running.  Run the command `docker ps` to see if the containers are still running.
 
 To clean up the environment to run the demo again, run the command `docker-compose down -v` which will remove the data (ledger, wallets) created in the prior run.
 
@@ -85,3 +86,4 @@ To clean up the environment to run the demo again, run the command `docker-compo
   * Stop the demo running (instructions above)
   * Run `docker-compose down -v` to delete the volumes
   * Start the demo again by running the `docker-compose up` command
+* The "validate" of the Government ID Credential for each of the Identities is failing - displaying a large red "X". We're still investigating why that is happening.

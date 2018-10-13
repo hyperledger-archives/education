@@ -30,7 +30,7 @@ Conversion notes:
     - [Step 2: Setting up Faber](#step-2-setting-up-faber)
     - [Step 3: Establishing Relationships](#step-3-establishing-relationships)
     - [Step 4: It's All About Your Credentials](#step-4-its-all-about-your-credentials)
-    - [Step 3: Applying for the Job](#step-3-applying-for-the-job)
+    - [Step 5: Applying for the Job](#step-5-applying-for-the-job)
 
 <!-- /TOC -->
 
@@ -92,12 +92,11 @@ Indy uses the term _Agent_ to mean the software that interacts with other identi
 To demonstrate how Indy works, we have created a short demo involving the following agents:
 
 
-
 *   **Alice**, who went to Faber College and wants to apply for a job at Acme
 *   **Faber College**, which granted Alice's degree
 *   **Acme**, who needs an official copy of Alice's transcript 
 
-Start the demo as per the start instructions in [README.md](README.md). Notice that there are three tabs across the top. These are the Agents, each running in a Docker container and accessed on separate localhost ports: Alice (localhost:3000), Faber College (localhost:3002) and Acme Corporation (localhost:3003). Although you are accessing them all on the same machine, imagine that they are all running independently, in different places.
+Start the demo as per the start instructions in [README.md](README.md). Notice that you should have three browser tabs open - Alice, Faber and ACME. These are the Agents, each running in a Docker container and accessed on separate localhost ports: Alice (localhost:3000), Faber College (localhost:3002) and Acme Corporation (localhost:3003). Although you are accessing them all on the same machine, imagine that they are all running independently, in different places.
 
 |![BrowserTabs](images/BrowserTabs.png "Demo Browser Tabs")|
 |:--:|
@@ -116,10 +115,9 @@ Apart from the colours and name in the top right, each Agent looks the same. The
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
-You will also see that at the bottom of the screen each user has a DID. Each generated the DID and published the DID to the Hyperledger Indy registry. Knowing a DID, another Agent can look up on the Ledger and get back the public key and endpoint associated with that DID.  We'll use those DIDs later to connect the Agents so that they can exchange messages.
+You will also see that at the bottom of the screen each user has a DID. Each generated their DID and published it to the instance of Hyperledger Indy ledger we started. Knowing a DID, another Agent can look up on that ledger and get back the public key and endpoint associated with that DID.  We'll use those DIDs later to connect the Agents so that they can exchange messages.
 
 > **NOTE:** From time to time in running the demo you must refresh the Browser (Crl-R or Cmd-R) to update the screen data. This is needed when an action by one Identity (e.g. Alice) affects the data of another (e.g. Faber).
-
 
 ### Step 2: Setting up Faber
 
@@ -138,24 +136,23 @@ Back to our story.  Faber has just set up a Hyperledger Indy Agent that can issu
 
 1.  If you haven't already done so, go to the Faber agent tab and click **Issuing**.
 
-|![CreateSchema](images/CreateSchema.png "Publish schema to the Indy ledger")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![CreateSchema](images/CreateSchema.png "Publish schema to the Indy ledger")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+2.  Give the schema a name, a version and a list of attributes. For example, _Transcript 1.3 with name, degree, status, year, average and social security number._
+3.  Click **Submit**.
 
-1.  Give the schema a name, a version and a list of attributes. For example, _Transcript 1.3 with name, degree, status, year, average and social security number._
-2.  Click **Submit**.
-
-This writes the Schema to the Ledger so Faber (and others) can use it. 
-
+  This writes the Schema to the Ledger so Faber (and others) can use it. 
 
 
-1.  In the Credential Definition window, select a **Schema** (Transcript 1.3), tag it and click **Submit** and wait for the action to complete (which takes a bit…).
+
+4.  In the Credential Definition window, select a **Schema** (Transcript 1.3), tag it and click **Submit** and wait for the action to complete (which takes a bit…).
 
 |![CreateCredDef](images/CreateCredDef.png "Create Faber Credential Definition")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-John tagged his credential as MyTranscript. John probably could have come up with a better name, but hey, he's not _that_ smart.
+John tags the credential as MyTranscript - for this demo, just leave it as that.
 
 The process of creating a credential definition takes a bit of time as Indy is generating crypto keys so that the credential definition is secure and can only be used by Faber.
 
@@ -174,29 +171,29 @@ To create a new relationship:
 
 1.  Click **Send Connection Request**. 
 
-|![CreateRelBlank](images/CreateRelBlank.png "Blank Create Relationship Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![CreateRelBlank](images/CreateRelBlank.png "Blank Create Relationship Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-1.  Highlight and copy Faber's Endpoint DID (from the Faber tab), paste it into the "Send Connection Request" popup (above) and click **Send Connection Request**.
+2.  Highlight and copy Faber's Endpoint DID (from the Faber tab), paste it into the "Send Connection Request" popup (above) and click **Send Connection Request**.
 
-|![CreateRelFill](images/CreateRelFill.png "Filled Create Relationship Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![CreateRelFill](images/CreateRelFill.png "Filled Create Relationship Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-This creates a relationship between Alice and Faber - whoohoo!  If you click the "Relationships" menu item on the two Agents you will see the relationship. You will also see that the DID is still visible.  That's not very friendly.  In the real agent world, we don't ever want to see DIDs! We could have the user type in a name for each relationship, but wouldn't it be easier if the other party just told us their name?
+  This creates a relationship between Alice and Faber - whoohoo!  If you click the "Relationships" menu item on the two Agents you will see the relationship. You will also see that the DID is still visible.  That's not very friendly.  In the real agent world, we don't ever want to see DIDs! We could have the user type in a name for each relationship, but wouldn't it be easier if the other party just told us their name?
 
-But wait. There's a problem with that. What if they lied to us?  Told us they were Alice, when really they were her malicious enemy, Mallory? What we want is a trusted way to get the name of the other party. This is where Verifiable Credentials come in.
+  But wait. There's a problem with that. What if they lied to us?  Told us they were Alice, when really they were her malicious enemy, Mallory? What we want is a trusted way to get the name of the other party. This is where Verifiable Credentials come in.
 
-As soon as the connection is established, both Alice and Faber send each other a Proof Request that asks for the name of the other party using the "Government ID" credential both are already holding. Since that Credential is owned by its Holder, the Agent software prompts the user to confirm they want to share the requested information.
+  As soon as the connection is established, both Alice and Faber send each other a Proof Request that asks for the name of the other party using the "Government ID" credential both are already holding. Since that Credential is owned by its Holder, the Agent software prompts the user to confirm they want to share the requested information.
 
-Alice checks her messages and sees that she has a Proof Request from Faber requesting her name. 
+  Alice checks her messages and sees that she has a Proof Request from Faber requesting her name. 
 
-|![NamePRNotes](images/NamePRNotes.png "Accept Proof Request Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![NamePRNotes](images/NamePRNotes.png "Accept Proof Request Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-1.  Click the **Messages** tab then click **Accept**.
+3.  Click the **Messages** tab then click **Accept**.
 
 Meanwhile, at Faber College, they too have received a "Name" Proof Request, this one from Alice, which they too accept, and resulting in Alice getting the College's official name "Faber" - per the Government ID. You'll need to refresh the browser tabs to see the latest data.
 
@@ -214,19 +211,19 @@ Faber, knowing Alice wants her transcript, starts the process. It's time for Joh
 
 1.  In the Send Credential Offer window, select a **Relationship** (Alice) then a **Credential Definition** (MyTranscript) and click **Submit**.
 
-|![SendCredOffer](images/CredOffer.png "Faber sends Cred Offer to Alice")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![SendCredOffer](images/CredOffer.png "Faber sends Cred Offer to Alice")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-Going back to the Alice browser tab (refresh the browser tab), Alice sees that in her **Messages**, she has a new Credential Offer: her transcript from Faber (straight A's btw), which she accepts. 
+  Going back to the Alice browser tab (refresh the browser tab), Alice sees that in her **Messages**, she has a new Credential Offer: her transcript from Faber (straight A's btw), which she accepts. 
 
-|![CredOfferTran](images/CredOfferTran.png "Accept Credential Offer Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![CredOfferTran](images/CredOfferTran.png "Accept Credential Offer Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 
-1.  Click **Credentials**.
+2.  Click **Credentials**.
 
 |![Creds](images/Creds.png "Alice list of Creds")|
 |:--:|
@@ -239,36 +236,34 @@ Alice now has two credentials: her government ID and her transcript. If you clic
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
-### Step 3: Applying for the Job
+### Step 5: Applying for the Job
 
 Alice has gotten her transcript from Faber. Now all she has to do is land the job! She has interviewed successfully (or so she thinks) and it all comes down to her transcript. No pressure. Just as she did with Faber, Alice must first establish a relationship with Acme.
 
 
-
-
 1.  Click **Send Connection Request**. 
 
-|![CreateRelBlank](images/CreateRelBlank.png "Blank Create Relationship Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![CreateRelBlank](images/CreateRelBlank.png "Blank Create Relationship Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-1.  Copy and paste Acme's Endpoint DID and click **Send Connection Request**.
+2.  Copy and paste Acme's Endpoint DID and click **Send Connection Request**.
 
-|![CreateRelFill2](images/CreateRelFill2.png "Acme Create Relationship Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![CreateRelFill2](images/CreateRelFill2.png "Acme Create Relationship Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-Connection established! As with the Alice-Faber connection, immediately after the connection is established, they both send a Proof Request to the other to get information from the government credential they each hold.
+  Connection established! As with the Alice-Faber connection, immediately after the connection is established, they both send a Proof Request to the other to get information from the government credential they each hold.
 
-Alice checks her messages (refresh browser tab) and sees that she has a Proof Request from Acme for the "Name" attribute. 
+  Alice checks her messages (refresh browser tab) and sees that she has a Proof Request from Acme for the "Name" attribute. 
 
-|![NamePR](images/NamePR.png "Accept Name Proof Request Popup")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![NamePR](images/NamePR.png "Accept Name Proof Request Popup")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 
-1.  Click **Messages** and then **Accept**.
+3.  Click **Messages** and then **Accept**.
 
 Acme does the same - checks messages, sees the Proof Request and clicks Accept.  Relationship established!
 
@@ -276,7 +271,7 @@ Acme then sends a Proof Request to get Alice's transcript. Here we have to use a
 
 So far in this demo, the Proof Requests have "just happened."  That is, when a connection is made, both parties send a Proof Request to each other. In this case, we're going to walk through the steps of Acme requesting the proof.  What's the problem with the demo?  Unfortunately, in this demo, Acme doesn't know the information to construct the Proof Request for the transcripts, so they have to get that information from Faber. Worse, we're going to use copy and paste to get that information.  That's ugly! Rest assured, there are other ways for this to work in a real app, but for now, we'll just use this approach.
 
-Start this step in the Faber browser tab.  Click on **Proof Requests**. In the **Select a Proof Request** dropdown, select "Transcript-Data." The text (a JSON structure) in the box to the right will update to begin with "name": "Transcript-Date". Highlight all of the data in that text box and copy the text (right-click and choose "copy").  Next, go over to Acme to request the Transcripts Proof.
+Start this step in the Faber browser tab.  Click on **Proof Requests**. In the **Select a Proof Request** dropdown, select "Transcript-Data." The text (a JSON structure) in the box to the right will update to begin with "name": "Transcript-Data". Highlight all of the data in that text box and copy the text (right-click and choose "copy").  Next, go over to Acme to request the Transcripts Proof.
 
 From the Acme browser tab:
 
@@ -284,11 +279,11 @@ From the Acme browser tab:
 
 1.  Click **Proof Requests**
 
-|![PastePR](images/PastePR.png "Paste PR from Faber to ACME")|
-|:--:|
-|*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
+  |![PastePR](images/PastePR.png "Paste PR from Faber to ACME")|
+  |:--:|
+  |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-1.  Select the **Relationship**, in this case, **Alice**.
+2.  Select the **Relationship**, in this case, **Alice**.
 1.  Select the **Proof Request**, Other (Paste Proof Here).
 1.  Paste the text copied from the Faber tab into the box to the right.  Wow...that's a hack!!
 1.  Click **Submit**.

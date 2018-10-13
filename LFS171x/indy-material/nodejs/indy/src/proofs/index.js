@@ -1,7 +1,6 @@
 'use strict';
 const sdk = require('indy-sdk');
 const indy = require('../../index.js');
-const uuid = require('uuid');
 
 const MESSAGE_TYPES = {
     REQUEST : "urn:sovrin:agent:message_type:sovrin.org/proof_request",

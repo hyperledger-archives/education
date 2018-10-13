@@ -21,10 +21,6 @@ app.set('port', port);
  */
 
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
-const socketHandler = require('../ui/sockets').handler;
-
-io.on('connection', socketHandler);
 
 /**
  * Listen on provided port, on all network interfaces.
