@@ -8,6 +8,8 @@ This demo is used as an exercise for those taking the Hyperledger Project's EdX 
 
 Once you have the demo started, this **[Agent Demo Script](AgentDemoScript.md)** guides you through the scenario of Alice using Hyperledger Indy to get her transcripts from Faber College and then using them to apply for a job with Acme Corp.
 
+[Click here](https://youtu.be/9WZxlrGMA3s) to view a short screencast of the demo.
+
 ## Credits
 
 The code for this demonstration was initially written by Spencer Holman and Matthew Hailstone of Brigham Young University. Carol Howard created the documentation for the demonstration.
