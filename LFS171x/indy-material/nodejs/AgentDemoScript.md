@@ -40,6 +40,7 @@ The code in this folder implements some Hyperledger Indy "Getting Started" compo
 
 For those that are here as part of the Hyperledger Indy Chapter of the [EdX "Blockchain for Business"](https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x-0) course, feel free to skip the next section and jump straight to the section of this document on [using the demo software](#a-real-life-example-of-indys-identity-capabilities). For others, the next section is a brief overview of Hyperledger Indy, DIDs, Verifiable Credentials, Agents and Wallets. They all are demonstrated in this example code.
 
+[Click here](https://youtu.be/9WZxlrGMA3s) to view a screencast of the demo.
 
 ## ABOUT HYPERLEDGER INDY
 
