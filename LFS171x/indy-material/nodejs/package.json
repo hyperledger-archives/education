@@ -1,0 +1,30 @@
+{
+  "name": "indy-agent",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "mocha test/**/*.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "home-dir": "^1.0.0",
+    "http-errors": "~1.6.2",
+    "indy-sdk": "1.6.1",
+    "json-stringify-pretty-compact": "^1.2.0",
+    "morgan": "~1.9.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "request-promise-native": "^1.0.5",
+    "session-file-store": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1",
+    "sinon": "^5.0.7"
+  }
+}

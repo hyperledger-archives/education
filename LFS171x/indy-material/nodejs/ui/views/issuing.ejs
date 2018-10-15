@@ -1,0 +1,64 @@
+<div id="issuing" class="tab" style="display:none;">
+    <div class="w3-container w3-card w3-padding w3-margin" style="float: left;width: 31%">
+        <h3>Create Schema: </h3>
+        <form method="POST" action="/api/issuer/create_schema">
+            <label>Name of Schema: </label>
+            <input type="text" class="w3-input" name="name_of_schema" value="Transcript">
+            <br><br>
+            <label>Schema Version: </label>
+            <input type="text" class="w3-input" name="version" value="1.3">
+            <br><br>
+            <label>Please supply a JSON array of attributes:</label><br><br>
+            <textarea style="height:220px;" class="w3-input" name="attributes" required>[
+    "name",
+    "degree",
+    "status",
+    "year",
+    "average",
+    "ssn"
+]</textarea>
+            <br><br>
+            <input class="w3-btn w3-white w3-border" type="submit">
+        </form>
+    </div>
+
+    <div style="float: left;width: 31%">
+        <div class="w3-container w3-card w3-padding w3-margin">
+            <h3>Create Credential Definition</h3>
+            <form method="POST" action="/api/issuer/create_cred_def">
+                <label>Select a Schema:</label>
+                <select class="w3-select" name="schema_id" required>
+                    <%for(let schema of schemas) {%>
+                    <option value="<%=schema.id%>"><%=schema.name%> <%=schema.version%></option>
+                    <%}%>
+                </select>
+                <br><br>
+                <label>Tag:</label>
+                <input class="w3-input" type="text" name="tag" value="MyTranscript" required>
+                <br><br>
+                <input class="w3-btn w3-white w3-border" type="submit">
+            </form>
+        </div>
+        <div class="w3-container w3-card w3-padding w3-margin">
+            <h3>Send Credential Offer</h3>
+            <form method="POST" action="/api/issuer/send_credential_offer">
+                <label>Relationship: </label>
+                <select class="w3-select" name="their_relationship_did" required>
+                    <%for(let relationship of relationships) {%>
+                        <option value="<%=relationship.their_did%>"><%=relationship.metadata.name%></option>
+                    <%}%>
+                </select>
+                <br><br>
+                <label>Select a Credential Definition:</label>
+                <select class="w3-select" name="cred_def_id" required>
+                    <%for(let credDef of credentialDefinitions) {%>
+                        <option value="<%=credDef.id%>"><%=credDef.tag%></option>
+                    <%}%>
+                </select>
+                <br><br>
+                <input class="w3-btn w3-white w3-border" type="submit">
+            </form>
+        </div>
+    </div>
+
+</div>
