@@ -11,10 +11,10 @@ services:
   # Webserver
   #
   webserver:
-    image: von-network-base
+    image: indy-node
     build:
       context: .
-      dockerfile: von-network.dockerfile
+      dockerfile: pool.dockerfile
     command: 'bash -c ''./scripts/start_webserver.sh'''
     environment:
       - IP=173.17.0.101
@@ -43,7 +43,7 @@ services:
   # Nodes
   #
   node1:
-    image: von-network-base
+    image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 1'''
     networks:
       services:
@@ -60,7 +60,7 @@ services:
       - node1-data:/home/indy/ledger
 
   node2:
-    image: von-network-base
+    image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 2'''
     networks:
       services:
@@ -77,7 +77,7 @@ services:
       - node2-data:/home/indy/ledger
 
   node3:
-    image: von-network-base
+    image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 3'''
     networks:
       services:
@@ -94,7 +94,7 @@ services:
       - node3-data:/home/indy/ledger
 
   node4:
-    image: von-network-base
+    image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 4'''
     networks:
       services:
@@ -117,6 +117,7 @@ services:
     image: indy-agentjs
     build:
       context: .
+      dockerfile: agent.dockerfile
     command: "bash -c 'npm start'"
     environment:
       - ICON_SRC=https://maxcdn.icons8.com/Share/icon/Users/person_female1600.png
