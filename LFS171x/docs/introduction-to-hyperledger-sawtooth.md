@@ -41,6 +41,7 @@
   - [Writing an Application](#writing-an-application)
     - [Applications](#applications)
     - [Video: Designing an Application (Alexandra Groetsema)](#video-designing-an-application-alexandra-groetsema)
+      - [Designing an Application (Alexandra Groetsema)](#designing-an-application-alexandra-groetsema)
     - [Review of Hyperledger Sawtooth Components](#review-of-hyperledger-sawtooth-components)
     - [Sawtooth TunaChain Application](#sawtooth-tunachain-application)
     - [Cloning the Repository](#cloning-the-repository)
@@ -75,7 +76,8 @@
     - [Knowledge Check 6.10](#knowledge-check-610)
   - [Conclusions & Learning Objectives (Review)](#conclusions--learning-objectives-review)
     - [Learning Objectives (Review)](#learning-objectives-review)
-    - [Video: Conclusions (Arianna Groetsema)](#video-conclusions-arianna-groetsema)
+    - [Video: Conclusions (Ariana Groetsema)](#video-conclusions-ariana-groetsema)
+      - [Conclusions (Ariana Groetsema)](#conclusions-ariana-groetsema)
 <!-- /TOC -->
 
 ## Introduction & Learning Objectives
@@ -108,7 +110,7 @@ By the end of this chapter you should be able to:
 
 According to the [World Economic Forum](https://www.weforum.org/agenda/2017/05/can-technology-help-tackle-illegal-fishing/),
 
-_"Illegal, unreported, and unregulated (IUU) fishing represents a theft of around 26 million tonnes, or close to $24 billion value of seafood a year."_
+>_"Illegal, unreported, and unregulated (IUU) fishing represents a theft of around 26 million tonnes, or close to $24 billion value of seafood a year."_
 
 ---
 
@@ -142,7 +144,7 @@ Hyperledger is a modular platform for building networks and running distributed 
 
 **Sawtooth validators** validate transactions. Validators are responsible for combining batches of transactions into blocks, submitting them to the ledger, and approving valid blocks according to the network's consensus algorithm.
 
-**Sawtooth applications** are distributed applications, such as smart contracts, that are separate from the core framework. An application provides a transaction family to define the operations that can be applied to transactions, and the meaning of the transaction contents. An application consists of both a transaction processor (the server-side logic) and one or more clients (for use from Web, CLI command line, or mobile applications).
+**Sawtooth applications** are distributed applications, such as smart contracts, that are separate from the core framework. An application provides a _transaction family_ to define the operations that can be applied to transactions, and the meaning of the transaction contents. An application consists of both a _transaction processor_ (the server-side logic) and one or more clients (for use from Web, CLI command line, or mobile applications).
 
 **Transaction processors** provide server-side business logic. Most nodes run several transaction processors, one for each specific use case or application. Each node in the Sawtooth network must run an identical set of transaction processors.
 
@@ -435,11 +437,12 @@ $ docker-compose -f sawtooth-default.yaml down
 In a Sawtooth application, the ledger will store the state of the system, in addition to the immutable record of transactions that created that state. An application typically consists of two parts:
 
 * **Client Application**<br>
- Sends transactions to the blockchain, typically through the Sawtooth REST API.
- Provides a user interface for the application. A client can be a command-line interface, a web page, a mobile app, an IoT sensor, or most any other kind of interface capable of sending HTTP requests.
+    Sends transactions to the blockchain, typically through the Sawtooth REST API.<br>
+    Provides a user interface for the application. A client can be a command-line interface, a web page, a mobile app, an IoT sensor, or most any other kind of interface capable of sending HTTP requests.
+
 * **Transaction Processor**<br>
- Encodes the business logic of the application.
- Communicates with the validator, which sends transactions received from the client to the transaction processor for validation.
+    Encodes the business logic of the application.<br>
+    Communicates with the validator, which sends transactions received from the client to the transaction processor for validation.
 
 ### Video: Designing an Application (Alexandra Groetsema)
 
@@ -473,7 +476,7 @@ Let’s get our feet wet with an example of a simple Hyperledger Sawtooth blockc
 
 In our example, we will look at:
 
-* A **Transaction Processor**
+* A **transaction processor**
 * A simple browser-based client.
 
 The TunaChain transaction processor is written using the Python 3 Sawtooth SDK. It interfaces with a Sawtooth validator in order to validate transactions.
@@ -505,9 +508,9 @@ Here you can see the file structure of the Sawtooth TunaChain application:
 
 Make sure you have Docker running on your machine before you run the next command. If you do not have Docker installed, you should review Chapter 4, _Technical Requirements_.
 
-**Note:** Make sure you are in the **sawtooth-tuna** folder
+**Note:** Make sure you are in the **`sawtooth-tuna`** folder
 
-We will use the provided **docker-compose.yaml** file to create and run Docker containers for the required Sawtooth and TunaChain components.
+We will use the provided **`docker-compose.yaml`** file to create and run Docker containers for the required Sawtooth and TunaChain components.
 
 Run the following command to start Sawtooth with our TunaChain application:
 
@@ -515,9 +518,9 @@ Run the following command to start Sawtooth with our TunaChain application:
 $ docker-compose up
 ```
 
-At this point, your terminal window should show that these containers are running: **sawtooth-validator**, **tunachain-shell**, **sawtooth-settings-tp**, **tunachain-tp**, **sawtooth-rest-api**, and **tunachain-client**.
+At this point, your terminal window should show that these containers are running: **`sawtooth-validator`**, **`tunachain-shell`**, **`sawtooth-settings-tp`**, **`tunachain-tp`**, **`sawtooth-rest-api`**, and **`tunachain-client`**.
 
-You should also see messages showing that **sawtooth-settings-tp** and **tunachain-tp** have registered with the validator, that the REST API has connected to the validator at port 4004, and that the client has been built inside the **tunachain-shell** container.
+You should also see messages showing that **`sawtooth-settings-tp`** and **`tunachain-tp`** have registered with the validator, that the REST API has connected to the validator at port 4004, and that the client has been built inside the **`tunachain-shell`** container.
 
 If all of these conditions are true, and no other errors occur, you have successfully started a single-node Sawtooth network running the TunaChain demo application.
 
@@ -549,16 +552,23 @@ Transfer state entries are formatted as follows:
 
 In Hyperledger Sawtooth, **_namespaces_** define the addressing scheme for application data. All Sawtooth applications store data in the state dictionary at 35-byte (70 hex-character) addresses. The addresses for TunaChain resources are generated as follows:
 
- 1. The first 3 bytes of any Sawtooth state address are reserved for the application namespace. For the TunaChain application, the namespace prefix is generated by taking the first 6 characters of a SHA-512 hash of the application name "transfer-chain":
- ```
- 19d832
- ```
- 2. The next byte of a TunaChain address specifies which type of resource is stored at the address:
- Asset
- ```
- 00
- ```
- 3. The final 31 bytes of a TunaChain address are the first 62 characters of a SHA-512 hash of the name  of the asset.
+ 1. The first 3 bytes of any Sawtooth state address are reserved for the application namespace. For the TunaChain    application, the namespace prefix is generated by taking the first 6 characters of a SHA-512 hash of the
+    application name "transfer-chain":
+    ```
+    19d832
+    ```
+ 2. The next byte of a TunaChain address specifies which type of resource is stored at the address:<br>
+    Asset
+    ```
+    00
+    ```
+    Transfer
+    ```
+    01
+    ```
+
+ 3. The final 31 bytes of a TunaChain address are the first 62 characters of a SHA-512 hash of the name  of the
+    asset.
 
 For example, the TunaChain address of an Asset with the name "tuna4" would be generate as follows:
 
@@ -586,7 +596,7 @@ Each TunaChain transaction payload is represented as a JSON object with the foll
 
 ### Browser Client
 
-We are now ready to test our application through the user interface. In order to use the TunaChain client application, use a browser to navigate to **localhost:8000**.
+We are now ready to test our application through the user interface. In order to use the TunaChain client application, use a browser to navigate to **`localhost:8000`**.
 
 There are four different things we can do within the application:
 
@@ -594,9 +604,10 @@ There are four different things we can do within the application:
 - **Create Tuna Record** submits a transaction to create a new _Tuna_ entry in state, which is held by the currently selected _Holder_
 - **Transfer Tuna** submits a transaction to create a new _Transfer_ entry in state, which can be accepted or rejected by the potential recipient of the _Tuna_ asset
 - **Accept Tuna** shows a list of the current _Transfers_ with the currently selected _Holder_ listed as a recipient, as well as options to either **Accept** or **Reject** the _Transfer_.
+
 Also, there is a **Tuna List** table that shows all of the current _Tuna_ assets in state with their respective _Holders_.
 
-Note: The application is running inside the **tunachain-client** Docker container, but the port that it is running on is exposed at port 8000 on the host machine.
+Note: The application is running inside the **`tunachain-client`** Docker container, but the port that it is running on is exposed at port 8000 on the host machine.
 
 ### Creating a New Holder
 
@@ -622,7 +633,7 @@ $('[name="keySelect"]').on('change', function () {
     app.keys.push(app.user)
     saveKeys(app.keys)
     addOption(this, app.user.public, true)
-    addOption('[name='transferSelect"]', app.user.public)
+    addOption('[name='transferSelect']', app.user.public)
   } else if (this.value === 'none') {
     app.user = null
   } else {
@@ -861,7 +872,7 @@ What are some of the advantages of a platform like Hyperledger Sawtooth?
 </ol>
 
 ### Knowledge Check 6.3
-<!-- B -->
+<!-- C -->
 Which of the following correctly describes an application (a transaction family) in the context of Hyperledger Sawtooth?
 
 <ol type="A">

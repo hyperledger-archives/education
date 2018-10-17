@@ -123,7 +123,7 @@ By the end of this chapter you should be able to:
 
 According to the [World Economic Forum](https://www.weforum.org/agenda/2017/05/can-technology-help-tackle-illegal-fishing/),
 
-_"Illegal, unreported, and unregulated (IUU) fishing represents a theft of around 26 million tonnes, or close to $24 billion value of seafood a year."_
+>_"Illegal, unreported, and unregulated (IUU) fishing represents a theft of around 26 million tonnes, or close to $24 billion value of seafood a year."_
 
 ---
 
@@ -412,7 +412,7 @@ If you need further details on these prerequisites, visit Chapter 4, _Technical 
 
 ### Installing Hyperledger Fabric Docker Images and Binaries
 
-Next, we will download the latest released Docker images for Hyperledger Fabric, and tag them with the **latest** tag. Execute the command from within the directory into which you will extract the platform-specific binaries:
+Next, we will download the latest released Docker images for Hyperledger Fabric, and tag them with the **`latest`** tag. Execute the command from within the directory into which you will extract the platform-specific binaries:
 
 ```
 $ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0
@@ -420,7 +420,7 @@ $ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0
 
 __**NOTE:**__ Check [http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries](http://hyperledger-fabric.readthedocs.io/en/release-1.1/samples.html#binaries) for the latest URL (the blue portion in the above curl command) to pull in binaries.
 
-This command downloads binaries for **cryptogen**, **configtxgen**, **configxlator**, **peer** AND downloads the Hyperledger Fabric Docker images. These assets are placed in a **bin** subdirectory of the current working directory.
+This command downloads binaries for **`cryptogen`**, **`configtxgen`**, **`configxlator`**, **`peer`** AND downloads the Hyperledger Fabric Docker images. These assets are placed in a **`bin`** subdirectory of the current working directory.
 
 To confirm and see the list of Docker images you’ve just downloaded, run:
 
@@ -434,13 +434,13 @@ The expected response is:
 |:--:|
 | *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
 
-**Note** the tags for each of the repositories above boxed in red. If the Docker images are not already tagged with the **latest** tag, perform the following command for each of the Docker images:
+**Note** the tags for each of the repositories above boxed in red. If the Docker images are not already tagged with the **`latest`** tag, perform the following command for each of the Docker images:
 
 ```
 $ docker tag hyperledger/fabric-tools:x86_64-1.0.2 hyperledger/fabric-tools:latest
 ```
 
-Swap out the <span style="color:blue">blue</span> portion with the tags you see in your list of repositories. Also, swap out the <span style="color:red">red</span> portion with the name of the Docker image you are switching the tag for (e.g.: **fabric-tools**, **fabric-ccenv**, **fabric-orderer**, etc.). Repeat this step for all Docker images you see in the list.
+Swap out the <span style="color:blue">blue</span> portion with the tags you see in your list of repositories. Also, swap out the <span style="color:red">red</span> portion with the name of the Docker image you are switching the tag for (e.g.: **`fabric-tools`**, **`fabric-ccenv`**, **`fabric-orderer`**, etc.). Repeat this step for all Docker images you see in the list.
 
 In the screenshot above, the Docker images are already tagged. If this is the case for you, you do not need to do this extra step.
 
@@ -468,13 +468,13 @@ We will use Docker images to bootstrap our first Hyperledger Fabric network. It 
 
 ### Getting Started with Your First Network
 
-Are you ready to get started? Run this command ( within the **first-network** folder ): 
+Are you ready to get started? Run this command ( within the **`first-network`** folder ): 
 
 ```
 $ ./byfn.sh -m generate
 ```
 
-A brief description will appear, along with a **Y/N** command line prompt. Respond with a **Y \<Enter>** to continue.
+A brief description will appear, along with a **`Y/N`** command line prompt. Respond with a **`Y \<Enter>`** to continue.
 
 This step generates all of the certificates and keys for all our various network entities, including the genesis block used to bootstrap the ordering service and a collection of configuration transactions required to create a channel.
 
@@ -484,7 +484,7 @@ Next, you can start the network with the following command:
 $ ./byfn.sh -m up
 ```
 
-Another command line will appear, reply with **Y \<Enter>** to continue.
+Another command line will appear, reply with **`Y \<Enter>`** to continue.
 
 Logs will appear in the command line, showing containers being launched, channels being created and joined, chaincode being installed, instantiated, and invoked on all the peers, as well as various transaction logs.
 
@@ -501,7 +501,7 @@ Once you run this command, return to the _Installing Hyperledger Fabric Docker I
 
 Finally, let’s test bringing down this network.
 
-Within the same terminal, do **Control+C** to exit the current execution.
+Within the same terminal, do **`Control+C`** to exit the current execution.
 
 Then, run the following command:
 
@@ -509,7 +509,7 @@ Then, run the following command:
 $ ./byfn.sh -m down
 ```
 
-Another command line will appear, reply with **Y \<Enter>** to continue.
+Another command line will appear, reply with **`Y \<Enter>`** to continue.
 
 This command will kill your containers, remove the crypto material and four artifacts, and delete the chaincode images from your Docker Registry.
 
@@ -540,14 +540,14 @@ There are two ways to develop smart contracts with Hyperledger Fabric:
  
 ### Chaincode Key APIs
 
-An important interface that you can use when writing your chaincode is defined by Hyperledger Fabric - <span style="color:cyan">_ChaincodeStub_</span> and <span style="color:cyan">_ChaincodeStubInterface_</span>. The ChaincodeStub provides functions that allow you to interact with the underlying ledger to query, update, and delete assets. The key APIs for chaincode include:
+An important interface that you can use when writing your chaincode is defined by Hyperledger Fabric - [_ChaincodeStub_](https://godoc.org/github.com/hyperledger/fabric/core/chaincode/shim#Chaincode) and [_ChaincodeStubInterface_](https://godoc.org/github.com/hyperledger/fabric/core/chaincode/shim#ChaincodeStub). The ChaincodeStub provides functions that allow you to interact with the underlying ledger to query, update, and delete assets. The key APIs for chaincode include:
 
- - **func (stub \*<span style="color:cyan">ChaincodeStub</span>) GetState(key <span style="color:cyan">string</span>) ([]<span style="color:cyan">byte, error</span>)**
- <br />Returns the value of the specified _key_ from the ledger. Note that **GetState** doesn't read data from the Write set, which has not been committed to the ledger. In other words, **GetState** doesn't consider data modified by **PutState** that has not been committed. If the key does not exist in the state database, 
+ - **`func (stub \*ChaincodeStub) GetState(key string) ([]byte, error)`**
+ <br />Returns the value of the specified _key_ from the ledger. Note that **`GetState`** doesn't read data from the Write set, which has not been committed to the ledger. In other words, **`GetState`** doesn't consider data modified by **`PutState`** that has not been committed. If the key does not exist in the state database, 
  **\(nil, nil)** is returned.
- - **func (stub \*<span style="color:cyan">ChaincodeStub</span>) PutState(key <span style="color:cyan">string</span>, value []<span style="color:cyan">byte</span>) <span style="color:cyan">error</span>**
- <br />Puts the specified _key_ and _value_ into the transaction's Write set as a data-write proposal. **PutState** doesn't affect the ledger until the transaction is validated and successfully committed.
- - **func (stub \*<span style="color:cyan">ChaincodeStub)</span> DelState(key <span style="color:cyan">string</span>) <span style="color:cyan">error</span>**
+ - **`func (stub \*ChaincodeStub) PutState(key string, value []byte) error`**
+ <br />Puts the specified _key_ and _value_ into the transaction's Write set as a data-write proposal. **`PutState`** doesn't affect the ledger until the transaction is validated and successfully committed.
+ - **`func (stub \*ChaincodeStub) DelState(key string) error`**
  <br />Records the specified key to be deleted in the Write set of the transaction proposal. The _key_ and its _value_ will be deleted from the ledger when the transaction is validated and successfully committed.
 
 ### Overview of a Chaincode Program
@@ -559,31 +559,31 @@ When creating a chaincode, there are two methods that you will need to implement
  - **Invoke**
  <br />Called when the **_invoke_** transaction is received to process any transaction proposals.
 
-As a developer, you must create both an **Init** and an **Invoke** method within your chaincode. The chaincode must be installed using the **peer chaincode install** command, and instantiated using the **peer chaincode instantiate** command before the chaincode can be invoked. Then, transactions can be created using the **peer chaincode invoke** or peer **chaincode query commands**.
+As a developer, you must create both an **Init** and an **Invoke** method within your chaincode. The chaincode must be installed using the **`peer chaincode install`** command, and instantiated using the **`peer chaincode instantiate`** command before the chaincode can be invoked. Then, transactions can be created using the **`peer chaincode invoke`** or peer **`chaincode query commands`**.
 
 ### Sample Chaincode Decomposed - Dependencies
 
 Let’s now walk through a sample chaincode written in Go, piece by piece:
 
 ```golang
-package main
+ package main
 
-import (
+ import (
 
-"fmt"
+ "fmt"
 
-"github.com/hyperledger/fabric/core/chaincode/shim"
+ "github.com/hyperledger/fabric/core/chaincode/shim"
 
-"github.com/hyperledger/fabric/protos/peer"
+ "github.com/hyperledger/fabric/protos/peer"
 
-)
+ )
 ```
 
-The **import** statement lists a few dependencies that you will need for your chaincode to build successfully.
+The **`import`** statement lists a few dependencies that you will need for your chaincode to build successfully.
 
- - **fmt** - contains **Println** for debugging/logging
- - **github.com/hyperledger/fabric/core/chaincode/shim** - contains the definition for the chaincode interface and the chaincode stub, which you will need to interact with the ledger, as we described in the _Chaincode Key APIs_ section
- - **github.com/hyperledger/fabric/protos/peer** - contains the peer protobuf package.
+ - **`fmt`** - contains **`Println`** for debugging/logging
+ - **`github.com/hyperledger/fabric/core/chaincode/shim`** - contains the definition for the chaincode interface and the chaincode stub, which you will need to interact with the ledger, as we described in the _Chaincode Key APIs_ section
+ - **`github.com/hyperledger/fabric/protos/peer`** - contains the peer protobuf package.
 
 ### Sample Chaincode Decomposed - Struct
 
@@ -593,7 +593,7 @@ type SampleChaincode struct {
 }
 ```
 
-This might not look like much, but this is the statement that begins the definition of an object/class in Go. **SampleChaincode** implements a simple chaincode to manage an asset.
+This might not look like much, but this is the statement that begins the definition of an object/class in Go. **`SampleChaincode`** implements a simple chaincode to manage an asset.
 
 ### Sample Chaincode Decomposed - Init Method
 
@@ -602,32 +602,32 @@ Next, we’ll implement the **Init** method. **Init** is called during the chain
 ```golang
 func (t *SampleChaincode) Init(stub shim.ChainCodeStubInterface) peer.Response {
 
-// Get the args from the transaction proposal
+    // Get the args from the transaction proposal
 
-   args := stub.GetStringArgs()
+    args := stub.GetStringArgs()
 
-if len(args) != 2 {
+    if len(args) != 2 {
 
-return shim.Error("Incorrect arguments. Expecting a key and a value")
+        return shim.Error("Incorrect arguments. Expecting a key and a value")
 
-}
+    }
 
-// We store the key and the value on the ledger
+    // We store the key and the value on the ledger
 
-err := stub.PutState(args[0], []byte(args[1]))
+    err := stub.PutState(args[0], []byte(args[1]))
 
-if err != nil {
+    if err != nil {
 
-return shim.Error(fmt.Sprintf("Failed to create asset: %s", args[0]))
+        return shim.Error(fmt.Sprintf("Failed to create asset: %s", args[0]))
 
-}
+    }
 
-return shim.Success(nil)
+    return shim.Success(nil)
 
 }
 ```
 
-The Init implementation accepts two parameters as inputs, and proposes to write a key/value pair to the ledger by using the **stub.PutState** function. **GetStringArgs** retrieves and checks the validity of arguments which we expect to be a key/value pair. Therefore, we check to ensure that there are two arguments specified. If not, we return an error from the **Init** method, to indicate that something went wrong. Once we have verified the correct number of arguments, we can store the initial state in the ledger. In order to accomplish this, we call the **stub.PutState** function, specifying the first argument as the key, and the second argument as the value for that key. If no errors are returned, we will return success from the **Init** method.
+The Init implementation accepts two parameters as inputs, and proposes to write a key/value pair to the ledger by using the **`stub.PutState`** function. **`GetStringArgs`** retrieves and checks the validity of arguments which we expect to be a key/value pair. Therefore, we check to ensure that there are two arguments specified. If not, we return an error from the **Init** method, to indicate that something went wrong. Once we have verified the correct number of arguments, we can store the initial state in the ledger. In order to accomplish this, we call the **`stub.PutState`** function, specifying the first argument as the key, and the second argument as the value for that key. If no errors are returned, we will return success from the **Init** method.
 
 ### Sample Chaincode Decomposed - Invoke Method
 
@@ -636,33 +636,33 @@ Now, we’ll explore the **Invoke** method, which gets called when a transaction
 ```golang
 func (t *SampleChaincode) Invoke(stub shim.ChaincodeStubInterface) peer.Response {
 
-// Extract the function and args from the transaction proposal
+    // Extract the function and args from the transaction proposal
 
-fn, args := stub.GetFunctionAndParameters()
+    fn, args := stub.GetFunctionAndParameters()
 
-var result string
+    var result string
 
-var err error
+    var err error
 
-if fn == "set" {
+    if fn == "set" {
 
-result, err = set(stub, args)
+        result, err = set(stub, args)
 
-} else { // assume 'get' even if fn is nil
+    } else { // assume 'get' even if fn is nil
 
-result, err = get(stub, args)
+        result, err = get(stub, args)
 
-}
+    }
 
-if err != nil { //Failed to get function and/or arguments from transaction proposal
+    if err != nil { //Failed to get function and/or arguments from transaction proposal
 
-return shim.Error(err.Error())
+        return shim.Error(err.Error())
 
-}
+    }
 
-// Return the result as success payload
+    // Return the result as success payload
 
-return shim.Success([]byte(result))
+    return shim.Success([]byte(result))
 
 }
 ```
@@ -672,82 +672,82 @@ There are two basic actions a client can invoke: _get_ and _set_.
  - The _get_ method will be used to query and return the value of an existing asset.
  - The _set_ method will be used to create a new asset or update the value of an existing asset.
 
-To start, we’ll call **GetFunctionandParameters** to isolate the function name and parameter variables. Each transaction is either a set or a get. Let's first look at how the set method is implemented:
+To start, we’ll call **`GetFunctionandParameters`** to isolate the function name and parameter variables. Each transaction is either a _set_ or a _get_. Let's first look at how the set method is implemented:
 
 ```golang
 func set(stub shim.ChaincodeStubInterface, args []string) (string, error) {
 
-if len(args) != 2 {
+    if len(args) != 2 {
 
-return "", fmt.Errorf("Incorrect arguments. Expecting a key and a value")
+        return "", fmt.Errorf("Incorrect arguments. Expecting a key and a value")
 
-}
+    }
 
-err := stub.PutState(args[0], []byte(args[1]))
+    err := stub.PutState(args[0], []byte(args[1]))
 
-if err != nil {
+    if err != nil {
 
-return "", fmt.Errorf("Failed to set asset: %s", args[0])
+        return "", fmt.Errorf("Failed to set asset: %s", args[0])
 
-}
+    }
 
-return args[1], nil
+    return args[1], nil
 
 }
 ``` 
 
-The set method will create or modify an asset identified by a key with the specified value. The set method will modify the world state to include the key/value pair specified. If the key exists, it will override the value with the new one, using the **PutState** method; otherwise, a new asset will be created with the specified value.
+The set method will create or modify an asset identified by a key with the specified value. The set method will modify the world state to include the key/value pair specified. If the key exists, it will override the value with the new one, using the **`PutState`** method; otherwise, a new asset will be created with the specified value.
 
 Next, let's look at how the _get_ method is implemented:
 
 ```golang
 func get(stub shim.ChaincodeStubInterface, args []string) (string, error) {
 
-if len(args) != 1 {
+    if len(args) != 1 {
 
-return "", fmt.Errorf("Incorrect arguments. Expecting a key")
+        return "", fmt.Errorf("Incorrect arguments. Expecting a key")
 
-}
+    }
 
-value, err := stub.GetState(args[0])
+    value, err := stub.GetState(args[0])
 
-if err != nil {
+    if err != nil {
 
-return "", fmt.Errorf("Failed to get asset: %s with error: %s", args[0], err)
+        return "", fmt.Errorf("Failed to get asset: %s with error: %s", args[0], err)
 
-}
+    }
 
-if value == nil {
+    if value == nil {
 
-return "", fmt.Errorf("Asset not found: %s", args[0])
+        return "", fmt.Errorf("Asset not found: %s", args[0])
 
-}
+    }
 
-return string(value), nil
+    return string(value), nil
 
 }
 ```
 
-The _get_ method will attempt to retrieve the value for the specified key. If the application does not pass in a single key, an error will be returned; otherwise, the **GetState** method will be used to query the world state for the specified key. If the key has not yet been added to the ledger (and world state), then an error will be returned; otherwise, the value that was set for the specified key is returned from the method.
+The _get_ method will attempt to retrieve the value for the specified key. If the application does not pass in a single key, an error will be returned; otherwise, the **`GetState`** method will be used to query the world state for the specified key. If the key has not yet been added to the ledger (and world state), then an error will be returned; otherwise, the value that was set for the specified key is returned from the method.
 
 ### Sample Chaincode Decomposed - Main Function
 
-The last piece of code in this sample is the **main** function, which will call the **Start** function. The **main** function starts the chaincode in the container during instantiation.
+The last piece of code in this sample is the **`main`** function, which will call the **`Start`** function. The **`main`** function starts the chaincode in the container during instantiation.
 
 ```golang
 func main() {
 
-err := shim.Start(new(SampleChaincode))
+    err := shim.Start(new(SampleChaincode))
 
-if err != nil {
+    if err != nil {
 
-fmt.Println("Could not start SampleChaincode")
+        fmt.Println("Could not start SampleChaincode")
 
-} else {
+    } else {
 
-fmt.Println("SampleChaincode successfully started")
+    fmt.Println("SampleChaincode successfully started")
 
-}
+    }
 
 }
 ```
@@ -774,13 +774,13 @@ We create a Tuna Structure that has four properties. Structure tags are used by 
 ```golang
 type Tuna struct {
 
-Vessel string ‘json:"vessel"’
+    Vessel string ‘json:"vessel"’
 
-Datetime string ‘json:"datetime"’
+    Datetime string ‘json:"datetime"’
 
-Location string ‘json:"location"’
+    Location string ‘json:"location"’
 
-Holder string ‘json:"holder"’
+    Holder string ‘json:"holder"’
 
 }
 ```
@@ -814,35 +814,35 @@ We’ll be getting into the different tuna chaincode methods in the following se
 ```golang
 func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-// Retrieve the requested Smart Contract function and arguments
+    // Retrieve the requested Smart Contract function and arguments
 
-function, args := APIstub.GetFunctionAndParameters()
+    function, args := APIstub.GetFunctionAndParameters()
 
-// Route to the appropriate handler function to interact with the ledger appropriately
+    // Route to the appropriate handler function to interact with the ledger appropriately
 
-if function == "queryTuna" {
+    if function == "queryTuna" {
 
-return s.queryTuna(APIstub, args)
+        return s.queryTuna(APIstub, args)
 
-} else if function == "initLedger" {
+    } else if function == "initLedger" {
 
-return s.initLedger(APIstub)
+        return s.initLedger(APIstub)
 
-} else if function == "recordTuna" {
+    } else if function == "recordTuna" {
 
-return s.recordTuna(APIstub, args)
+        return s.recordTuna(APIstub, args)
 
-} else if function == "queryAllTuna" {
+    } else if function == "queryAllTuna" {
 
-return s.queryAllTuna(APIstub)
+        return s.queryAllTuna(APIstub)
 
-} else if function == "changeTunaHolder" {
+    } else if function == "changeTunaHolder" {
 
-return s.changeTunaHolder(APIstub, args)
+        return s.changeTunaHolder(APIstub, args)
 
-}
+    }
 
-return shim.Error("Invalid Smart Contract function name.")
+    return shim.Error("Invalid Smart Contract function name.")
 
 }
 ```
@@ -854,73 +854,73 @@ The _queryTuna_ method would be used by a fisherman, regulator, or restaurateur 
 ```golang
 func (s *SmartContract) queryTuna(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-if len(args) != 1 {
+    if len(args) != 1 {
 
-return shim.Error("Incorrect number of arguments. Expecting 1")
+        return shim.Error("Incorrect number of arguments. Expecting 1")
 
-}
+    }
 
-tunaAsBytes, _ := APIstub.GetState(args[0])
+    tunaAsBytes, _ := APIstub.GetState(args[0])
 
-if tunaAsBytes == nil {
+    if tunaAsBytes == nil {
 
-return shim.Error(“Could not locate tuna”)
+        return shim.Error(“Could not locate tuna”)
 
-}
+    }
 
-return shim.Success(tunaAsBytes)
+    return shim.Success(tunaAsBytes)
 
 }
 ```
 
 ### Chaincode Methods - initLedger
 
-The initLedger method will add test data to our network.
+The _initLedger_ method will add test data to our network.
 
 ```golang
 func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-tuna := []Tuna{
+    tuna := []Tuna{
 
-Tuna{Vessel: "923F", Location: "67.0006, -70.5476", Timestamp: "1504054225", Holder: "Miriam"},
+        Tuna{Vessel: "923F", Location: "67.0006, -70.5476", Timestamp: "1504054225", Holder: "Miriam"},
 
-Tuna{Vessel: "M83T", Location: "91.2395, -49.4594", Timestamp: "1504057825", Holder: "Dave"},
+        Tuna{Vessel: "M83T", Location: "91.2395, -49.4594", Timestamp: "1504057825", Holder: "Dave"},
 
-Tuna{Vessel: "T012", Location: "58.0148, 59.01391", Timestamp: "1493517025", Holder: "Igor"},
+        Tuna{Vessel: "T012", Location: "58.0148, 59.01391", Timestamp: "1493517025", Holder: "Igor"},
 
-Tuna{Vessel: "P490", Location: "-45.0945, 0.7949", Timestamp: "1496105425", Holder: "Amalea"},
+        Tuna{Vessel: "P490", Location: "-45.0945, 0.7949", Timestamp: "1496105425", Holder: "Amalea"},
 
-Tuna{Vessel: "S439", Location: "-107.6043, 19.5003", Timestamp: "1493512301", Holder: "Rafa"},
+        Tuna{Vessel: "S439", Location: "-107.6043, 19.5003", Timestamp: "1493512301", Holder: "Rafa"},
 
-Tuna{Vessel: "J205", Location: "-155.2304, -15.8723", Timestamp: "1494117101", Holder: "Shen"},
+        Tuna{Vessel: "J205", Location: "-155.2304, -15.8723", Timestamp: "1494117101", Holder: "Shen"},
 
-Tuna{Vessel: "S22L", Location: "103.8842, 22.1277", Timestamp: "1496104301", Holder: "Leila"},
+        Tuna{Vessel: "S22L", Location: "103.8842, 22.1277", Timestamp: "1496104301", Holder: "Leila"},
 
-Tuna{Vessel: "EI89", Location: "-132.3207, -34.0983", Timestamp: "1485066691", Holder: "Yuan"},
+        Tuna{Vessel: "EI89", Location: "-132.3207, -34.0983", Timestamp: "1485066691", Holder: "Yuan"},
 
-Tuna{Vessel: "129R", Location: "153.0054, 12.6429", Timestamp: "1485153091", Holder: "Carlo"},
+        Tuna{Vessel: "129R", Location: "153.0054, 12.6429", Timestamp: "1485153091", Holder: "Carlo"},
 
-Tuna{Vessel: "49W4", Location: "51.9435, 8.2735", Timestamp: "1487745091", Holder: "Fatima"},
+        Tuna{Vessel: "49W4", Location: "51.9435, 8.2735", Timestamp: "1487745091", Holder: "Fatima"},
 
-}
+    }
 
-i := 0
+    i := 0
 
-for i < len(tuna) {
+    for i < len(tuna) {
 
-fmt.Println("i is ", i)
+        fmt.Println("i is ", i)
 
-tunaAsBytes, _ := json.Marshal(tuna[i])
+        tunaAsBytes, _ := json.Marshal(tuna[i])
 
-APIstub.PutState(strconv.Itoa(i+1), tunaAsBytes)
+        APIstub.PutState(strconv.Itoa(i+1), tunaAsBytes)
 
-fmt.Println("Added", tuna[i])
+        fmt.Println("Added", tuna[i])
 
-i = i + 1
+        i = i + 1
 
-}
+    }
 
-return shim.Success(nil)
+    return shim.Success(nil)
 
 }
 ```
@@ -932,25 +932,25 @@ The _recordTuna_ method is the method a fisherman like Sarah would use to record
 ```golang
 func (s *SmartContract) recordTuna(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-if len(args) != 5 {
+    if len(args) != 5 {
 
-return shim.Error("Incorrect number of arguments. Expecting 5")
+        return shim.Error("Incorrect number of arguments. Expecting 5")
 
-}
+    }
 
-var tuna = Tuna{ Vessel: args[1], Location: args[2], Timestamp: args[3], Holder: args[4]}
+    var tuna = Tuna{ Vessel: args[1], Location: args[2], Timestamp: args[3], Holder: args[4]}
 
-tunaAsBytes, _ := json.Marshal(tuna)
+    tunaAsBytes, _ := json.Marshal(tuna)
 
-err := APIstub.PutState(args[0], tunaAsBytes)
+    err := APIstub.PutState(args[0], tunaAsBytes)
 
-if err != nil {
+    if err != nil {
 
-return shim.Error(fmt.Sprintf("Failed to record tuna catch: %s", args[0]))
+        return shim.Error(fmt.Sprintf("Failed to record tuna catch: %s", args[0]))
 
-}
+    }
 
-return shim.Success(nil)
+    return shim.Success(nil)
 
 }
 ```
@@ -962,71 +962,71 @@ The _queryAllTuna_ method allows for assessing all the records; in this case, al
 ```golang
 func (s *SmartContract) queryAllTuna(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-startKey := "0"
+    startKey := "0"
 
-endKey := "999"
+    endKey := "999"
 
-resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
+    resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
 
-if err != nil {
+    if err != nil {
 
-return shim.Error(err.Error())
+        return shim.Error(err.Error())
 
-}
+    }
 
-defer resultsIterator.Close()
+    defer resultsIterator.Close()
 
-// buffer is a JSON array containing QueryResults
+    // buffer is a JSON array containing QueryResults
 
-var buffer bytes.Buffer
+    var buffer bytes.Buffer
 
-buffer.WriteString("[")
+    buffer.WriteString("[")
 
-bArrayMemberAlreadyWritten := false
+    bArrayMemberAlreadyWritten := false
 
-for resultsIterator.HasNext() {
+    for resultsIterator.HasNext() {
 
-queryResponse, err := resultsIterator.Next()
+        queryResponse, err := resultsIterator.Next()
 
-if err != nil {
+        if err != nil {
 
-return shim.Error(err.Error())
+            return shim.Error(err.Error())
 
-}
+        }
 
-// Add a comma before array members, suppress it for the first array member
+        // Add a comma before array members, suppress it for the first array member
 
-if bArrayMemberAlreadyWritten == true {
+        if bArrayMemberAlreadyWritten == true {
 
-buffer.WriteString(",")
+            buffer.WriteString(",")
 
-}
+        }
 
-buffer.WriteString("{\"Key\":")
+        buffer.WriteString("{\"Key\":")
 
-buffer.WriteString("\"")
+        buffer.WriteString("\"")
 
-buffer.WriteString(queryResponse.Key)
+        buffer.WriteString(queryResponse.Key)
 
-buffer.WriteString("\"")
+        buffer.WriteString("\"")
 
-buffer.WriteString(", \"Record\":")
+        buffer.WriteString(", \"Record\":")
 
-// Record is a JSON object, so we write as-is
+        // Record is a JSON object, so we write as-is
 
-buffer.WriteString(string(queryResponse.Value))
+        buffer.WriteString(string(queryResponse.Value))
 
-buffer.WriteString("}")
+        buffer.WriteString("}")
 
-bArrayMemberAlreadyWritten = true
+        bArrayMemberAlreadyWritten = true
 
-}
+    }
 
-buffer.WriteString("]")
+    buffer.WriteString("]")
 
-fmt.Printf("- queryAllTuna:\n%s\n", buffer.String())
+    fmt.Printf("- queryAllTuna:\n%s\n", buffer.String())
 
-return shim.Success(buffer.Bytes())
+    return shim.Success(buffer.Bytes())
 
 }
 ```
@@ -1038,39 +1038,39 @@ As the tuna fish is passed to different parties in the supply chain, the data in
 ```golang
 func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-if len(args) != 2 {
+    if len(args) != 2 {
 
-return shim.Error("Incorrect number of arguments. Expecting 2")
+        return shim.Error("Incorrect number of arguments. Expecting 2")
 
-}
+    }
 
-tunaAsBytes, _ := APIstub.GetState(args[0])
+    tunaAsBytes, _ := APIstub.GetState(args[0])
 
-if tunaAsBytes != nil {
+    if tunaAsBytes != nil {
 
-return shim.Error("Could not locate tuna")
+        return shim.Error("Could not locate tuna")
 
-}
+    }
 
-tuna := Tuna{}
+    tuna := Tuna{}
 
-json.Unmarshal(tunaAsBytes, &tuna)
+    json.Unmarshal(tunaAsBytes, &tuna)
 
-// Normally check that the specified argument is a valid holder of tuna but here we are skipping this check for this example. 
+    // Normally check that the specified argument is a valid holder of tuna but here we are skipping this check for this example. 
 
-tuna.Holder = args[1]
+    tuna.Holder = args[1]
 
-tunaAsBytes, _ = json.Marshal(tuna)
+    tunaAsBytes, _ = json.Marshal(tuna)
 
-err := APIstub.PutState(args[0], tunaAsBytes)
+    err := APIstub.PutState(args[0], tunaAsBytes)
 
-if err != nil {
+    if err != nil {
 
-return shim.Error(fmt.Sprintf("Failed to change tuna holder: %s", args[0]))
+        return shim.Error(fmt.Sprintf("Failed to change tuna holder: %s", args[0]))
 
-}
+    }
 
-return shim.Success(nil)
+    return shim.Success(nil)
 
 }
 ```
@@ -1091,7 +1091,7 @@ Applications use APIs to run smart contracts. In Hyperledger Fabric, these smart
 
 ### Fabric Node.js SDK
 
-In this exercise, we will be using the Node.js SDK ([https://fabric-sdk-node.github.io/](https://fabric-sdk-node.github.io/) to interact with the network, and, therefore, the ledger. The Hyperledger Fabric Client SDK makes it easy to use APIs to interact with a Hyperledger Fabric blockchain. This section will help you write your first application, starting with a test Hyperledger Fabric network, then learning the parameters of the sample smart contract, and lastly, developing the application to query and update ledger records.
+In this exercise, we will be using the Node.js SDK ([https://fabric-sdk-node.github.io/](https://fabric-sdk-node.github.io/)) to interact with the network, and, therefore, the ledger. The Hyperledger Fabric Client SDK makes it easy to use APIs to interact with a Hyperledger Fabric blockchain. This section will help you write your first application, starting with a test Hyperledger Fabric network, then learning the parameters of the sample smart contract, and lastly, developing the application to query and update ledger records.
 
 For additional information, visit the Hyperledger Fabric Node SDK  documentation: [https://fabric-sdk-node.github.io/tutorial-app-dev-env-setup.html](https://fabric-sdk-node.github.io/tutorial-app-dev-env-setup.html).
 
@@ -1107,7 +1107,7 @@ The application will be written in Node.js. The chaincode that we will be using 
 
 ### Getting Started (Part I)
 
-In case you haven’t downloaded the **education** repository for this course, follow the below directions in your terminal window:
+In case you haven’t downloaded the **`education`** repository for this course, follow the below directions in your terminal window:
 
 ```
 $ git clone https://github.com/hyperledger/education.git
@@ -1124,7 +1124,6 @@ First, remove any pre-existing containers, as it may conflict with commands in t
 ```
 $ docker rm -f $(docker ps -aq)
 ```
-
 Then, let’s start the Hyperledger Fabric network with the following command:
 
 ```
@@ -1147,7 +1146,7 @@ $ rm -rf ~/Library/Containers/com.docker.docker/Data/*
 
 ### Getting Started (Part II)
 
-Install the required libraries from the **package.json** file, register the **Admin** and **User** components of our network, and start the client application with the following commands:
+Install the required libraries from the **`package.json`** file, register the **`Admin`** and **`User`** components of our network, and start the client application with the following commands:
 
 ```
 $ npm install
@@ -1159,7 +1158,7 @@ $ node registerUser.js
 $ node server.js
 ```
 
-Load the client simply by opening **localhost:8000** in any browser window of your choice, and you should see the user interface for our simple application at this URL (as in the screenshot below).
+Load the client simply by opening **`localhost:8000`** in any browser window of your choice, and you should see the user interface for our simple application at this URL (as in the screenshot below).
 
 |![fabric-application1](../images/introduction-to-hyperledger-fabric/fabric-application1.png)|
 |:--:|
@@ -1200,17 +1199,17 @@ Here you can see the file structure of the Fabric application:
 ### Query All Tuna Recorded
 
 ```
- 1. // queryAllTuna - requires no arguments
- 2. const request = {
- 3.     chaincodeId:’tuna-app’,
- 4.     txId: tx_id,
- 5.     fcn: 'queryAllTuna',
- 6.     args: ['']
+ 1.     // queryAllTuna - requires no arguments
+ 2.     const request = {
+ 3.         chaincodeId:’tuna-app’,
+ 4.         txId: tx_id,
+ 5.         fcn: 'queryAllTuna',
+ 6.         args: ['']
  7.     };
- 8. return channel.queryByChaincode(request);
+ 8.     return channel.queryByChaincode(request);
 ```
 
-(Reference: The code comes from **..src/queryAllTuna.js**)
+(Reference: The code comes from **`..src/queryAllTuna.js`**)
 
 Now, let’s query our database, where there should be some sample entries already, since our chaincode smart contract initiated the ledger with 10 previous catches. This function takes no arguments, as we see on line 6. Instead, it takes an empty array.
 
@@ -1223,17 +1222,17 @@ The query response you should see in the user interface is 10 pre-populated entr
 ### Query a Specific Tuna Recorded
 
 ```
- 1. // queryTuna - requires 1 argument
- 2. const request = {
- 3.     chaincodeId:’tuna-app’,
- 4.     txId: tx_id,
- 5.     fcn: 'queryTuna',
- 6.     args: ['1']
+ 1.     // queryTuna - requires 1 argument
+ 2.     const request = {
+ 3.         chaincodeId:’tuna-app’,
+ 4.         txId: tx_id,
+ 5.         fcn: 'queryTuna',
+ 6.         args: ['1']
  7.     };
- 8. return channel.queryByChaincode(request);
+ 8.     return channel.queryByChaincode(request);
 ```
 
-(Reference: The code comes from **..src/queryTuna.js**)
+(Reference: The co  de comes from **`..src/queryTuna.js`**)
 
 Now, let’s query for a specific tuna catch. This function takes 1 argument, as you can see on line 6 above, an example would be ['1']. In this example, we are using the key to query for catches.
 
@@ -1246,20 +1245,20 @@ You should see the following query response detailing the attributes recorded fo
 ### Change Tuna Holder
 
 ```
- 1. // changeTunaHolder - requires 2 argument
- 2. var request = {
- 3.     chaincodeId:’tuna-app’,
- 4.     fcn: 'changeTunaHolder', 
- 5.     args: ['1', 'Alex'],
- 6.     chainId: 'mychannel',
- 7.     txId: tx_id
+ 1.     // changeTunaHolder - requires 2 argument
+ 2.     var request = {
+ 3.         chaincodeId:’tuna-app’,
+ 4.         fcn: 'changeTunaHolder', 
+ 5.         args: ['1', 'Alex'],
+ 6.         chainId: 'mychannel',
+ 7.         txId: tx_id
  8.     };
- 9. return channel.sendTransactionProposal(request);
+ 9.     return channel.sendTransactionProposal(request);
 ```
 
-(Reference: The code comes from **..src/changeHolder.js**)
+(Reference: The code comes from **`..src/changeHolder.js`**)
 
-Now, let’s change the name of the person in possession of a given tuna. This function takes 2 arguments: the key for the particular catch, and the new holder, as we can see on line 5 in the example above. Ex: **args: ['1', 'Alex']**.
+Now, let’s change the name of the person in possession of a given tuna. This function takes 2 arguments: the key for the particular catch, and the new holder, as we can see on line 5 in the example above. Ex: **`args: ['1', 'Alex']`**.
 
 You may be able to see a similar success response in your terminal window:
 
@@ -1277,7 +1276,7 @@ This indicates we have sent a proposal from our application via the SDK, and the
 |:--:|
 | *Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)* | 
 
-You should see that the holder has indeed been changed by querying for key **['1']** again. Now, the **holder** attribute has been changed from **Miriam** to **Alex**, for example.
+You should see that the holder has indeed been changed by querying for key **`['1']`** again. Now, the **`holder`** attribute has been changed from **`Miriam`** to **`Alex`**, for example.
 
 |![fabric-changedRecord](../images/introduction-to-hyperledger-fabric/fabric-changedRecord.png)|
 |:--:|
@@ -1297,9 +1296,9 @@ You should see that the holder has indeed been changed by querying for key **['1
  9. return channel.sendTransactionProposal(request);
 ```
 
-(Reference: The code comes from **..src/recordTuna.js**)
+(Reference: The code comes from **`..src/recordTuna.js`**)
 
-Lastly, we will practice recording a new tuna catch, and adding it to the ledger by invoking the **recordTuna** function. This function takes 5 arguments, itemizing each of the attributes of a new catch. You can see an example submission on line 5: **args: ['11','239482392', '28.012, 150.225', '0923T', "Hansel"]**.
+Lastly, we will practice recording a new tuna catch, and adding it to the ledger by invoking the **`recordTuna`** function. This function takes 5 arguments, itemizing each of the attributes of a new catch. You can see an example submission on line 5: **`args: ['11','239482392', '28.012, 150.225', '0923T', "Hansel"]`**.
 
 |![fabric-createTunaRecord](../images/introduction-to-hyperledger-fabric/fabric-createTunaRecord.png)|
 |:--:|
@@ -1313,7 +1312,7 @@ Check and you should see that the holder has indeed been changed by querying all
 
 ### Finishing Up
 
-Remove all Docker containers and images that we created in this tutorial with the following command in the **tuna-app** folder:
+Remove all Docker containers and images that we created in this tutorial with the following command in the **`tuna-app`** folder:
 
 ```
 $ docker rm -f $(docker ps -aq)
@@ -1330,8 +1329,8 @@ $ docker rmi -f $(docker images -a -q)
  1. A developer creates an application and smart contract.
  2. The application will invoke calls within the smart contract via the Hyperledger Fabric Client SDK.
  3. These calls are processed by the business logic within the chaincode smart contract.
- 4. A **put** or **delete** command will go through the consensus process and will be added to the blockchain within the ledger.
- 5. A **get** command can only read from the world state, but it is not recorded on the blockchain.
+ 4. A **`put`** or **`delete`** command will go through the consensus process and will be added to the blockchain within the ledger.
+ 5. A **`get`** command can only read from the world state, but it is not recorded on the blockchain.
  6. The application can access blockchain information via APIs.
  
 ### Application Flow Example
@@ -1342,7 +1341,7 @@ $ docker rmi -f $(docker images -a -q)
 
  1. Various users (fisherman, regulators, or restaurateurs etc.) will interact with the Node.js application.
  2. The client JS will send messages to the backend when the user interacts with the application.
- 3. Reading or writing the ledger is known as a proposal (for example, querying a specific Tuna catch - **queryTuna**-  or recording a tuna catch - **recordTuna**). This proposal is built by our application via the SDK, and then sent to the endorsing peers.
+ 3. Reading or writing the ledger is known as a proposal (for example, querying a specific Tuna catch - **`queryTuna`**-  or recording a tuna catch - **`recordTuna`**). This proposal is built by our application via the SDK, and then sent to the endorsing peers.
  4. The endorsing peers will use the application-specific chaincode smart contract to simulate the transaction. If there are no issues, the transaction will be endorsed, and sent back to our application.
  5. Our application will then send the endorsed proposal to the ordering service via the SDK. The orderer will package many proposals from the whole network into a block. Then, it will broadcast the new block to the committing peers in the network.
  6. Finally, each committing peer will validate the block and write it to its ledger (shown in teal above). The transaction has now been committed, and any reads will reflect this change.
@@ -1447,31 +1446,31 @@ Refer to the function below from the chaincode contract used in the demonstrated
 ```golang
 func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-function, args := APIstub.GetFunctionAndParameters()
+    function, args := APIstub.GetFunctionAndParameters()
 
-if function == "queryTuna" {
+    if function == "queryTuna" {
 
-return s.queryTuna(APIstub, args)
+        return s.queryTuna(APIstub, args)
 
-} else if function == "initLedger" {
+    } else if function == "initLedger" {
 
-return s.initLedger(APIstub)
+        return s.initLedger(APIstub)
 
-} else if function == "recordTuna" {
+    } else if function == "recordTuna" {
 
-return s.recordTuna(APIstub, args)
+        return s.recordTuna(APIstub, args)
 
-} else if function == "queryAllTuna" {
+    } else if function == "queryAllTuna" {
 
-return s.queryAllTuna(APIstub)
+        return s.queryAllTuna(APIstub)
 
-} else if function == "changeTunaHolder" {
+    } else if function == "changeTunaHolder" {
 
-return s.changeTunaHolder(APIstub, args)
+        return s.changeTunaHolder(APIstub, args)
 
-}
+    }
 
-return shim.Error("Invalid Smart Contract function name.")
+    return shim.Error("Invalid Smart Contract function name.")
 
 }
 ```
@@ -1496,25 +1495,31 @@ What are the three main roles within a Hyperledger Fabric network? Select all an
 <!-- B,A,C -->
 Using the dropdown option below, match the following types of roles in a Hyperledger Fabric network with their descriptions.
  1. Endorsing Peer
- <details><summary>Select an option</summary>
-- Orders all transaction blocks into the ledger<br>
-- Approves or declines transaction proposals and must hold smart contracts<br>
-- Maintain ledger and state and commits transactions<br>
- </details> 
+    <details><summary>Select an option</summary>
+    <ol type="A">
+    <li>Orders all transaction blocks into the ledger</li>
+    <li>Approves or declines transaction proposals and must hold smart contracts</li>
+    <li>Maintain ledger and state and commits transactions</li>
+    </ol>
+    </details> 
  
  2. Ordering Service
- <details><summary>Select an option</summary>
-- Orders all transaction blocks into the ledger<br>
-- Approves or declines transaction proposals and must hold smart contracts<br>
-- Maintain ledger and state and commits transactions<br>
- </details> 
+    <details><summary>Select an option</summary>
+    <ol type="A">
+    <li>Orders all transaction blocks into the ledger</li>
+    <li>Approves or declines transaction proposals and must hold smart contracts</li>
+    <li>Maintain ledger and state and commits transactions</li>
+    </ol>
+    </details> 
 
  3. Committing Peer
- <details><summary>Select an option</summary>
-- Orders all transaction blocks into the ledger<br>
-- Approves or declines transaction proposals and must hold smart contracts<br>
-- Maintain ledger and state and commits transactions<br>
- </details>  
+    <details><summary>Select an option</summary>
+    <ol type="A">
+    <li>Orders all transaction blocks into the ledger</li>
+    <li>Approves or declines transaction proposals and must hold smart contracts</li>
+    <li>Maintain ledger and state and commits transactions</li>
+    </ol>
+    </details>  
 
 ### Knowledge Check 7.10
 <!-- B -->
