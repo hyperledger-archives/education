@@ -1,0 +1,265 @@
+version: '3'
+
+networks:
+  services:
+    ipam:
+      config:
+        - subnet: 173.17.0.0/24
+
+services:
+  #
+  # Webserver
+  #
+  webserver:
+    image: indy-node
+    build:
+      context: .
+      dockerfile: pool.dockerfile
+    command: 'bash -c ''./scripts/start_webserver.sh'''
+    environment:
+      - IP=173.17.0.101
+      - IPS=173.17.0.101,173.17.0.102,173.17.0.103,173.17.0.104
+      - HOST=173.17.0.100
+      - RUST_LOG=${RUST_LOG}
+    networks:
+      services:
+        ipv4_address: 173.17.0.100
+    ports:
+      - 9000:8000
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+    volumes:
+      - ./server:/home/indy/server
+      - webserver-cli:/home/indy/.indy-cli
+      - node1-data:/home/indy/.mnt/node1
+      - node2-data:/home/indy/.mnt/node2
+      - node3-data:/home/indy/.mnt/node3
+      - node4-data:/home/indy/.mnt/node4
+
+  #
+  # Nodes
+  #
+  node1:
+    image: indy-node
+    command: 'bash -c ''./scripts/start_node.sh 1'''
+    networks:
+      services:
+        ipv4_address: 173.17.0.101
+    ports:
+      - 9701:9701
+      - 9702:9702
+    environment:
+      - IP=173.17.0.101
+      - IPS=173.17.0.101,173.17.0.102,173.17.0.103,173.17.0.104
+#      - HOST=173.17.0.101
+      - RUST_LOG=${RUST_LOG}
+    volumes:
+      - node1-data:/home/indy/ledger
+
+  node2:
+    image: indy-node
+    command: 'bash -c ''./scripts/start_node.sh 2'''
+    networks:
+      services:
+        ipv4_address: 173.17.0.102
+    ports:
+      - 9703:9703
+      - 9704:9704
+    environment:
+      - IP=173.17.0.101
+      - IPS=173.17.0.101,173.17.0.102,173.17.0.103,173.17.0.104
+      - RUST_LOG=${RUST_LOG}
+#      - HOST=173.17.0.102
+    volumes:
+      - node2-data:/home/indy/ledger
+
+  node3:
+    image: indy-node
+    command: 'bash -c ''./scripts/start_node.sh 3'''
+    networks:
+      services:
+        ipv4_address: 173.17.0.103
+    ports:
+      - 9705:9705
+      - 9706:9706
+    environment:
+      - IP=173.17.0.101
+      - IPS=173.17.0.101,173.17.0.102,173.17.0.103,173.17.0.104
+#      - HOST=173.17.0.103
+      - RUST_LOG=${RUST_LOG}
+    volumes:
+      - node3-data:/home/indy/ledger
+
+  node4:
+    image: indy-node
+    command: 'bash -c ''./scripts/start_node.sh 4'''
+    networks:
+      services:
+        ipv4_address: 173.17.0.104
+    ports:
+      - 9707:9707
+      - 9708:9708
+    environment:
+      - IP=173.17.0.101
+      - IPS=173.17.0.101,173.17.0.102,173.17.0.103,173.17.0.104
+#      - HOST=173.17.0.104
+      - RUST_LOG=${RUST_LOG}
+    volumes:
+      - node4-data:/home/indy/ledger
+
+  #
+  # Agents
+  #
+  alice:
+    image: indy-agentjs
+    build:
+      context: .
+      dockerfile: agent.dockerfile
+    command: "bash -c 'npm start'"
+    environment:
+      - ICON_SRC=https://maxcdn.icons8.com/Share/icon/Users/person_female1600.png
+      - THEME=DarkGray
+      - PORT=3000
+      - NAME=Alice
+      - EMAIL=alice@faber.edu
+      - PASSWORD=123
+      - USERNAME=alice
+      - PUBLIC_DID_ENDPOINT=173.17.0.150:3000
+      - RUST_LOG=${RUST_LOG}
+      - TEST_POOL_IP=${TEST_POOL_IP}
+    ports:
+      - 3000:3000
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+    networks:
+      services:
+        ipv4_address: 173.17.0.150
+    volumes:
+      - node1-data:/home/indy/ledger
+
+  #
+  #
+  bob:
+    image: indy-agentjs
+    command: "bash -c 'npm start'"
+    environment:
+      - ICON_SRC=http://www.clker.com/cliparts/g/l/R/7/h/u/teamstijl-person-icon-blue-hi.png
+      - THEME=BurlyWood
+      - PORT=3001
+      - NAME=Bob
+      - EMAIL=bob@byu.edu
+      - PASSWORD=123
+      - USERNAME=bob
+      - PUBLIC_DID_ENDPOINT=173.17.0.160:3001
+      - RUST_LOG=${RUST_LOG}
+      - TEST_POOL_IP=${TEST_POOL_IP}
+    ports:
+      - 3001:3001
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+      - alice
+    networks:
+      services:
+        ipv4_address: 173.17.0.160
+    volumes:
+      - node1-data:/home/indy/ledger
+
+  faber:
+    image: indy-agentjs
+    command: "bash -c 'npm start'"
+    environment:
+      - ICON_SRC=https://cdn2.iconfinder.com/data/icons/bubble-education-icons-1/360/School-512.png
+      - THEME=OliveDrab
+      - PORT=3002
+      - NAME=Faber College
+      - EMAIL=admin@faber.edu
+      - PASSWORD=123
+      - USERNAME=faber
+      - PUBLIC_DID_ENDPOINT=173.17.0.170:3002
+      - RUST_LOG=${RUST_LOG}
+      - TEST_POOL_IP=${TEST_POOL_IP}
+    ports:
+      - 3002:3002
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+      - alice
+    networks:
+      services:
+        ipv4_address: 173.17.0.170
+    volumes:
+      - node1-data:/home/indy/ledger
+
+  acme:
+    image: indy-agentjs
+    command: "bash -c 'npm start'"
+    environment:
+      - ICON_SRC=https://i.ytimg.com/vi/JUMufld7UcY/maxresdefault.jpg
+      - THEME=LightSteelBlue
+      - PORT=3003
+      - NAME=Acme Corporation
+      - EMAIL=boss@acme.com
+      - PASSWORD=123
+      - USERNAME=acme
+      - PUBLIC_DID_ENDPOINT=173.17.0.180:3003
+      - RUST_LOG=${RUST_LOG}
+      - TEST_POOL_IP=${TEST_POOL_IP}
+    ports:
+      - 3003:3003
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+      - alice
+    networks:
+      services:
+        ipv4_address: 173.17.0.180
+    volumes:
+      - node1-data:/home/indy/ledger
+
+  thrift:
+    image: indy-agentjs
+    command: "bash -c 'npm start'"
+    environment:
+      - ICON_SRC=http://www.psdgraphics.com/file/bank-building-icon.jpg
+      - THEME=Coral
+      - PORT=3004
+      - NAME=Thrift Bank
+      - EMAIL=owner@thrift.com
+      - PASSWORD=123
+      - USERNAME=thrift
+      - PUBLIC_DID_ENDPOINT=173.17.0.190:3004
+      - RUST_LOG=${RUST_LOG}
+      - TEST_POOL_IP=${TEST_POOL_IP}
+    ports:
+      - 3004:3004
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+      - alice
+    networks:
+      services:
+        ipv4_address: 173.17.0.190
+    volumes:
+      - node1-data:/home/indy/ledger
+
+volumes:
+  webserver-cli:
+  node1-data:
+  node2-data:
+  node3-data:
+  node4-data:
