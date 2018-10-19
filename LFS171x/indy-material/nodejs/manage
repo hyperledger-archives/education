@@ -1,5 +1,9 @@
 #!/bin/bash
 export MSYS_NO_PATHCONV=1
+# Name of container to use for start the indy cli or bash
+export BASH_CONTAINER=${BASH_CONTAINER:= nodejs_alice_1}
+# Services to start for "up" - normally blank to start all services
+export START_SERVICES=${START_SERVICES:=""}
 
 # =================================================================================================================
 # Usage:
@@ -14,9 +18,9 @@ usage () {
   build - Build the docker images for the project.
           You need to do this first.
 
-  start - Starts the 4 indy-node containers and a webserver to allow browsing the ledger.
-
-  rm - Reset the environment by removing the project containers and associated volumes.
+  up - Starts all containers and docker-compose logs.
+       Use ctrl-c to exit logging. Use "down" or "stop" to stop the run.
+  start - same as up
 
   logs - Display the logs from the docker compose run (ctrl-c to exit).
 
@@ -24,8 +28,11 @@ usage () {
 
   cli - Start indy-cli in the agent container.
 
-  stop - Stops the services.  This is a non-destructive process.  The containers
+  down - Brings down the services and removes the volumes (storage).  The containers
          are not deleted so they will be reused the next time you run start.
+  rm - same as down
+
+  stop - Stops the containers, leaving the volumes (storage).
 
   rebuild - Force a full rebuild of the docker images (no cache)
 EOF
@@ -33,32 +40,30 @@ exit 1
 }
 
 case "$1" in
-  start)
-      docker-compose up -d
+  start|up)
+      docker-compose up -d ${START_SERVICES}
       docker-compose logs -f
     ;;
   cli)
-      docker exec -it -e MODE=cli nodejs_alice_1 scripts/start_client.sh
+      docker exec -it -e MODE=cli  ${BASH_CONTAINER} indy-cli
     ;;
   bash)
-      docker exec -it -e MODE=bash nodejs_alice_1 scripts/start_client.sh
-    ;;
-  stop)
-      docker-compose stop
+       docker exec -it -e MODE=cli ${BASH_CONTAINER} bash
     ;;
   build)
-      docker build -t indy-node -f pool.dockerfile .
-      docker build -t indy-agentjs -f agent.dockerfile .
+      docker-compose build
     ;;
   rebuild)
-      docker build --no-cache -t indy-node -f pool.dockerfile .
-      docker build --no-cache -t indy-agentjs -f agent.dockerfile .
+      docker-compose build --no-cache
     ;;
   logs)
     docker-compose logs -f
     ;;
-  rm)
-      docker-compose down -v
+  stop)
+    docker-compose stop
+    ;;
+  down|rm)
+    docker-compose down -v
     ;;
   *)
       usage;;

@@ -14,9 +14,19 @@ Once you have the demo started, this **[Agent Demo Script](AgentDemoScript.md)**
 
 The code for this demonstration was initially written by Spencer Holman and Matthew Hailstone of Brigham Young University. Carol Howard created the documentation for the demonstration.
 
+## Running in your Browser or on Local Machine
+
+This demo can be run in a terminal using just a browser , or if you are more technically inclined, you can run it on your local machine. In the following sections, there is a sub-section for `In Browser` and `Local Machine`, depending on how you want to run the demo.
+
 ## Prerequisites
 
-To run this Indy Agent demonstration, you must have the following installed:
+### In Browser
+
+The only prequisite (other than a browser) is an account with [Docker Hub](https://hub.docker.com). Docker Hub is the "Play Store" for the [Docker](https://docker.com) ecosystem.
+
+### Local Machine
+
+To run this Indy Agent demonstration on your local machine, you must have the following installed:
 
 * Docker, including Docker Compose - Community Edition is fine.
   * If you do not already have Docker installed, open [this link](https://docs.docker.com/install/#supported-platforms) and then click the link for the installation instructions for your platform.
@@ -26,7 +36,24 @@ To run this Indy Agent demonstration, you must have the following installed:
 
 ## Installing the Demonstration
 
-To install the demonstration, you need to clone the git repository for the EdX Blockchain for Business course. To do that:
+### In Browser
+
+Go to the [Play with Docker](https://labs.play-with-docker.com/) and (if necessary) login. This site is operated by Docker to support developers learning about Docker.
+
+> If you want to learn more about the `Play with Docker` environment, look at the [About](https://training.play-with-docker.com/about/) and the Docker related tutorials at the Docker Labs [Training Site](https://training.play-with-docker.com).
+
+Click the "Start" button to start a Docker sandbox you can use to run the demo, and then click the `+Add an Instance` link to start a terminal in your browser. Within the browser, run the following command:
+
+- `git clone https://github.com/hyperledger/education`
+
+> **Tip**: To paste text in the terminal window, right-click on the window and choose `paste`
+
+- Navigate to the location of the code by running the command:
+  - `cd education/LFS171x/indy-material/nodejs`
+
+### Local Machine
+
+To install the demonstration on your local machine you need to clone the git repository for the EdX Blockchain for Business course. To do that:
 
 * Install the prerequisites listed above and make sure they are functioning on your system. To verify, open a terminal window and:
     * Run `git --version`, which should return something like: `git version 2.17.1`
@@ -39,28 +66,49 @@ To install the demonstration, you need to clone the git repository for the EdX B
 * Navigate to the location of the code by running the command:
   * `cd education/LFS171x/indy-material/nodejs`
 
-## Running the Demonstration
+## Starting the Demonstration
 
-To run the demonstration:
+The steps for runnning the demonstration are similar for the `In Browser` and `Local Machine` scenarios:
 
-* If you just installed the demonstration software, you are where you need to be.
-  * If not, open up a terminal window and navigate to the directory you did when Installing the Demonstration section (above).
-* To build the software, run the command `docker-compose build`
-* Once the build completes, start the demo by running the command `docker-compose up`
+- Run the command `./manage build` to build the components of the software
+- Run the command `./manage up` to run the components
 
-It will take awhile for the demo to start - lots of things are happening. The logs for all of the containers will display in the terminal window from which you started the demo.
+It takes a while for the demo to start - lots of things are happening. The logs for all of the containers will display in the terminal window. Logs show the output of both the Blockchain Ledger nodes communicating, and the Indy Agents starting up and communicating with the Ledger.
 
-Things to look for as the demo starts up:
+Things to watch for as the demo starts up:
 
 * You should periodically see things like "Listening on port 3001", which indicates an Agent is up and running.
 * You should **not** see a stack trace error in the code - that would indicate a problem.
 * You should **not** see any "Container exiting" messages, indicating containers not starting up properly.
-* There should be 10 docker containers running. In another terminal window, you can run "docker ps" to see if the 10 containers are running. Each will have a naming beginning with `nodejs_`.
+* There should be 10 docker containers running. You can hit `ctrl-c` to exit the log viewer and run the command `docker ps` to see all of the containers running. Run `./manage logs` if you want to see the logs again.
 * Once the output slows significantly and you only see messages from the nodes (the containers running the ledger), everything should be working.
 
 ### Access the ledger and agents in a web browser:
 
-To open an agent instance, in a web browser navigate to. To go through the demonstration, you must open the following links in new tabs:
+### In Browser
+
+As the demo starts up, a series of 4 digit numbers will appear above the terminal. Those are the exposed ports of the running containers and the numbers are links to start a Browser tab accessing that port.
+
+To go through the demonstration, click the following numbers from the list:
+
+* **3000** for Alice
+* **3002** for Faber College
+* **3003** for Acme Corporation
+
+The instructions for walking through the demonstration script are here: **[Agent Demo Script](AgentDemoScript.md)**
+
+You can also open in a browser a Blockchain Ledger Explorer:
+* **9000**
+
+Although we don't talk about them in the demo overview, there are two additional Agents running that you can access:
+* **3001** for Bob
+* **3004** for Thrift Bank
+
+> The remainder of the numbers (ports - 9701-9708) are the ports to the Blockchain Ledger nodes - two per node.
+
+## Local Machine
+
+To go through the demonstration, open the following links in new browser tabs:
 * [http://localhost:3000](http://localhost:3000) for Alice
 * [http://localhost:3002](http://localhost:3002) for Faber College
 * [http://localhost:3003](http://localhost:3003) for Acme Corporation
@@ -74,18 +122,18 @@ Although we don't talk about them in the demo overview, there are two additional
 * [http://localhost:3001](http://localhost:3001) for Bob
 * [http://localhost:3004](http://localhost:3004) for Thrift Bank
 
-# Stopping the Demo
+## Stopping the Demo
 
-To stop the demo, go to the terminal window where you ran `docker-compose up` and hit `Ctrl-C` once.  You should see a `Done` message as each of the 10 containers stops. If you hit `Ctrl-C` twice, you will be immediately returned to the command line prompt, but the containers may still be running.  Run the command `docker ps` to see if the containers are still running.
+### In Browser
 
-To clean up the environment to run the demo again, run the command `docker-compose down -v` which will remove the data (ledger, wallets) created in the prior run.
+To stop the demo, go to the browser tab where you ran `docker-compose up` and close the browser tab. Note that if you don't close the tab, the terminal session will expire 4 hours after you started it.
+
+### Local Machine
+
+To stop the demo, go to the terminal window where you ran `docker-compose up`. If the logs are scrolling and/or you are not at the command prompt, hit `Ctrl-C`. Run the command `./manage down`.  You should see a `Done` message as each of the 10 containers stops.  Run the command `docker ps` to see that the containers have stopped.
 
 # Trouble Shooting
 
 > As issues are discovered by users of this demo, we'll add more troubleshooting instructions here.
 
-* Sometimes when restarting the demo without resetting the ledger, one or more of the ledger nodes will fail. If that happens:
-  * Stop the demo running (instructions above)
-  * Run `docker-compose down -v` to delete the volumes
-  * Start the demo again by running the `docker-compose up` command
-* The "validate" of the Government ID Credential for each of the Identities is failing - displaying a large red "X". We're still investigating why that is happening.
+* The "validate" of the Government ID Credential for each of the Identities is often failing - displaying a large red "X". We're still investigating why that is happening in some cases but not others.

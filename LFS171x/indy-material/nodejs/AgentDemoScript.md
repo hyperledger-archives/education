@@ -99,6 +99,8 @@ To demonstrate how Indy works, we have created a short demo involving the follow
 
 Start the demo as per the start instructions in [README.md](README.md). Notice that you should have three browser tabs open - Alice, Faber and ACME. These are the Agents, each running in a Docker container and accessed on separate localhost ports: Alice (localhost:3000), Faber College (localhost:3002) and Acme Corporation (localhost:3003). Although you are accessing them all on the same machine, imagine that they are all running independently, in different places.
 
+> If you are running this demo using the "In Browser" instructions, the URL for the different Agents will be similar to this: `http://ip172-18-0-14-bf52ab6ac3u00082oj2g-3001.direct.labs.play-with-docker.com/#credentials`, where the "3001" before the word ".direct" is the exposed port number that you clicked on.
+
 |![BrowserTabs](images/BrowserTabs.png "Demo Browser Tabs")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
