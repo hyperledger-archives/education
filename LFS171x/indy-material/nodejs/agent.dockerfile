@@ -1,6 +1,6 @@
 # Use BC Gov Indy images that have indy-sdk
 # Will have to be updated from time to time to stay up to date on the indy-sdk version
-FROM bcgovimages/von-image:py36-1.6-7
+FROM bcgovimages/von-image:py36-1.6-8
 
 USER root
 

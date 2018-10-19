@@ -1,0 +1,65 @@
+#!/bin/bash
+export MSYS_NO_PATHCONV=1
+
+# =================================================================================================================
+# Usage:
+# -----------------------------------------------------------------------------------------------------------------
+usage () {
+  cat <<-EOF
+
+  Usage: $0 [command] [options]
+
+  Commands:
+
+  build - Build the docker images for the project.
+          You need to do this first.
+
+  start - Starts the 4 indy-node containers and a webserver to allow browsing the ledger.
+
+  rm - Reset the environment by removing the project containers and associated volumes.
+
+  logs - Display the logs from the docker compose run (ctrl-c to exit).
+
+  bash - Start client container in a bash shell in /home/indy.
+
+  cli - Start indy-cli in the agent container.
+
+  stop - Stops the services.  This is a non-destructive process.  The containers
+         are not deleted so they will be reused the next time you run start.
+
+  rebuild - Force a full rebuild of the docker images (no cache)
+EOF
+exit 1
+}
+
+case "$1" in
+  start)
+      docker-compose up -d
+      docker-compose logs -f
+    ;;
+  cli)
+      docker exec -it -e MODE=cli nodejs_alice_1 scripts/start_client.sh
+    ;;
+  bash)
+      docker exec -it -e MODE=bash nodejs_alice_1 scripts/start_client.sh
+    ;;
+  stop)
+      docker-compose stop
+    ;;
+  build)
+      docker build -t indy-node -f pool.dockerfile .
+      docker build -t indy-agentjs -f agent.dockerfile .
+    ;;
+  rebuild)
+      docker build --no-cache -t indy-node -f pool.dockerfile .
+      docker build --no-cache -t indy-agentjs -f agent.dockerfile .
+    ;;
+  logs)
+    docker-compose logs -f
+    ;;
+  rm)
+      docker-compose down -v
+    ;;
+  *)
+      usage;;
+esac

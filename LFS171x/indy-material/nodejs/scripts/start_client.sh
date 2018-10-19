@@ -2,24 +2,13 @@
 
 set -e
 
-if [ ! -d "/home/indy/.indy-cli/networks/sandbox" ]; then
-    echo "Ledger does not exist - Creating..."
-	if [ ! -z "$IPS" ]; then
-		echo von_generate_transactions -s "$IPS"
-		von_generate_transactions -s "$IPS"
-	elif [ ! -z "$IP" ]; then
-		echo von_generate_transactions -i "$IP"
-		von_generate_transactions -i "$IP"
-	else
-		echo von_generate_transactions
-		von_generate_transactions
-	fi
+# Copy genesis file from the volume mount from one of the nodes
+mkdir -p .indy_client/pool/sandbox
+cp /home/indy/ledger/sandbox/pool_transactions_genesis .indy_client/pool/sandbox/sandbox.txn
+
+
+if [ "$MODE" == "bash" ]; then
+	/bin/bash
+else
+	indy-cli
 fi
-
-# link node ledgers where webserver can find them
-for node in 1 2 3 4; do
-    ln -sfn /home/indy/.mnt/node${node}/sandbox/data/Node${node} \
-            /home/indy/ledger/sandbox/data/node${node}
-done
-
-indy

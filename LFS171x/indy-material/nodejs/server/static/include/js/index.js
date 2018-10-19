@@ -1,30 +1,50 @@
-function fetch_validator_status (callb) {
+var statusTimeout = null;
+var statusLoaded = false;
+
+function updateStatus() {
+  if(statusTimeout) clearTimeout(statusTimeout);
+  fetchValidatorStatus(function(result) {
+    displayValidatorStatus(result);
+    statusTimeout = setTimeout(updateStatus, 60000);
+  });
+}
+
+function fetchValidatorStatus (callb) {
   var oReq = new XMLHttpRequest()
   oReq.addEventListener('load', function (evt) {
-    callb(oReq.response, evt)
+    callb(oReq.response, evt, oReq.status)
   })
   oReq.addEventListener('error', function (evt) {
-    callb(null, evt)
+    callb(null, evt, oReq.status)
   })
   oReq.responseType = 'json'
   oReq.open('GET', './status')
   oReq.send()
 }
 
-fetch_validator_status(function (status) {
+function displayValidatorStatus(status, evt, statusCode) {
   var panel = document.querySelector('.panel-node-status')
   var load = panel && panel.querySelector('.loading')
-  var err = panel && panel.querySelector('.error')
+  var errPanel = panel && panel.querySelector('.error')
+  var notReadyPanel = panel && panel.querySelector('.not-ready')
+  var notReady = statusCode == 503;
+  var err = !notReady && !Array.isArray(status);
   if (load) load.style.display = 'none'
 
-  if (!Array.isArray(status)) {
-    if (err) err.style.display = null
-    return
-  }
+  if (notReadyPanel) notReadyPanel.style.display = notReady ? null : 'none';
+  if (errPanel) errPanel.style.display = err ? null : 'none';
 
   if (!panel) return
   var tpl = panel.querySelector('.node-status.template')
-  if (!tpl) return
+  if(tpl) {
+    var body = tpl.parentNode;
+    for(var i = body.children.length-1; i >= 0; i--) {
+      if(body.children[i].classList.contains('node-status') && body.children[i] != tpl) {
+        body.removeChild(body.children[i]);
+      }
+    }
+  }
+  if (!tpl || notReady || err) return
 
   for (var idx = 0; idx < status.length; idx++) {
     var node = status[idx],
@@ -37,7 +57,7 @@ fetch_validator_status(function (status) {
     if (!state) state = 'unknown'
     if (!node.enabled) state += ' (disabled)'
     div.querySelector('.nodeval-state').innerText = state
-    div.querySelector('.nodeval-indyver').innerText = node.software['indy-node']
+    div.querySelector('.nodeval-indyver').innerText = (node.software || node.Software || {})['indy-node'] || '?'
 
     var upt = info.Metrics.uptime,
       upt_s = upt % 60,
@@ -58,21 +78,47 @@ fetch_validator_status(function (status) {
       unreach.style.display = 'none'
     }
 
+    var progress = node.Pool_info.Reachable_nodes_count / node.Pool_info.Total_nodes_count;
+    var progressCircle = div.querySelector('.progress-circle');
+    if(progressCircle) {
+      var max = progressCircle.getAttribute('stroke-dasharray');
+      if(max) {
+        progressCircle.style.strokeDashoffset = max * (1 - progress);
+      }
+    }
+
+    var shorten = function(val) {
+      if(typeof val === 'number') {
+        if(val > 1000000) {
+          return (val / 1000000).toPrecision(3) + 'M';
+        }
+        if(val > 1000) {
+          return (val / 1000).toPrecision(3) + 'K';
+        }
+        if(Math.trunc(val) == val) {
+          return val;
+        }
+        return val.toPrecision(3);
+      }
+      return val;
+    }
     var txns = [],
       tx_avgs = info.Metrics['average-per-second'],
       tx_counts = info.Metrics['transaction-count']
-    txns.push('' + tx_counts.config + ' config')
-    txns.push('' + tx_counts.ledger + ' ledger')
-    txns.push('' + tx_counts.pool + ' pool')
-    txns.push('' + tx_avgs['read-transactions'] + '/s read')
-    txns.push('' + tx_avgs['write-transactions'] + '/s write')
+    txns.push('' + shorten(tx_counts.config) + ' config')
+    txns.push('' + shorten(tx_counts.ledger) + ' ledger')
+    txns.push('' + shorten(tx_counts.pool) + ' pool')
+    txns.push('' + shorten(tx_avgs['read-transactions']) + '/s read')
+    txns.push('' + shorten(tx_avgs['write-transactions']) + '/s write')
     div.querySelector('.nodeval-txns').innerText = txns.join(', ')
 
     div.classList.remove('template')
   }
-})
+}
 
 $(function () {
+  updateStatus();
+
   // override forms to submit json
   $('form').submit(function (event) {
     const form = this
