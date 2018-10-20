@@ -1,4 +1,4 @@
-# Ignore JetBrains configuration files
-
 .idea
+.DS_Store
+.vscode
 
