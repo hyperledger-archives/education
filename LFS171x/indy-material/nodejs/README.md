@@ -95,6 +95,8 @@ To go through the demonstration, click the following numbers from the list:
 * **3002** for Faber College
 * **3003** for Acme Corporation
 
+If you click the links before the Agent is active, you might get a `Connection reset by peer` error messages. Monitor the logs and wait longer and then try again.
+
 The instructions for walking through the demonstration script are here: **[Agent Demo Script](AgentDemoScript.md)**
 
 You can also open in a browser a Blockchain Ledger Explorer:
@@ -112,6 +114,8 @@ To go through the demonstration, open the following links in new browser tabs:
 * [http://localhost:3000](http://localhost:3000) for Alice
 * [http://localhost:3002](http://localhost:3002) for Faber College
 * [http://localhost:3003](http://localhost:3003) for Acme Corporation
+
+If you click the links before the Agent is active, you might get a `Connection reset by peer` error messages. Monitor the logs and wait longer and then try again.
 
 The instructions for walking through the demonstration script are here: **[Agent Demo Script](AgentDemoScript.md)**
 
