@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=name%>'s Agent</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-lite.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jdenticon@2.0.0"></script>
+        <!--<link rel="import" href="bower_components/chat-window/chat-window.html">-->
+        <style is="custom-style">
+            chat-window {
+                font-size: small;
+                --chat-messages-height: 12em;
+                --chat-messages-scroller: {
+                    border: 1px inset #eee;
+                };
+                --paper-input-container-input: {
+                    margin: 0 2px;
+                };
+                --chat-message-text: {
+                    background-color: #f0f0f0;
+                    padding: 6px 8px;
+                    margin: 4px 0;
+                    border-radius: 6px;
+                };
+            }
+        </style>
+        <style>
+            .center {
+                margin:auto;
+                width: 90%;
+            }
+            #messages { list-style-type: none; margin: 0; padding: 0; }
+            #messages li { padding: 5px 10px; }
+            #messages li:nth-child(odd) { background: #eee; }
+            #messages { margin-bottom: 40px }
+            .w3-bar { background-color: <%=theme%> !important }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <!--<header class="w3-container w3-theme w3-padding" id="myHeader">-->
+            <!--&lt;!&ndash;<i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>&ndash;&gt;-->
+            <!--<div class="w3-center">-->
+                <!---->
+            <!--</div>-->
+        <!--</header>-->
+
+        <!-- About Modal -->
+        <div id="aboutModel" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-top">
+                <header class="w3-container w3-theme-l1">
+        <span onclick="document.getElementById('aboutModel').style.display='none'"
+              class="w3-button w3-display-topright">×</span>
+                    <h4>Sovrin Reference Agent</h4>
+                </header>
+                <div class="w3-padding">
+                    <p></p>
+                </div>
+                <footer class="w3-container w3-theme-l1">
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Send Credential Modal -->
+        <div id="sendCredModel" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-top">
+                <header class="w3-container w3-theme-l1">
+        <span onclick="document.getElementById('sendCredModel').style.display='none'"
+              class="w3-button w3-display-topright">×</span>
+                    <h4>Credential Builder</h4>
+                </header>
+                <div class="w3-padding">
+                    <p></p>
+                </div>
+                <footer class="w3-container w3-theme-l1">
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- New Relationship Model -->
+        <div id="newRelationshipModel" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-top">
+                <header class="w3-container w3-theme-l1">
+        <span onclick="document.getElementById('newRelationshipModel').style.display='none'"
+              class="w3-button w3-display-topright">×</span>
+                    <h4>Create a New Relationship</h4>
+                </header>
+                <div class="w3-padding">
+                    <form class="w3-container w3-card-4 w3-padding" action="/api/send_connection_request" method="POST" target="_self">
+                        <div class="w3-section">
+                            Recipient's Endpoint DID: <input class="w3-input" type="text" name="did" required>
+                        </div>
+                        <input class="w3-btn w3-white w3-border" style="display:block;margin:auto;" type="submit" value="Send Connection Request">
+                    </form>
+                </div>
+                <footer class="w3-container w3-theme-l1">
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- New Message Model -->
+        <div id="newMessageModel" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-top">
+                <header class="w3-container w3-theme-l1">
+                    <span onclick="document.getElementById('newMessageModel').style.display='none'" class="w3-button w3-display-topright">×</span>
+                    <h4>Send a Message</h4>
+                </header>
+                <div class="w3-padding">
+                    <!--The socket message way: onsubmit="sendSovrinMessage('urn:sovrin:agent:message_type:sovrin.org/ui/send_message', this)"-->
+                    <form class="w3-container w3-card-4 w3-padding" action="/api/send_message" method="POST" target="_self" >
+                        <div class="w3-section">
+                            Recipient: <input id="send_message_form_did" class="w3-input" type="text" name="did" value="<%=endpointDid%>">
+                        </div>
+                        <div class="w3-section">
+                            Message: <textarea id="send_message_form_message" class="w3-input" name="message" rows="6" >{
+    "type":"SOME_TYPE",
+    "message":"test"
+}</textarea>
+                        </div>
+                        <input class="w3-btn w3-white w3-border" style="display:block;margin:auto;" type="submit" value="Send Message">
+                    </form>
+                </div>
+                <footer class="w3-container w3-theme-l1">
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+        <!--Chat-->
+        <script>
+            let now = Date.now();
+            let messages = [
+                { author: 'you', text: 'dummy msg 1', created: now - (60*1000) },
+                { author: 'me', text: 'dummy msg 2', created: now - (3*60*1000) },
+                { author: 'you', text: 'dummy msg 3', created: now - (10*60*1000) },
+                { author: 'you', text: 'dummy msg 4', created: now - (60*60*1000) },
+                { author: 'me', text: 'dummy msg 5', created: now - (1.2*60*60*1000) },
+                { author: 'me', text: 'dummy msg 6', created: now - (1.5*60*60*1000) },
+                { author: 'you', text: 'dummy msg 7', created: now - (11.5*60*60*1000) },
+                { author: 'me', text: 'dummy msg 8', created: now - (12*60*60*1000) },
+                { author: 'you', text: 'dummy msg 9', created: now - (13*60*60*1000) },
+                { author: 'me', text: 'dummy msg 10', created: now - (1.5*24*60*60*1000) },
+                { author: 'you', text: 'dummy msg 11', created: now - (1.6*24*60*60*1000) },
+                { author: 'me', text: 'dummy msg 12', created: now - (4*24*60*60*1000) },
+                { author: 'me', text: 'dummy msg 13', created: now - (4.5*24*60*60*1000) },
+                { author: 'you', text: 'dummy msg 14', created: now - (14*24*60*60*1000) },
+                { author: 'me', text: 'dummy msg 15', created: now - (14.5*24*60*60*1000) },
+            ].reverse();
+        </script>
+
+        <div id="menubar" class="w3-bar w3-theme">
+            <!--<a onclick="document.getElementById('aboutModel').style.display='block'" class="w3-right w3-bar-item w3-button w3-padding-16">About</a>-->
+            <a href="/logout" class="w3-right w3-bar-item w3-button w3-padding-16">Logout</a>
+            <a class="w3-right w3-bar-item w3-padding-16">Welcome <%=name%></a>
+            <a href=""><img class="w3-left w3-bar-item" width="55px" height="55px" src="/images/sovrinIcon.png"></a>
+            <a href="#relationships" id="relationships_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('relationships')" >Relationships</a>
+            <a href="#credentials" id="credentials_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('credentials')" >Credentials</a>
+            <a href="#proofs" id="proofs_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('proofs')" >Proof Requests</a>
+            <a href="#issuing" id="issuing_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('issuing')" >Issuing</a>
+            <a href="#messages" id="messages_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('messages')" >Messages</a>
+        </div>
+        <!--<div class="w3-container w3-card" style="position:fixed;bottom:52px;float:right; right:50px;width:300px;z-index:99;background:white;">-->
+            <!--<h5>Chat with Andrew</h5>-->
+            <!--<chat-window-->
+                <!--id="chat"-->
+                <!--author="me"-->
+                <!--single-line>-->
+            <!--</chat-window>-->
+        <!--</div>-->
+        <!--<div class="w3-container w3-card" style="position:fixed;bottom:52px;float:right; right:540px;width:300px;z-index:99;background:white;">-->
+            <!--<h5>Chat with Andrew</h5>-->
+            <!--<chat-window-->
+                    <!--id="chat2"-->
+                    <!--author="me"-->
+                    <!--single-line>-->
+            <!--</chat-window>-->
+        <!--</div>-->
+
+        <div class="w3-row-padding w3-center w3-margin-top">
+            <% include credentials.ejs %>
+            <% include proofs.ejs %>
+            <% include issuing.ejs %>
+            <% include relationships.ejs %>
+            <% include messages.ejs %>
+        </div>
+        <footer style="position:fixed;bottom:0;background: black;width: 100%;">
+            <p style="text-align: center;color: white;">My Endpoint DID: <%=endpointDid%></p>
+        </footer>
+        <script>
+
+            function showTab(id) {
+                let tabs = document.getElementsByClassName("tab");
+                for (let i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
+                }
+                document.getElementById(id).style.display = "block";
+
+                // Bold the selected link, unbold others
+                let tabLinks = document.getElementsByClassName("tab_link");
+                for (i = 0; i < tabLinks.length; i++) {
+                    tabLinks[i].style['font-weight'] = "normal";
+                }
+
+                document.getElementById(`${id}_link`).style['font-weight'] = "bold";
+            }
+
+            let tabs = document.getElementsByClassName("tab");
+            let hashlink = document.location.hash.replace('#', '');
+            let found = false;
+            for(let tab of tabs) {
+                if(tab.id === hashlink) {
+                    showTab(hashlink);
+                    found = true;
+                }
+            }
+            if(!found) {
+                window.location.href = window.location.href + "#credentials";
+                showTab('relationships');
+            }
+
+            function request(url, method, message) {
+                console.log(message);
+                console.log(`${method}ing ${url}: ${message}`);
+                let xhttp = new XMLHttpRequest();
+                xhttp.open(method, url, true);
+                if(message) {
+                    xhttp.setRequestHeader('Content-Type', 'application/json');
+                    xhttp.send(message);
+                } else {
+                    xhttp.send();
+                }
+                location.reload();
+            }
+
+            showDiv(document.getElementById('currentProofRequest').value, 'proofRequestsClass');
+            function showDiv(id, className) {
+                let tabs = document.getElementsByClassName(className);
+                for (let i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
+                }
+                console.log('showing div: ', id);
+                document.getElementById(id).style.display = "block";
+            }
+
+            function validateProof(div, proof) {
+                div.innerHTML = '<i class="fa fa-spinner fa-spin" style="font-size:100px;"></i>'
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('POST', '/api/proofs/validate', true);
+                xhttp.setRequestHeader('Content-Type', 'application/json');
+                console.log(proof);
+                xhttp.send(JSON.stringify(proof));
+                xhttp.onload = function() {
+                    console.log(xhttp);
+                    if(xhttp.status === 200) {
+                        console.log("Validation succeeded");
+                        div.innerHTML = '<i class="fa fa-check" style="color:green;font-size:120px;"></i>'
+                    } else {
+                        div.innerHTML = '<i class="fa fa-times" style="color:red;font-size:120px;"></i>'
+                        console.log("Validation failed");
+                    }
+                }
+            }
+
+        </script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Sovrin Agent</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jdenticon@2.0.0"></script>
+    <style>
+        .center {
+            margin:auto;
+            width: 90%;
+        }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(odd) { background: #eee; }
+        #messages { margin-bottom: 40px }
+    </style>
+</head>
+<body>
+
+<!-- About Modal -->
+<div id="aboutModel" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+        <header class="w3-container w3-theme-l1">
+        <span onclick="document.getElementById('aboutModel').style.display='none'"
+              class="w3-button w3-display-topright">×</span>
+            <h4>Sovrin Reference Agent</h4>
+        </header>
+        <div class="w3-padding">
+            <p></p>
+        </div>
+        <footer class="w3-container w3-theme-l1">
+            <p></p>
+        </footer>
+    </div>
+</div>
+
+<!-- Send Credential Modal -->
+<div id="sendCredModel" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+        <header class="w3-container w3-theme-l1">
+        <span onclick="document.getElementById('sendCredModel').style.display='none'"
+              class="w3-button w3-display-topright">×</span>
+            <h4>Credential Builder</h4>
+        </header>
+        <div class="w3-padding">
+            <p></p>
+        </div>
+        <footer class="w3-container w3-theme-l1">
+            <p></p>
+        </footer>
+    </div>
+</div>
+
+<div class="w3-bar w3-theme" id="menubar">
+    <a onclick="document.getElementById('aboutModel').style.display='block'" class="w3-right w3-bar-item w3-button w3-padding-16">About</a>
+    <a href=""><img class="w3-left w3-bar-item" width="55px" height="55px" src="/images/sovrinIcon.png"></a>
+    <a href="#credentials" id="credentials_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('credentials')" >Credentials</a>
+    <a href="#proofs" id="proofs_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('proofs')" >Proofs</a>
+    <a href="#issuing" id="issuing_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('issuing')" >Issuing</a>
+    <a href="#relationships" id="relationships_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('relationships')" >Relationships</a>
+    <a href="#messages" id="messages_link" class="w3-left w3-bar-item w3-button w3-padding-16 tab_link" onclick="showTab('messages')" >Messages</a>
+</div>
+
+<div class="w3-row-padding w3-center w3-margin-top">
+    <div id="credentials" class="tab" style="display:none;">
+        <div class="center w3-padding">
+            <!--Add credentials here-->
+        </div>
+    </div>
+    <div id="proofs" class="tab" style="display:none;">
+
+    </div>
+    <div id="issuing" class="tab" style="display:none;">
+        <div class="w3-container w3-card w3-padding w3-margin" style="float: left;width: 31%">
+            <h3>Create Schema: </h3>
+            <form method="POST" action="/api/issuer/create_schema">
+                <label>Name of Schema: </label>
+                <input type="text" class="w3-input" name="name_of_schema" value="Transcript">
+                <br><br>
+                <label>Schema Version: </label>
+                <input type="text" class="w3-input" name="version" value="1.2">
+                <br><br>
+                <label>Please supply a JSON array of attributes:</label><br><br>
+                <textarea style="height:220px;" class="w3-input" name="attributes" required>[
+    "first_name",
+    "last_name",
+    "degree",
+    "status",
+    "year",
+    "average",
+    "ssn"
+]</textarea>
+                <br><br>
+                <input class="w3-btn w3-white w3-border" type="submit">
+            </form>
+        </div>
+
+        <div style="float: left;width: 31%">
+            <div class="w3-container w3-card w3-padding w3-margin">
+                <h3>Create Credential Definition</h3>
+                <form method="POST" action="/api/issuer/create_cred_def">
+                    <label>Select a Schema:</label>
+                    <select class="w3-select" name="schema_id" required>
+                        <%for(let schema of schemas) {%>
+                        <option value="<%=schema.id%>"><%=schema.name%> <%=schema.version%></option>
+                        <%}%>
+                    </select>
+                    <br><br>
+                    <label>Tag:</label>
+                    <input class="w3-input" type="text" name="tag" value="MyTranscript" required>
+                    <br><br>
+                    <input class="w3-btn w3-white w3-border" type="submit">
+                </form>
+            </div>
+            <div class="w3-container w3-card w3-padding w3-margin">
+                <h3>Send Credential Offer</h3>
+                <form method="POST" action="/api/issuer/send_credential_offer">
+                    <label>Relationship: </label>
+                    <select class="w3-select" name="their_relationship_did" required>
+                        <%for(let relationship of relationships) {%>
+                        <option value="<%=relationship.their_did%>"><%=relationship.metadata.name%></option>
+                        <%}%>
+                    </select>
+                    <br><br>
+                    <label>Select a Credential Definition:</label>
+                    <select class="w3-select" name="cred_def_id" required>
+                        <%for(let credDef of credentialDefinitions) {%>
+                        <option value="<%=credDef.id%>"><%=credDef.tag%></option>
+                        <%}%>
+                    </select>
+                    <br><br>
+                    <input class="w3-btn w3-white w3-border" type="submit">
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div id="relationships" class="tab" style="display:none;" >
+        <div class="w3-half">
+            <div class="center w3-padding">
+                <!--Draw relationshiops here-->
+            </div>
+        </div>
+        <div class="w3-half w3-right">
+            <form class="w3-container w3-card-4 w3-padding" action="/api/send_connection_request" method="POST" target="_self">
+                <h4>Create a New Relationship</h4>
+                <div class="w3-section">
+                    Name of New Relationship: <input class="w3-input" type="text" name="name" value="John Doe" required>
+                </div>
+                <div class="w3-section">
+                    Recipient's Endpoint DID: <input class="w3-input" type="text" name="did" value="<%=endpointDid%>" required>
+                </div>
+                <input class="w3-btn w3-white w3-border" type="submit" value="Send Connection Request">
+            </form>
+        </div>
+    </div>
+    <div id="messages" class="tab" style="display:none;">
+        <div id="messages" class="w3-half" style="width:50%; height:700px; overflow:scroll;">
+            <!--Draw messages here-->
+        </div>
+        <div class="w3-half w3-right">
+            <form class="w3-container w3-card-4 w3-padding" onsubmit="sendSovrinMessage('urn:sovrin:agent:message_type:sovrin.org/ui/send_message', this)">
+                <div class="w3-section">
+                    Recipient: <input id="send_message_form_did" class="w3-input" type="text" name="did" value="<%=endpointDid%>">
+                </div>
+                <div class="w3-section">
+                    Message: <textarea id="send_message_form_message" class="w3-input" name="message" rows="6" >{
+    "type":"SOME_TYPE",
+    "message":"test"
+}</textarea>
+                </div>
+                <input class="w3-btn w3-white w3-border" type="submit">
+            </form>
+        </div>
+    </div>
+</div>
+<footer style="position:fixed;bottom:0;background: black;width: 100%;">
+    <p style="text-align: center;color: white;">My Endpoint DID: <%=endpointDid%></p>
+</footer>
+<script>
+
+    function showTab(id) {
+        let tabs = document.getElementsByClassName("tab");
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].style.display = "none";
+        }
+        document.getElementById(id).style.display = "block";
+
+        // Bold the selected link, unbold others
+        let tabLinks = document.getElementsByClassName("tab_link");
+        for (i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].style['font-weight'] = "normal";
+        }
+
+        document.getElementById(`${id}_link`).style['font-weight'] = "bold";
+
+    }
+
+    let tabs = document.getElementsByClassName("tab");
+    let hashlink = document.location.hash.replace('#', '');
+    let found = false;
+    for(let tab of tabs) {
+        if(tab.id === hashlink) {
+            showTab(hashlink);
+            found = true;
+        }
+    }
+    if(!found) {
+        window.location.href = window.location.href + "#credentials";
+        showTab('credentials');
+    }
+</script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    if(!sessionStorage.userData) {
+        sessionStorage.userData = {
+            messages: [],
+            relationships: [],
+            schemas: [],
+            credentialDefinitions: [],
+            proofs: [],
+            credentials: []
+        }
+    }
+
+    drawDom();
+
+    function drawDom() {
+        for(let arrKey of Object.keys(sessionStorage.userData)) {
+            for(let item of newUserData[arrKey]) {
+                draw[arrKey](item);
+            }
+        }
+    }
+
+    if(!sessionStorage.lastEventTime) {
+        // get all the data from server, load it into userData. Add all to DOM
+    } else {
+        // get all the new events since lastEventTime, process them normally (updating the dom and sessionStorage).
+    }
+
+    // Start test data injection.
+
+    let newUserData = {
+        messages: [
+            {
+
+            }
+        ],
+        relationships: [],
+        schemas: [],
+        credentialDefinitions: [],
+        proofs: [],
+        credentials: []
+    };
+
+    updateDom(newUserData);
+
+    function updateDom(newUserData) {
+        for(let arrKey of Object.keys(newUserData)) {
+            for(let item of newUserData[arrKey]) {
+                if(!sessionStorage.userData[arrKey].includes(item)) {
+                    draw[arrKey](item);
+                }
+            }
+        }
+        sessionStorage.userData = newUserData;
+    }
+
+    let draw = {
+        messages: function(item) {
+
+        },
+        relationships: function(item) {
+
+        },
+        schemas: function(item) {
+
+        },
+        credentialDefinitions: function(item) {
+
+        },
+        proofs: function(item) {
+
+        },
+        credentials: function(item) {
+
+        }
+    }
+
+</script>
+
+</body>
+</html>
