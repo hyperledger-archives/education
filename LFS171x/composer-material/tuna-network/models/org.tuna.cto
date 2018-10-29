@@ -1,0 +1,63 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace org.tuna
+
+abstract participant Individual identified by id {
+    o String id
+    o String name
+    o Address address
+}
+
+concept Address {
+    o String addressLine
+    o String locality
+    o String postCode regex=/\d{4}[ ]?[A-Z]{2}/
+}
+
+participant Fisher extends Individual {
+    o String licenseNumber
+}
+
+participant RestaurantOwner extends Individual {
+    o String restaurantName
+}
+
+participant Regulator identified by id {
+    o String id
+    o String name
+}
+
+asset Tuna identified by tunaId {
+    o String tunaId
+    o Integer weight range=[500, 1000000]
+    o FishStatus status default="CAUGHT"
+    o DateTime catchTime
+    --> Individual owner
+}
+
+enum FishStatus {
+    o CAUGHT
+    o PURCHASED
+}
+
+transaction SellTuna {
+    --> Tuna tuna
+    --> RestaurantOwner restaurantOwner
+}
+
+event TunaSale {
+    o String tunaId
+    o String restaurantName
+}
