@@ -16,7 +16,7 @@
 <body>
   <header>
     <h1>BCovrin</h1>
-    <p class="lead">A Provisional Indy Network - contributed by the Province of British Columbia</p>
+    <p class="lead">BC's Provisional Indy Network</p>
   </header>
 
   <main>
@@ -41,16 +41,27 @@
                   <span class="fa fa-warning"></span> Error loading validator node status.
                 </p>
               </div>
+              <div class="panel-body warning not-ready" style="display: none">
+                <p>
+                  <span class="fa fa-warning"></span> Trust anchor is not yet initialized.
+                </p>
+              </div>
               <div class="panel-body node-status template">
                 <div class="node-status-left">
                   <label class="node-name"><span class="nodeval-name">Node1</span></label>
-                  <div class="node-indicator"></div>
+                  <div class="node-indicator">
+                    <svg width="100%" height="100%" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                        <circle class="progress-circle" cx="60" cy="60" r="54" fill="none" stroke="#80DDE6" stroke-width="12"
+                            stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="339.292" transform="rotate(-90, 60, 60)" />
+                    </svg>
+                  </div>
                 </div>
                 <div class="node-status-right">
                   <dl class="props">
                     <dt>Node properties</dt>
                     <dd class="node-did"><label>DID:</label> <code class="nodeval-did">8ECVSk179mjsjKRLWiQtssMLgp6EPhWXtaYyStWPSGAb</code></dd>
-                    <dd class="node-state"><label>State:</label> <span class="nodeval-state">unknown</span></dd>
+                    <dd class="node-state" style="display: none"><label>State:</label> <span class="nodeval-state">unknown</span></dd>
                     <dd class="node-uptime"><label>Uptime:</label> <span class="nodeval-uptime">6 days, 11 hours, 9 minutes, 35 seconds</span></dd>
                     <dd class="node-txns"><label>Transactions:</label> <span class="nodeval-txns">0 config, 46 ledger, 4 pool, 0.00/s read, 0.00/s write</span></dd>
                     <dd class="node-unreach"><label>Unreachable hosts:</label> <span class="nodeval-unreach">Node2, Node3</span></dd>
@@ -80,11 +91,13 @@
               View the state of the ledgers:
             </p>
             <p>
-              <a href="/ledger/domain" class="tool"><span class="fa fa-chevron-right left"></span>Domain</a>&nbsp;<a href="/ledger/domain/pretty">(pretty)</a> <span class="tool-tag">JSON</span>
+              <a href="/ledger/domain" class="tool"><span class="fa fa-chevron-right left"></span>Domain</a> <span class="tool-tag">JSON</span>
               <br>
-              <a href="/ledger/pool" class="tool"><span class="fa fa-chevron-right left"></span>Pool</a>&nbsp;<a href="/ledger/pool/pretty">(pretty)</a> <span class="tool-tag">JSON</span>
+              <a href="/ledger/pool" class="tool"><span class="fa fa-chevron-right left"></span>Pool</a> <span class="tool-tag">JSON</span>
               <br>
-              <a href="/ledger/config" class="tool"><span class="fa fa-chevron-right left"></span>Config</a>&nbsp;<a href="/ledger/config/pretty">(pretty)</a> <span class="tool-tag">JSON</span>
+              <a href="/ledger/config" class="tool"><span class="fa fa-chevron-right left"></span>Config</a> <span class="tool-tag">JSON</span>
+              <br>
+              <a href="https://kumu.io/maher-bouidani/bc-govern" class="tool"><span class="fa fa-chevron-right left"></span>Domain graph example</a>
             </p>
           </div>
         </div>
@@ -119,11 +132,14 @@
           </div>
           <div class="panel-body">
             <p>
-              Write a DID based on a seed to the ledger for new identity owners.
+              Easily write a new DID to the ledger for new identity owners.
             </p>
+<!--             <p>
+              <span class="top-label">Format:</span><br><code class="tag small">/register?seed=BC-Registrar-Agent-0000000000000</code>
+            </p> -->
             <p>
+
               <form action="/register" method="get" accept-charset="utf-8">
-  <!--
                 <select name="seed" class="tool-button">
                   <option value="the_org_book_dev_000000000000000">TheOrgBook (DEV)</option>
                   <option value="the_org_book_test_00000000000000">TheOrgBook (TEST)</option>
@@ -140,17 +156,16 @@
                   <option value="worksafe_bc_dev_0000000000000000">WorkSafe BC (DEV)</option>
                   <option value="worksafe_bc_test_000000000000000">WorkSafe BC (TEST)</option>
                 </select>
-                or 
-  -->
+                or
                 <input
                   maxlength="32"
                   class="tool-input"
                   type="text"
                   name="seed"
-                  placeholder="Wallet Seed (32 characters max)"
+                  placeholder="Wallet Seed (32 characters)"
                 >
                 <br/>
-                <input class="tool-button" type="submit" name="" value="Register DID">
+                <button class="tool-button" type="submit" name="register"><span class="fa fa-sign-in left"></span>Register DID</button>
               </form>
 
 

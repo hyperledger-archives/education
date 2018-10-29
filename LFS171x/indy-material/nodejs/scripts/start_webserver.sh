@@ -22,4 +22,4 @@ for node in 1 2 3 4; do
             /home/indy/ledger/sandbox/data/node${node}
 done
 
-cd server && python server.py
+python -m server.server

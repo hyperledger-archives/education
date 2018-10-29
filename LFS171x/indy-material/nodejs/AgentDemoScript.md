@@ -99,6 +99,8 @@ To demonstrate how Indy works, we have created a short demo involving the follow
 
 Start the demo as per the start instructions in [README.md](README.md). Notice that you should have three browser tabs open - Alice, Faber and ACME. These are the Agents, each running in a Docker container and accessed on separate localhost ports: Alice (localhost:3000), Faber College (localhost:3002) and Acme Corporation (localhost:3003). Although you are accessing them all on the same machine, imagine that they are all running independently, in different places.
 
+> If you are running this demo using the "In Browser" instructions, the URL for the different Agents will be similar to this: `http://ip172-18-0-14-bf52ab6ac3u00082oj2g-3001.direct.labs.play-with-docker.com/#credentials`, where the "3001" before the word ".direct" is the exposed port number that you clicked on.
+
 |![BrowserTabs](images/BrowserTabs.png "Demo Browser Tabs")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
@@ -170,25 +172,25 @@ To create a new relationship:
 
 
 
-1.  Click **Send Connection Request**. 
+1.  In the Alice Agent tab, click **Send Connection Request**. 
 
   |![CreateRelBlank](images/CreateRelBlank.png "Blank Create Relationship Popup")|
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-2.  Highlight and copy Faber's Endpoint DID (from the Faber tab), paste it into the "Send Connection Request" popup (above) and click **Send Connection Request**.
+2.  In the Faber Agent tab, highlight and copy Faber's Endpoint DID (bottom of the screen), and then go back to the Alice Agent tab and paste it into the "Send Connection Request" popup (above) and click **Send Connection Request**.
 
   |![CreateRelFill](images/CreateRelFill.png "Filled Create Relationship Popup")|
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-  This creates a relationship between Alice and Faber - whoohoo!  If you click the "Relationships" menu item on the two Agents you will see the relationship. You will also see that the DID is still visible.  That's not very friendly.  In the real agent world, we don't ever want to see DIDs! We could have the user type in a name for each relationship, but wouldn't it be easier if the other party just told us their name?
+  This creates a relationship between Alice and Faber - whoohoo!  If you click the "Relationships" menu item on the two Agents you will see the relationship - if not, refresh the tab (Ctrl-R) and it will be there. You will also see that the DID is still visible.  That's not very friendly.  In the real agent world, we don't ever want to see DIDs! We could have the user type in a name for each relationship, but wouldn't it be easier if the other party just told us their name?
 
   But wait. There's a problem with that. What if they lied to us?  Told us they were Alice, when really they were her malicious enemy, Mallory? What we want is a trusted way to get the name of the other party. This is where Verifiable Credentials come in.
 
-  As soon as the connection is established, both Alice and Faber send each other a Proof Request that asks for the name of the other party using the "Government ID" credential both are already holding. Since that Credential is owned by its Holder, the Agent software prompts the user to confirm they want to share the requested information.
+  As soon as the connection is established, both Alice and Faber automatically send each other a Proof Request that asks for the name of the other party using the "Government ID" credential both are already holding. Since that Credential is owned by its Holder, the Agent software prompts the user to confirm they want to share the requested information.
 
-  Alice checks her messages and sees that she has a Proof Request from Faber requesting her name. 
+  Alice checks her messages (click refresh) and sees that she has a Proof Request from Faber requesting her name. 
 
   |![NamePRNotes](images/NamePRNotes.png "Accept Proof Request Popup")|
   |:--:|
@@ -196,7 +198,7 @@ To create a new relationship:
 
 3.  Click the **Messages** tab then click **Accept**.
 
-Meanwhile, at Faber College, they too have received a "Name" Proof Request, this one from Alice, which they too accept, and resulting in Alice getting the College's official name "Faber" - per the Government ID. You'll need to refresh the browser tabs to see the latest data.
+Meanwhile, at Faber College, they too have received a message for a "Name" Proof Request (click refresh), this one from Alice, which they too accept, and resulting in Alice getting the College's official name "Faber" - per the Government ID. You'll need to refresh the browser tabs to see the latest data.
 
 
 ### Step 4: It's All About Your Credentials

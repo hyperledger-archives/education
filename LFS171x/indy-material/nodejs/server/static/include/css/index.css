@@ -45,15 +45,19 @@ main {
 	width: 25rem;
 }
 
-a, input[type=submit] {
+a, input[type=submit], button {
 	color: #1a5a96;
 	text-decoration: none
+}
+button {
+  font-size: inherit;
 }
 
 a:hover,
 a:focus,
+button:hover, button:focus,
 input[type=submit]:hover,
-input[type=submit]: focus {
+input[type=submit]:focus {
 	color: #0f3355;
 	text-decoration: underline;
 }
@@ -67,6 +71,7 @@ a.tool, input[type=submit].tool {
 	border-radius: 3px;
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
 	display: inline-block;
+	line-height: 1.4;
 	margin: 0.2rem 0;
 	padding: 0.3rem 0.6rem;
 }
@@ -178,6 +183,9 @@ h2 .fa {
 .error {
 	color: #b55;
 }
+.warning {
+	color: #a83;
+}
 
 .panel-node {
 	background: #fff;
@@ -197,22 +205,31 @@ h2 .fa {
 	border-top: 1px solid #ddd;
 }
 .node-status-left {
-	flex: 0 1 30%;
-	min-width: 120px;
+	flex: 0 1 25%;
+	margin: 0 10px 0 0;
+	overflow: hidden;
+	position: relative;
+	min-width: 90px;
 }
 .node-name {
+  font-size: 15px;
 	position: absolute;
 	text-align: center;
-	top: 50px;
-	width: 100px;
+	top: 34px;
+	width: 100%;
 	z-index: 2;
 }
+.nodeval-name {
+  color: #6A7593;
+  display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 .node-indicator {
-	border: 8px solid #ddd;
-	border-radius: 50%;
-	box-sizing: border-box;
-	width: 100px;
-	height: 100px;
+	height: 90px;
+	margin: 0 auto;
+	width: 90px;
 }
 .node-status-right {
 	flex: 1 1 auto;
