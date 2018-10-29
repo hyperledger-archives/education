@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
+
+query getTunaByParticipant {
+    description: "List tuna owned by specific 'owner'"
+    statement:
+        SELECT org.tuna.Tuna
+            WHERE (owner == _$owner)
+                ORDER BY [catchTime ASC]
+}
