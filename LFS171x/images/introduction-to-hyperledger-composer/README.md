@@ -1,0 +1,1 @@
+### This folder contains images used by "Introduction To Hyperledger Composer" Section
