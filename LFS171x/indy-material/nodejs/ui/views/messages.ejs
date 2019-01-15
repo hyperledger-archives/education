@@ -1,0 +1,51 @@
+<div id="messages" class="tab" style="display:none;">
+    <button class="w3-right w3-btn w3-white w3-border" style="margin:15px 20px;" onclick="document.getElementById('newMessageModel').style.display='block'">Send a Message</button>
+    <div id="messages" class="" style="display:block;margin:auto;width:50%; height:700px; overflow:scroll;">
+        <%for(var message of messages) {%>
+        <div class="center w3-padding">
+            <div class="w3-card w3-container" >
+                <button class="w3-btn w3-white w3-right" onclick="request('/api/messages/delete', 'POST', JSON.stringify({messageId: '<%=message.id%>'}))"><i class="fa fa-close"></i></button>
+                <%if(message.relationshipName) {%>
+                    <p><b>From: <%=message.relationshipName%></b></p>
+                <%}%>
+                <p>Type: <%=message.message.type%></p>
+                <p>Received: <%=message.timestamp%></p>
+                <div>
+                    <%if (message.message.type === messageTypes.connections.REQUEST) {%>
+                        <form>
+                            <input type="hidden" id="connection_message_id" value="<%=message.id%>">
+                            <input type="text" id="connection_name" required/>
+                            <%if (message.links.accept) {%>
+                                <button class="w3-btn w3-white w3-border" type="submit" onclick="request('<%=message.links.accept.href%>', '<%=message.links.accept.method%>', JSON.stringify({ name: document.getElementById('connection_name').value, messageId: document.getElementById('connection_message_id').value}))">Accept Connection Request</button>
+                            <%}%>
+                            <%if (message.links.reject) {%>
+                                <button class="w3-btn w3-white w3-border" type="submit" onclick="request('<%=message.links.reject.href%>', '<%=message.links.reject.method%>')">Reject Connection Request</button>
+                            <%}%>
+                            <br><br>
+                        </form>
+                    <%} else if(message.message.type === messageTypes.proofs.REQUEST) {%>
+                    <p><b>Requested Attributes:</b></p>
+                            <%for(let attr of Object.keys(message.message.message.proofRequest.requested_attributes)) {%>
+                                <p><%=message.message.message.proofRequest.requested_attributes[attr].name%></p>
+                            <%}%>
+                        <%for(let link of message.links) {%>
+                            <button class="w3-btn w3-white w3-border" type="submit" onclick="request('<%=link.href%>', '<%=link.method%>', '<%=link.message%>')"><%=link.name%></button>
+                        <%}%>
+                        <br><br>
+                    <%} else {%>
+                        <%if(message.links) {%>
+                            <%for(let link of message.links) {%>
+                                <button class="w3-btn w3-white w3-border" type="submit" onclick="request('<%=link.href%>', '<%=link.method%>', '<%=link.message%>')"><%=link.name%></button>
+                            <%}%>
+                        <%} else {%>
+                            <p>Message:</p>
+                            <p><%=message.message.message%></p>
+                        <%}%>
+                        <br><br>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+</div>

@@ -1,0 +1,268 @@
+body, input, select {
+	color: #222;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	line-height: 1.45;
+	margin: 0;
+}
+
+
+header {
+	background-color: #036;
+	border-bottom: 2px solid #fcba19;
+	color: #fcba19;
+	padding: 10px 2rem 10px 2.2rem;
+}
+header h1 {
+	color: #e9f5ff;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: -0.15em;
+}
+header p.lead {
+	display: inline-block;
+	margin-left: 3rem;
+}
+
+main {
+	padding: 1rem 1rem;
+}
+
+.row-outer {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+}
+
+.col-main {
+	flex: 1 1 auto;
+	padding: 1rem;
+}
+.col-tools {
+	flex: 1 0 25rem;
+	padding: 1rem;
+	width: 25rem;
+}
+
+a, input[type=submit], button {
+	color: #1a5a96;
+	text-decoration: none
+}
+button {
+  font-size: inherit;
+}
+
+a:hover,
+a:focus,
+button:hover, button:focus,
+input[type=submit]:hover,
+input[type=submit]:focus {
+	color: #0f3355;
+	text-decoration: underline;
+}
+a.tool, input[type=submit].tool {
+	font-size: 110%;
+}
+
+.tool-button, .tool-input {
+	background-color: #f0f3ff;
+	border: 1px solid #58a;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+	display: inline-block;
+	line-height: 1.4;
+	margin: 0.2rem 0;
+	padding: 0.3rem 0.6rem;
+}
+
+.tool-button:hover, .tool-button:focus {
+	background-color: #036;
+	color: #e9f5ff;
+	text-decoration: none;
+}
+
+a.tool .left, .tool-button .left {
+	font-size: 90%;
+	margin-right: 0.4rem;
+}
+
+form input[type=text] {
+	min-width: 250px;
+	background-color: white;
+}
+
+small, .small {
+	font-size: 85%;
+}
+
+.tag {
+	-background-color: #fef9f9;
+	-border: 1px solid #b67;
+	background-color: #fefdf8;
+	border: 1px solid #f9b714;
+	border-radius: 0.3em;
+	display: inline-block;
+	padding: 0.25em;
+}
+
+h2 {
+	font-weight: 500;
+}
+h2 .fa {
+	font-size: 85%;
+	opacity: 0.9;
+	vertical-align: 2px;
+}
+
+.panel {
+	border-radius: 0.5rem;
+	margin-bottom: 1.5rem;
+	overflow: hidden;
+}
+.panel-heading, .panel-body {
+	overflow: hidden;
+	padding: 0.25rem 0.7rem;
+}
+.panel-body p {
+	margin: 0.5rem 0;
+}
+.panel-default {
+	background: #f0f3ff;
+	border: 1px solid #eee;
+	box-shadow: 0 4px 3px 3px rgba(0, 0, 0, 0.02);
+}
+.panel-default .panel-heading {
+	background: #036;
+	border-bottom: 1px solid #eee;
+	color: #fafaec;
+	margin-bottom: 4px;
+}
+
+.panel-side {
+	background-color: #f7f6f6;
+	border: 2px solid #f0ecec;
+	box-shadow: 0 4px 3px 3px rgba(0, 0, 0, 0.02);
+}
+.panel-side .panel-heading {
+	color: #585555;
+}
+.panel-side .panel-heading::after {
+	background: #fdfdfd;
+	border-bottom: 1px solid #ebe6e6;
+	border-radius: 3px;
+	content: ' ';
+	display: block;
+	height: 3px;
+}
+
+.panel-heading h2 {
+	padding: 0;
+	margin: 0;
+}
+
+.top-label {
+	color: #555;
+	font-size: 95%;
+	font-weight: 600;
+	line-height: 1.6;
+}
+.tool-tag {
+	-background: rgba(254, 253, 237, 1.0);
+	border-radius: 2px;
+	-border: 1px solid rgba(215, 220, 255, 0.9);
+	color: #555;
+	display: inline-block;
+	font-size: 0.75rem;
+	font-weight: 600;
+	margin-left: 1rem;
+	padding: 1.5px 4px;
+	vertical-align: 0.1rem;
+}
+
+.error {
+	color: #b55;
+}
+.warning {
+	color: #a83;
+}
+
+.panel-node {
+	background: #fff;
+	-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.panel-node .panel-status {
+}
+.node-status {
+	display: flex;
+	padding: 0.8rem;
+	position: relative;
+}
+.node-status.template {
+	display: none;
+}
+.node-status:not(.template) + .node-status {
+	border-top: 1px solid #ddd;
+}
+.node-status-left {
+	flex: 0 1 25%;
+	margin: 0 10px 0 0;
+	overflow: hidden;
+	position: relative;
+	min-width: 90px;
+}
+.node-name {
+  font-size: 15px;
+	position: absolute;
+	text-align: center;
+	top: 34px;
+	width: 100%;
+	z-index: 2;
+}
+.nodeval-name {
+  color: #6A7593;
+  display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.node-indicator {
+	height: 90px;
+	margin: 0 auto;
+	width: 90px;
+}
+.node-status-right {
+	flex: 1 1 auto;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.props {
+	font-size: 80%;
+	margin: 0;
+}
+.props dt {
+	display: none;
+}
+.props dd {
+	margin: 0;
+}
+.props label {
+	color: #888;
+}
+
+@media screen and (max-width: 900px) {
+	.row-outer {
+		display: block;
+	}
+	.col-tools {
+		padding-top: 0;
+		width: auto;
+	}
+}
+
+.register-result {
+	display: block;
+	padding-top: 25px;
+ 	display: none;
+}
