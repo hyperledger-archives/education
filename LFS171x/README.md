@@ -25,7 +25,7 @@ Industries today are using blockchain technologies to increase efficiency and so
 
 ## Syllabus
 
-* Welcome & Introduction
+* [Welcome & Introduction](docs/welcome-intro.md)
 * [Discovering Blockchain Technologies](docs/discovering-blockchain-technologies.md)
 * [Introduction to Hyperledger](docs/introduction-to-hyperledger.md)
 * [The Promise of Business Blockchain Technologies](docs/the-promise-of-business-blockchain-technologies.md)
