@@ -31,6 +31,8 @@ Industries today are using blockchain technologies to increase efficiency and so
 * [The Promise of Business Blockchain Technologies](docs/the-promise-of-business-blockchain-technologies.md)
 * [Technical Requirements](docs/technical-requirements.md)
 * [Introduction to Hyperledger Iroha](docs/introduction-to-hyperledger-iroha.md)
+* [Introduction to Hyperledger Composer](docs/introduction-to-hyperledger-composer.md)
+* [Introduction to Hyperledger Indy](docs/introduction-to-hyperledger-indy.md)
 * [Introduction to Hyperledger Sawtooth](docs/introduction-to-hyperledger-sawtooth.md)
 * [Introduction to Hyperledger Fabric](docs/introduction-to-hyperledger-fabric.md)
 * [What's Next?](docs/whats-next.md)
