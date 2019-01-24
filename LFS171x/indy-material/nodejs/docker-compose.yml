@@ -118,7 +118,7 @@ services:
     build:
       context: .
       dockerfile: agent.dockerfile
-    command: "bash -c 'npm start'"
+    command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=https://maxcdn.icons8.com/Share/icon/Users/person_female1600.png
       - THEME=DarkGray
@@ -147,7 +147,7 @@ services:
   #
   bob:
     image: indy-agentjs
-    command: "bash -c 'npm start'"
+    command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=http://www.clker.com/cliparts/g/l/R/7/h/u/teamstijl-person-icon-blue-hi.png
       - THEME=BurlyWood
@@ -175,7 +175,7 @@ services:
 
   faber:
     image: indy-agentjs
-    command: "bash -c 'npm start'"
+    command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=https://cdn2.iconfinder.com/data/icons/bubble-education-icons-1/360/School-512.png
       - THEME=OliveDrab
@@ -203,7 +203,7 @@ services:
 
   acme:
     image: indy-agentjs
-    command: "bash -c 'npm start'"
+    command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=https://i.ytimg.com/vi/JUMufld7UcY/maxresdefault.jpg
       - THEME=LightSteelBlue
@@ -231,7 +231,7 @@ services:
 
   thrift:
     image: indy-agentjs
-    command: "bash -c 'npm start'"
+    command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=http://www.psdgraphics.com/file/bank-building-icon.jpg
       - THEME=Coral
