@@ -16,7 +16,7 @@
     "http-errors": "~1.6.2",
     "indy-sdk": "1.6.1",
     "json-stringify-pretty-compact": "^1.2.0",
-    "morgan": "~1.9.0",
+    "morgan": "~1.9.1",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "request-promise-native": "^1.0.5",
