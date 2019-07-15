@@ -2,7 +2,7 @@
 
 This folder contains a demonstration of basic Hyperledger Indy Agents. The agents provide a web browser interface to show establishing relationships between agents, issuing Verifiable Credentials, and proving claims from Verifiable Credentials.
 
-To learn more about Hyperledger Indy, see the project wiki - https://wiki.hyperledger.org/projects/indy.
+To learn more about Hyperledger Indy, see the project wiki - https://wiki.hyperledger.org/display/indy.
 
 This demo is used as an exercise for those taking the Hyperledger Project's EdX  [Blockchain for Business](https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x-0) course.
 
