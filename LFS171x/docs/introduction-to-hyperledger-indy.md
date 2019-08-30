@@ -580,7 +580,7 @@ In this demonstration, you will start a private instance of the Indy Blockchain 
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-The demo uses the same storyline as the official "Getting Started" guide for Indy, but with Agents that have a browser to drive the user interactions rather than the command line. If you do want to try the official Getting Started guide, you can find a link to the latest version on the [Hyperledger Indy Wiki](https://wiki.hyperledger.org/projects/indy) page.
+The demo uses the same storyline as the official "Getting Started" guide for Indy, but with Agents that have a browser to drive the user interactions rather than the command line. If you do want to try the official Getting Started guide, you can find a link to the latest version on the [Hyperledger Indy Wiki](https://wiki.hyperledger.org/display/indy) page.
 
 
 ## Running the Demonstration
@@ -621,7 +621,7 @@ That example was built on a number of components - the Hyperledger Indy project 
 
 ### The Hyperledger Indy GitHub Repos
 
-As of August 2018, there were 9 official Hyperledger Indy GitHub Repos.  To check the current status of the repos that make up Hyperledger Indy, go to the [Hyperledger Indy project Wiki page](https://wiki.hyperledger.org/projects/indy). Of those 9, six are important to describe here. The other three are not (currently) particularly important to the general community.
+As of August 2018, there were 9 official Hyperledger Indy GitHub Repos.  To check the current status of the repos that make up Hyperledger Indy, go to the [Hyperledger Indy project Wiki page](https://wiki.hyperledger.org/display/indy). Of those 9, six are important to describe here. The other three are not (currently) particularly important to the general community.
 
 
 #### indy-node
@@ -697,14 +697,14 @@ Hyperledger Indy is an open source project, where ideas and code can be publicly
 
 The starting point for all things Hyperledger Indy is the project's Hyperledger Wiki page. That can be found here:
 
-[https://wiki.hyperledger.org/projects/indy](https://wiki.hyperledger.org/projects/indy)
+[https://wiki.hyperledger.org/display/indy](https://wiki.hyperledger.org/display/indy)
 
 From there you can find a little bit about the project directly, and a whole series of links to documents, data and details about Indy, including things like the Indy code and documentation repositories, project management information, collaboration tools, community meetings and more.
 
 
 ## Community Resources
 
-The Hyperledger Indy community has a number of places where the community comes together to move the project forward - with more resources being added as the community grows. For specific details and links to these resources and events, please see the the Hyperledger Indy Wiki page - [https://wiki.hyperledger.org/projects/indy](https://wiki.hyperledger.org/projects/indy).
+The Hyperledger Indy community has a number of places where the community comes together to move the project forward - with more resources being added as the community grows. For specific details and links to these resources and events, please see the the Hyperledger Indy Wiki page - [https://wiki.hyperledger.org/display/indy](https://wiki.hyperledger.org/display/indy).
 
 
 ### Weekly Meetings
@@ -726,7 +726,7 @@ An [Indy Mailing list](https://lists.hyperledger.org/g/indy) is used to keep the
 
 ### GitHub Repos
 
-The Hyperledger Indy codebase is on [GitHub](https://github.com/hyperledger) and is available for reviewing, forking and most importantly, contributions. A list of the current Hyperledger Indy repos (as of September, 2018) is provided in the earlier "Getting Started with Hyperledger Indy" section. See the [Hyperledger Indy Wiki](https://wiki.hyperledger.org/projects/indy) to find the latest information on the repos.
+The Hyperledger Indy codebase is on [GitHub](https://github.com/hyperledger) and is available for reviewing, forking and most importantly, contributions. A list of the current Hyperledger Indy repos (as of September, 2018) is provided in the earlier "Getting Started with Hyperledger Indy" section. See the [Hyperledger Indy Wiki](https://wiki.hyperledger.org/display/indy) to find the latest information on the repos.
 
 
 ### Indy Meetups
@@ -934,8 +934,8 @@ The following are a series of links to additional information about the various 
 
 
 
-*   [Hyperledger Indy](https://www.hyperledger.org/projects/hyperledger-indy)
-*   [Hyperledger Indy - Wiki](https://wiki.hyperledger.org/projects/indy)
+*   [Hyperledger Indy](https://www.hyperledger.org/display/hyperledger-indy)
+*   [Hyperledger Indy - Wiki](https://wiki.hyperledger.org/display/indy)
 *   [Self-Sovereign Identity](http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html) - Original post by Christopher Allen
 *   [Decentralized Identifiers - DIDs](https://w3c-ccg.github.io/did-spec/) - from the W3C Credentials Community Group
 *   [Verifiable Claims Working Group](https://www.w3.org/2017/vc/WG/)
