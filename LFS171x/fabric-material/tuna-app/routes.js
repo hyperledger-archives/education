@@ -16,4 +16,7 @@ module.exports = function(app){
   app.get('/change_holder/:holder', function(req, res){
     tuna.change_holder(req, res);
   });
+  app.get('/get_tuna_history/:id', function (req, res) {
+    tuna.get_tuna_history(req, res);
+  });
 }

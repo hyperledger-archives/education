@@ -66,6 +66,19 @@ app.controller('appController', function($scope, appFactory){
 		});
 	}
 
+	$scope.queryTunaHistory = function () {
+
+		var id = $scope.tuna_id_history;
+
+		appFactory.queryTunaHistory(id, function (data) {
+
+			var array = [];
+			for (var i = 0; i < data.length; i++) {
+				array.push(data[i]);
+			}
+			$scope.query_tuna_history = array;
+		});
+	}
 });
 
 // Angular Factory
@@ -102,6 +115,12 @@ app.factory('appFactory', function($http){
 		var holder = data.id + "-" + data.name;
 
     	$http.get('/change_holder/'+holder).success(function(output){
+			callback(output)
+		});
+	}
+
+	factory.queryTunaHistory = function (id, callback) {
+		$http.get('/get_tuna_history/' + id).success(function (output) {
 			callback(output)
 		});
 	}
