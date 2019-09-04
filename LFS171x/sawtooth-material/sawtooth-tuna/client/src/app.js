@@ -49,9 +49,11 @@ app.refresh = function () {
       }
     })
 
-    // Populate transfer list for selected user
-    transfers.filter(transfer => transfer.owner === this.user.public)
-      .forEach(transfer => addAction('#transferList', transfer.asset, 'Accept'))
+    // Populate transfer list for selected user (if there is a selected user)
+    if(this.user) {
+      transfers.filter(transfer => transfer.owner === this.user.public)
+        .forEach(transfer => addAction('#transferList', transfer.asset, 'Accept'))
+    }
 
     // Populate transfer select with both local and blockchain keys
     let publicKeys = this.keys.map(pair => pair.public)
