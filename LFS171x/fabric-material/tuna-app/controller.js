@@ -70,18 +70,25 @@ return{
 		}).then((query_responses) => {
 		    console.log("Query has completed, checking results");
 		    // query_responses could have more than one  results if there multiple peers were used as targets
+				let res_msg = "";
 		    if (query_responses && query_responses.length == 1) {
 		        if (query_responses[0] instanceof Error) {
 		            console.error("error from query = ", query_responses[0]);
+								res_msg += "error from query = ", query_responses[0];
 		        } else {
 		            console.log("Response is ", query_responses[0].toString());
-		            res.json(JSON.parse(query_responses[0].toString()));
+		            res_msg += query_responses[0].toString();
 		        }
 		    } else {
 		        console.log("No payloads were returned from query");
+						res_msg += "\nNo payloads were returned from query."
 		    }
+				res.send(res_msg);
 		}).catch((err) => {
 		    console.error('Failed to query successfully :: ' + err);
+				if( res.headerSent === false ) {
+					res.send('Failed to query successfully :: ' + err);
+				}
 		});
 	},
 	add_tuna: function(req, res){
@@ -137,7 +144,7 @@ return{
 		    tx_id = fabric_client.newTransactionID();
 		    console.log("Assigning transaction_id: ", tx_id._transaction_id);
 
-		    // recordTuna - requires 5 args, ID, vessel, location, timestamp,holder - ex: args: ['10', 'Hound', '-12.021, 28.012', '1504054225', 'Hansel'], 
+		    // recordTuna - requires 5 args, ID, vessel, location, timestamp,holder - ex: args: ['10', 'Hound', '-12.021, 28.012', '1504054225', 'Hansel'],
 		    // send proposal to endorser
 		    const request = {
 		        //targets : --- letting this default to the peers assigned to the channel
@@ -225,22 +232,28 @@ return{
 		    }
 		}).then((results) => {
 		    console.log('Send transaction promise and event listener promise have completed');
+				let res_msg = "";
 		    // check the results in the order the promises were added to the promise all list
 		    if (results && results[0] && results[0].status === 'SUCCESS') {
 		        console.log('Successfully sent transaction to the orderer.');
-		        res.send(tx_id.getTransactionID());
 		    } else {
 		        console.error('Failed to order the transaction. Error code: ' + response.status);
+						res_msg += 'Failed to order the transaction. Error code: ' + response.status;
 		    }
 
 		    if(results && results[1] && results[1].event_status === 'VALID') {
 		        console.log('Successfully committed the change to the ledger by the peer');
-		        res.send(tx_id.getTransactionID());
+		        res_msg += (tx_id.getTransactionID());
 		    } else {
 		        console.log('Transaction failed to be committed to the ledger due to ::'+results[1].event_status);
+						res_msg += 'Transaction failed to be committed to the ledger due to ::'+results[1].event_status;
 		    }
+				res.send(res_msg);
 		}).catch((err) => {
 		    console.error('Failed to invoke successfully :: ' + err);
+				if( res.headerSent === false ) {
+					res.send("Error: adding new tuna, check server logs.");
+				}
 		});
 	},
 	get_tuna: function(req, res){
@@ -294,22 +307,27 @@ return{
 		}).then((query_responses) => {
 		    console.log("Query has completed, checking results");
 		    // query_responses could have more than one  results if there multiple peers were used as targets
+				// res_msg is a String which will be sent as the response data. If sucess will be the tx_id and if not
+				let res_msg = "";
 		    if (query_responses && query_responses.length == 1) {
 		        if (query_responses[0] instanceof Error) {
 		            console.error("error from query = ", query_responses[0]);
-		            res.send("Could not locate tuna")
-		            
+		            res_msg += "error from query = ", query_responses[0] +".";
+
 		        } else {
 		            console.log("Response is ", query_responses[0].toString());
-		            res.send(query_responses[0].toString())
+		            res_msg += query_responses[0].toString();
 		        }
 		    } else {
 		        console.log("No payloads were returned from query");
-		        res.send("Could not locate tuna")
+		        res_msg += "\nCould not locate tuna."
 		    }
+				res.send(res_msg);
 		}).catch((err) => {
-		    console.error('Failed to query successfully :: ' + err);
-		    res.send("Could not locate tuna")
+		   	console.error('Failed to query successfully :: ' + err);
+				if( res.headerSent === false ) {
+					res.send("Could not locate tuna. Check server logs for more info.")
+				}
 		});
 	},
 	change_holder: function(req, res){
@@ -448,24 +466,28 @@ return{
 		    }
 		}).then((results) => {
 		    console.log('Send transaction promise and event listener promise have completed');
-		    // check the results in the order the promises were added to the promise all list
-		    if (results && results[0] && results[0].status === 'SUCCESS') {
-		        console.log('Successfully sent transaction to the orderer.');
-		        res.json(tx_id.getTransactionID())
-		    } else {
-		        console.error('Failed to order the transaction. Error code: ' + response.status);
-		        res.send("Error: no tuna catch found");
-		    }
+					// String which will be sent as the response data. If sucess will be the tx_id and if not
+					let res_msg = "";
+			    // check the results in the order the promises were added to the promise all list
+			    if (results && results[0] && results[0].status === 'SUCCESS') {
+			        console.log('Successfully sent transaction to the orderer.');
+			    } else {
+			        console.error('Failed to order the transaction. Error code: ' + response.status);
+			        res_msg += "Error: no tuna catch found";
+			    }
 
-		    if(results && results[1] && results[1].event_status === 'VALID') {
-		        console.log('Successfully committed the change to the ledger by the peer');
-		        res.json(tx_id.getTransactionID())
-		    } else {
-		        console.log('Transaction failed to be committed to the ledger due to ::'+results[1].event_status);
-		    }
+			    if(results && results[1] && results[1].event_status === 'VALID') {
+			        console.log('Successfully committed the change to the ledger by the peer');
+			        res_msg += tx_id.getTransactionID()
+			    } else {
+			        console.log('Transaction failed to be committed to the ledger due to ::'+results[1].event_status);
+			    }
+					res.send(res_msg)
 		}).catch((err) => {
 		    console.error('Failed to invoke successfully :: ' + err);
-		    res.send("Error: no tuna catch found");
+				if( res.headerSent === false ) {
+		    	res.send("Error: no tuna catch found");
+				}
 		});
 
 	}
