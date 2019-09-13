@@ -11,7 +11,7 @@ app.controller('appController', function($scope, appFactory){
 	$("#success_create").hide();
 	$("#error_holder").hide();
 	$("#error_query").hide();
-	
+
 	$scope.queryAllTuna = function(){
 
 		appFactory.queryAllTuna(function(data){
@@ -70,7 +70,7 @@ app.controller('appController', function($scope, appFactory){
 
 // Angular Factory
 app.factory('appFactory', function($http){
-	
+
 	var factory = {};
 
     factory.queryAllTuna = function(callback){
@@ -90,18 +90,27 @@ app.factory('appFactory', function($http){
 
 		data.location = data.longitude + ", "+ data.latitude;
 
-		var tuna = data.id + "-" + data.location + "-" + data.timestamp + "-" + data.holder + "-" + data.vessel;
+		var tuna = {
+			id: data.id,
+			location: data.location,
+			timestamp: data.timestamp,
+			holder: data.holder,
+			vessel: data.vessel
+		};
 
-    	$http.get('/add_tuna/'+tuna).success(function(output){
+		$http.post('/add_tuna', tuna).success(function(output){
 			callback(output)
 		});
 	}
 
 	factory.changeHolder = function(data, callback){
 
-		var holder = data.id + "-" + data.name;
+		var holder = {
+			id: data.id,
+			name: data.name
+		};
 
-    	$http.get('/change_holder/'+holder).success(function(output){
+		$http.post('/change_holder', holder).success(function(output){
 			callback(output)
 		});
 	}
