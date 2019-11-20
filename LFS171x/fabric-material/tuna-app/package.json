@@ -10,7 +10,7 @@
         "express": "latest",
         "body-parser": "latest",
         "ejs": "latest",
-        "angular": "^1.4.3"
+        "angular": "^1.7.9"
     },
     "license": "Apache-2.0",
     "keywords": [
